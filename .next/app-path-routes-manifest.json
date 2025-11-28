@@ -1,0 +1,17 @@
+{
+  "/(app)/admin/page": "/admin",
+  "/(app)/approvals/page": "/approvals",
+  "/(app)/invoices/page": "/invoices",
+  "/(app)/notifications/page": "/notifications",
+  "/(app)/purchase-orders/page": "/purchase-orders",
+  "/(app)/reports/page": "/reports",
+  "/(app)/requisitions/page": "/requisitions",
+  "/(app)/suppliers/page": "/suppliers",
+  "/(app)/tenders/page": "/tenders",
+  "/(auth)/sign-up/[[...sign-up]]/page": "/sign-up/[[...sign-up]]",
+  "/(onboard)/onboarding/page": "/onboarding",
+  "/(onboard)/onboarding/submitted/page": "/onboarding/submitted",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/page": "/"
+}

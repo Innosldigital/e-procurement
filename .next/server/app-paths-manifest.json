@@ -1,0 +1,17 @@
+{
+  "/(app)/admin/page": "app/(app)/admin/page.js",
+  "/(app)/approvals/page": "app/(app)/approvals/page.js",
+  "/(app)/invoices/page": "app/(app)/invoices/page.js",
+  "/(app)/notifications/page": "app/(app)/notifications/page.js",
+  "/(app)/purchase-orders/page": "app/(app)/purchase-orders/page.js",
+  "/(app)/reports/page": "app/(app)/reports/page.js",
+  "/(app)/requisitions/page": "app/(app)/requisitions/page.js",
+  "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
+  "/(app)/tenders/page": "app/(app)/tenders/page.js",
+  "/(auth)/sign-up/[[...sign-up]]/page": "app/(auth)/sign-up/[[...sign-up]]/page.js",
+  "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
+  "/(onboard)/onboarding/submitted/page": "app/(onboard)/onboarding/submitted/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js"
+}
