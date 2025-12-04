@@ -1,347 +1,41 @@
-[00:00:02.263] Server  LOG      ✓ Ready in 1760ms
-[00:00:08.178] Server  LOG     🔍 Proxy Check: {}
-[00:00:11.198] Server  LOG      ○ Compiling / ...
-[00:00:20.351] Server  ERROR   [v0] Error fetching purchase orders: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:00:20.353] Server  ERROR   [v0] Error fetching approvals: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:00:20.354] Server  ERROR   [v0] Error fetching invoices: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:00:20.356] Server  ERROR   [v0] Error aggregating MTD spend: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:00:20.357] Server  ERROR   [v0] Error fetching requisitions: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:00:20.974] Server  LOG     🔍 Proxy Check: {}
-[00:00:21.122] Server  LOG     🔍 Proxy Check: {}
-[00:00:22.344] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:22.344] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:00:23.157] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:23.158] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:23.158] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849743134}
-[00:00:26.327] Server  LOG     🔍 Proxy Check: {}
-[00:00:31.543] Server  LOG     🔍 Proxy Check: {}
-[00:00:36.038] Server  LOG     🔍 Proxy Check: {}
-[00:00:36.720] Server  LOG     🔍 Proxy Check: {}
-[00:00:37.632] Server  LOG     🔍 Proxy Check: {}
-[00:00:37.722] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849757669}
-[00:00:38.556] Server  LOG     🔍 Proxy Check: {}
-[00:00:50.959] Server  LOG     🔍 Proxy Check: {}
-[00:00:56.085] Server  LOG     🔍 Proxy Check: {}
-[00:01:01.478] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849781455}
-[00:01:04.617] Server  LOG     🔍 Proxy Check: {}
-[00:01:04.751] Server  LOG     🔍 Proxy Check: {}
-[00:01:04.814] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849784778}
-[00:01:06.254] Server  LOG     🔍 Proxy Check: {}
-[00:01:19.296] Server  LOG     🔍 Proxy Check: {}
-[00:01:24.472] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__bd65fd7f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.564] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.598] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_next_dist_d1a6fa31._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.604] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.607] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.610] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.611] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.614] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.616] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:01:24.617] Server  ERROR   Error fetching supplier onboarding: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:01:25.039] Server  LOG     🔍 Proxy Check: {}
-[00:01:30.689] Server  LOG     🔍 Proxy Check: {}
-[00:01:50.966] Server  LOG     🔍 Proxy Check: {}
-[00:01:56.243] Server  LOG     🔍 Proxy Check: {}
-[00:02:09.564] Server  LOG     🔍 Proxy Check: {}
-[00:02:21.126] Server  LOG     🔍 Proxy Check: {}
-[00:02:27.281] Server  LOG     🔍 Proxy Check: {}
-[00:02:52.887] Server  LOG     🔍 Proxy Check: {}
-[00:02:58.558] Server  LOG     🔍 Proxy Check: {}
-[00:03:21.263] Server  LOG     🔍 Proxy Check: {}
-[00:03:26.444] Server  LOG     🔍 Proxy Check: {}
-[00:03:50.967] Server  LOG     🔍 Proxy Check: {}
-[00:03:56.075] Server  LOG     🔍 Proxy Check: {}
-[00:04:05.943] Server  LOG     🔍 Proxy Check: {}
-[00:04:11.128] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__bd65fd7f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.132] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.132] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_next_dist_d1a6fa31._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.133] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.134] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.135] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.136] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.136] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.137] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:04:11.139] Server  ERROR   Error fetching supplier onboarding: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:04:21.827] Server  LOG     🔍 Proxy Check: {}
-[00:04:26.999] Server  LOG     🔍 Proxy Check: {}
-[00:04:52.982] Server  LOG     🔍 Proxy Check: {}
-[00:04:58.952] Server  LOG     🔍 Proxy Check: {}
-[00:05:22.320] Server  LOG     🔍 Proxy Check: {}
-[00:05:27.483] Server  LOG     🔍 Proxy Check: {}
-[00:05:52.283] Server  LOG     🔍 Proxy Check: {}
-[00:05:58.710] Server  LOG     🔍 Proxy Check: {}
-[00:06:22.080] Server  LOG     🔍 Proxy Check: {}
-[00:06:27.293] Server  LOG     🔍 Proxy Check: {}
-[00:06:52.558] Server  LOG     🔍 Proxy Check: {}
-[00:06:58.843] Server  LOG     🔍 Proxy Check: {}
-[00:07:01.135] Server  LOG      ✓ Compiled in 253ms
-[00:07:14.781] Server  LOG     🔍 Proxy Check: {}
-[00:07:20.430] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__901ada4d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.434] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.452] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_next_dist_d1a6fa31._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.453] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.453] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.454] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.455] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.456] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.457] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:07:20.458] Server  ERROR   Error fetching supplier onboarding: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:07:22.391] Server  LOG     🔍 Proxy Check: {}
-[00:07:27.602] Server  LOG     🔍 Proxy Check: {}
-[00:07:53.093] Server  LOG     🔍 Proxy Check: {}
-[00:07:58.373] Server  LOG     🔍 Proxy Check: {}
-[00:08:21.855] Server  LOG     🔍 Proxy Check: {}
-[00:08:28.929] Server  LOG     🔍 Proxy Check: {}
-[00:09:22.836] Server  LOG     🔍 Proxy Check: {}
-[00:09:30.038] Server  LOG     🔍 Proxy Check: {}
-[00:10:18.342] Server  LOG     🔍 Proxy Check: {}
-[00:10:24.901] Server  LOG     🔍 Proxy Check: {}
-[00:10:32.318] Server  LOG     🔍 Proxy Check: {}
-[00:10:38.349] Server  LOG     🔍 Proxy Check: {}
-[00:10:50.968] Server  LOG     🔍 Proxy Check: {}
-[00:10:58.316] Server  LOG     🔍 Proxy Check: {}
-[00:11:21.851] Server  LOG     🔍 Proxy Check: {}
-[00:11:27.730] Server  LOG     🔍 Proxy Check: {}
-[00:11:51.840] Server  LOG     🔍 Proxy Check: {}
-[00:11:57.048] Server  LOG     🔍 Proxy Check: {}
-[00:12:22.840] Server  LOG     🔍 Proxy Check: {}
-[00:12:30.573] Server  LOG     🔍 Proxy Check: {}
-[00:13:22.853] Server  LOG     🔍 Proxy Check: {}
-[00:13:30.528] Server  LOG     🔍 Proxy Check: {}
-[00:13:56.496] Server  LOG      ✓ Compiled in 265ms
-[00:14:22.832] Server  LOG     🔍 Proxy Check: {}
-[00:14:28.827] Server  LOG     🔍 Proxy Check: {}
-[00:15:24.481] Server  LOG     🔍 Proxy Check: {}
-[00:15:32.688] Server  LOG     🔍 Proxy Check: {}
-[00:16:22.839] Server  LOG     🔍 Proxy Check: {}
-[00:16:28.031] Server  LOG     🔍 Proxy Check: {}
-[00:17:24.811] Server  LOG     🔍 Proxy Check: {}
-[00:17:29.991] Server  LOG     🔍 Proxy Check: {}
-[00:18:24.329] Server  LOG     🔍 Proxy Check: {}
-[00:18:29.653] Server  LOG     🔍 Proxy Check: {}
-[00:19:24.562] Server  LOG     🔍 Proxy Check: {}
-[00:19:29.744] Server  LOG     🔍 Proxy Check: {}
-[00:20:07.816] Server  LOG     🔍 Proxy Check: {}
-[00:20:12.901] Server  LOG     🔍 Proxy Check: {}
-[00:20:21.301] Server  LOG     🔍 Proxy Check: {}
-[00:20:26.480] Server  LOG     🔍 Proxy Check: {}
-[00:20:53.795] Server  LOG     🔍 Proxy Check: {}
-[00:21:00.005] Server  LOG     🔍 Proxy Check: {}
-[00:21:22.178] Server  LOG     🔍 Proxy Check: {}
-[00:21:27.319] Server  LOG     🔍 Proxy Check: {}
-[00:21:51.355] Server  LOG     🔍 Proxy Check: {}
-[00:21:56.540] Server  LOG     🔍 Proxy Check: {}
-[00:22:20.965] Server  LOG     🔍 Proxy Check: {}
-[00:22:26.156] Server  LOG     🔍 Proxy Check: {}
-[00:22:53.019] Server  LOG     🔍 Proxy Check: {}
-[00:22:58.232] Server  LOG     🔍 Proxy Check: {}
-[00:23:23.898] Server  LOG     🔍 Proxy Check: {}
-[00:23:29.107] Server  LOG     🔍 Proxy Check: {}
-[00:23:52.696] Server  LOG     🔍 Proxy Check: {}
-[00:23:57.885] Server  LOG     🔍 Proxy Check: {}
-[00:24:21.827] Server  LOG     🔍 Proxy Check: {}
-[00:24:27.025] Server  LOG     🔍 Proxy Check: {}
-[00:24:50.967] Server  LOG     🔍 Proxy Check: {}
-[00:24:56.173] Server  LOG     🔍 Proxy Check: {}
-[00:25:21.832] Server  LOG     🔍 Proxy Check: {}
-[00:25:29.988] Server  LOG     🔍 Proxy Check: {}
-[00:25:50.968] Server  LOG     🔍 Proxy Check: {}
-[00:25:56.896] Server  LOG     🔍 Proxy Check: {}
-[00:26:20.968] Server  LOG     🔍 Proxy Check: {}
-[00:26:26.130] Server  LOG     🔍 Proxy Check: {}
-[00:26:52.326] Server  LOG     🔍 Proxy Check: {}
-[00:26:57.519] Server  LOG     🔍 Proxy Check: {}
-[00:27:22.221] Server  LOG     🔍 Proxy Check: {}
-[00:27:27.403] Server  LOG     🔍 Proxy Check: {}
-[00:28:22.840] Server  LOG     🔍 Proxy Check: {}
-[00:28:31.162] Server  LOG     🔍 Proxy Check: {}
-[00:29:22.834] Server  LOG     🔍 Proxy Check: {}
-[00:29:28.021] Server  LOG     🔍 Proxy Check: {}
-[00:30:25.537] Server  LOG     🔍 Proxy Check: {}
-[00:30:30.889] Server  LOG     🔍 Proxy Check: {}
-[00:31:24.717] Server  LOG     🔍 Proxy Check: {}
-[00:31:29.905] Server  LOG     🔍 Proxy Check: {}
-[00:32:22.824] Server  LOG     🔍 Proxy Check: {}
-[00:32:28.280] Server  LOG     🔍 Proxy Check: {}
-[00:33:24.202] Server  LOG     🔍 Proxy Check: {}
-[00:33:29.544] Server  LOG     🔍 Proxy Check: {}
-[00:34:22.839] Server  LOG     🔍 Proxy Check: {}
-[00:34:32.850] Server  LOG     🔍 Proxy Check: {}
-[00:35:22.838] Server  LOG     🔍 Proxy Check: {}
-[00:35:28.013] Server  LOG     🔍 Proxy Check: {}
-[00:36:24.522] Server  LOG     🔍 Proxy Check: {}
-[00:36:31.422] Server  LOG     🔍 Proxy Check: {}
-[00:37:24.390] Server  LOG     🔍 Proxy Check: {}
-[00:37:29.576] Server  LOG     🔍 Proxy Check: {}
-[00:38:22.824] Server  LOG     🔍 Proxy Check: {}
-[00:38:30.721] Server  LOG     🔍 Proxy Check: {}
-[00:39:24.575] Server  LOG     🔍 Proxy Check: {}
-[00:39:31.295] Server  LOG     🔍 Proxy Check: {}
-[00:40:22.878] Server  LOG     🔍 Proxy Check: {}
-[00:40:29.303] Server  LOG     🔍 Proxy Check: {}
-[00:41:26.029] Server  LOG     🔍 Proxy Check: {}
-[00:41:31.216] Server  LOG     🔍 Proxy Check: {}
-[00:42:24.538] Server  LOG     🔍 Proxy Check: {}
-[00:42:27.997] Server  LOG     🔍 Proxy Check: {}
-[00:43:23.683] Server  LOG     🔍 Proxy Check: {}
-[00:43:23.896] Server  LOG     🔍 Proxy Check: {}
-[00:44:24.982] Server  LOG     🔍 Proxy Check: {}
-[00:44:25.187] Server  LOG     🔍 Proxy Check: {}
-[00:45:22.968] Server  LOG     🔍 Proxy Check: {}
-[00:45:23.185] Server  LOG     🔍 Proxy Check: {}
-[00:46:22.848] Server  LOG     🔍 Proxy Check: {}
-[00:46:24.557] Server  LOG     🔍 Proxy Check: {}
-[00:47:26.850] Server  LOG     🔍 Proxy Check: {}
-[00:47:38.753] Server  LOG     🔍 Proxy Check: {}
-[00:48:22.831] Server  LOG     🔍 Proxy Check: {}
-[00:48:23.111] Server  LOG     🔍 Proxy Check: {}
-[00:48:58.580] Server  LOG     🔍 Proxy Check: {}
-[00:48:58.840] Server  LOG     🔍 Proxy Check: {}
-[00:49:02.236] Server  LOG     🔍 Proxy Check: {}
-[00:49:24.877] Server  LOG     🔍 Proxy Check: {}
-[00:49:25.102] Server  LOG     🔍 Proxy Check: {}
-[00:49:52.831] Server  LOG     🔍 Proxy Check: {}
-[00:49:53.083] Server  LOG     🔍 Proxy Check: {}
-[00:50:20.977] Server  LOG     🔍 Proxy Check: {}
-[00:50:21.205] Server  LOG     🔍 Proxy Check: {}
-[00:50:30.407] Server  LOG     🔍 Proxy Check: {}
-[00:50:31.632] Server  LOG     🔍 Proxy Check: {}
-[00:50:31.674] Server  LOG     🔍 Proxy Check: {}
-[00:50:32.067] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:50:32.067] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:50:32.738] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:50:32.738] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[00:50:32.738] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764852752721}
-[00:50:38.075] Server  LOG     🔍 Proxy Check: {}
-[00:50:38.397] Server  LOG     🔍 Proxy Check: {}
-[00:50:38.636] Server  LOG     🔍 Proxy Check: {}
-[00:50:38.886] Server  LOG     🔍 Proxy Check: {}
-[00:50:55.273] Server  LOG     🔍 Proxy Check: {}
-[00:50:55.567] Server  LOG     🔍 Proxy Check: {}
-[00:51:01.651] Server  LOG     🔍 Proxy Check: {}
-[00:51:01.914] Server  LOG     🔍 Proxy Check: {}
-[00:51:31.637] Server  LOG     🔍 Proxy Check: {}
-[00:51:31.933] Server  LOG     🔍 Proxy Check: {}
-[00:52:01.638] Server  LOG     🔍 Proxy Check: {}
-[00:52:01.956] Server  LOG     🔍 Proxy Check: {}
-[00:52:33.021] Server  LOG     🔍 Proxy Check: {}
-[00:52:33.383] Server  LOG     🔍 Proxy Check: {}
-[00:52:33.668] Server  LOG     🔍 Proxy Check: {}
-[00:52:33.968] Server  LOG     🔍 Proxy Check: {}
-[00:53:01.849] Server  LOG     🔍 Proxy Check: {}
-[00:53:02.109] Server  LOG     🔍 Proxy Check: {}
-[00:53:31.872] Server  LOG     🔍 Proxy Check: {}
-[00:53:32.125] Server  LOG     🔍 Proxy Check: {}
-[00:54:22.868] Server  LOG     🔍 Proxy Check: {}
-[00:54:23.140] Server  LOG     🔍 Proxy Check: {}
-[00:55:28.320] Server  LOG     🔍 Proxy Check: {}
-[00:55:28.560] Server  LOG     🔍 Proxy Check: {}
-[00:56:22.863] Server  LOG     🔍 Proxy Check: {}
-[00:56:23.070] Server  LOG     🔍 Proxy Check: {}
-[00:57:22.982] Server  LOG     🔍 Proxy Check: {}
-[00:57:23.202] Server  LOG     🔍 Proxy Check: {}
-[00:58:26.654] Server  LOG     🔍 Proxy Check: {}
-[00:58:26.897] Server  LOG     🔍 Proxy Check: {}
-[00:59:24.503] Server  LOG     🔍 Proxy Check: {}
-[00:59:24.726] Server  LOG     🔍 Proxy Check: {}
-[01:00:22.842] Server  LOG     🔍 Proxy Check: {}
-[01:00:23.036] Server  LOG     🔍 Proxy Check: {}
-[01:00:38.173] Server  LOG     🔍 Proxy Check: {}
-[01:00:38.395] Server  LOG     🔍 Proxy Check: {}
-[01:00:53.862] Server  LOG     🔍 Proxy Check: {}
-[01:01:00.379] Server  LOG     🔍 Proxy Check: {}
-[01:01:03.672] Server  LOG     🔍 Proxy Check: {}
-[01:01:03.894] Server  LOG     🔍 Proxy Check: {}
-[01:01:16.699] Server  LOG     🔍 Proxy Check: {}
-[01:01:23.503] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[01:01:23.503] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[01:01:23.515] Server  LOG     🔍 Proxy Check: {}
-[01:01:23.568] Server  LOG     🔍 Proxy Check: {}
-[01:01:23.895] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:01:23.895] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[01:01:23.895] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764853403878}
-[01:01:24.833] Server  LOG     🔍 Proxy Check: {}
-[01:01:25.044] Server  LOG     🔍 Proxy Check: {}
-[01:01:25.229] Server  LOG     🔍 Proxy Check: {}
-[01:01:25.430] Server  LOG     🔍 Proxy Check: {}
-[01:01:53.521] Server  LOG     🔍 Proxy Check: {}
-[01:01:53.743] Server  LOG     🔍 Proxy Check: {}
-[01:02:24.357] Server  LOG     🔍 Proxy Check: {}
-[01:02:31.680] Server  LOG     🔍 Proxy Check: {}
-[01:02:57.186] Server  LOG     🔍 Proxy Check: {}
-[01:02:57.401] Server  LOG     🔍 Proxy Check: {}
-[01:03:23.832] Server  LOG     🔍 Proxy Check: {}
-[01:03:24.060] Server  LOG     🔍 Proxy Check: {}
-[01:03:57.691] Server  LOG     🔍 Proxy Check: {}
-[01:04:03.456] Server  LOG     🔍 Proxy Check: {}
-[01:04:27.356] Server  LOG     🔍 Proxy Check: {}
-[01:04:27.600] Server  LOG     🔍 Proxy Check: {}
-[01:04:32.686] Server  LOG     🔍 Proxy Check: {}
-[01:04:34.207] Server  LOG     🔍 Proxy Check: {}
-[01:04:34.303] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764853594245}
-[01:04:34.439] Server  LOG     🔍 Proxy Check: {}
-[01:04:34.706] Server  LOG     🔍 Proxy Check: {}
-[01:04:34.873] Server  LOG     getSupplierById: {}
-[01:04:53.505] Server  LOG     🔍 Proxy Check: {}
-[01:04:53.688] Server  LOG     🔍 Proxy Check: {}
-[01:05:23.852] Server  LOG     🔍 Proxy Check: {}
-[01:05:24.064] Server  LOG     🔍 Proxy Check: {}
-[01:05:58.212] Server  LOG     🔍 Proxy Check: {}
-[01:05:58.455] Server  LOG     🔍 Proxy Check: {}
-[01:07:22.826] Server  LOG     🔍 Proxy Check: {}
-[01:07:23.013] Server  LOG     🔍 Proxy Check: {}
-[01:08:28.690] Server  LOG     🔍 Proxy Check: {}
-[01:08:28.903] Server  LOG     🔍 Proxy Check: {}
-[01:09:24.131] Server  LOG     🔍 Proxy Check: {}
-[01:09:24.326] Server  LOG     🔍 Proxy Check: {}
-[01:10:26.855] Server  LOG     🔍 Proxy Check: {}
-[01:10:27.063] Server  LOG     🔍 Proxy Check: {}
-[01:11:22.829] Server  LOG     🔍 Proxy Check: {}
-[01:11:23.029] Server  LOG     🔍 Proxy Check: {}
-[01:12:24.016] Server  LOG     🔍 Proxy Check: {}
-[01:12:24.331] Server  LOG     🔍 Proxy Check: {}
-[01:13:22.839] Server  LOG     🔍 Proxy Check: {}
-[01:13:23.032] Server  LOG     🔍 Proxy Check: {}
-[01:14:22.840] Server  LOG     🔍 Proxy Check: {}
-[01:14:23.029] Server  LOG     🔍 Proxy Check: {}
-[01:14:57.437] Server  LOG     🔍 Proxy Check: {}
-[01:15:04.891] Server  LOG     🔍 Proxy Check: {}
-[01:15:05.113] Server  LOG     🔍 Proxy Check: {}
-[01:15:05.297] Server  LOG     getSupplierById: {}
-[01:15:30.879] Server  LOG     🔍 Proxy Check: {}
-[01:15:31.104] Server  LOG     🔍 Proxy Check: {}
-[01:15:56.215] Server  LOG     🔍 Proxy Check: {}
-[01:15:56.440] Server  LOG     🔍 Proxy Check: {}
-[01:16:23.512] Server  LOG     🔍 Proxy Check: {}
-[01:16:23.754] Server  LOG     🔍 Proxy Check: {}
-[01:16:53.521] Server  LOG     🔍 Proxy Check: {}
-[01:16:53.727] Server  LOG     🔍 Proxy Check: {}
-[01:17:23.509] Server  LOG     🔍 Proxy Check: {}
-[01:17:23.691] Server  LOG     🔍 Proxy Check: {}
-[01:17:58.466] Server  LOG     🔍 Proxy Check: {}
-[01:17:58.788] Server  LOG     🔍 Proxy Check: {}
-[01:18:25.717] Server  LOG     🔍 Proxy Check: {}
-[01:18:25.986] Server  LOG     🔍 Proxy Check: {}
-[01:19:26.383] Server  LOG     🔍 Proxy Check: {}
-[01:19:26.650] Server  LOG     🔍 Proxy Check: {}
-[01:19:53.832] Server  LOG     🔍 Proxy Check: {}
-[01:19:54.021] Server  LOG     🔍 Proxy Check: {}
-[01:20:24.850] Server  LOG     🔍 Proxy Check: {}
-[01:20:25.037] Server  LOG     🔍 Proxy Check: {}
-[01:20:58.637] Server  LOG     🔍 Proxy Check: {}
-[01:20:58.940] Server  LOG     🔍 Proxy Check: {}
-[01:21:24.134] Server  LOG     🔍 Proxy Check: {}
-[01:21:31.428] Server  LOG     🔍 Proxy Check: {}
-[01:21:56.857] Server  LOG     🔍 Proxy Check: {}
-[01:21:57.099] Server  LOG     🔍 Proxy Check: {}
-[01:22:24.427] Server  LOG     🔍 Proxy Check: {}
-[01:22:24.712] Server  LOG     🔍 Proxy Check: {}
-[01:22:53.835] Server  LOG     🔍 Proxy Check: {}
-[01:22:54.021] Server  LOG     🔍 Proxy Check: {}
-[01:23:23.839] Server  LOG     🔍 Proxy Check: {}
-[01:23:24.041] Server  LOG     🔍 Proxy Check: {}
-[01:23:45.860] Server  LOG     🔍 Proxy Check: {}
-[01:23:46.256] Server  LOG     🔍 Proxy Check: {}
-[01:23:46.327] Server  LOG     🔍 Proxy Check: {}
-[01:23:53.837] Server  LOG     🔍 Proxy Check: {}
-[01:23:54.091] Server  LOG     🔍 Proxy Check: {}
+[00:00:01.595] Server  LOG      ✓ Ready in 1218ms
+[00:00:19.473] Server  LOG     🔍 Proxy Check: {}
+[00:00:22.507] Server  LOG      ○ Compiling /admin ...
+[00:00:24.426] Server  LOG     🔍 Proxy Check: {}
+[00:00:24.935] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:24.935] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:24.958] Server  LOG     🔍 Proxy Check: {}
+[00:00:25.236] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:25.236] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:00:25.237] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764859982945}
+[00:00:26.256] Server  LOG     🔍 Proxy Check: {}
+[00:00:29.070] Server  LOG     🔍 Proxy Check: {}
+[00:00:29.595] Server  LOG     🔍 Proxy Check: {}
+[00:00:29.818] Server  LOG     🔍 Proxy Check: {}
+[00:00:54.453] Server  LOG     🔍 Proxy Check: {}
+[00:00:54.667] Server  LOG     🔍 Proxy Check: {}
+[00:01:24.429] Server  LOG     🔍 Proxy Check: {}
+[00:01:24.652] Server  LOG     🔍 Proxy Check: {}
+[00:01:54.862] Server  LOG     🔍 Proxy Check: {}
+[00:01:55.057] Server  LOG     🔍 Proxy Check: {}
+[00:02:24.446] Server  LOG     🔍 Proxy Check: {}
+[00:02:24.648] Server  LOG     🔍 Proxy Check: {}
+[00:02:54.886] Server  LOG     🔍 Proxy Check: {}
+[00:02:55.095] Server  LOG     🔍 Proxy Check: {}
+[00:03:24.912] Server  LOG     🔍 Proxy Check: {}
+[00:03:25.160] Server  LOG     🔍 Proxy Check: {}
+[00:04:31.898] Server  LOG     🔍 Proxy Check: {}
+[00:04:32.122] Server  LOG     🔍 Proxy Check: {}
+[00:05:32.820] Server  LOG     🔍 Proxy Check: {}
+[00:05:33.070] Server  LOG     🔍 Proxy Check: {}
+[00:06:31.881] Server  LOG     🔍 Proxy Check: {}
+[00:06:32.088] Server  LOG     🔍 Proxy Check: {}
+[00:06:51.256] Server  LOG      ✓ Compiled in 196ms
+[00:07:09.099] Server  LOG     🔍 Proxy Check: {}
+[00:07:09.321] Server  LOG     🔍 Proxy Check: {}
+[00:07:24.430] Server  LOG     🔍 Proxy Check: {}
+[00:07:24.682] Server  LOG     🔍 Proxy Check: {}
+[00:07:54.878] Server  LOG     🔍 Proxy Check: {}
+[00:07:55.133] Server  LOG     🔍 Proxy Check: {}
+[00:08:24.880] Server  LOG     🔍 Proxy Check: {}
+[00:08:25.062] Server  LOG     🔍 Proxy Check: {}

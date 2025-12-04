@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { clerkClient } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 
 type UserSummary = {
   id: string;
@@ -20,6 +21,51 @@ function normalizeRole(role: string) {
   return String(role || "")
     .toLowerCase()
     .replace(/[\s_-]+/g, "");
+}
+
+async function canAssignRole(
+  targetRole: string
+): Promise<{ allowed: boolean; error?: string }> {
+  const { userId } = await auth();
+  if (!userId) {
+    return { allowed: false, error: "Unauthorized" };
+  }
+
+  const client = await clerkClient();
+  const currentUser = await client.users.getUser(userId);
+  const currentUserRole = normalizeRole(
+    String((currentUser.publicMetadata as any)?.role || "")
+  );
+  const normalizedTargetRole = normalizeRole(targetRole);
+
+  // Superadmin can assign all roles
+  if (currentUserRole === "superadmin") {
+    return { allowed: true };
+  }
+
+  // Admin can only assign these specific roles
+  if (currentUserRole === "admin") {
+    const adminAllowedRoles = [
+      "financialcontroller",
+      "financialaccountant",
+      "procurementofficer",
+      "projectlead",
+    ];
+
+    if (adminAllowedRoles.includes(normalizedTargetRole)) {
+      return { allowed: true };
+    }
+
+    return {
+      allowed: false,
+      error: "You do not have permission to assign this role",
+    };
+  }
+
+  return {
+    allowed: false,
+    error: "You do not have permission to create users",
+  };
 }
 
 export async function getUsers(): Promise<{ users: UserSummary[] }> {
@@ -55,15 +101,34 @@ export async function createUser(
   role: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    const permissionCheck = await canAssignRole(role);
+    if (!permissionCheck.allowed) {
+      return { success: false, error: permissionCheck.error };
+    }
+
     const client = await clerkClient();
     const mdRole = normalizeRole(role);
 
+    // Define which roles should be auto-onboarded
+    const autoOnboardedRoles = ["superadmin", "admin"];
+
+    // Define which roles need admin approval
+    const needsApprovalRoles = [
+      "financialcontroller",
+      "financialaccountant",
+      "procurementofficer",
+      "projectlead",
+      "supplier",
+    ];
+
     const meta = {
       role: mdRole,
-      onboarded: ["superadmin", "admin"].includes(mdRole),
-      onboardingStatus: ["superadmin", "admin"].includes(mdRole)
+      onboarded: autoOnboardedRoles.includes(mdRole),
+      onboardingStatus: autoOnboardedRoles.includes(mdRole)
         ? "approved"
-        : "pending_admin_approval",
+        : needsApprovalRoles.includes(mdRole)
+        ? "pending_admin_approval"
+        : "pending",
     };
 
     try {
@@ -96,6 +161,11 @@ export async function updateUser(
   role: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    const permissionCheck = await canAssignRole(role);
+    if (!permissionCheck.allowed) {
+      return { success: false, error: permissionCheck.error };
+    }
+
     const client = await clerkClient();
     await client.users.updateUser(id, {
       firstName,
@@ -119,5 +189,18 @@ export async function deleteUser(
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error?.message || "Failed to delete user" };
+  }
+}
+
+export async function getCurrentUserRole(): Promise<string> {
+  try {
+    const { userId } = await auth();
+    if (!userId) return "";
+
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    return normalizeRole(String((user.publicMetadata as any)?.role || ""));
+  } catch {
+    return "";
   }
 }
