@@ -170,7 +170,7 @@ export default function UsersTable() {
   };
 
   return (
-    <div className=" p-4 space-y-6">
+    <div className="p-4 space-y-6 ">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Users</h2>
@@ -387,7 +387,7 @@ export default function UsersTable() {
       </div>
 
       {!loading && filteredUsers.length > 0 && (
-        <div className="flex flex-col items-start justify-between gap-4 pt-4 lg:flex-row lg:items-center">
+        <div className="flex flex-cols items-start justify-between gap-4 pt-4 lg:flex-row lg:items-center">
           <div className="flex items-center space-x-2">
             <p className="text-sm text-muted-foreground">
               Showing {startIndex + 1} to{" "}
@@ -432,7 +432,6 @@ export default function UsersTable() {
                 className="w-8 h-8 p-0"
               >
                 <ChevronLeft className="w-4 h-4" />
-                <span className="sr-only">Previous page</span>
               </Button>
 
               <div className="flex items-center space-x-1">
@@ -469,7 +468,6 @@ export default function UsersTable() {
                 className="w-8 h-8 p-0"
               >
                 <ChevronRight className="w-4 h-4" />
-                <span className="sr-only">Next page</span>
               </Button>
             </div>
           </div>
