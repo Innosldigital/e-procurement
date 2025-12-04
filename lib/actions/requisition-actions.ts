@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { auth } from '@clerk/nextjs/server'
 import dbConnect from '@/lib/mongodb'
 import { Requisition } from '../models/Requisition'
+import { uploadFileToCloudinary } from '@/lib/cloudinary'
 import { createNotification } from '@/lib/actions/notification-actions'
 
 export async function getRequisitions() {
@@ -60,15 +61,17 @@ export async function createRequisition(formData: FormData) {
 
     await dbConnect()
 
-    // Handle file uploads (optional — implement your preferred storage)
     const files = formData.getAll('files') as File[]
-    const attachmentUrls: string[] = []
-
-    if (files.length > 0 && files[0].size > 0) {
-      // Example: upload to Cloudinary, Supabase, AWS S3, etc.
-      // attachmentUrls = await uploadToCloudinary(files)
-      // For now, just use placeholder or skip
-      console.log(`Uploading ${files.length} file(s)...`)
+    const attachments: Array<{ filename: string; url: string }> = []
+    if (Array.isArray(files) && files.length > 0) {
+      for (const f of files) {
+        if (!f || !f.size) continue
+        try {
+          const result = await uploadFileToCloudinary(f, 'requisitions')
+          const filename = (f as any).name || result.original_filename || 'file'
+          attachments.push({ filename, url: result.secure_url || result.url })
+        } catch {}
+      }
     }
 
     // Auto-generate requisitionId if not provided
@@ -93,7 +96,7 @@ export async function createRequisition(formData: FormData) {
       neededBy: formData.get('neededBy') ? new Date(formData.get('neededBy') as string) : null,
       costCenter: formData.get('costCenter') || undefined,
       lineItems,
-      // attachments: attachmentUrls, // Add field to schema if needed
+      attachments,
       timeline: [
         {
           event: 'Requisition created',

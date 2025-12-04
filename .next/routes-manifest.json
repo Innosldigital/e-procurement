@@ -21,6 +21,14 @@
   },
   "dynamicRoutes": [
     {
+      "page": "/onboarding/supplier/[id]",
+      "regex": "^/onboarding/supplier/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/onboarding/supplier/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/sign-up/[[...sign-up]]",
       "regex": "^/sign\\-up(?:/(.+?))?(?:/)?$",
       "routeKeys": {
@@ -55,6 +63,18 @@
       "namedRegex": "^/admin(?:/)?$"
     },
     {
+      "page": "/api/requisitions",
+      "regex": "^/api/requisitions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/requisitions(?:/)?$"
+    },
+    {
+      "page": "/api/upload",
+      "regex": "^/api/upload(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/upload(?:/)?$"
+    },
+    {
       "page": "/approvals",
       "regex": "^/approvals(?:/)?$",
       "routeKeys": {},
@@ -83,6 +103,12 @@
       "regex": "^/onboarding/submitted(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/onboarding/submitted(?:/)?$"
+    },
+    {
+      "page": "/onboarding/support",
+      "regex": "^/onboarding/support(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/onboarding/support(?:/)?$"
     },
     {
       "page": "/purchase-orders",

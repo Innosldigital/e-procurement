@@ -1,52 +1,87 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Search, Settings, Menu } from "lucide-react"
-import { UserButton, useUser } from "@clerk/nextjs"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { NotificationsDropdown } from "@/components/notifications-dropdown"
-import { SettingsModal } from "./settings-modal"
-import { useRouter, usePathname } from "next/navigation"
-import { getRequisitions } from "@/lib/actions/requisition-actions"
-import { getPurchaseOrders } from "@/lib/actions/purchase-order-actions"
-import { getSuppliers } from "@/lib/actions/supplier-actions"
-import { getInvoices } from "@/lib/actions/invoice-actions"
-import { getApprovals } from "@/lib/actions/approval-actions"
+import { useState, useEffect } from "react";
+import { Search, Settings, Menu } from "lucide-react";
+import { UserButton, useUser } from "@clerk/nextjs";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { NotificationsDropdown } from "@/components/notifications-dropdown";
+import { SettingsModal } from "./settings-modal";
+import { useRouter, usePathname } from "next/navigation";
+import { getRequisitions } from "@/lib/actions/requisition-actions";
+import { getPurchaseOrders } from "@/lib/actions/purchase-order-actions";
+import { getSuppliers } from "@/lib/actions/supplier-actions";
+import { getInvoices } from "@/lib/actions/invoice-actions";
+import { getApprovals } from "@/lib/actions/approval-actions";
 
 interface HeaderProps {
-  onMenuClick?: () => void
+  onMenuClick?: () => void;
 }
 
 export function Header({ onMenuClick }: HeaderProps) {
-  const { user } = useUser()
-  const [settingsOpen, setSettingsOpen] = useState(false)
-  const router = useRouter()
-  const pathname = usePathname()
-  const [query, setQuery] = useState("")
-  const [loadingSearch, setLoadingSearch] = useState(false)
-  const [results, setResults] = useState<any[]>([])
-  const [showResults, setShowResults] = useState(false)
-  const [searchError, setSearchError] = useState<string | null>(null)
+  const { user } = useUser();
+  const [mounted, setMounted] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const [query, setQuery] = useState("");
+  const [loadingSearch, setLoadingSearch] = useState(false);
+  const [results, setResults] = useState<any[]>([]);
+  const [showResults, setShowResults] = useState(false);
+  const [searchError, setSearchError] = useState<string | null>(null);
+  const [roleLabel, setRoleLabel] = useState<string>("");
 
   useEffect(() => {
-    const onboarded = (user?.publicMetadata as any)?.onboarded === true
-    if (user && !onboarded && pathname !== "/onboarding") {
-      router.push("/onboarding")
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const metadata = (user?.publicMetadata as any) || {};
+    const onboarded = metadata?.onboarded === true;
+    const rawRole = metadata?.role || "";
+    const normalizedRole = String(rawRole)
+      .toLowerCase()
+      .replace(/[\s_-]/g, "");
+    const email = user.primaryEmailAddress?.emailAddress?.toLowerCase() || "";
+
+    const isSuperAdmin =
+      normalizedRole === "superadmin" || email === "keitamorie@gmail.com";
+
+    const isAdmin = normalizedRole === "admin";
+
+    if (isSuperAdmin || isAdmin) {
+      setRoleLabel(isSuperAdmin ? "Super Admin" : "Admin");
+      return;
     }
-  }, [user, pathname, router])
+
+    // Regular users need onboarding
+    if (!onboarded && pathname !== "/onboarding") {
+      console.log("Redirecting to onboarding");
+      router.push("/onboarding");
+    } else {
+      console.log("User is onboarded or already on onboarding page");
+    }
+
+    const label = String(rawRole)
+      .replace(/[\s_-]+/g, " ")
+      .trim()
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+    setRoleLabel(label || "");
+  }, [user, pathname, router]);
 
   useEffect(() => {
-    const q = query.trim()
+    const q = query.trim();
     if (!q) {
-      setResults([])
-      setShowResults(false)
-      return
+      setResults([]);
+      setShowResults(false);
+      return;
     }
-    setShowResults(true)
-    setLoadingSearch(true)
-    setSearchError(null)
+    setShowResults(true);
+    setLoadingSearch(true);
+    setSearchError(null);
     const handle = setTimeout(async () => {
       const [reqs, pos, sups, invs, appr] = await Promise.all([
         getRequisitions().catch(() => ({ success: false, data: [] })),
@@ -54,44 +89,44 @@ export function Header({ onMenuClick }: HeaderProps) {
         getSuppliers().catch(() => ({ success: false, data: [] })),
         getInvoices().catch(() => ({ success: false, data: [] })),
         getApprovals().catch(() => ({ success: false, data: [] })),
-      ])
+      ]);
       const rq = (reqs.success ? reqs.data : []).map((r: any) => ({
         id: r.requisitionId,
         title: r.requisitionId,
         sub: `${r.requester} • ${r.branch}`,
         href: "/requisitions",
         type: "Requisition",
-      }))
+      }));
       const po = (pos.success ? pos.data : []).map((p: any) => ({
         id: p.poNumber,
         title: p.poNumber,
         sub: p.supplier,
         href: "/purchase-orders",
         type: "PO",
-      }))
+      }));
       const sp = (sups.success ? sups.data : []).map((s: any) => ({
         id: s.supplierId || s._id,
         title: s.name,
         sub: s.segment || "Supplier",
         href: "/suppliers",
         type: "Supplier",
-      }))
+      }));
       const iv = (invs.success ? invs.data : []).map((i: any) => ({
         id: i.invoiceNumber,
         title: i.invoiceNumber,
         sub: i.supplier,
         href: "/invoices",
         type: "Invoice",
-      }))
+      }));
       const ap = (appr.success ? appr.data : []).map((a: any) => ({
         id: a.approvalId,
         title: a.approvalId,
         sub: `${a.type} • ${a.requester}`,
         href: "/approvals",
         type: "Approval",
-      }))
-      const all = [...rq, ...po, ...sp, ...iv, ...ap]
-      const qq = q.toLowerCase()
+      }));
+      const all = [...rq, ...po, ...sp, ...iv, ...ap];
+      const qq = q.toLowerCase();
       const filtered = all
         .filter(
           (x) =>
@@ -99,15 +134,21 @@ export function Header({ onMenuClick }: HeaderProps) {
             (x.sub || "").toLowerCase().includes(qq) ||
             (x.id || "").toLowerCase().includes(qq)
         )
-        .slice(0, 8)
-      setResults(filtered)
-      setLoadingSearch(false)
-      if (!reqs.success && !pos.success && !sups.success && !invs.success && !appr.success) {
-        setSearchError("Failed to fetch search data")
+        .slice(0, 8);
+      setResults(filtered);
+      setLoadingSearch(false);
+      if (
+        !reqs.success &&
+        !pos.success &&
+        !sups.success &&
+        !invs.success &&
+        !appr.success
+      ) {
+        setSearchError("Failed to fetch search data");
       }
-    }, 250)
-    return () => clearTimeout(handle)
-  }, [query])
+    }, 250);
+    return () => clearTimeout(handle);
+  }, [query]);
 
   return (
     <>
@@ -125,7 +166,9 @@ export function Header({ onMenuClick }: HeaderProps) {
 
           <div className="flex items-center gap-2 md:hidden">
             <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xs">EP</span>
+              <span className="text-primary-foreground font-bold text-xs">
+                EP
+              </span>
             </div>
           </div>
 
@@ -156,15 +199,17 @@ export function Header({ onMenuClick }: HeaderProps) {
                           key={r.type + r.id + i}
                           className="w-full text-left p-3 hover:bg-accent"
                           onClick={() => {
-                            setShowResults(false)
-                            setQuery("")
-                            router.push(r.href)
+                            setShowResults(false);
+                            setQuery("");
+                            router.push(r.href);
                           }}
                         >
                           <div className="text-sm font-medium">
                             {r.type}: {r.title}
                           </div>
-                          <div className="text-xs text-muted-foreground">{r.sub}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {r.sub}
+                          </div>
                         </button>
                       ))}
                     </div>
@@ -179,13 +224,23 @@ export function Header({ onMenuClick }: HeaderProps) {
           </Button>
 
           <div className="flex items-center gap-2 md:gap-4 ml-auto">
-            <Badge variant="secondary" className="hidden sm:flex bg-primary/10 text-primary hover:bg-primary/20">
-              Role: Procurement Manager
-            </Badge>
+            {roleLabel && (
+              <Badge
+                variant="secondary"
+                className="hidden sm:flex bg-primary/10 text-primary hover:bg-primary/20"
+              >
+                Role: {roleLabel}
+              </Badge>
+            )}
 
-            <NotificationsDropdown />
+            {mounted && <NotificationsDropdown />}
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex" onClick={() => setSettingsOpen(true)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden sm:flex"
+              onClick={() => setSettingsOpen(true)}
+            >
               <Settings className="w-4 h-4" />
             </Button>
 
@@ -200,7 +255,10 @@ export function Header({ onMenuClick }: HeaderProps) {
         </div>
       </header>
 
-      <SettingsModal isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <SettingsModal
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+      />
     </>
-  )
+  );
 }

@@ -255,21 +255,6 @@
       "exportedName": "deleteNotification",
       "filename": "lib/actions/notification-actions.ts"
     },
-    "40f25c9448fb0c5a0c4bd6e6f0e64d26543287adad": {
-      "workers": {
-        "app/(onboard)/onboarding/page": {
-          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/server/keyless-custom-headers.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/lib/actions/onboarding-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "submitCompanyOnboarding",
-          "filename": "lib/actions/onboarding-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
-      },
-      "exportedName": "submitCompanyOnboarding",
-      "filename": "lib/actions/onboarding-actions.ts"
-    },
     "40b533b5a49f64416e62ca9e75858712f207a9ba1d": {
       "workers": {
         "app/(onboard)/onboarding/page": {

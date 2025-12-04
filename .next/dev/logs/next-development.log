@@ -1,43 +1,453 @@
-[00:00:01.298] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.471] Server  LOG      ✓ Ready in 1129ms
-[00:00:05.775] Server  LOG      ○ Compiling /onboarding ...
-[00:00:08.286] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:08.287] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:08.287] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:08.287] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288439336}
-[00:00:10.444] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:10.445] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:10.445] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:10.445] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288441530}
-[00:00:12.572] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:12.572] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:12.572] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:12.572] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288443653}
-[00:00:14.169] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:14.169] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:14.169] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288445199}
-[00:00:14.169] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:15.304] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:15.304] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:15.304] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288446344}
-[00:00:15.304] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:16.159] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:16.159] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:16.159] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288447297}
-[00:00:16.159] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:16.953] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:16.953] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:16.953] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288447983}
-[00:00:16.953] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:17.735] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:17.735] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:17.735] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:17.735] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288448816}
-[00:00:19.061] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:19.061] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:19.061] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288450086}
-[00:00:19.061] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:19.736] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:19.736] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:19.736] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764288450774}
-[00:00:19.736] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:02.069] Server  LOG      ✓ Ready in 1606ms
+[00:00:06.856] Server  LOG     🔍 Proxy Check: {}
+[00:00:09.887] Server  LOG      ○ Compiling /admin ...
+[00:00:16.676] Server  LOG     🔍 Proxy Check: {}
+[00:00:17.750] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:17.750] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:17.750] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:17.750] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:00:17.750] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764819638280}
+[00:00:17.797] Server  LOG     🔍 Proxy Check: {}
+[00:00:19.231] Server  LOG     🔍 Proxy Check: {}
+[00:00:23.391] Server  LOG     🔍 Proxy Check: {}
+[00:00:23.913] Server  LOG     🔍 Proxy Check: {}
+[00:00:24.169] Server  LOG     🔍 Proxy Check: {}
+[00:00:46.490] Server  LOG     🔍 Proxy Check: {}
+[00:00:46.705] Server  LOG     🔍 Proxy Check: {}
+[00:00:46.930] Server  LOG     🔍 Proxy Check: {}
+[00:00:47.154] Server  LOG     🔍 Proxy Check: {}
+[00:01:17.405] Server  LOG     🔍 Proxy Check: {}
+[00:01:17.651] Server  LOG     🔍 Proxy Check: {}
+[00:01:47.398] Server  LOG     🔍 Proxy Check: {}
+[00:01:47.618] Server  LOG     🔍 Proxy Check: {}
+[00:02:17.394] Server  LOG     🔍 Proxy Check: {}
+[00:02:17.642] Server  LOG     🔍 Proxy Check: {}
+[00:02:47.374] Server  LOG     🔍 Proxy Check: {}
+[00:02:47.601] Server  LOG     🔍 Proxy Check: {}
+[00:03:17.397] Server  LOG     🔍 Proxy Check: {}
+[00:03:17.666] Server  LOG     🔍 Proxy Check: {}
+[00:04:03.373] Server  LOG     🔍 Proxy Check: {}
+[00:04:03.569] Server  LOG     🔍 Proxy Check: {}
+[00:05:03.386] Server  LOG     🔍 Proxy Check: {}
+[00:05:03.585] Server  LOG     🔍 Proxy Check: {}
+[00:06:05.080] Server  LOG     🔍 Proxy Check: {}
+[00:06:05.284] Server  LOG     🔍 Proxy Check: {}
+[00:07:03.400] Server  LOG     🔍 Proxy Check: {}
+[00:07:03.611] Server  LOG     🔍 Proxy Check: {}
+[00:08:03.383] Server  LOG     🔍 Proxy Check: {}
+[00:08:03.593] Server  LOG     🔍 Proxy Check: {}
+[00:09:03.448] Server  LOG     🔍 Proxy Check: {}
+[00:09:03.677] Server  LOG     🔍 Proxy Check: {}
+[00:10:03.395] Server  LOG     🔍 Proxy Check: {}
+[00:10:03.624] Server  LOG     🔍 Proxy Check: {}
+[00:11:03.401] Server  LOG     🔍 Proxy Check: {}
+[00:11:03.629] Server  LOG     🔍 Proxy Check: {}
+[00:12:04.360] Server  LOG     🔍 Proxy Check: {}
+[00:12:04.577] Server  LOG     🔍 Proxy Check: {}
+[00:13:03.381] Server  LOG     🔍 Proxy Check: {}
+[00:13:03.583] Server  LOG     🔍 Proxy Check: {}
+[00:13:05.132] Server  LOG     🔍 Proxy Check: {}
+[00:13:05.509] Server  LOG     🔍 Proxy Check: {}
+[00:13:06.486] Server  LOG     🔍 Proxy Check: {}
+[00:13:06.578] Server  LOG     🔍 Proxy Check: {}
+[00:13:08.324] Server  LOG     🔍 Proxy Check: {}
+[00:13:08.492] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:13:08.492] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:13:08.492] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:13:08.492] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:13:08.492] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764820409027}
+[00:13:08.533] Server  LOG     🔍 Proxy Check: {}
+[00:13:08.735] Server  LOG     🔍 Proxy Check: {}
+[00:13:08.937] Server  LOG     🔍 Proxy Check: {}
+[00:13:37.402] Server  LOG     🔍 Proxy Check: {}
+[00:13:37.660] Server  LOG     🔍 Proxy Check: {}
+[00:14:37.384] Server  LOG     🔍 Proxy Check: {}
+[00:14:38.913] Server  LOG     🔍 Proxy Check: {}
+[00:15:08.317] Server  LOG     🔍 Proxy Check: {}
+[00:15:08.606] Server  LOG     🔍 Proxy Check: {}
+[00:15:37.401] Server  LOG     🔍 Proxy Check: {}
+[00:15:37.684] Server  LOG     🔍 Proxy Check: {}
+[00:16:07.377] Server  LOG     🔍 Proxy Check: {}
+[00:16:07.600] Server  LOG     🔍 Proxy Check: {}
+[00:16:25.911] Server  LOG     🔍 Proxy Check: {}
+[00:16:26.116] Server  LOG     🔍 Proxy Check: {}
+[00:16:37.377] Server  LOG     🔍 Proxy Check: {}
+[00:16:37.611] Server  LOG     🔍 Proxy Check: {}
+[00:17:09.319] Server  LOG     🔍 Proxy Check: {}
+[00:17:09.531] Server  LOG     🔍 Proxy Check: {}
+[00:17:37.393] Server  LOG     🔍 Proxy Check: {}
+[00:17:37.603] Server  LOG     🔍 Proxy Check: {}
+[00:18:23.270] Server  LOG     🔍 Proxy Check: {}
+[00:18:23.509] Server  LOG     🔍 Proxy Check: {}
+[00:18:29.634] Server  LOG     🔍 Proxy Check: {}
+[00:18:36.494] Server  LOG     🔍 Proxy Check: {}
+[00:18:36.754] Server  LOG     🔍 Proxy Check: {}
+[00:19:07.371] Server  LOG     🔍 Proxy Check: {}
+[00:19:07.622] Server  LOG     🔍 Proxy Check: {}
+[00:19:37.414] Server  LOG     🔍 Proxy Check: {}
+[00:19:37.749] Server  LOG     🔍 Proxy Check: {}
+[00:21:03.388] Server  LOG     🔍 Proxy Check: {}
+[00:21:03.625] Server  LOG     🔍 Proxy Check: {}
+[00:22:03.421] Server  LOG     🔍 Proxy Check: {}
+[00:22:03.703] Server  LOG     🔍 Proxy Check: {}
+[00:23:04.913] Server  LOG     🔍 Proxy Check: {}
+[00:23:05.160] Server  LOG     🔍 Proxy Check: {}
+[00:23:16.046] Server  LOG     🔍 Proxy Check: {}
+[00:23:16.246] Server  LOG     🔍 Proxy Check: {}
+[00:23:37.381] Server  LOG     🔍 Proxy Check: {}
+[00:23:37.648] Server  LOG     🔍 Proxy Check: {}
+[00:24:07.424] Server  LOG     🔍 Proxy Check: {}
+[00:24:07.695] Server  LOG     🔍 Proxy Check: {}
+[00:24:30.996] Server  LOG      ✓ Compiled in 274ms
+[00:24:53.970] Server  LOG     🔍 Proxy Check: {}
+[00:24:54.789] Server  LOG     🔍 Proxy Check: {}
+[00:25:01.589] Server  LOG     🔍 Proxy Check: {}
+[00:25:06.511] Server  LOG     🔍 Proxy Check: {}
+[00:25:06.750] Server  LOG     🔍 Proxy Check: {}
+[00:25:36.509] Server  LOG     🔍 Proxy Check: {}
+[00:25:36.733] Server  LOG     🔍 Proxy Check: {}
+[00:26:06.494] Server  LOG     🔍 Proxy Check: {}
+[00:26:06.734] Server  LOG     🔍 Proxy Check: {}
+[00:26:37.383] Server  LOG     🔍 Proxy Check: {}
+[00:26:37.616] Server  LOG     🔍 Proxy Check: {}
+[00:27:02.356] Server  LOG     🔍 Proxy Check: {}
+[00:27:02.362] Server  LOG      ✓ Compiled in 174ms
+[00:27:02.684] Server  LOG     🔍 Proxy Check: {}
+[00:27:03.539] Server  LOG      ✓ Compiled in 296ms
+[00:27:03.776] Server  LOG      ✓ Compiled in 183ms
+[00:27:04.135] Server  LOG     🔍 Proxy Check: {}
+[00:27:04.407] Server  LOG     🔍 Proxy Check: {}
+[00:27:05.063] Server  LOG      ✓ Compiled in 268ms
+[00:27:05.344] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:27:05.344] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:27:05.344] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:27:05.344] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:27:05.344] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764821246192}
+[00:27:05.823] Server  LOG     🔍 Proxy Check: {}
+[00:27:06.275] Server  LOG     🔍 Proxy Check: {}
+[00:27:06.475] Server  LOG     🔍 Proxy Check: {}
+[00:27:06.687] Server  LOG     🔍 Proxy Check: {}
+[00:27:06.895] Server  LOG     🔍 Proxy Check: {}
+[00:27:33.472] Server  LOG     🔍 Proxy Check: {}
+[00:27:33.720] Server  LOG     🔍 Proxy Check: {}
+[00:27:33.729] Server  LOG     🔍 Proxy Check: {}
+[00:27:34.539] Server  LOG     🔍 Proxy Check: {}
+[00:27:34.650] Server  LOG     🔍 Proxy Check: {}
+[00:27:35.342] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:27:35.342] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:27:35.342] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:27:35.342] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:27:35.342] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764821275935}
+[00:27:35.556] Server  LOG     🔍 Proxy Check: {}
+[00:27:35.851] Server  LOG     🔍 Proxy Check: {}
+[00:27:36.089] Server  LOG     🔍 Proxy Check: {}
+[00:27:36.343] Server  LOG     🔍 Proxy Check: {}
+[00:28:06.559] Server  LOG     🔍 Proxy Check: {}
+[00:28:06.792] Server  LOG     🔍 Proxy Check: {}
+[00:28:27.525] Server  LOG     🔍 Proxy Check: {}
+[00:28:27.774] Server  LOG     🔍 Proxy Check: {}
+[00:28:28.598] Server  LOG     🔍 Proxy Check: {}
+[00:28:28.658] Server  LOG     🔍 Proxy Check: {}
+[00:28:29.556] Server  LOG     🔍 Proxy Check: {}
+[00:28:29.863] Server  LOG     🔍 Proxy Check: {}
+[00:28:30.104] Server  LOG     🔍 Proxy Check: {}
+[00:28:30.338] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:28:30.338] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:28:30.338] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:28:30.338] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:28:30.338] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764821331041}
+[00:28:30.345] Server  LOG     🔍 Proxy Check: {}
+[00:28:37.035] Server  LOG     🔍 Proxy Check: {}
+[00:28:37.053] Server  LOG      ✓ Compiled in 170ms
+[00:28:37.290] Server  LOG     🔍 Proxy Check: {}
+[00:28:38.020] Server  LOG     🔍 Proxy Check: {}
+[00:28:38.093] Server  LOG     🔍 Proxy Check: {}
+[00:28:39.339] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:28:39.339] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:28:39.339] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:28:39.339] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:28:39.339] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764821339795}
+[00:28:40.407] Server  LOG     🔍 Proxy Check: {}
+[00:28:40.756] Server  LOG     🔍 Proxy Check: {}
+[00:28:41.067] Server  LOG     🔍 Proxy Check: {}
+[00:28:41.287] Server  LOG     🔍 Proxy Check: {}
+[00:28:50.263] Server  LOG     🔍 Proxy Check: {}
+[00:28:50.584] Server  LOG     🔍 Proxy Check: {}
+[00:28:51.286] Server  LOG     🔍 Proxy Check: {}
+[00:28:51.395] Server  LOG     🔍 Proxy Check: {}
+[00:28:52.134] Server  LOG     🔍 Proxy Check: {}
+[00:28:52.343] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:28:52.343] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:28:52.343] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:28:52.343] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:28:52.343] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764821353038}
+[00:28:52.364] Server  LOG     🔍 Proxy Check: {}
+[00:28:52.578] Server  LOG     🔍 Proxy Check: {}
+[00:28:52.842] Server  LOG     🔍 Proxy Check: {}
+[00:28:58.676] Server  LOG     🔍 Proxy Check: {}
+[00:28:58.921] Server  LOG     🔍 Proxy Check: {}
+[00:28:59.614] Server  LOG     🔍 Proxy Check: {}
+[00:28:59.694] Server  LOG     🔍 Proxy Check: {}
+[00:29:00.502] Server  LOG     🔍 Proxy Check: {}
+[00:29:00.763] Server  LOG     🔍 Proxy Check: {}
+[00:29:00.982] Server  LOG     🔍 Proxy Check: {}
+[00:29:01.341] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:29:01.341] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:29:01.341] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:29:01.341] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:29:01.341] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764821361837}
+[00:29:01.349] Server  LOG     🔍 Proxy Check: {}
+[00:29:30.389] Server  LOG     🔍 Proxy Check: {}
+[00:29:30.624] Server  LOG     🔍 Proxy Check: {}
+[00:30:00.379] Server  LOG     🔍 Proxy Check: {}
+[00:30:00.615] Server  LOG     🔍 Proxy Check: {}
+[00:30:30.388] Server  LOG     🔍 Proxy Check: {}
+[00:30:30.636] Server  LOG     🔍 Proxy Check: {}
+[00:31:00.393] Server  LOG     🔍 Proxy Check: {}
+[00:31:00.621] Server  LOG     🔍 Proxy Check: {}
+[00:31:30.379] Server  LOG     🔍 Proxy Check: {}
+[00:31:30.601] Server  LOG     🔍 Proxy Check: {}
+[00:32:00.393] Server  LOG     🔍 Proxy Check: {}
+[00:32:00.727] Server  LOG     🔍 Proxy Check: {}
+[00:33:03.396] Server  LOG     🔍 Proxy Check: {}
+[00:33:03.644] Server  LOG     🔍 Proxy Check: {}
+[00:34:04.084] Server  LOG     🔍 Proxy Check: {}
+[00:34:04.287] Server  LOG     🔍 Proxy Check: {}
+[00:34:08.095] Server  LOG     🔍 Proxy Check: {}
+[00:35:03.404] Server  LOG     🔍 Proxy Check: {}
+[00:35:03.653] Server  LOG     🔍 Proxy Check: {}
+[00:35:29.638] Server  LOG     🔍 Proxy Check: {}
+[00:35:29.939] Server  LOG     🔍 Proxy Check: {}
+[00:35:31.244] Server  LOG     🔍 Proxy Check: {}
+[00:35:31.489] Server  LOG     🔍 Proxy Check: {}
+[00:35:55.916] Server  LOG     🔍 Proxy Check: {}
+[00:35:59.638] Server  LOG     🔍 Proxy Check: {}
+[00:35:59.942] Server  LOG     🔍 Proxy Check: {}
+[00:36:29.623] Server  LOG     🔍 Proxy Check: {}
+[00:36:29.947] Server  LOG     🔍 Proxy Check: {}
+[00:36:34.400] Server  LOG     🔍 Proxy Check: {}
+[00:36:59.617] Server  LOG     🔍 Proxy Check: {}
+[00:36:59.864] Server  LOG     🔍 Proxy Check: {}
+[00:37:30.370] Server  LOG     🔍 Proxy Check: {}
+[00:37:30.658] Server  LOG     🔍 Proxy Check: {}
+[00:38:00.395] Server  LOG     🔍 Proxy Check: {}
+[00:38:00.684] Server  LOG     🔍 Proxy Check: {}
+[00:39:03.371] Server  LOG     🔍 Proxy Check: {}
+[00:39:03.596] Server  LOG     🔍 Proxy Check: {}
+[00:40:04.547] Server  LOG     🔍 Proxy Check: {}
+[00:40:04.777] Server  LOG     🔍 Proxy Check: {}
+[00:41:03.392] Server  LOG     🔍 Proxy Check: {}
+[00:41:03.635] Server  LOG     🔍 Proxy Check: {}
+[00:42:03.404] Server  LOG     🔍 Proxy Check: {}
+[00:42:03.614] Server  LOG     🔍 Proxy Check: {}
+[00:43:03.384] Server  LOG     🔍 Proxy Check: {}
+[00:43:03.615] Server  LOG     🔍 Proxy Check: {}
+[00:43:57.737] Server  LOG     🔍 Proxy Check: {}
+[00:43:57.991] Server  LOG     🔍 Proxy Check: {}
+[00:43:59.621] Server  LOG     🔍 Proxy Check: {}
+[00:43:59.866] Server  LOG     🔍 Proxy Check: {}
+[00:44:03.350] Server  LOG     🔍 Proxy Check: {}
+[00:44:29.624] Server  LOG     🔍 Proxy Check: {}
+[00:44:29.996] Server  LOG     🔍 Proxy Check: {}
+[00:44:39.160] Server  LOG     🔍 Proxy Check: {}
+[00:44:40.703] Server  LOG     🔍 Proxy Check: {}
+[00:44:58.345] Server  LOG     🔍 Proxy Check: {}
+[00:45:25.862] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\mongoose\node_modules\mongodb\lib\sdam\topology.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:25.868] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:25.875] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\mongoose\node_modules\mongodb\lib\cursor\find_cursor.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:25.885] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\mongoose\node_modules\mongodb\lib\cursor\abstract_cursor.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:25.889] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\mongoose\node_modules\mongodb\lib\collection.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:25.897] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__901ada4d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.089] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.177] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_next_dist_af854fdd._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.188] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.197] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.200] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.202] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.206] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.208] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.214] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\mongoose\node_modules\mongodb\lib\cmap\connect.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:45:26.221] Server  ERROR   Error fetching supplier onboarding: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-yu8e5zc-shard-00-02.ej5byx2.mongodb.net
+[00:58:31.269] Server  LOG     🔍 Proxy Check: {}
+[00:58:32.417] Server  LOG     🔍 Proxy Check: {}
+[00:59:03.396] Server  LOG     🔍 Proxy Check: {}
+[00:59:03.632] Server  LOG     🔍 Proxy Check: {}
+[00:59:06.182] Server  LOG      ✓ Compiled in 280ms
+[01:00:04.279] Server  LOG     🔍 Proxy Check: {}
+[01:00:05.534] Server  LOG     🔍 Proxy Check: {}
+[01:01:03.394] Server  LOG     🔍 Proxy Check: {}
+[01:01:03.639] Server  LOG     🔍 Proxy Check: {}
+[01:02:03.381] Server  LOG     🔍 Proxy Check: {}
+[01:02:03.600] Server  LOG     🔍 Proxy Check: {}
+[01:02:29.628] Server  LOG     🔍 Proxy Check: {}
+[01:02:29.870] Server  LOG     🔍 Proxy Check: {}
+[01:02:31.622] Server  LOG     🔍 Proxy Check: {}
+[01:02:31.842] Server  LOG     🔍 Proxy Check: {}
+[01:02:59.634] Server  LOG     🔍 Proxy Check: {}
+[01:02:59.904] Server  LOG     🔍 Proxy Check: {}
+[01:03:21.695] Server  LOG     🔍 Proxy Check: {}
+[01:03:23.652] Server  LOG     🔍 Proxy Check: {}
+[01:03:29.612] Server  LOG     🔍 Proxy Check: {}
+[01:03:29.829] Server  LOG     🔍 Proxy Check: {}
+[01:04:01.143] Server  LOG     🔍 Proxy Check: {}
+[01:04:01.385] Server  LOG     🔍 Proxy Check: {}
+[01:04:30.398] Server  LOG     🔍 Proxy Check: {}
+[01:04:30.663] Server  LOG     🔍 Proxy Check: {}
+[01:05:03.387] Server  LOG     🔍 Proxy Check: {}
+[01:05:03.649] Server  LOG     🔍 Proxy Check: {}
+[01:05:36.095] Server  LOG     🔍 Proxy Check: {}
+[01:05:36.332] Server  LOG     🔍 Proxy Check: {}
+[01:06:00.430] Server  LOG     🔍 Proxy Check: {}
+[01:06:00.695] Server  LOG     🔍 Proxy Check: {}
+[01:06:30.388] Server  LOG     🔍 Proxy Check: {}
+[01:06:30.650] Server  LOG     🔍 Proxy Check: {}
+[01:07:03.400] Server  LOG     🔍 Proxy Check: {}
+[01:07:03.667] Server  LOG     🔍 Proxy Check: {}
+[01:08:03.398] Server  LOG     🔍 Proxy Check: {}
+[01:08:03.652] Server  LOG     🔍 Proxy Check: {}
+[01:08:25.992] Server  LOG      ✓ Compiled in 217ms
+[01:09:04.238] Server  LOG     🔍 Proxy Check: {}
+[01:09:04.682] Server  LOG     🔍 Proxy Check: {}
+[01:09:43.115] Server  LOG      ✓ Compiled in 183ms
+[01:10:03.475] Server  LOG     🔍 Proxy Check: {}
+[01:10:05.989] Server  LOG     🔍 Proxy Check: {}
+[01:11:03.447] Server  LOG     🔍 Proxy Check: {}
+[01:11:03.701] Server  LOG     🔍 Proxy Check: {}
+[01:11:10.269] Server  LOG     🔍 Proxy Check: {}
+[01:11:11.452] Server  LOG     🔍 Proxy Check: {}
+[01:11:11.496] Server  LOG     🔍 Proxy Check: {}
+[01:11:11.637] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:11:11.637] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:11:12.241] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:11:12.241] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:11:12.241] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764823893259}
+[01:11:13.463] Server  LOG     🔍 Proxy Check: {}
+[01:11:13.669] Server  LOG     🔍 Proxy Check: {}
+[01:11:13.907] Server  LOG     🔍 Proxy Check: {}
+[01:11:14.153] Server  LOG     🔍 Proxy Check: {}
+[01:11:41.482] Server  LOG     🔍 Proxy Check: {}
+[01:11:41.728] Server  LOG     🔍 Proxy Check: {}
+[01:11:42.033] Server  LOG     🔍 Proxy Check: {}
+[01:12:11.468] Server  LOG     🔍 Proxy Check: {}
+[01:12:11.734] Server  LOG     🔍 Proxy Check: {}
+[01:12:42.386] Server  LOG     🔍 Proxy Check: {}
+[01:12:42.674] Server  LOG     🔍 Proxy Check: {}
+[01:13:12.381] Server  LOG     🔍 Proxy Check: {}
+[01:13:12.612] Server  LOG     🔍 Proxy Check: {}
+[01:13:20.749] Server  LOG      ✓ Compiled in 492ms
+[01:13:41.477] Server  LOG     🔍 Proxy Check: {}
+[01:13:42.251] Server  LOG     🔍 Proxy Check: {}
+[01:13:44.140] Server  LOG     🔍 Proxy Check: {}
+[01:13:45.094] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:13:45.094] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:13:45.103] Server  LOG     🔍 Proxy Check: {}
+[01:13:45.155] Server  LOG     🔍 Proxy Check: {}
+[01:13:45.466] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:13:45.466] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:13:45.466] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764824046464}
+[01:13:47.313] Server  LOG     🔍 Proxy Check: {}
+[01:13:47.559] Server  LOG     🔍 Proxy Check: {}
+[01:13:47.807] Server  LOG     🔍 Proxy Check: {}
+[01:13:48.070] Server  LOG     🔍 Proxy Check: {}
+[01:14:07.777] Server  LOG     🔍 Proxy Check: {}
+[01:14:15.131] Server  LOG     🔍 Proxy Check: {}
+[01:14:15.386] Server  LOG     🔍 Proxy Check: {}
+[01:14:35.204] Server  LOG     🔍 Proxy Check: {}
+[01:14:35.495] Server  LOG     🔍 Proxy Check: {}
+[01:14:45.138] Server  LOG     🔍 Proxy Check: {}
+[01:14:45.441] Server  LOG     🔍 Proxy Check: {}
+[01:15:10.064] Server  LOG     🔍 Proxy Check: {}
+[01:15:10.366] Server  LOG     🔍 Proxy Check: {}
+[01:15:10.595] Server  LOG     🔍 Proxy Check: {}
+[01:15:15.130] Server  LOG     🔍 Proxy Check: {}
+[01:15:15.440] Server  LOG     🔍 Proxy Check: {}
+[01:15:45.364] Server  LOG     🔍 Proxy Check: {}
+[01:15:45.592] Server  LOG     🔍 Proxy Check: {}
+[01:16:15.386] Server  LOG     🔍 Proxy Check: {}
+[01:16:15.647] Server  LOG     🔍 Proxy Check: {}
+[01:16:45.397] Server  LOG     🔍 Proxy Check: {}
+[01:16:45.657] Server  LOG     🔍 Proxy Check: {}
+[01:16:55.464] Server  LOG      ✓ Compiled in 138ms
+[01:17:05.131] Server  LOG     🔍 Proxy Check: {}
+[01:17:06.629] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:17:06.629] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:17:06.641] Server  LOG     🔍 Proxy Check: {}
+[01:17:06.775] Server  LOG     🔍 Proxy Check: {}
+[01:17:07.036] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:17:07.036] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:17:07.036] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764824248054}
+[01:17:08.404] Server  LOG     🔍 Proxy Check: {}
+[01:17:08.687] Server  LOG     🔍 Proxy Check: {}
+[01:17:08.924] Server  LOG     🔍 Proxy Check: {}
+[01:17:09.231] Server  LOG     🔍 Proxy Check: {}
+[01:17:29.895] Server  LOG     🔍 Proxy Check: {}
+[01:17:32.916] Server  LOG      ○ Compiling /reports ...
+[01:17:35.817] Server  LOG     🔍 Proxy Check: {}
+[01:17:35.906] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/reports color: rgb(120, 120, 120) color: inherit {"dp":"/reports","o":"http://localhost:3000/reports","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764824276915}
+[01:17:36.091] Server  LOG     🔍 Proxy Check: {}
+[01:17:36.459] Server  LOG     🔍 Proxy Check: {}
+[01:17:36.769] Server  LOG     🔍 Proxy Check: {}
+[01:17:37.076] Server  LOG     🔍 Proxy Check: {}
+[01:17:37.389] Server  LOG     🔍 Proxy Check: {}
+[01:17:37.680] Server  LOG     🔍 Proxy Check: {}
+[01:17:37.993] Server  LOG     🔍 Proxy Check: {}
+[01:17:38.305] Server  LOG     🔍 Proxy Check: {}
+[01:17:38.628] Server  LOG     🔍 Proxy Check: {}
+[01:17:48.375] Server  LOG     🔍 Proxy Check: {}
+[01:17:48.517] Server  LOG     🔍 Proxy Check: {}
+[01:17:48.615] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764824289609}
+[01:17:49.459] Server  LOG     🔍 Proxy Check: {}
+[01:18:07.362] Server  LOG     🔍 Proxy Check: {}
+[01:18:07.584] Server  LOG     🔍 Proxy Check: {}
+[01:18:37.372] Server  LOG     🔍 Proxy Check: {}
+[01:18:37.588] Server  LOG     🔍 Proxy Check: {}
+[01:19:07.384] Server  LOG     🔍 Proxy Check: {}
+[01:19:07.670] Server  LOG     🔍 Proxy Check: {}
+[01:19:38.340] Server  LOG     🔍 Proxy Check: {}
+[01:19:38.547] Server  LOG     🔍 Proxy Check: {}
+[01:20:07.362] Server  LOG     🔍 Proxy Check: {}
+[01:20:07.570] Server  LOG     🔍 Proxy Check: {}
+[01:21:03.376] Server  LOG     🔍 Proxy Check: {}
+[01:21:03.575] Server  LOG     🔍 Proxy Check: {}
+[01:22:03.376] Server  LOG     🔍 Proxy Check: {}
+[01:22:03.617] Server  LOG     🔍 Proxy Check: {}
+[01:22:13.384] Server  LOG     🔍 Proxy Check: {}
+[01:22:13.584] Server  LOG     🔍 Proxy Check: {}
+[01:22:37.384] Server  LOG     🔍 Proxy Check: {}
+[01:22:37.592] Server  LOG     🔍 Proxy Check: {}
+[01:23:07.374] Server  LOG     🔍 Proxy Check: {}
+[01:23:07.590] Server  LOG     🔍 Proxy Check: {}
+[01:24:03.369] Server  LOG     🔍 Proxy Check: {}
+[01:24:03.669] Server  LOG     🔍 Proxy Check: {}
+[01:24:45.653] Server  LOG      ✓ Compiled in 160ms
+[01:24:53.830] Server  LOG     🔍 Proxy Check: {}
+[01:24:54.252] Server  LOG     🔍 Proxy Check: {}
+[01:24:55.467] Server  LOG     🔍 Proxy Check: {}
+[01:24:56.186] Server  LOG     🔍 Proxy Check: {}
+[01:24:56.240] Server  LOG     🔍 Proxy Check: {}
+[01:24:56.290] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:24:56.290] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:24:56.632] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:24:56.632] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:24:56.632] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764824717655}
+[01:24:57.100] Server  LOG     🔍 Proxy Check: {}
+[01:24:57.351] Server  LOG     🔍 Proxy Check: {}
+[01:24:57.587] Server  LOG     🔍 Proxy Check: {}
+[01:24:57.819] Server  LOG     🔍 Proxy Check: {}
+[01:25:26.209] Server  LOG     🔍 Proxy Check: {}
+[01:25:26.439] Server  LOG     🔍 Proxy Check: {}
+[01:25:36.275] Server  LOG      ✓ Compiled in 137ms
+[01:25:56.191] Server  LOG     🔍 Proxy Check: {}
+[01:25:56.591] Server  LOG     🔍 Proxy Check: {}
+[01:26:00.322] Server  LOG     🔍 Proxy Check: {}
+[01:26:00.525] Server  LOG     🔍 Proxy Check: {}
+[01:26:26.357] Server  LOG     🔍 Proxy Check: {}
+[01:26:26.573] Server  LOG     🔍 Proxy Check: {}
+[01:26:56.369] Server  LOG     🔍 Proxy Check: {}
+[01:26:56.585] Server  LOG     🔍 Proxy Check: {}
+[01:27:26.371] Server  LOG     🔍 Proxy Check: {}
+[01:27:26.598] Server  LOG     🔍 Proxy Check: {}
+[01:27:56.361] Server  LOG     🔍 Proxy Check: {}
+[01:27:56.568] Server  LOG     🔍 Proxy Check: {}
+[01:29:03.383] Server  LOG     🔍 Proxy Check: {}
+[01:29:03.587] Server  LOG     🔍 Proxy Check: {}

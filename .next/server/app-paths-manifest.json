@@ -1,5 +1,5 @@
 {
-  "/(app)/admin/page": "app/(app)/admin/page.js",
+  "/(admin)/admin/page": "app/(admin)/admin/page.js",
   "/(app)/approvals/page": "app/(app)/approvals/page.js",
   "/(app)/invoices/page": "app/(app)/invoices/page.js",
   "/(app)/notifications/page": "app/(app)/notifications/page.js",
@@ -11,7 +11,11 @@
   "/(auth)/sign-up/[[...sign-up]]/page": "app/(auth)/sign-up/[[...sign-up]]/page.js",
   "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
   "/(onboard)/onboarding/submitted/page": "app/(onboard)/onboarding/submitted/page.js",
+  "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
+  "/(onboard)/onboarding/support/page": "app/(onboard)/onboarding/support/page.js",
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/api/requisitions/route": "app/api/requisitions/route.js",
+  "/api/upload/route": "app/api/upload/route.js",
   "/page": "app/page.js"
 }

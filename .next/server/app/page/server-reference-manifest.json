@@ -525,6 +525,36 @@
       "exportedName": "getInvoiceById",
       "filename": "lib/actions/invoice-actions.ts"
     },
+    "40e554b19aedc8d556a1a71ff6e763e9a0c8272e72": {
+      "workers": {
+        "app/page": {
+          "moduleId": 98486,
+          "async": false,
+          "exportedName": "createInvoice",
+          "filename": "lib/actions/invoice-actions.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "exportedName": "createInvoice",
+      "filename": "lib/actions/invoice-actions.ts"
+    },
+    "40fc9338e7aa9b11734454f1c7535960cbb2210daa": {
+      "workers": {
+        "app/page": {
+          "moduleId": 98486,
+          "async": false,
+          "exportedName": "approveInvoice",
+          "filename": "lib/actions/invoice-actions.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "exportedName": "approveInvoice",
+      "filename": "lib/actions/invoice-actions.ts"
+    },
     "605f1951af970cc85080db6c133d475a3d8fda520d": {
       "workers": {
         "app/page": {

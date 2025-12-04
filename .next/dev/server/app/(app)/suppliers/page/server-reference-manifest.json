@@ -130,7 +130,7 @@
         }
       },
       "layer": {
-        "app/(app)/suppliers/page": "rsc"
+        "app/(app)/suppliers/page": "action-browser"
       },
       "exportedName": "getSuppliers",
       "filename": "lib/actions/supplier-actions.ts"
@@ -255,36 +255,6 @@
       "exportedName": "deleteNotification",
       "filename": "lib/actions/notification-actions.ts"
     },
-    "404db66e2cb6952be70015e2549420a2377296df76": {
-      "workers": {
-        "app/(app)/suppliers/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/suppliers/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/server/keyless-custom-headers.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "deleteSupplier",
-          "filename": "lib/actions/supplier-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/suppliers/page": "rsc"
-      },
-      "exportedName": "deleteSupplier",
-      "filename": "lib/actions/supplier-actions.ts"
-    },
-    "409acdccfd1945617533ca87d53593b6bb27e15179": {
-      "workers": {
-        "app/(app)/suppliers/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/suppliers/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/server/keyless-custom-headers.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "createSupplier",
-          "filename": "lib/actions/supplier-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/suppliers/page": "rsc"
-      },
-      "exportedName": "createSupplier",
-      "filename": "lib/actions/supplier-actions.ts"
-    },
     "40de0da7ad6edc422b1506762deaf6da3bfcccf440": {
       "workers": {
         "app/(app)/suppliers/page": {
@@ -295,24 +265,9 @@
         }
       },
       "layer": {
-        "app/(app)/suppliers/page": "rsc"
+        "app/(app)/suppliers/page": "action-browser"
       },
       "exportedName": "getSupplierById",
-      "filename": "lib/actions/supplier-actions.ts"
-    },
-    "602cdea5b2b9d8f3972033a994a2214743035388af": {
-      "workers": {
-        "app/(app)/suppliers/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/suppliers/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/server/keyless-custom-headers.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "updateSupplier",
-          "filename": "lib/actions/supplier-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/suppliers/page": "rsc"
-      },
-      "exportedName": "updateSupplier",
       "filename": "lib/actions/supplier-actions.ts"
     }
   },

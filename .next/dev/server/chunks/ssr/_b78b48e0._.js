@@ -62,7 +62,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$data$3a$6c
 ;
 ;
 const fmtDate = (d)=>d ? new Date(d).toISOString().slice(0, 10) : "";
-const fmtAmount = (n)=>new Intl.NumberFormat('en-US', {
+const fmtAmount = (n)=>new Intl.NumberFormat("en-US", {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(n);
@@ -85,6 +85,33 @@ function InvoicesPage() {
     }, []);
     const invoiceLineItems = selectedInvoice?.lineItems || [];
     const invoiceActivities = selectedInvoice?.activity || [];
+    const openInvoices = invoices.filter((inv)=>![
+            "Paid",
+            "Closed"
+        ].includes(String(inv.status || "")));
+    const overdueInvoices = openInvoices.filter((inv)=>{
+        const status = String(inv.status || "").toLowerCase();
+        const due = inv?.dueDate ? new Date(inv.dueDate) : null;
+        return status === "overdue" || (due ? due < new Date() : false);
+    });
+    const pendingPaymentTotal = openInvoices.reduce((sum, inv)=>sum + (inv.amount || 0), 0);
+    const entityLabel = selectedInvoice?.entity || "-";
+    const supplierTotals = new Map();
+    for (const inv of openInvoices){
+        const key = String(inv.supplier || "");
+        if (!key) continue;
+        supplierTotals.set(key, (supplierTotals.get(key) || 0) + (inv.amount || 0));
+    }
+    let topSupplier = "-";
+    if (supplierTotals.size > 0) {
+        let max = -1;
+        for (const [name, total] of supplierTotals.entries()){
+            if (total > max) {
+                max = total;
+                topSupplier = name;
+            }
+        }
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "p-4 md:p-8",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -100,7 +127,7 @@ function InvoicesPage() {
                                     children: "Invoices"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 39,
+                                    lineNumber: 77,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -108,13 +135,13 @@ function InvoicesPage() {
                                     children: "Track invoice flow from receipt to payment and manage exceptions."
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 40,
+                                    lineNumber: 80,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                            lineNumber: 38,
+                            lineNumber: 76,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -129,7 +156,7 @@ function InvoicesPage() {
                                             className: "w-4 h-4 mr-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 46,
+                                            lineNumber: 86,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -137,7 +164,7 @@ function InvoicesPage() {
                                             children: "Export list"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 47,
+                                            lineNumber: 87,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -145,13 +172,13 @@ function InvoicesPage() {
                                             children: "Export"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 48,
+                                            lineNumber: 88,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 45,
+                                    lineNumber: 85,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -162,7 +189,7 @@ function InvoicesPage() {
                                             className: "w-4 h-4 mr-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 51,
+                                            lineNumber: 91,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -170,7 +197,7 @@ function InvoicesPage() {
                                             children: "New invoice"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 92,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -178,25 +205,25 @@ function InvoicesPage() {
                                             children: "New"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 53,
+                                            lineNumber: 93,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 50,
+                                    lineNumber: 90,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                            lineNumber: 44,
+                            lineNumber: 84,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                    lineNumber: 37,
+                    lineNumber: 75,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -212,22 +239,22 @@ function InvoicesPage() {
                                             children: "Status:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 61,
+                                            lineNumber: 101,
                                             columnNumber: 15
                                         }, this),
                                         " ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "font-medium",
-                                            children: "Pending & overdue"
+                                            children: overdueInvoices.length > 0 ? "Pending & overdue" : "Pending"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 62,
+                                            lineNumber: 102,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 60,
+                                    lineNumber: 100,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -237,7 +264,7 @@ function InvoicesPage() {
                                             children: "Due:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 65,
+                                            lineNumber: 107,
                                             columnNumber: 15
                                         }, this),
                                         " ",
@@ -246,13 +273,13 @@ function InvoicesPage() {
                                             children: "Next 30 days"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 66,
+                                            lineNumber: 108,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 64,
+                                    lineNumber: 106,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -262,22 +289,22 @@ function InvoicesPage() {
                                             children: "Entity:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 69,
+                                            lineNumber: 111,
                                             columnNumber: 15
                                         }, this),
                                         " ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "font-medium",
-                                            children: "Global HQ"
+                                            children: entityLabel
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 70,
+                                            lineNumber: 112,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 68,
+                                    lineNumber: 110,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -288,64 +315,74 @@ function InvoicesPage() {
                                             children: "Supplier:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 115,
                                             columnNumber: 15
                                         }, this),
                                         " ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "font-medium",
-                                            children: "Top 20 by spend"
+                                            children: topSupplier
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 74,
+                                            lineNumber: 116,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 72,
+                                    lineNumber: 114,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                            lineNumber: 59,
+                            lineNumber: 99,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex flex-wrap gap-2 md:gap-4 mt-3 text-xs text-muted-foreground",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "64 open invoices"
-                                }, void 0, false, {
+                                    children: [
+                                        openInvoices.length,
+                                        " open invoices"
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 78,
+                                    lineNumber: 120,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "12 overdue"
-                                }, void 0, false, {
+                                    children: [
+                                        overdueInvoices.length,
+                                        " overdue"
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 79,
+                                    lineNumber: 121,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "$842,300 pending payment"
-                                }, void 0, false, {
+                                    children: [
+                                        "$",
+                                        fmtAmount(pendingPaymentTotal),
+                                        " pending payment"
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 80,
+                                    lineNumber: 122,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                            lineNumber: 77,
+                            lineNumber: 119,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                    lineNumber: 58,
+                    lineNumber: 98,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -364,7 +401,7 @@ function InvoicesPage() {
                                                     children: "Invoice worklist"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 88,
+                                                    lineNumber: 130,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -372,13 +409,13 @@ function InvoicesPage() {
                                                     children: "Prioritized view of invoices awaiting validation or payment."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 89,
+                                                    lineNumber: 133,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 87,
+                                            lineNumber: 129,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -386,13 +423,13 @@ function InvoicesPage() {
                                             children: "Sorted by due date"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 93,
+                                            lineNumber: 137,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 86,
+                                    lineNumber: 128,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -402,14 +439,14 @@ function InvoicesPage() {
                                         children: "Loading invoices..."
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/invoices/page.tsx",
-                                        lineNumber: 97,
+                                        lineNumber: 143,
                                         columnNumber: 17
                                     }, this) : invoices.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "p-8 text-center text-muted-foreground text-sm",
                                         children: "No invoices found. Connect to MongoDB to see data."
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/invoices/page.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 147,
                                         columnNumber: 17
                                     }, this) : invoices.map((invoice)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: ()=>setSelectedInvoice(invoice),
@@ -426,7 +463,7 @@ function InvoicesPage() {
                                                                     children: invoice.invoiceNumber
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 113,
+                                                                    lineNumber: 161,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -434,20 +471,20 @@ function InvoicesPage() {
                                                                     children: invoice.supplier
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 114,
+                                                                    lineNumber: 164,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StatusBadge"], {
                                                                     status: invoice.status
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 115,
+                                                                    lineNumber: 167,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 112,
+                                                            lineNumber: 160,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -461,7 +498,7 @@ function InvoicesPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 118,
+                                                                    lineNumber: 170,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -469,19 +506,19 @@ function InvoicesPage() {
                                                                     children: fmtDate(invoice.dueDate)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 119,
-                                                                    columnNumber: 21
+                                                                    lineNumber: 173,
+                                                                    columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 117,
+                                                            lineNumber: 169,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 111,
+                                                    lineNumber: 159,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -489,18 +526,18 @@ function InvoicesPage() {
                                                     children: invoice.poNumber
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 122,
+                                                    lineNumber: 178,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, invoice._id, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 104,
+                                            lineNumber: 152,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 141,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -508,13 +545,13 @@ function InvoicesPage() {
                                     children: 'Tip: Filter by "Status" = Overdue to prioritize collections and payment holds.'
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 127,
+                                    lineNumber: 185,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                            lineNumber: 85,
+                            lineNumber: 127,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -534,7 +571,7 @@ function InvoicesPage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 135,
+                                                    lineNumber: 194,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -548,7 +585,7 @@ function InvoicesPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 137,
+                                                            lineNumber: 198,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -559,32 +596,32 @@ function InvoicesPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 138,
+                                                            lineNumber: 201,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 136,
+                                                    lineNumber: 197,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 134,
+                                            lineNumber: 193,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StatusBadge"], {
                                             status: selectedInvoice?.status
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 141,
+                                            lineNumber: 206,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 133,
+                                    lineNumber: 192,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -598,25 +635,25 @@ function InvoicesPage() {
                                                         children: "Entity: Global HQ"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                        lineNumber: 147,
+                                                        lineNumber: 212,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "Currency: USD"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                        lineNumber: 148,
+                                                        lineNumber: 213,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 211,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 145,
+                                            lineNumber: 210,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -626,7 +663,7 @@ function InvoicesPage() {
                                                     children: "Invoice & payment summary"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 218,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -639,7 +676,7 @@ function InvoicesPage() {
                                                                     children: "Invoice date"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 156,
+                                                                    lineNumber: 223,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -647,13 +684,13 @@ function InvoicesPage() {
                                                                     children: selectedInvoice?.invoiceDate ? fmtDate(selectedInvoice.invoiceDate) : ""
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 157,
+                                                                    lineNumber: 226,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 155,
+                                                            lineNumber: 222,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -663,24 +700,25 @@ function InvoicesPage() {
                                                                     children: "Due date"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 160,
+                                                                    lineNumber: 233,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "font-medium",
                                                                     children: [
                                                                         selectedInvoice?.dueDate ? fmtDate(selectedInvoice.dueDate) : "",
-                                                                        " (Net 30)"
+                                                                        " ",
+                                                                        "(Net 30)"
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 161,
+                                                                    lineNumber: 236,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 159,
+                                                            lineNumber: 232,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -690,7 +728,7 @@ function InvoicesPage() {
                                                                     children: "Invoice total"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 164,
+                                                                    lineNumber: 244,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -698,13 +736,13 @@ function InvoicesPage() {
                                                                     children: selectedInvoice?.amount != null ? `$${fmtAmount(selectedInvoice.amount)}` : ""
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 165,
+                                                                    lineNumber: 247,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 163,
+                                                            lineNumber: 243,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -714,7 +752,7 @@ function InvoicesPage() {
                                                                     children: "Remaining to pay"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 168,
+                                                                    lineNumber: 254,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -722,25 +760,25 @@ function InvoicesPage() {
                                                                     children: selectedInvoice?.amount != null ? `$${fmtAmount(selectedInvoice.amount)}` : ""
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 169,
+                                                                    lineNumber: 257,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 167,
+                                                            lineNumber: 253,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 154,
+                                                    lineNumber: 221,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 152,
+                                            lineNumber: 217,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -750,7 +788,7 @@ function InvoicesPage() {
                                                     children: "Matching & validation"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 175,
+                                                    lineNumber: 267,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -763,24 +801,28 @@ function InvoicesPage() {
                                                                     children: "3-way match status"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 178,
+                                                                    lineNumber: 272,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     children: [
-                                                                        "PO match: Complete · GRN match: Complete · Price variance ",
-                                                                        "<",
-                                                                        " 1% threshold."
+                                                                        "PO match: ",
+                                                                        selectedInvoice?.matching?.poMatch || "-",
+                                                                        " · GRN match: ",
+                                                                        selectedInvoice?.matching?.grnMatch || "-",
+                                                                        " · Price variance",
+                                                                        " ",
+                                                                        typeof selectedInvoice?.matching?.priceVariance === "number" ? `${selectedInvoice.matching.priceVariance}%` : "-"
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 179,
+                                                                    lineNumber: 275,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 177,
+                                                            lineNumber: 271,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -790,26 +832,36 @@ function InvoicesPage() {
                                                                     children: "Approval workflow"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 182,
+                                                                    lineNumber: 286,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    children: "Owner: Facilities · Approvers: Cost center manager, Finance AP · SLA: 2 business days."
-                                                                }, void 0, false, {
+                                                                    children: [
+                                                                        "Owner: ",
+                                                                        selectedInvoice?.approvalWorkflow?.owner || "-",
+                                                                        " · Approvers:",
+                                                                        " ",
+                                                                        (selectedInvoice?.approvalWorkflow?.approvers || []).length > 0 ? (selectedInvoice?.approvalWorkflow?.approvers || []).join(", ") : "-",
+                                                                        " ",
+                                                                        "· SLA:",
+                                                                        " ",
+                                                                        selectedInvoice?.approvalWorkflow?.sla != null ? `${selectedInvoice.approvalWorkflow.sla} business days` : "-"
+                                                                    ]
+                                                                }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 183,
+                                                                    lineNumber: 289,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 181,
+                                                            lineNumber: 285,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 176,
+                                                    lineNumber: 270,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -820,21 +872,30 @@ function InvoicesPage() {
                                                             children: "Exceptions"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 187,
+                                                            lineNumber: 306,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "text-sm",
-                                                            children: "No blocking exceptions. One minor tax rounding difference logged and accepted."
+                                                            children: (()=>{
+                                                                const pv = selectedInvoice?.matching?.priceVariance;
+                                                                const po = String(selectedInvoice?.matching?.poMatch || "").toLowerCase();
+                                                                const grn = String(selectedInvoice?.matching?.grnMatch || "").toLowerCase();
+                                                                if (po && po !== "complete") return "PO match incomplete";
+                                                                if (grn && grn !== "complete") return "GRN match incomplete";
+                                                                if (typeof pv === "number" && pv >= 1) return `Price variance exceeds threshold (${pv}%)`;
+                                                                if (typeof pv === "number" && pv > 0) return `Minor price variance (${pv}%) within threshold`;
+                                                                return "No blocking exceptions";
+                                                            })()
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 188,
+                                                            lineNumber: 309,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 186,
+                                                    lineNumber: 305,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -845,27 +906,35 @@ function InvoicesPage() {
                                                             children: "Coding"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 191,
+                                                            lineNumber: 332,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "text-sm",
-                                                            children: "Cost center: HQ-FAC-001 · GL: 6100 Office Supplies · Tax code: US-NY-STD."
-                                                        }, void 0, false, {
+                                                            children: [
+                                                                "Cost center: ",
+                                                                selectedInvoice?.coding?.costCenter || "-",
+                                                                " · GL: ",
+                                                                selectedInvoice?.coding?.gl || "-",
+                                                                " · Tax code:",
+                                                                " ",
+                                                                selectedInvoice?.coding?.taxCode || "-"
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 192,
+                                                            lineNumber: 335,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 190,
+                                                    lineNumber: 331,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 174,
+                                            lineNumber: 266,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -875,7 +944,7 @@ function InvoicesPage() {
                                                     children: "Line items"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 197,
+                                                    lineNumber: 344,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -892,7 +961,7 @@ function InvoicesPage() {
                                                                             children: "Description"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                            lineNumber: 202,
+                                                                            lineNumber: 349,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -900,7 +969,7 @@ function InvoicesPage() {
                                                                             children: "Qty"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                            lineNumber: 203,
+                                                                            lineNumber: 352,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -908,7 +977,7 @@ function InvoicesPage() {
                                                                             children: "Unit price"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                            lineNumber: 204,
+                                                                            lineNumber: 353,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -916,7 +985,7 @@ function InvoicesPage() {
                                                                             children: "Tax"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                            lineNumber: 205,
+                                                                            lineNumber: 356,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -924,18 +993,18 @@ function InvoicesPage() {
                                                                             children: "Line total"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                            lineNumber: 206,
+                                                                            lineNumber: 357,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 201,
+                                                                    lineNumber: 348,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                lineNumber: 200,
+                                                                lineNumber: 347,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -947,7 +1016,7 @@ function InvoicesPage() {
                                                                                 children: item.description
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                                lineNumber: 212,
+                                                                                lineNumber: 365,
                                                                                 columnNumber: 27
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -955,7 +1024,7 @@ function InvoicesPage() {
                                                                                 children: item.qty
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                                lineNumber: 213,
+                                                                                lineNumber: 366,
                                                                                 columnNumber: 27
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -966,7 +1035,7 @@ function InvoicesPage() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                                lineNumber: 214,
+                                                                                lineNumber: 367,
                                                                                 columnNumber: 27
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -977,7 +1046,7 @@ function InvoicesPage() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                                lineNumber: 215,
+                                                                                lineNumber: 370,
                                                                                 columnNumber: 27
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -988,35 +1057,35 @@ function InvoicesPage() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                                lineNumber: 216,
+                                                                                lineNumber: 373,
                                                                                 columnNumber: 27
                                                                             }, this)
                                                                         ]
                                                                     }, idx, true, {
                                                                         fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                        lineNumber: 211,
+                                                                        lineNumber: 364,
                                                                         columnNumber: 25
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                lineNumber: 209,
+                                                                lineNumber: 362,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                        lineNumber: 199,
+                                                        lineNumber: 346,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 345,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 196,
+                                            lineNumber: 343,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1026,7 +1095,7 @@ function InvoicesPage() {
                                                     children: "Activity & notes"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 225,
+                                                    lineNumber: 384,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1038,7 +1107,7 @@ function InvoicesPage() {
                                                                     className: "w-2 h-2 rounded-full bg-primary mt-1.5"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 229,
+                                                                    lineNumber: 388,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1049,7 +1118,7 @@ function InvoicesPage() {
                                                                             children: activity.event
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                            lineNumber: 231,
+                                                                            lineNumber: 390,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1060,24 +1129,24 @@ function InvoicesPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                            lineNumber: 232,
+                                                                            lineNumber: 393,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                                    lineNumber: 230,
+                                                                    lineNumber: 389,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, i, true, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 228,
+                                                            lineNumber: 387,
                                                             columnNumber: 21
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 226,
+                                                    lineNumber: 385,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1085,13 +1154,13 @@ function InvoicesPage() {
                                                     children: "Internal note: Align this invoice with Q1 budget reallocation for HQ office supplies. Do not pay before 2025-03-20."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 237,
+                                                    lineNumber: 401,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 224,
+                                            lineNumber: 383,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1102,7 +1171,7 @@ function InvoicesPage() {
                                                     children: "Next actions"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 243,
+                                                    lineNumber: 408,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1110,7 +1179,7 @@ function InvoicesPage() {
                                                     children: "Review approval status and schedule payment based on cash planning."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 244,
+                                                    lineNumber: 409,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1123,7 +1192,7 @@ function InvoicesPage() {
                                                             children: "Approve for payment"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 248,
+                                                            lineNumber: 414,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1133,7 +1202,7 @@ function InvoicesPage() {
                                                             children: "Put on hold"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 249,
+                                                            lineNumber: 421,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1142,48 +1211,48 @@ function InvoicesPage() {
                                                             children: "Schedule payment"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                            lineNumber: 250,
+                                                            lineNumber: 428,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                                    lineNumber: 247,
+                                                    lineNumber: 413,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                                            lineNumber: 242,
+                                            lineNumber: 407,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                                    lineNumber: 144,
+                                    lineNumber: 209,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/invoices/page.tsx",
-                            lineNumber: 132,
+                            lineNumber: 191,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/invoices/page.tsx",
-                    lineNumber: 84,
+                    lineNumber: 126,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/(app)/invoices/page.tsx",
-            lineNumber: 36,
+            lineNumber: 74,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/(app)/invoices/page.tsx",
-        lineNumber: 35,
+        lineNumber: 73,
         columnNumber: 5
     }, this);
 }

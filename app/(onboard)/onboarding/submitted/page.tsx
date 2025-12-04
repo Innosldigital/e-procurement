@@ -8,12 +8,19 @@ import { Suspense } from "react"
 function SubmittedContent() {
   const params = useSearchParams()
   const router = useRouter()
-  const type = params.get("type") || "company"
-  const title = type === "supplier" ? "Supplier submission received" : "Company submission received"
+  const type = params.get("type") || "supplier"
+  const title =
+    type === "supplier"
+      ? "Supplier submission received"
+      : type === "admin"
+      ? "Admin submission received"
+      : "Submission received"
   const desc =
     type === "supplier"
       ? "Your supplier onboarding details have been submitted. Our admin team will review your information. You will receive an email notification once approved and then gain full access to the system."
-      : "Your company onboarding details have been submitted. Our admin team will review your information. You will receive an email notification once approved and then gain full access to the system."
+      : type === "admin"
+      ? "Your admin onboarding details have been submitted. A super admin will review your information. You will receive an email notification once approved and then gain access to admin features."
+      : "Your onboarding details have been submitted. Our admin team will review your information. You will receive an email notification once approved and then gain access to the system."
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
       <div className="w-full max-w-xl">

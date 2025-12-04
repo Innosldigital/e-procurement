@@ -16,9 +16,6 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$
 ;
 __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].set('strictQuery', false);
 const MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI) {
-    throw new Error("❌ MONGODB_URI is not defined in .env.local");
-}
 // Use global to avoid re-creating connections in Next.js
 let cached = /*TURBOPACK member replacement*/ __turbopack_context__.g.mongoose;
 if (!cached) {
@@ -32,6 +29,9 @@ async function connectDB() {
         return cached.conn;
     }
     if (!cached.promise) {
+        if (!MONGODB_URI) {
+            throw new Error('MONGODB_URI is not defined');
+        }
         cached.promise = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].connect(MONGODB_URI, {
             bufferCommands: false,
             serverSelectionTimeoutMS: 5000,

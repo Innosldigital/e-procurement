@@ -23,8 +23,8 @@ function SubmittedContent() {
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const type = params.get("type") || "company";
-    const title = type === "supplier" ? "Supplier submission received" : "Company submission received";
-    const desc = type === "supplier" ? "Your supplier onboarding details have been submitted. Our admin team will review your information. You will receive an email notification once approved and then gain full access to the system." : "Your company onboarding details have been submitted. Our admin team will review your information. You will receive an email notification once approved and then gain full access to the system.";
+    const title = type === "supplier" ? "Supplier submission received" : type === "admin" ? "Admin submission received" : "Company submission received";
+    const desc = type === "supplier" ? "Your supplier onboarding details have been submitted. Our admin team will review your information. You will receive an email notification once approved and then gain full access to the system." : type === "admin" ? "Your admin onboarding details have been submitted. A super admin will review your information. You will receive an email notification once approved and then gain access to admin features." : "Your company onboarding details have been submitted. Our admin team will review your information. You will receive an email notification once approved and then gain full access to the system.";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen flex items-center justify-center bg-muted/30 p-4",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -38,7 +38,7 @@ function SubmittedContent() {
                                 children: title
                             }, void 0, false, {
                                 fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                                lineNumber: 22,
+                                lineNumber: 29,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -46,13 +46,13 @@ function SubmittedContent() {
                                 children: desc
                             }, void 0, false, {
                                 fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                                lineNumber: 23,
+                                lineNumber: 30,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                        lineNumber: 21,
+                        lineNumber: 28,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -65,7 +65,7 @@ function SubmittedContent() {
                                     children: "Go to dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                                    lineNumber: 27,
+                                    lineNumber: 34,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -74,34 +74,34 @@ function SubmittedContent() {
                                     children: "Contact support"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                                    lineNumber: 28,
+                                    lineNumber: 35,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                            lineNumber: 26,
+                            lineNumber: 33,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                        lineNumber: 25,
+                        lineNumber: 32,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                lineNumber: 20,
+                lineNumber: 27,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-            lineNumber: 19,
+            lineNumber: 26,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-        lineNumber: 18,
+        lineNumber: 25,
         columnNumber: 5
     }, this);
 }
@@ -121,27 +121,27 @@ function OnboardingSubmittedPage() {
                     children: "Loading…"
                 }, void 0, false, {
                     fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                    lineNumber: 39,
+                    lineNumber: 46,
                     columnNumber: 98
                 }, void 0)
             }, void 0, false, {
                 fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-                lineNumber: 39,
+                lineNumber: 46,
                 columnNumber: 92
             }, void 0)
         }, void 0, false, {
             fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-            lineNumber: 39,
+            lineNumber: 46,
             columnNumber: 25
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SubmittedContent, {}, void 0, false, {
             fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-            lineNumber: 40,
+            lineNumber: 47,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/(onboard)/onboarding/submitted/page.tsx",
-        lineNumber: 39,
+        lineNumber: 46,
         columnNumber: 5
     }, this);
 }

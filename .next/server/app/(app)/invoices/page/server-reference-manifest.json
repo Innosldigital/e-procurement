@@ -254,6 +254,66 @@
       },
       "exportedName": "getApprovals",
       "filename": "lib/actions/approval-actions.ts"
+    },
+    "60d217a895644ec69ce9f5c939609a2db9342ccea4": {
+      "workers": {
+        "app/(app)/invoices/page": {
+          "moduleId": 87869,
+          "async": false,
+          "exportedName": "schedulePayment",
+          "filename": "lib/actions/invoice-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/invoices/page": "action-browser"
+      },
+      "exportedName": "schedulePayment",
+      "filename": "lib/actions/invoice-actions.ts"
+    },
+    "605f1951af970cc85080db6c133d475a3d8fda520d": {
+      "workers": {
+        "app/(app)/invoices/page": {
+          "moduleId": 87869,
+          "async": false,
+          "exportedName": "putInvoiceOnHold",
+          "filename": "lib/actions/invoice-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/invoices/page": "action-browser"
+      },
+      "exportedName": "putInvoiceOnHold",
+      "filename": "lib/actions/invoice-actions.ts"
+    },
+    "40fc9338e7aa9b11734454f1c7535960cbb2210daa": {
+      "workers": {
+        "app/(app)/invoices/page": {
+          "moduleId": 87869,
+          "async": false,
+          "exportedName": "approveInvoice",
+          "filename": "lib/actions/invoice-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/invoices/page": "action-browser"
+      },
+      "exportedName": "approveInvoice",
+      "filename": "lib/actions/invoice-actions.ts"
+    },
+    "40e554b19aedc8d556a1a71ff6e763e9a0c8272e72": {
+      "workers": {
+        "app/(app)/invoices/page": {
+          "moduleId": 87869,
+          "async": false,
+          "exportedName": "createInvoice",
+          "filename": "lib/actions/invoice-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/invoices/page": "action-browser"
+      },
+      "exportedName": "createInvoice",
+      "filename": "lib/actions/invoice-actions.ts"
     }
   },
   "edge": {}

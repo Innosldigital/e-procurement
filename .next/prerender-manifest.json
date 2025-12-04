@@ -52,7 +52,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/approvals": {
+    "/admin": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -65,8 +65,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/approvals",
-      "dataRoute": "/approvals.rsc",
+      "srcRoute": "/admin",
+      "dataRoute": "/admin.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -217,6 +217,31 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/onboarding/submitted",
       "dataRoute": "/onboarding/submitted.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/onboarding/support": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/onboarding/support",
+      "dataRoute": "/onboarding/support.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",

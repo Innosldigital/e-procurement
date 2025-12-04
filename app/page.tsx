@@ -194,48 +194,49 @@ export default async function DashboardPage() {
         </Card>
 
         {/* Alerts */}
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-base">Alerts & notifications</CardTitle>
-                <CardDescription className="text-xs">Items requiring your attention.</CardDescription>
-              </div>
-              <span className="text-sm text-muted-foreground">{notifications.filter(n => !n.read).length} open</span>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {notifications.length === 0 ? (
-                <div className="text-sm text-muted-foreground">No notifications.</div>
-              ) : (
-                notifications.slice(0, 3).map((n) => (
-                  <div key={String(n._id)} className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <StatusBadge status={labelFromType(n.type)} />
-                      </div>
-                      <p className="text-sm font-medium">{n.title}</p>
-                      <p className="text-xs text-muted-foreground">{n.message}</p>
-                    </div>
+     <Card>
+      <CardHeader>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <CardTitle className="text-base">Alerts & notifications</CardTitle>
+            <CardDescription className="text-xs">Items requiring your attention.</CardDescription>
+          </div>
+          <span className="text-sm text-muted-foreground sm:shrink-0">
+            {notifications.filter((n) => !n.read).length} open
+          </span>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {notifications.length === 0 ? (
+            <div className="text-sm text-muted-foreground">No notifications.</div>
+          ) : (
+            notifications.slice(0, 3).map((n) => (
+              <div key={String(n._id)} className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <StatusBadge status={labelFromType(n.type)} />
                   </div>
-                ))
-              )}
-
-              <div className="pt-2 flex gap-2">
-                <Button variant="outline" size="sm" className="flex-1 bg-transparent">
-                  Create requisition
-                </Button>
-                <Button variant="outline" size="sm" className="flex-1 bg-transparent">
-                  Create tender
-                </Button>
-                <Button size="sm" className="flex-1">
-                  View all alerts
-                </Button>
+                  <p className="text-sm font-medium">{n.title}</p>
+                  <p className="text-xs text-muted-foreground">{n.message}</p>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            ))
+          )}
+          <div className="pt-2 flex flex-col gap-2 sm:flex-row">
+            <Button variant="outline" size="sm" className="flex-1 bg-transparent">
+              Create requisition
+            </Button>
+            <Button variant="outline" size="sm" className="flex-1 bg-transparent">
+              Create tender
+            </Button>
+            <Button size="sm" className="flex-1">
+              View all alerts
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">

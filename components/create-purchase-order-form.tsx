@@ -141,6 +141,7 @@ export function CreatePurchaseOrderForm({ onClose, onCreated }: CreatePurchaseOr
                       <SelectItem value="USD">USD</SelectItem>
                       <SelectItem value="EUR">EUR</SelectItem>
                       <SelectItem value="GBP">GBP</SelectItem>
+                      <SelectItem value="NLE">NLE</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -235,4 +236,3 @@ export function CreatePurchaseOrderForm({ onClose, onCreated }: CreatePurchaseOr
     </div>
   )
 }
-

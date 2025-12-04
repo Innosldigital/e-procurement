@@ -255,21 +255,6 @@
       "exportedName": "getApprovals",
       "filename": "lib/actions/approval-actions.ts"
     },
-    "40e1380f2fa032e21cd2a6862c3a2d3aac8c912d09": {
-      "workers": {
-        "app/(onboard)/onboarding/page": {
-          "moduleId": 44367,
-          "async": false,
-          "exportedName": "submitCompanyOnboarding",
-          "filename": "lib/actions/onboarding-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
-      },
-      "exportedName": "submitCompanyOnboarding",
-      "filename": "lib/actions/onboarding-actions.ts"
-    },
     "40616a4b4ee43e0688b9ea01e98948438bcb755c6c": {
       "workers": {
         "app/(onboard)/onboarding/page": {

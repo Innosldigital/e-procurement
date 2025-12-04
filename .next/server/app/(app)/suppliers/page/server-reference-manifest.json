@@ -220,7 +220,7 @@
         }
       },
       "layer": {
-        "app/(app)/suppliers/page": "rsc"
+        "app/(app)/suppliers/page": "action-browser"
       },
       "exportedName": "getSuppliers",
       "filename": "lib/actions/supplier-actions.ts"
@@ -255,36 +255,6 @@
       "exportedName": "getApprovals",
       "filename": "lib/actions/approval-actions.ts"
     },
-    "402da2b8281da70c47f8f561ab861bf4babffafea8": {
-      "workers": {
-        "app/(app)/suppliers/page": {
-          "moduleId": 63911,
-          "async": false,
-          "exportedName": "deleteSupplier",
-          "filename": "lib/actions/supplier-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/suppliers/page": "rsc"
-      },
-      "exportedName": "deleteSupplier",
-      "filename": "lib/actions/supplier-actions.ts"
-    },
-    "405b16f9390feda0d57de1367cf250e9c37ac3cbe5": {
-      "workers": {
-        "app/(app)/suppliers/page": {
-          "moduleId": 63911,
-          "async": false,
-          "exportedName": "createSupplier",
-          "filename": "lib/actions/supplier-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/suppliers/page": "rsc"
-      },
-      "exportedName": "createSupplier",
-      "filename": "lib/actions/supplier-actions.ts"
-    },
     "4090a6d6e078357e2bcc2a50582c33127f1c659dc5": {
       "workers": {
         "app/(app)/suppliers/page": {
@@ -295,24 +265,9 @@
         }
       },
       "layer": {
-        "app/(app)/suppliers/page": "rsc"
+        "app/(app)/suppliers/page": "action-browser"
       },
       "exportedName": "getSupplierById",
-      "filename": "lib/actions/supplier-actions.ts"
-    },
-    "600f467f1c11cdae2c2ca3ff1554bd9b8b6f59ca58": {
-      "workers": {
-        "app/(app)/suppliers/page": {
-          "moduleId": 63911,
-          "async": false,
-          "exportedName": "updateSupplier",
-          "filename": "lib/actions/supplier-actions.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/suppliers/page": "rsc"
-      },
-      "exportedName": "updateSupplier",
       "filename": "lib/actions/supplier-actions.ts"
     }
   },

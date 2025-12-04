@@ -3580,6 +3580,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$tender$2d$
 ;
 ;
 ;
+;
+;
 }),
 "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/server/keyless-custom-headers.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/lib/actions/tender-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -3607,6 +3609,8 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["deleteNotification"],
     "400bd1acd18e5cfd64b30244459bec588e169ed824",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getNotificationsPublic"],
+    "40164dc3eda1827908ff1ddf4d897916bdc37e7d69",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$invoice$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["approveInvoice"],
     "401a5cacc8acb6d6c92973fa5e0723bde9001dd60a",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$requisition$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getRequisitionById"],
     "406f7d4dbe348be6b4cd3abe2d3b8b55238bf03804",
@@ -3621,6 +3625,8 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$purchase$2d$order$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getPurchaseOrderById"],
     "409728999fbf9c924e9a1ffbd691eeac56920a90bf",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$tender$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createTender"],
+    "40a423f37cde0da9798c532466f0530c556431c35b",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$invoice$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createInvoice"],
     "40c90700c4dc2c59c2a64f69370f6d39bdc6f0839d",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$invoice$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getInvoiceById"],
     "40d365b849c0b700bd6fc40530ccd289c589801319",

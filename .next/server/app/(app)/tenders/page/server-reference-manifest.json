@@ -314,6 +314,51 @@
       },
       "exportedName": "createTender",
       "filename": "lib/actions/tender-actions.ts"
+    },
+    "0049ef1737d2c22db899009076a563749791b888ea": {
+      "workers": {
+        "app/(app)/tenders/page": {
+          "moduleId": 81328,
+          "async": false,
+          "exportedName": "getTenderTemplates",
+          "filename": "lib/actions/tender-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/tenders/page": "action-browser"
+      },
+      "exportedName": "getTenderTemplates",
+      "filename": "lib/actions/tender-actions.ts"
+    },
+    "00502872da77460792324d540806377b4a404bba26": {
+      "workers": {
+        "app/(app)/tenders/page": {
+          "moduleId": 81328,
+          "async": false,
+          "exportedName": "getEvaluationRules",
+          "filename": "lib/actions/tender-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/tenders/page": "action-browser"
+      },
+      "exportedName": "getEvaluationRules",
+      "filename": "lib/actions/tender-actions.ts"
+    },
+    "60289e77b7cac64e0b615dd6de32d908e8396880ef": {
+      "workers": {
+        "app/(app)/tenders/page": {
+          "moduleId": 81328,
+          "async": false,
+          "exportedName": "submitBid",
+          "filename": "lib/actions/tender-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/tenders/page": "action-browser"
+      },
+      "exportedName": "submitBid",
+      "filename": "lib/actions/tender-actions.ts"
     }
   },
   "edge": {}

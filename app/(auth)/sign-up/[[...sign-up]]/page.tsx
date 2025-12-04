@@ -1,4 +1,4 @@
-import { SignUp } from '@clerk/nextjs'
+import { SignUp } from "@clerk/nextjs";
 
 export default function SignUpPage() {
   return (
@@ -15,16 +15,17 @@ export default function SignUpPage() {
             Create your account to get started
           </p>
         </div>
-        <SignUp 
+        <SignUp
           appearance={{
             elements: {
               rootBox: "mx-auto",
               card: "shadow-lg border border-border",
-            }
+            },
           }}
-          redirectUrl="/onboarding"
+          fallbackRedirectUrl="/"
+          forceRedirectUrl="/"
         />
       </div>
     </div>
-  )
+  );
 }

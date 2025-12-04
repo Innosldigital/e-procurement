@@ -1,5 +1,5 @@
 {
-  "/(app)/admin/page": "/admin",
+  "/(admin)/admin/page": "/admin",
   "/(app)/approvals/page": "/approvals",
   "/(app)/invoices/page": "/invoices",
   "/(app)/notifications/page": "/notifications",
@@ -11,7 +11,11 @@
   "/(auth)/sign-up/[[...sign-up]]/page": "/sign-up/[[...sign-up]]",
   "/(onboard)/onboarding/page": "/onboarding",
   "/(onboard)/onboarding/submitted/page": "/onboarding/submitted",
+  "/(onboard)/onboarding/supplier/[id]/page": "/onboarding/supplier/[id]",
+  "/(onboard)/onboarding/support/page": "/onboarding/support",
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/api/requisitions/route": "/api/requisitions",
+  "/api/upload/route": "/api/upload",
   "/page": "/"
 }

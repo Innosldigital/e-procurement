@@ -38,7 +38,9 @@ const TenderSchema = new Schema({
     totalPrice: Number,
     score: Number,
     compliance: String,
-    highlights: String
+    highlights: String,
+    technicalDocuments: [{ name: String, size: Number, type: String, url: String }],
+    financialDocuments: [{ name: String, size: Number, type: String, url: String }]
   }],
   timeline: [{
     event: String,

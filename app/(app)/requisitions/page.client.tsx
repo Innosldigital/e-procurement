@@ -1,14 +1,32 @@
-'use client'
+"use client";
 
-import { useState, useMemo, useCallback, useRef } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { X, Upload, FileText, Image, File as FileIcon, Paperclip } from "lucide-react"
-
+import { useState, useMemo, useCallback, useRef } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  X,
+  Upload,
+  FileText,
+  Image,
+  File as FileIcon,
+  Paperclip,
+} from "lucide-react";
 
 interface LineItem {
   id: string;
@@ -28,79 +46,98 @@ interface CreateRequisitionFormProps {
   onSuccess: () => void;
 }
 
-export function CreateRequisitionForm({ onClose, onSuccess }: CreateRequisitionFormProps) {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [attachedFiles, setAttachedFiles] = useState<AttachedFile[]>([])
+export function CreateRequisitionForm({
+  onClose,
+  onSuccess,
+}: CreateRequisitionFormProps) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [attachedFiles, setAttachedFiles] = useState<AttachedFile[]>([]);
 
-  const fileInputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [lineItems, setLineItems] = useState<LineItem[]>([
-    { id: '1', description: '', quantity: 1, unit: 'Unit', unitCost: 0 }
-  ])
+    { id: "1", description: "", quantity: 1, unit: "Unit", unitCost: 0 },
+  ]);
 
   const [formData, setFormData] = useState({
-    title: '',
-    requester: '',
-    branch: '',
-    category: '',
-    neededBy: '',
-    costCenter: '',
-    notes: ''
-  })
+    title: "",
+    requester: "",
+    branch: "",
+    category: "",
+    neededBy: "",
+    costCenter: "",
+    notes: "",
+  });
 
   const totalAmount = useMemo(() => {
-    return lineItems.reduce((sum, item) => sum + (item.quantity * item.unitCost), 0)
-  }, [lineItems])
+    return lineItems.reduce(
+      (sum, item) => sum + item.quantity * item.unitCost,
+      0
+    );
+  }, [lineItems]);
 
   const addLineItem = useCallback(() => {
-    setLineItems(prev => [
+    setLineItems((prev) => [
       ...prev,
-      { id: Date.now().toString(), description: '', quantity: 1, unit: 'Unit', unitCost: 0 }
-    ])
-  }, [])
+      {
+        id: Date.now().toString(),
+        description: "",
+        quantity: 1,
+        unit: "Unit",
+        unitCost: 0,
+      },
+    ]);
+  }, []);
 
   const removeLineItem = useCallback((id: string) => {
-    setLineItems(prev => prev.length > 1 ? prev.filter(item => item.id !== id) : prev)
-  }, [])
+    setLineItems((prev) =>
+      prev.length > 1 ? prev.filter((item) => item.id !== id) : prev
+    );
+  }, []);
 
-  const updateLineItem = useCallback(<K extends keyof LineItem>(
-    id: string,
-    field: K,
-    value: LineItem[K]
-  ) => {
-    setLineItems(prev => prev.map(item =>
-      item.id === id ? { ...item, [field]: value } : item
-    ))
-  }, [])
+  const updateLineItem = useCallback(
+    <K extends keyof LineItem>(id: string, field: K, value: LineItem[K]) => {
+      setLineItems((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, [field]: value } : item
+        )
+      );
+    },
+    []
+  );
 
   // File handling
   const handleFiles = (files: FileList | null) => {
-    if (!files) return
+    if (!files) return;
 
-    const newFiles: AttachedFile[] = Array.from(files).map(file => ({
+    const newFiles: AttachedFile[] = Array.from(files).map((file) => ({
       ...file,
       id: `${Date.now()}-${Math.random()}`,
-      preview: file.type.startsWith('image/') ? URL.createObjectURL(file) : undefined
-    }))
+      preview: file.type.startsWith("image/")
+        ? URL.createObjectURL(file)
+        : undefined,
+    }));
 
-    setAttachedFiles(prev => [...prev, ...newFiles])
-  }
+    setAttachedFiles((prev) => [...prev, ...newFiles]);
+  };
 
   const removeFile = (id: string) => {
-    setAttachedFiles(prev => {
-      const file = prev.find(f => f.id === id)
-      if (file?.preview) URL.revokeObjectURL(file.preview)
-      return prev.filter(f => f.id !== id)
-    })
-  }
+    setAttachedFiles((prev) => {
+      const file = prev.find((f) => f.id === id);
+      if (file?.preview) URL.revokeObjectURL(file.preview);
+      return prev.filter((f) => f.id !== id);
+    });
+  };
 
   const getFileIcon = (type: string) => {
-    if (type.startsWith('image/')) return <Image className="w-5 h-5" />
-    if (type.includes('pdf')) return <FileText className="w-5 h-5 text-red-600" />
-    if (type.includes('word') || type.includes('document')) return <FileText className="w-5 h-5 text-blue-600" />
-    return <FileIcon className="w-5 h-5" />
-  }
+    if (type.startsWith("image/")) return <Image className="w-5 h-5" />;
+    if (type.includes("pdf"))
+      return <FileText className="w-5 h-5 text-red-600" />;
+    if (type.includes("word") || type.includes("document"))
+      return <FileText className="w-5 h-5 text-blue-600" />;
+    return <FileIcon className="w-5 h-5" />;
+  };
 
   const validateForm = (): boolean => {
     return !!(
@@ -110,77 +147,79 @@ export function CreateRequisitionForm({ onClose, onSuccess }: CreateRequisitionF
       formData.category &&
       formData.neededBy &&
       formData.costCenter.trim() &&
-      lineItems.every(item => 
-        item.description.trim() && 
-        item.quantity >= 1 && 
-        item.unitCost >= 0
+      lineItems.every(
+        (item) =>
+          item.description.trim() && item.quantity >= 1 && item.unitCost >= 0
       )
-    )
-  }
+    );
+  };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  if (!validateForm()) {
-    setError('Please complete all required fields.')
-    return
-  }
-
-  setLoading(true)
-  setError(null)
-
-  try {
-    const formDataPayload = new FormData()
-
-    // Auto-generate requisitionId
-    const now = new Date()
-    const year = now.getFullYear()
-    const count = attachedFiles.length > 0 ? 1 : 0 // fallback, real count should come from DB
-    const requisitionId = `REQ-${year}-${String(Date.now()).slice(-6)}` // Simple unique ID
-    // Or better: fetch count from server (we'll improve this later)
-
-    // Required fields
-    formDataPayload.append('requisitionId', requisitionId)
-    formDataPayload.append('requester', formData.requester)
-    formDataPayload.append('branch', formData.branch)
-    formDataPayload.append('category', formData.category)
-    formDataPayload.append('amount', totalAmount.toString())
-    formDataPayload.append('neededBy', formData.neededBy)
-    formDataPayload.append('costCenter', formData.costCenter || '')
-    formDataPayload.append('date', new Date().toISOString()) // current date
-
-    // Optional
-    formDataPayload.append('notes', formData.notes || '')
-
-    // Line items as JSON string
-    const lineItemsPayload = lineItems.map(item => ({
-      description: item.description,
-      quantity: item.quantity,
-      unit: item.unit || 'Unit',
-      unitCost: item.unitCost,
-      total: item.quantity * item.unitCost
-    }))
-    formDataPayload.append('lineItems', JSON.stringify(lineItemsPayload))
-
-    // Attach files
-    attachedFiles.forEach(file => {
-      formDataPayload.append('files', file)
-    })
-
-    const resp = await fetch('/api/requisitions', { method: 'POST', body: formDataPayload })
-    const result = await resp.json()
-
-    if (result?.success) {
-      onSuccess()
-    } else {
-      setError(result?.error || 'Failed to create requisition')
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      setError("Please complete all required fields.");
+      return;
     }
-  } catch (err: any) {
-    console.error('Submission error:', err)
-    setError(err.message || 'Failed to submit requisition')
-  } finally {
-    setLoading(false)
-  }
-}
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const formDataPayload = new FormData();
+
+      // Auto-generate requisitionId
+      const now = new Date();
+      const year = now.getFullYear();
+      const count = attachedFiles.length > 0 ? 1 : 0; // fallback, real count should come from DB
+      const requisitionId = `REQ-${year}-${String(Date.now()).slice(-6)}`; // Simple unique ID
+      // Or better: fetch count from server (we'll improve this later)
+
+      // Required fields
+      formDataPayload.append("requisitionId", requisitionId);
+      formDataPayload.append("requester", formData.requester);
+      formDataPayload.append("branch", formData.branch);
+      formDataPayload.append("category", formData.category);
+      formDataPayload.append("amount", totalAmount.toString());
+      formDataPayload.append("neededBy", formData.neededBy);
+      formDataPayload.append("costCenter", formData.costCenter || "");
+      formDataPayload.append("date", new Date().toISOString()); // current date
+
+      // Optional
+      formDataPayload.append("notes", formData.notes || "");
+
+      // Line items as JSON string
+      const lineItemsPayload = lineItems.map((item) => ({
+        description: item.description,
+        quantity: item.quantity,
+        unit: item.unit || "Unit",
+        unitCost: item.unitCost,
+        total: item.quantity * item.unitCost,
+      }));
+      formDataPayload.append("lineItems", JSON.stringify(lineItemsPayload));
+
+      // Attach files
+      attachedFiles.forEach((file) => {
+        formDataPayload.append("files", file);
+      });
+
+      const resp = await fetch("/api/requisitions", {
+        method: "POST",
+        body: formDataPayload,
+      });
+      const result = await resp.json();
+
+      if (result?.success) {
+        onSuccess();
+      } else {
+        setError(result?.error || "Failed to create requisition");
+      }
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setError(err.message || "Failed to submit requisition");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -189,9 +228,16 @@ const handleSubmit = async (e: React.FormEvent) => {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>Create New Requisition</CardTitle>
-              <CardDescription>Submit a purchase request with supporting documents</CardDescription>
+              <CardDescription>
+                Submit a purchase request with supporting documents
+              </CardDescription>
             </div>
-            <Button variant="ghost" size="icon" onClick={onClose} disabled={loading}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              disabled={loading}
+            >
               <X className="h-4 w-4" />
               <span className="sr-only">Close</span>
             </Button>
@@ -210,11 +256,15 @@ const handleSubmit = async (e: React.FormEvent) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* ... your existing inputs ... */}
               <div className="space-y-2">
-                <Label htmlFor="title">Requisition Title <span className="text-destructive">*</span></Label>
+                <Label htmlFor="title">
+                  Requisition Title <span className="text-destructive">*</span>
+                </Label>
                 <Input
                   id="title"
                   value={formData.title}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, title: e.target.value }))
+                  }
                   required
                 />
               </div>
@@ -227,27 +277,37 @@ const handleSubmit = async (e: React.FormEvent) => {
               <Textarea
                 id="notes"
                 value={formData.notes}
-                onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, notes: e.target.value }))
+                }
                 rows={3}
               />
             </div>
 
             {/* File Upload Section */}
             <div className="space-y-4">
-              <Label>Attachments <span className="text-muted-foreground text-sm">(Optional)</span></Label>
-              
+              <Label>
+                Attachments{" "}
+                <span className="text-muted-foreground text-sm">
+                  (Optional)
+                </span>
+              </Label>
+
               <div
                 className="border-2 border-dashed rounded-xl p-8 text-center cursor-pointer hover:border-primary transition-colors"
                 onClick={() => fileInputRef.current?.click()}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
-                  e.preventDefault()
-                  handleFiles(e.dataTransfer.files)
+                  e.preventDefault();
+                  handleFiles(e.dataTransfer.files);
                 }}
               >
                 <Upload className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                 <p className="text-sm text-muted-foreground">
-                  <span className="font-medium text-primary">Click to upload</span> or drag and drop
+                  <span className="font-medium text-primary">
+                    Click to upload
+                  </span>{" "}
+                  or drag and drop
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
                   PDF, images, documents up to 10MB
@@ -268,11 +328,18 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <div className="space-y-2">
                   <Label>Attached Files ({attachedFiles.length})</Label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {attachedFiles.map(file => (
-                      <div key={file.id} className="flex items-center gap-3 p-3 border rounded-lg bg-background">
+                    {attachedFiles.map((file) => (
+                      <div
+                        key={file.id}
+                        className="flex items-center gap-3 p-3 border rounded-lg bg-background"
+                      >
                         <div className="flex-shrink-0">
                           {file.preview ? (
-                            <img src={file.preview} alt={file.name} className="w-10 h-10 object-cover rounded" />
+                            <img
+                              src={file.preview}
+                              alt={file.name}
+                              className="w-10 h-10 object-cover rounded"
+                            />
                           ) : (
                             <div className="w-10 h-10 bg-muted rounded flex items-center justify-center">
                               {getFileIcon(file.type)}
@@ -280,7 +347,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate">{file.name}</p>
+                          <p className="text-sm font-medium truncate">
+                            {file.name}
+                          </p>
                           <p className="text-xs text-muted-foreground">
                             {(file.size / 1024 / 1024).toFixed(2)} MB
                           </p>
@@ -300,48 +369,63 @@ const handleSubmit = async (e: React.FormEvent) => {
               )}
             </div>
 
-            {/* Line Items & Total (unchanged) */}
-            {/* ... your line items code ... */}
-
             <div className="flex justify-between items-center pt-6 border-t font-semibold text-lg">
               <span>Total Amount:</span>
-              <span>${totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+              <span>
+                $
+                {totalAmount.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                })}
+              </span>
             </div>
           </CardContent>
 
           <div className="border-t p-6 flex justify-between items-center sticky bottom-0 bg-background shrink-0">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Paperclip className="w-4 h-4" />
-              <span>{attachedFiles.length} file{attachedFiles.length !== 1 ? 's' : ''} attached</span>
+              <span>
+                {attachedFiles.length} file
+                {attachedFiles.length !== 1 ? "s" : ""} attached
+              </span>
             </div>
             <div className="flex gap-3">
-              <Button type="button" variant="outline" onClick={onClose} disabled={loading}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onClose}
+                disabled={loading}
+              >
                 Cancel
               </Button>
               <Button type="submit" disabled={loading || !validateForm()}>
-                {loading ? 'Creating...' : 'Create Requisition'}
+                {loading ? "Creating..." : "Create Requisition"}
               </Button>
             </div>
           </div>
         </form>
       </Card>
     </div>
-  )
+  );
 }
 
 export default function RequisitionsPage() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="p-4 md:p-6">
       <div className="mb-6 flex items-center justify-between">
         <CardTitle className="text-base">Requisitions</CardTitle>
-        <Button size="sm" onClick={() => setOpen(true)}>Create requisition</Button>
+        <Button size="sm" onClick={() => setOpen(true)}>
+          Create requisition
+        </Button>
       </div>
 
       {open && (
-        <CreateRequisitionForm onClose={() => setOpen(false)} onSuccess={() => setOpen(false)} />
+        <CreateRequisitionForm
+          onClose={() => setOpen(false)}
+          onSuccess={() => setOpen(false)}
+        />
       )}
     </div>
-  )
+  );
 }

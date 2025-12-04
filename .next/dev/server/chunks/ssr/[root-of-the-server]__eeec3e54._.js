@@ -16,9 +16,6 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$
 ;
 __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].set('strictQuery', false);
 const MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI) {
-    throw new Error("❌ MONGODB_URI is not defined in .env.local");
-}
 // Use global to avoid re-creating connections in Next.js
 let cached = /*TURBOPACK member replacement*/ __turbopack_context__.g.mongoose;
 if (!cached) {
@@ -32,6 +29,9 @@ async function connectDB() {
         return cached.conn;
     }
     if (!cached.promise) {
+        if (!MONGODB_URI) {
+            throw new Error('MONGODB_URI is not defined');
+        }
         cached.promise = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].connect(MONGODB_URI, {
             bufferCommands: false,
             serverSelectionTimeoutMS: 5000,
@@ -1088,6 +1088,51 @@ const SupplierSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mon
                 size: Number,
                 type: String
             }
+        ],
+        businessRegistrationCertificateUploads: [
+            {
+                name: String,
+                size: Number,
+                type: String
+            }
+        ],
+        taxClearanceCertificateUploads: [
+            {
+                name: String,
+                size: Number,
+                type: String
+            }
+        ],
+        gstVatRegistrationCertificateUploads: [
+            {
+                name: String,
+                size: Number,
+                type: String
+            }
+        ],
+        businessLicenseUploads: [
+            {
+                name: String,
+                size: Number,
+                type: String
+            }
+        ],
+        nassitCertificateUploads: [
+            {
+                name: String,
+                size: Number,
+                type: String
+            }
+        ],
+        sectorSpecificCertificateUploads: [
+            {
+                name: String,
+                size: Number,
+                type: String
+            }
+        ],
+        paymentMethods: [
+            String
         ],
         bankDetails: {
             bankName: String,
@@ -2423,7 +2468,8 @@ const CompanySchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mong
         },
         businessOperations: {
             description: String,
-            branchesCount: String,
+            hasBranches: Boolean,
+            numberOfBranches: Number,
             branchLocations: String,
             centralStore: String
         },
@@ -2476,6 +2522,10 @@ const CompanySchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mong
             poApprover: String,
             goodsReceiver: String
         },
+        teamMembers: {
+            projectLead: String,
+            trainingOfficer: String
+        },
         declarations: {
             infoAccurate: Boolean,
             agreeOnboarding: Boolean
@@ -2495,11 +2545,15 @@ module.exports = mod;
 "[project]/lib/actions/admin-approval-actions.ts [app-rsc] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-/* __next_internal_action_entry_do_not_use__ [{"0020e8eb0cf1c38a88ae8f547fd80310d785d98a7a":"getPendingSuppliers","0096eb4a9709777150734171d5bb691862b97c8811":"getPendingCompanies","4042c06fb27d621871e1258f422524861863e535c0":"approveSupplierOnboarding","409cf7fd820ec4d4eed9081e5b4c2227227f173abe":"approveCompanyOnboarding"},"",""] */ __turbopack_context__.s([
+/* __next_internal_action_entry_do_not_use__ [{"0020e8eb0cf1c38a88ae8f547fd80310d785d98a7a":"getPendingSuppliers","0086ffa24b999705eaf9314188ea2d524ad9b49451":"getAllCompanies","0096eb4a9709777150734171d5bb691862b97c8811":"getPendingCompanies","00f7dbf30cc13b0851fa39513929b1e36089884aec":"getAllSuppliers","4042c06fb27d621871e1258f422524861863e535c0":"approveSupplierOnboarding","409cf7fd820ec4d4eed9081e5b4c2227227f173abe":"approveCompanyOnboarding"},"",""] */ __turbopack_context__.s([
     "approveCompanyOnboarding",
     ()=>approveCompanyOnboarding,
     "approveSupplierOnboarding",
     ()=>approveSupplierOnboarding,
+    "getAllCompanies",
+    ()=>getAllCompanies,
+    "getAllSuppliers",
+    ()=>getAllSuppliers,
     "getPendingCompanies",
     ()=>getPendingCompanies,
     "getPendingSuppliers",
@@ -2511,6 +2565,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$ap
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Supplier$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/models/Supplier.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Company$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/models/Company.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$clerkClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@clerk/nextjs/dist/esm/server/clerkClient.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Notification$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/models/Notification.ts [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/resend/dist/index.mjs [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/webpack/loaders/next-flight-loader/action-validate.js [app-rsc] (ecmascript)");
 ;
 ;
@@ -2518,6 +2574,21 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 ;
+;
+;
+async function sendApprovalEmail(to, subject, html) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey || !to) return;
+    const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Resend"](apiKey);
+    try {
+        await resend.emails.send({
+            from: 'no-reply@eprocurement.local',
+            to,
+            subject,
+            html
+        });
+    } catch  {}
+}
 async function approveSupplierOnboarding(supplierId) {
     try {
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
@@ -2539,6 +2610,18 @@ async function approveSupplierOnboarding(supplierId) {
                 onboardingStatus: 'approved'
             }
         });
+        await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Notification$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Notification"].create({
+            userId: String(supplierDoc.ownerUserId),
+            type: 'supplier_update',
+            title: 'Your supplier account has been approved',
+            message: 'You now have full access to the system.',
+            actionUrl: '/suppliers',
+            priority: 'medium',
+            read: false
+        });
+        const user = await client.users.getUser(String(supplierDoc.ownerUserId));
+        const email = user?.emailAddresses?.[0]?.emailAddress || '';
+        await sendApprovalEmail(email, 'Supplier account approved', `<p>Your supplier account has been approved. You now have full access to the system.</p>`);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])('/suppliers');
         return {
             success: true,
@@ -2572,6 +2655,18 @@ async function approveCompanyOnboarding(companyId) {
                 onboardingStatus: 'approved'
             }
         });
+        await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Notification$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Notification"].create({
+            userId: String(companyDoc.ownerUserId),
+            type: 'supplier_update',
+            title: 'Your company has been approved',
+            message: 'You now have full access to the system.',
+            actionUrl: '/',
+            priority: 'medium',
+            read: false
+        });
+        const user = await client.users.getUser(String(companyDoc.ownerUserId));
+        const email = user?.emailAddresses?.[0]?.emailAddress || '';
+        await sendApprovalEmail(email, 'Company onboarding approved', `<p>Your company has been approved. You now have full access to the system.</p>`);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])('/');
         return {
             success: true,
@@ -2622,17 +2717,55 @@ async function getPendingSuppliers() {
         };
     }
 }
+async function getAllCompanies() {
+    try {
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
+        const companies = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Company$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Company"].find({}).sort({
+            createdAt: -1
+        }).lean();
+        return {
+            success: true,
+            data: JSON.parse(JSON.stringify(companies))
+        };
+    } catch (e) {
+        return {
+            success: false,
+            error: 'Failed to fetch companies'
+        };
+    }
+}
+async function getAllSuppliers() {
+    try {
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
+        const suppliers = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Supplier$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Supplier"].find({}).sort({
+            createdAt: -1
+        }).lean();
+        return {
+            success: true,
+            data: JSON.parse(JSON.stringify(suppliers))
+        };
+    } catch (e) {
+        return {
+            success: false,
+            error: 'Failed to fetch suppliers'
+        };
+    }
+}
 ;
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
     approveSupplierOnboarding,
     approveCompanyOnboarding,
     getPendingCompanies,
-    getPendingSuppliers
+    getPendingSuppliers,
+    getAllCompanies,
+    getAllSuppliers
 ]);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(approveSupplierOnboarding, "4042c06fb27d621871e1258f422524861863e535c0", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(approveCompanyOnboarding, "409cf7fd820ec4d4eed9081e5b4c2227227f173abe", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getPendingCompanies, "0096eb4a9709777150734171d5bb691862b97c8811", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getPendingSuppliers, "0020e8eb0cf1c38a88ae8f547fd80310d785d98a7a", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getAllCompanies, "0086ffa24b999705eaf9314188ea2d524ad9b49451", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getAllSuppliers, "00f7dbf30cc13b0851fa39513929b1e36089884aec", null);
 }),
 "[project]/app/(app)/admin/page.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -2653,6 +2786,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/status-badge.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$admin$2d$approval$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/actions/admin-approval-actions.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$app$2d$router$2f$server$2f$auth$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server/auth.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$clerkClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@clerk/nextjs/dist/esm/server/clerkClient.js [app-rsc] (ecmascript)");
 ;
 ;
 ;
@@ -2674,25 +2808,47 @@ const $$RSC_SERVER_ACTION_1 = async function action($$ACTION_CLOSURE_BOUND) {
 async function AdminPage() {
     const { userId, sessionClaims } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$app$2d$router$2f$server$2f$auth$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["auth"])();
     const role = String(sessionClaims?.publicMetadata?.role || '');
-    const canAccess = role === 'admin';
+    let effectiveRole = role;
+    if (userId) {
+        const client = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$clerkClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clerkClient"])();
+        const user = await client.users.getUser(userId);
+        const emails = (user?.emailAddresses || []).map((e)=>String(e.emailAddress).toLowerCase());
+        if (emails.includes('keitamorie@gmail.com')) {
+            effectiveRole = 'super_admin';
+            if (role !== 'super_admin') {
+                await client.users.updateUser(userId, {
+                    publicMetadata: {
+                        role: 'super_admin'
+                    }
+                });
+            }
+        }
+    }
+    const canAccess = effectiveRole === 'admin' || effectiveRole === 'super_admin';
     const companiesRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$admin$2d$approval$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getPendingCompanies"])();
     const suppliersRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$admin$2d$approval$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getPendingSuppliers"])();
+    const allCompaniesRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$admin$2d$approval$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getAllCompanies"])();
+    const allSuppliersRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$admin$2d$approval$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getAllSuppliers"])();
     const companies = companiesRes.success ? companiesRes.data : [];
     const suppliers = suppliersRes.success ? suppliersRes.data : [];
+    const allCompanies = allCompaniesRes.success ? allCompaniesRes.data : [];
+    const allSuppliers = allSuppliersRes.success ? allSuppliersRes.data : [];
     const pendingUsers = [
         ...companies.map((c)=>({
                 _id: c._id,
                 role: 'company',
                 name: c.name,
                 entityId: c.companyId,
-                ownerUserId: c.ownerUserId
+                ownerUserId: c.ownerUserId,
+                contact: c.onboarding?.contactPerson || null
             })),
         ...suppliers.map((s)=>({
                 _id: s._id,
                 role: 'supplier',
                 name: s.name,
                 entityId: s.supplierId,
-                ownerUserId: s.ownerUserId
+                ownerUserId: s.ownerUserId,
+                onboarding: s.onboarding || null
             }))
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2707,7 +2863,7 @@ async function AdminPage() {
                             children: "Admin"
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/admin/page.tsx",
-                            lineNumber: 38,
+                            lineNumber: 56,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2715,18 +2871,18 @@ async function AdminPage() {
                             children: "Approve onboarding requests to grant access."
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/admin/page.tsx",
-                            lineNumber: 39,
+                            lineNumber: 57,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/admin/page.tsx",
-                    lineNumber: 37,
+                    lineNumber: 55,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/admin/page.tsx",
-                lineNumber: 36,
+                lineNumber: 54,
                 columnNumber: 7
             }, this),
             !canAccess ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -2737,7 +2893,7 @@ async function AdminPage() {
                             children: "Access denied"
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/admin/page.tsx",
-                            lineNumber: 46,
+                            lineNumber: 64,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -2745,157 +2901,488 @@ async function AdminPage() {
                             children: "Only admins can approve onboarding."
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/admin/page.tsx",
-                            lineNumber: 47,
+                            lineNumber: 65,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/admin/page.tsx",
-                    lineNumber: 45,
+                    lineNumber: 63,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/admin/page.tsx",
-                lineNumber: 44,
+                lineNumber: 62,
                 columnNumber: 9
-            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
+            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Fragment"], {
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
-                                        className: "text-base",
-                                        children: "Pending users"
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
+                                                className: "text-base",
+                                                children: "Pending users"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                                lineNumber: 73,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["StatusBadge"], {
+                                                status: `${pendingUsers.length} pending`
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                                lineNumber: 74,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/app/(app)/admin/page.tsx",
-                                        lineNumber: 54,
-                                        columnNumber: 15
+                                        lineNumber: 72,
+                                        columnNumber: 13
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["StatusBadge"], {
-                                        status: `${pendingUsers.length} pending`
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
+                                        className: "text-xs",
+                                        children: "Approve to grant full system access."
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/admin/page.tsx",
-                                        lineNumber: 55,
-                                        columnNumber: 15
+                                        lineNumber: 76,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/admin/page.tsx",
-                                lineNumber: 53,
-                                columnNumber: 13
+                                lineNumber: 71,
+                                columnNumber: 11
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
-                                className: "text-xs",
-                                children: "Approve to grant full system access."
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
+                                children: pendingUsers.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-xs text-muted-foreground",
+                                    children: "No pending users."
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                    lineNumber: 80,
+                                    columnNumber: 15
+                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: pendingUsers.map((u)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center justify-between py-2 border-b last:border-0",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-sm font-medium",
+                                                            children: u.name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 86,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.role,
+                                                                " • ",
+                                                                u.entityId
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 87,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        u.role === 'supplier' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.onboarding?.contactPerson,
+                                                                " • ",
+                                                                u.onboarding?.phone,
+                                                                " • ",
+                                                                u.onboarding?.email
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 89,
+                                                            columnNumber: 25
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.contact?.name,
+                                                                " • ",
+                                                                u.contact?.phone,
+                                                                " • ",
+                                                                u.contact?.email
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 91,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                                    lineNumber: 85,
+                                                    columnNumber: 21
+                                                }, this),
+                                                u.role === 'company' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                                                    action: $$RSC_SERVER_ACTION_0.bind(null, (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$app$2d$render$2f$encryption$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["encryptActionBoundArgs"])("407b7f0558ba869a52431e787c3c567985b380b581", u.entityId)),
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
+                                                        size: "sm",
+                                                        children: "Approve"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/admin/page.tsx",
+                                                        lineNumber: 101,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                                    lineNumber: 95,
+                                                    columnNumber: 23
+                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                                                    action: $$RSC_SERVER_ACTION_1.bind(null, (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$app$2d$render$2f$encryption$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["encryptActionBoundArgs"])("401bd6106b073785c97ae1147b3f8a806c27cad682", u.entityId)),
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
+                                                        size: "sm",
+                                                        children: "Approve"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/admin/page.tsx",
+                                                        lineNumber: 110,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                                    lineNumber: 104,
+                                                    columnNumber: 23
+                                                }, this)
+                                            ]
+                                        }, u._id, true, {
+                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                            lineNumber: 84,
+                                            columnNumber: 19
+                                        }, this))
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                    lineNumber: 82,
+                                    columnNumber: 15
+                                }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/admin/page.tsx",
-                                lineNumber: 57,
-                                columnNumber: 13
+                                lineNumber: 78,
+                                columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/admin/page.tsx",
-                        lineNumber: 52,
-                        columnNumber: 11
+                        lineNumber: 70,
+                        columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
-                        children: pendingUsers.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-xs text-muted-foreground",
-                            children: "No pending users."
-                        }, void 0, false, {
-                            fileName: "[project]/app/(app)/admin/page.tsx",
-                            lineNumber: 61,
-                            columnNumber: 15
-                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "space-y-2",
-                            children: pendingUsers.map((u)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center justify-between py-2 border-b last:border-0",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
+                        className: "mt-6",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
+                                                className: "text-base",
+                                                children: "All users"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                                lineNumber: 123,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["StatusBadge"], {
+                                                status: `${allCompanies.length + allSuppliers.length} total`
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                                lineNumber: 124,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/admin/page.tsx",
+                                        lineNumber: 122,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
+                                        className: "text-xs",
+                                        children: "View all onboarded entities and their status."
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/admin/page.tsx",
+                                        lineNumber: 126,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                lineNumber: 121,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        ...allCompanies.map((c)=>({
+                                                _id: c._id,
+                                                role: 'company',
+                                                name: c.name,
+                                                entityId: c.companyId,
+                                                approved: c.approved,
+                                                contact: c.onboarding?.contactPerson || null
+                                            })),
+                                        ...allSuppliers.map((s)=>({
+                                                _id: s._id,
+                                                role: 'supplier',
+                                                name: s.name,
+                                                entityId: s.supplierId,
+                                                approved: s.approved,
+                                                onboarding: s.onboarding || null
+                                            }))
+                                    ].map((u)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center justify-between py-2 border-b last:border-0",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "text-sm font-medium",
-                                                    children: u.name
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/(app)/admin/page.tsx",
-                                                    lineNumber: 67,
-                                                    columnNumber: 23
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "text-xs text-muted-foreground",
                                                     children: [
-                                                        u.role,
-                                                        " • ",
-                                                        u.entityId
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-sm font-medium",
+                                                            children: u.name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 148,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.role,
+                                                                " • ",
+                                                                u.entityId
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 149,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        u.role === 'supplier' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.onboarding?.contactPerson,
+                                                                " • ",
+                                                                u.onboarding?.phone,
+                                                                " • ",
+                                                                u.onboarding?.email
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 151,
+                                                            columnNumber: 23
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.contact?.name,
+                                                                " • ",
+                                                                u.contact?.phone,
+                                                                " • ",
+                                                                u.contact?.email
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 153,
+                                                            columnNumber: 23
+                                                        }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/admin/page.tsx",
-                                                    lineNumber: 68,
-                                                    columnNumber: 23
+                                                    lineNumber: 147,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["StatusBadge"], {
+                                                    status: u.approved ? 'Approved' : 'Pending'
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                                    lineNumber: 156,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
-                                        }, void 0, true, {
+                                        }, u._id, true, {
                                             fileName: "[project]/app/(app)/admin/page.tsx",
-                                            lineNumber: 66,
-                                            columnNumber: 21
-                                        }, this),
-                                        u.role === 'company' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                                            action: $$RSC_SERVER_ACTION_0.bind(null, (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$app$2d$render$2f$encryption$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["encryptActionBoundArgs"])("407b7f0558ba869a52431e787c3c567985b380b581", u.entityId)),
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
-                                                size: "sm",
-                                                children: "Approve"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/(app)/admin/page.tsx",
-                                                lineNumber: 77,
-                                                columnNumber: 25
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/(app)/admin/page.tsx",
-                                            lineNumber: 71,
-                                            columnNumber: 23
-                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                                            action: $$RSC_SERVER_ACTION_1.bind(null, (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$app$2d$render$2f$encryption$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["encryptActionBoundArgs"])("401bd6106b073785c97ae1147b3f8a806c27cad682", u.entityId)),
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
-                                                size: "sm",
-                                                children: "Approve"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/(app)/admin/page.tsx",
-                                                lineNumber: 86,
-                                                columnNumber: 25
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/(app)/admin/page.tsx",
-                                            lineNumber: 80,
-                                            columnNumber: 23
-                                        }, this)
-                                    ]
-                                }, u._id, true, {
+                                            lineNumber: 146,
+                                            columnNumber: 17
+                                        }, this))
+                                }, void 0, false, {
                                     fileName: "[project]/app/(app)/admin/page.tsx",
-                                    lineNumber: 65,
-                                    columnNumber: 19
-                                }, this))
-                        }, void 0, false, {
-                            fileName: "[project]/app/(app)/admin/page.tsx",
-                            lineNumber: 63,
-                            columnNumber: 15
-                        }, this)
-                    }, void 0, false, {
+                                    lineNumber: 129,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                lineNumber: 128,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/app/(app)/admin/page.tsx",
-                        lineNumber: 59,
-                        columnNumber: 11
+                        lineNumber: 120,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
+                        className: "mt-6",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
+                                                className: "text-base",
+                                                children: "All users"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                                lineNumber: 165,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["StatusBadge"], {
+                                                status: `${allCompanies.length + allSuppliers.length} total`
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                                lineNumber: 166,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/admin/page.tsx",
+                                        lineNumber: 164,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
+                                        className: "text-xs",
+                                        children: "View all onboarded entities and their status."
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/admin/page.tsx",
+                                        lineNumber: 168,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                lineNumber: 163,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        ...allCompanies.map((c)=>({
+                                                _id: c._id,
+                                                role: 'company',
+                                                name: c.name,
+                                                entityId: c.companyId,
+                                                approved: c.approved,
+                                                contact: c.onboarding?.contactPerson || null
+                                            })),
+                                        ...allSuppliers.map((s)=>({
+                                                _id: s._id,
+                                                role: 'supplier',
+                                                name: s.name,
+                                                entityId: s.supplierId,
+                                                approved: s.approved,
+                                                onboarding: s.onboarding || null
+                                            }))
+                                    ].map((u)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center justify-between py-2 border-b last:border-0",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-sm font-medium",
+                                                            children: u.name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 190,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.role,
+                                                                " • ",
+                                                                u.entityId
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 191,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        u.role === 'supplier' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.onboarding?.contactPerson,
+                                                                " • ",
+                                                                u.onboarding?.phone,
+                                                                " • ",
+                                                                u.onboarding?.email
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 193,
+                                                            columnNumber: 23
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-muted-foreground",
+                                                            children: [
+                                                                u.contact?.name,
+                                                                " • ",
+                                                                u.contact?.phone,
+                                                                " • ",
+                                                                u.contact?.email
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                                            lineNumber: 195,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                                    lineNumber: 189,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["StatusBadge"], {
+                                                    status: u.approved ? 'Approved' : 'Pending'
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                                    lineNumber: 198,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, u._id, true, {
+                                            fileName: "[project]/app/(app)/admin/page.tsx",
+                                            lineNumber: 188,
+                                            columnNumber: 17
+                                        }, this))
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/admin/page.tsx",
+                                    lineNumber: 171,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/app/(app)/admin/page.tsx",
+                                lineNumber: 170,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/(app)/admin/page.tsx",
+                        lineNumber: 162,
+                        columnNumber: 9
                     }, this)
                 ]
-            }, void 0, true, {
-                fileName: "[project]/app/(app)/admin/page.tsx",
-                lineNumber: 51,
-                columnNumber: 9
-            }, this)
+            }, void 0, true)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(app)/admin/page.tsx",
-        lineNumber: 35,
+        lineNumber: 53,
         columnNumber: 5
     }, this);
 }

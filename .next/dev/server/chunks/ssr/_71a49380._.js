@@ -3549,10 +3549,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notificati
 ;
 ;
 ;
-;
-;
-;
-;
 }),
 "[project]/.next-internal/server/app/(app)/suppliers/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/server/keyless-custom-headers.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -3574,18 +3570,12 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$requisition$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getRequisitions"],
     "400160c6f03959e9d1e03e6d0c71993e51653810ee",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["deleteNotification"],
-    "404db66e2cb6952be70015e2549420a2377296df76",
-    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$supplier$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["deleteSupplier"],
     "4089033d820b625d5a4d70e588529d63a5264bd6a7",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["markAsRead"],
-    "409acdccfd1945617533ca87d53593b6bb27e15179",
-    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$supplier$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createSupplier"],
     "40de0da7ad6edc422b1506762deaf6da3bfcccf440",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$supplier$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getSupplierById"],
     "40eea915777ee1ae8b0a4b42d5782c31949ee871b0",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getNotifications"],
-    "602cdea5b2b9d8f3972033a994a2214743035388af",
-    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$supplier$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["updateSupplier"],
     "7f2302ee5ea3ad3daeceb60752923cef07dc7b02a4",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$keyless$2d$custom$2d$headers$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["formatMetadataHeaders"],
     "7f2c9234a96291aa32ee3438dd4f948f1fe56ed337",

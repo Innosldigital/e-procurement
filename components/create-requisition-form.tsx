@@ -1,104 +1,114 @@
-'use client'
+"use client";
 
-import { useState, useTransition } from 'react'
-import { X, Plus, Trash2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
+import { useState, useTransition } from "react";
+import { X, Plus, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { createRequisition } from '@/lib/actions/requisition-actions'
-import { useRouter } from 'next/navigation'
+} from "@/components/ui/select";
+import { createRequisition } from "@/lib/actions/requisition-actions";
+import { useRouter } from "next/navigation";
 
 interface CreateRequisitionFormProps {
-  onClose: () => void
+  onClose: () => void;
 }
 
 interface LineItem {
-  id: string
-  description: string
-  quantity: number
-  unit: string
-  unitCost: number
-  total: number
+  id: string;
+  description: string;
+  quantity: number;
+  unit: string;
 }
 
 export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
-  const router = useRouter()
-  const [isPending, startTransition] = useTransition()
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [lineItems, setLineItems] = useState<LineItem[]>([
-    { id: '1', description: '', quantity: 1, unit: 'Unit', unitCost: 0, total: 0 }
-  ])
+    {
+      id: "1",
+      description: "",
+      quantity: 1,
+      unit: "Unit",
+    },
+  ]);
 
   const addLineItem = () => {
     const newItem: LineItem = {
       id: Date.now().toString(),
-      description: '',
+      description: "",
       quantity: 1,
-      unit: 'Unit',
-      unitCost: 0,
-      total: 0
-    }
-    setLineItems([...lineItems, newItem])
-  }
+      unit: "Unit",
+    };
+    setLineItems([...lineItems, newItem]);
+  };
 
   const removeLineItem = (id: string) => {
     if (lineItems.length > 1) {
-      setLineItems(lineItems.filter(item => item.id !== id))
+      setLineItems(lineItems.filter((item) => item.id !== id));
     }
-  }
+  };
 
   const updateLineItem = (id: string, field: keyof LineItem, value: any) => {
-    setLineItems(lineItems.map(item => {
-      if (item.id === id) {
-        const updated = { ...item, [field]: value }
-        if (field === 'quantity' || field === 'unitCost') {
-          updated.total = updated.quantity * updated.unitCost
+    setLineItems(
+      lineItems.map((item) => {
+        if (item.id === id) {
+          return { ...item, [field]: value };
         }
-        return updated
-      }
-      return item
-    }))
-  }
+        return item;
+      })
+    );
+  };
 
-  const totalAmount = lineItems.reduce((sum, item) => sum + item.total, 0)
+  const totalAmount = 0;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    
-    const formData = new FormData(e.currentTarget)
-    
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
     // Generate requisition ID
-    const requisitionId = `REQ-${Date.now().toString().slice(-4)}`
-    formData.set('requisitionId', requisitionId)
-    formData.set('amount', totalAmount.toString())
-    formData.set('lineItems', JSON.stringify(lineItems))
-    formData.set('status', 'Pending approval')
+    const requisitionId = `REQ-${Date.now().toString().slice(-4)}`;
+    formData.set("requisitionId", requisitionId);
+    formData.set("amount", totalAmount.toString());
+    formData.set(
+      "lineItems",
+      JSON.stringify(
+        lineItems.map((i) => ({
+          description: i.description,
+          quantity: i.quantity,
+          unit: i.unit,
+        }))
+      )
+    );
+    formData.set("status", "Pending approval");
 
     startTransition(async () => {
-      const result = await createRequisition(formData)
-      
+      const result = await createRequisition(formData);
+
       if (result.success) {
-        router.refresh()
-        onClose()
+        router.refresh();
+        onClose();
       } else {
-        alert(result.error || 'Failed to create requisition')
+        alert(result.error || "Failed to create requisition");
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
       <div className="bg-background rounded-lg shadow-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
         <div className="flex items-center justify-between p-4 md:p-6 border-b">
           <div>
-            <h2 className="text-lg md:text-xl font-semibold">Create Requisition</h2>
+            <h2 className="text-lg md:text-xl font-semibold">
+              Create Requisition
+            </h2>
             <p className="text-xs md:text-sm text-muted-foreground mt-1">
               Submit a new purchase requisition for approval
             </p>
@@ -130,11 +140,7 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                       <SelectValue placeholder="Select branch" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Global HQ">Global HQ</SelectItem>
-                      <SelectItem value="APAC">APAC</SelectItem>
-                      <SelectItem value="EMEA">EMEA</SelectItem>
-                      <SelectItem value="NA">North America</SelectItem>
-                      <SelectItem value="LATAM">LATAM</SelectItem>
+                      <SelectItem value="Global HQ">InnoSL HQ</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -146,11 +152,19 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Marketing & events">Marketing & events</SelectItem>
-                      <SelectItem value="IT & Software">IT & Software</SelectItem>
-                      <SelectItem value="Facilities & Office">Facilities & Office</SelectItem>
+                      <SelectItem value="Marketing & events">
+                        Marketing & events
+                      </SelectItem>
+                      <SelectItem value="IT & Software">
+                        IT & Software
+                      </SelectItem>
+                      <SelectItem value="Facilities & Office">
+                        Facilities & Office
+                      </SelectItem>
                       <SelectItem value="Logistics">Logistics</SelectItem>
-                      <SelectItem value="Professional Services">Professional Services</SelectItem>
+                      <SelectItem value="Professional Services">
+                        Professional Services
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -172,12 +186,7 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
 
                 <div className="space-y-2">
                   <Label htmlFor="neededBy">Needed By Date *</Label>
-                  <Input
-                    id="neededBy"
-                    name="neededBy"
-                    type="date"
-                    required
-                  />
+                  <Input id="neededBy" name="neededBy" type="date" required />
                 </div>
 
                 <div className="space-y-2">
@@ -204,7 +213,12 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-sm">Line Items</h3>
-                <Button type="button" variant="outline" size="sm" onClick={addLineItem}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={addLineItem}
+                >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Item
                 </Button>
@@ -212,14 +226,23 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
 
               <div className="space-y-3">
                 {lineItems.map((item, index) => (
-                  <div key={item.id} className="flex flex-col md:flex-row gap-3 items-start p-3 md:p-4 border rounded-lg">
+                  <div
+                    key={item.id}
+                    className="flex flex-col md:flex-row gap-3 items-start p-3 md:p-4 border rounded-lg"
+                  >
                     <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full">
                       <div className="col-span-1 sm:col-span-2 lg:col-span-5 space-y-2">
                         <Label className="text-xs">Description</Label>
                         <Input
                           placeholder="Item description"
                           value={item.description}
-                          onChange={(e) => updateLineItem(item.id, 'description', e.target.value)}
+                          onChange={(e) =>
+                            updateLineItem(
+                              item.id,
+                              "description",
+                              e.target.value
+                            )
+                          }
                           required
                         />
                       </div>
@@ -230,29 +253,14 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                           type="number"
                           min="1"
                           value={item.quantity}
-                          onChange={(e) => updateLineItem(item.id, 'quantity', Number(e.target.value))}
+                          onChange={(e) =>
+                            updateLineItem(
+                              item.id,
+                              "quantity",
+                              Number(e.target.value)
+                            )
+                          }
                           required
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label className="text-xs">Unit Cost ($)</Label>
-                        <Input
-                          type="number"
-                          min="0"
-                          step="0.01"
-                          value={item.unitCost}
-                          onChange={(e) => updateLineItem(item.id, 'unitCost', Number(e.target.value))}
-                          required
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label className="text-xs">Total</Label>
-                        <Input
-                          value={`$${item.total.toFixed(2)}`}
-                          disabled
-                          className="bg-muted"
                         />
                       </div>
                     </div>
@@ -271,24 +279,24 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                   </div>
                 ))}
               </div>
-
-              <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
-                <span className="font-semibold">Total Amount</span>
-                <span className="text-xl font-bold">${totalAmount.toFixed(2)}</span>
-              </div>
             </div>
           </div>
 
           <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 p-4 md:p-6 border-t bg-muted/50">
-            <Button type="button" variant="outline" onClick={onClose} disabled={isPending}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              disabled={isPending}
+            >
               Cancel
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? 'Creating...' : 'Create Requisition'}
+              {isPending ? "Creating..." : "Create Requisition"}
             </Button>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }

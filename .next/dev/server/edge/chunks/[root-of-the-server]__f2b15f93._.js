@@ -26,7 +26,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/esm/server/web/exports/index.js [middleware-edge] (ecmascript)");
 ;
 ;
-// Define public routes that don't require authentication
 const isPublicRoute = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$routeMatcher$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["createRouteMatcher"])([
     '/sign-in(.*)',
     '/sign-up(.*)'
@@ -38,24 +37,33 @@ const isApiRoute = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
     '/(api|trpc)(.*)'
 ]);
 const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$clerkMiddleware$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["clerkMiddleware"])(async (auth, request)=>{
-    if (!isPublicRoute(request)) {
-        await auth.protect();
-        const { sessionClaims } = await auth();
-        const md = sessionClaims?.publicMetadata || {};
-        const role = String(md?.role || '').toLowerCase();
-        const onboarded = md?.onboarded === true;
-        const isSuperAdmin = role === 'super_admin';
-        if (!isSuperAdmin && !onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
-            const url = new URL('/onboarding', request.url);
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
-        }
+    // Allow public routes
+    if (isPublicRoute(request)) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
     }
+    // Protect all other routes
+    await auth.protect();
+    const { sessionClaims, userId } = await auth();
+    const claims = sessionClaims;
+    const md = claims?.metadata || {};
+    const rawRole = md?.role || '';
+    const normalizedRole = String(rawRole).toLowerCase().replace(/[\s_-]/g, '');
+    const onboarded = md?.onboarded === true;
+    const isSuperAdmin = normalizedRole === 'superadmin' || userId === 'user_35hjSURy4Wv5CPxXRrqfSoCGK7W';
+    const isAdmin = normalizedRole === 'admin';
+    // Admins and super admins bypass ALL onboarding checks
+    if (isSuperAdmin || isAdmin) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
+    }
+    // Only non-admin users need onboarding
+    if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/onboarding', request.url));
+    }
+    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
 });
 const config = {
     matcher: [
-        // Skip Next.js internals and static files
         '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-        // Always run for API routes
         '/(api|trpc)(.*)'
     ]
 };

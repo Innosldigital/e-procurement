@@ -1,58 +1,86 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { StatusBadge } from "@/components/status-badge"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { FileText, Plus } from 'lucide-react'
-import { getTenders, awardTender, requestRevisedBids } from "@/lib/actions/tender-actions"
-import { CreateTenderForm } from "@/components/create-tender-form"
-import { TenderScorecardModal } from "@/components/tender-scorecard-modal"
-
+"use client";
+import { useState, useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
+import { StatusBadge } from "@/components/status-badge";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { FileText, Plus } from "lucide-react";
+import {
+  getTenders,
+  awardTender,
+  requestRevisedBids,
+} from "@/lib/actions/tender-actions";
+import { CreateTenderForm } from "@/components/create-tender-form";
+import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
+import { TemplatesRulesModal } from "@/components/templates-rules-modal";
+import { SubmitBidForm } from "@/components/submit-bid-form";
 
 export default function TendersPage() {
-  const [tenders, setTenders] = useState<any[]>([])
-  const [selectedTender, setSelectedTender] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
-  const [showCreate, setShowCreate] = useState(false)
-  const [showScorecard, setShowScorecard] = useState(false)
+  const [tenders, setTenders] = useState<any[]>([]);
+  const [selectedTender, setSelectedTender] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [showCreate, setShowCreate] = useState(false);
+  const [showScorecard, setShowScorecard] = useState(false);
+  const [showTemplatesRules, setShowTemplatesRules] = useState(false);
+  const [showBidForm, setShowBidForm] = useState(false);
+  const { user } = useUser();
+  const [canCreateTender, setCanCreateTender] = useState(false);
 
   useEffect(() => {
     async function loadTenders() {
-      const result = await getTenders()
+      const result = await getTenders();
       if (result.success) {
-        setTenders(result.data)
+        setTenders(result.data);
         if (result.data.length > 0) {
-          setSelectedTender(result.data[0])
+          setSelectedTender(result.data[0]);
         }
       }
-      setLoading(false)
+      setLoading(false);
     }
-    loadTenders()
-  }, [])
+    loadTenders();
+  }, []);
+
+  useEffect(() => {
+    const md = (user?.publicMetadata || {}) as any;
+    const rawRole = String(md.role || "");
+    const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+    setCanCreateTender(["admin", "company", "superadmin"].includes(normalized));
+  }, [user]);
+
+  const handleSubmitBid = () => {
+    setShowBidForm(true);
+  };
 
   return (
-    <div className="p-8">
+    <div className="p-6">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-semibold text-foreground mb-2">Tenders</h1>
+            <h1 className="text-2xl font-semibold text-foreground mb-2">
+              Tenders
+            </h1>
             <p className="text-sm text-muted-foreground">
-              Plan, publish, and evaluate sourcing events across your organization.
+              Plan, publish, and evaluate sourcing events across your
+              organization.
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowTemplatesRules(true)}
+            >
               <FileText className="w-4 h-4 mr-2" />
               Templates & rules
             </Button>
-            <Button size="sm" onClick={() => setShowCreate(true)}>
-              <Plus className="w-4 h-4 mr-2" />
-              New tender
-            </Button>
+            {canCreateTender && (
+              <Button size="sm" onClick={() => setShowCreate(true)}>
+                <Plus className="w-4 h-4 mr-2" />
+                New tender
+              </Button>
+            )}
           </div>
         </div>
-
         <div className="bg-card border border-border rounded-lg p-4 mb-6">
           <div className="flex flex-wrap gap-6 text-sm">
             <div>
@@ -78,7 +106,6 @@ export default function TendersPage() {
             <span>Avg. 4.3 bids per tender</span>
           </div>
         </div>
-
         <div className="grid grid-cols-5 gap-6">
           <div className="col-span-2 bg-card border border-border rounded-lg">
             <div className="border-b border-border p-4 flex items-center justify-between">
@@ -88,11 +115,15 @@ export default function TendersPage() {
                   Select a tender to review participation and evaluation.
                 </p>
               </div>
-              <span className="text-xs text-muted-foreground">Sorted by close date</span>
+              <span className="text-xs text-muted-foreground">
+                Sorted by close date
+              </span>
             </div>
             <div className="divide-y divide-border">
               {loading ? (
-                <div className="p-8 text-center text-muted-foreground text-sm">Loading tenders...</div>
+                <div className="p-8 text-center text-muted-foreground text-sm">
+                  Loading tenders...
+                </div>
               ) : tenders.length === 0 ? (
                 <div className="p-8 text-center text-muted-foreground text-sm">
                   No tenders found. Connect to MongoDB to see data.
@@ -108,10 +139,16 @@ export default function TendersPage() {
                   >
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
-                        <div className="font-medium text-sm mb-1">{tender.tenderId}</div>
-                        <div className="text-xs text-muted-foreground mb-2">{tender.title}</div>
+                        <div className="font-medium text-sm mb-1">
+                          {tender.tenderId}
+                        </div>
+                        <div className="text-xs text-muted-foreground mb-2">
+                          {tender.title}
+                        </div>
                         <div className="flex gap-2">
-                          <Badge variant="outline" className="text-xs">{tender.type}</Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {tender.type}
+                          </Badge>
                           <StatusBadge status={tender.stage || tender.status} />
                         </div>
                       </div>
@@ -127,10 +164,10 @@ export default function TendersPage() {
               )}
             </div>
             <div className="p-3 border-t border-border text-xs text-muted-foreground">
-              Tip: Use "Templates & rules" to standardize scoring and mandatory questions.
+              Tip: Use "Templates & rules" to standardize scoring and mandatory
+              questions.
             </div>
           </div>
-
           {selectedTender && (
             <div className="col-span-3 bg-card border border-border rounded-lg">
               <div className="border-b border-border p-4 flex items-center justify-between">
@@ -144,57 +181,105 @@ export default function TendersPage() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <StatusBadge status={selectedTender.stage || selectedTender.status} />
-                  <div className="text-xs text-muted-foreground mt-1">Draft evaluation</div>
+                  <StatusBadge
+                    status={selectedTender.stage || selectedTender.status}
+                  />
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Draft evaluation
+                  </div>
                 </div>
               </div>
-
               <div className="p-6 space-y-6">
+                {(selectedTender.type === "RFQ" ||
+                  selectedTender.type === "RFP") && (
+                  <div className="bg-accent/30 border border-border rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-sm font-medium mb-1">
+                          Supplier Bidding
+                        </h3>
+                        <p className="text-xs text-muted-foreground">
+                          Submit your bid for this {selectedTender.type} before
+                          the closing date
+                        </p>
+                      </div>
+                      <Button onClick={handleSubmitBid}>Submit Bid</Button>
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex gap-4 text-xs">
                   <span>Business unit: {selectedTender.businessUnit}</span>
                   <span>Region: {selectedTender.region}</span>
                 </div>
-
                 <div>
-                  <h3 className="text-sm font-medium mb-3">Overview & key details</h3>
+                  <h3 className="text-sm font-medium mb-3">
+                    Overview & key details
+                  </h3>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <div className="text-muted-foreground text-xs mb-1">Sourcing objective</div>
+                      <div className="text-muted-foreground text-xs mb-1">
+                        Sourcing objective
+                      </div>
                       <div>{selectedTender.sourcingObjective}</div>
                     </div>
                     <div>
-                      <div className="text-muted-foreground text-xs mb-1">Estimated contract value</div>
-                      <div className="font-medium">{selectedTender.estimatedContractValue}</div>
+                      <div className="text-muted-foreground text-xs mb-1">
+                        Estimated contract value
+                      </div>
+                      <div className="font-medium">
+                        {selectedTender.estimatedContractValue}
+                      </div>
                     </div>
                     <div>
-                      <div className="text-muted-foreground text-xs mb-1">Sourcing type</div>
+                      <div className="text-muted-foreground text-xs mb-1">
+                        Sourcing type
+                      </div>
                       <div>{selectedTender.sourcingType}</div>
                     </div>
                     <div>
-                      <div className="text-muted-foreground text-xs mb-1">Key dates</div>
+                      <div className="text-muted-foreground text-xs mb-1">
+                        Key dates
+                      </div>
                       <div>
-                        Published: {new Date(selectedTender.publishedDate).toLocaleDateString()} ·
-                        Closed: {new Date(selectedTender.closeDate).toLocaleDateString()}
+                        Published:{" "}
+                        {new Date(
+                          selectedTender.publishedDate
+                        ).toLocaleDateString()}{" "}
+                        · Closed:{" "}
+                        {new Date(
+                          selectedTender.closeDate
+                        ).toLocaleDateString()}
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {String(selectedTender.stage || selectedTender.status).toLowerCase() === "evaluation" && (
+                {String(
+                  selectedTender.stage || selectedTender.status
+                ).toLowerCase() === "evaluation" && (
                   <div>
-                    <h3 className="text-sm font-medium mb-3">Evaluation summary</h3>
+                    <h3 className="text-sm font-medium mb-3">
+                      Evaluation summary
+                    </h3>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <div className="text-muted-foreground text-xs mb-1">Recommended supplier</div>
+                        <div className="text-muted-foreground text-xs mb-1">
+                          Recommended supplier
+                        </div>
                         <div className="flex items-center gap-2">
-                          <span className="font-medium">{selectedTender.recommendedSupplier}</span>
+                          <span className="font-medium">
+                            {selectedTender.recommendedSupplier}
+                          </span>
                           <Badge className="bg-success/20 text-success-foreground">
-                            Score: {selectedTender.recommendedSupplierScore} / 100
+                            Score: {selectedTender.recommendedSupplierScore} /
+                            100
                           </Badge>
                         </div>
                       </div>
                       <div>
-                        <div className="text-muted-foreground text-xs mb-1">Total evaluated bids</div>
+                        <div className="text-muted-foreground text-xs mb-1">
+                          Total evaluated bids
+                        </div>
                         <div className="font-medium">
                           {selectedTender.bids?.length || 0} bids ·{" "}
                           {selectedTender.disqualifiedBids || 0} disqualified
@@ -203,10 +288,11 @@ export default function TendersPage() {
                     </div>
                   </div>
                 )}
-
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-sm font-medium">Commercial comparison</h3>
+                    <h3 className="text-sm font-medium">
+                      Commercial comparison
+                    </h3>
                     <div className="text-xs text-muted-foreground">
                       Best offer:{" "}
                       <span className="font-medium">
@@ -217,23 +303,34 @@ export default function TendersPage() {
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-sm font-medium">Risk & compliance</h3>
                     <div className="text-xs text-muted-foreground">
-                      <span className="font-medium">{selectedTender.infoRisks}</span> ·{" "}
-                      {selectedTender.criticalIssues} critical issues
+                      <span className="font-medium">
+                        {selectedTender.infoRisks}
+                      </span>{" "}
+                      · {selectedTender.criticalIssues} critical issues
                     </div>
                   </div>
                 </div>
-
                 <div>
-                  <h3 className="text-sm font-medium mb-3">Bids & scoring comparison</h3>
+                  <h3 className="text-sm font-medium mb-3">
+                    Bids & scoring comparison
+                  </h3>
                   <div className="border border-border rounded-lg overflow-hidden">
                     <table className="w-full text-xs">
                       <thead className="bg-muted/50">
                         <tr>
-                          <th className="text-left p-3 font-medium">Supplier</th>
-                          <th className="text-right p-3 font-medium">Total price / year</th>
+                          <th className="text-left p-3 font-medium">
+                            Supplier
+                          </th>
+                          <th className="text-right p-3 font-medium">
+                            Total price / year
+                          </th>
                           <th className="text-center p-3 font-medium">Score</th>
-                          <th className="text-center p-3 font-medium">Compliance</th>
-                          <th className="text-left p-3 font-medium">Highlights</th>
+                          <th className="text-center p-3 font-medium">
+                            Compliance
+                          </th>
+                          <th className="text-left p-3 font-medium">
+                            Highlights
+                          </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border">
@@ -244,7 +341,9 @@ export default function TendersPage() {
                             <td className="p-3 text-center">
                               <Badge
                                 className={
-                                  i === 0 ? "bg-success/20 text-success-foreground" : "bg-muted"
+                                  i === 0
+                                    ? "bg-success/20 text-success-foreground"
+                                    : "bg-muted"
                                 }
                               >
                                 {bid.score}
@@ -255,65 +354,96 @@ export default function TendersPage() {
                                 {bid.compliance}
                               </span>
                             </td>
-                            <td className="p-3 text-muted-foreground">{bid.highlights}</td>
+                            <td className="p-3 text-muted-foreground">
+                              {bid.highlights}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
                 </div>
-
                 <div>
-                  <h3 className="text-sm font-medium mb-2">Timeline & governance</h3>
+                  <h3 className="text-sm font-medium mb-2">
+                    Timeline & governance
+                  </h3>
                   <div className="space-y-3">
-                    {selectedTender.timeline?.map((activity: any, i: number) => (
-                      <div key={i} className="flex gap-3">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-1.5" />
-                        <div className="flex-1">
-                          <div className="text-sm font-medium">{activity.title}</div>
-                          <div className="text-xs text-muted-foreground">
-                            {activity.date && `${activity.date} · `}{activity.detail}
+                    {selectedTender.timeline?.map(
+                      (activity: any, i: number) => (
+                        <div key={i} className="flex gap-3">
+                          <div className="w-2 h-2 rounded-full bg-primary mt-1.5" />
+                          <div className="flex-1">
+                            <div className="text-sm font-medium">
+                              {activity.title}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              {activity.date && `${activity.date} · `}
+                              {activity.detail}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    )}
                   </div>
                 </div>
-
                 <div>
-                  <h3 className="text-sm font-medium mb-2">Notes & attachments</h3>
+                  <h3 className="text-sm font-medium mb-2">
+                    Notes & attachments
+                  </h3>
                   <p className="text-xs text-muted-foreground mb-4">
                     {selectedTender.notes}
                   </p>
                 </div>
-
                 <div className="border-t border-border pt-4">
                   <h3 className="text-sm font-medium mb-2">Next actions</h3>
                   <p className="text-xs text-muted-foreground mb-4">
-                    Confirm your recommendation; award details will be shared with suppliers and downstream teams.
+                    Confirm your recommendation; award details will be shared
+                    with suppliers and downstream teams.
                   </p>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setShowScorecard(true)}>View full scorecard</Button>
-                    <Button variant="outline" size="sm" onClick={async () => {
-                      await requestRevisedBids(selectedTender._id)
-                      const result = await getTenders()
-                      if (result.success) {
-                        setTenders(result.data)
-                        const updated = result.data.find((t: any) => t._id === selectedTender._id) || result.data[0]
-                        setSelectedTender(updated)
-                      }
-                    }}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowScorecard(true)}
+                    >
+                      View full scorecard
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={async () => {
+                        await requestRevisedBids(selectedTender._id);
+                        const result = await getTenders();
+                        if (result.success) {
+                          setTenders(result.data);
+                          const updated =
+                            result.data.find(
+                              (t: any) => t._id === selectedTender._id
+                            ) || result.data[0];
+                          setSelectedTender(updated);
+                        }
+                      }}
+                    >
                       Request revised bids
                     </Button>
-                    <Button size="sm" onClick={async () => {
-                      await awardTender(selectedTender._id, selectedTender.recommendedSupplier)
-                      const result = await getTenders()
-                      if (result.success) {
-                        setTenders(result.data)
-                        const updated = result.data.find((t: any) => t._id === selectedTender._id) || result.data[0]
-                        setSelectedTender(updated)
-                      }
-                    }}>
+                    <Button
+                      size="sm"
+                      onClick={async () => {
+                        await awardTender(
+                          selectedTender._id,
+                          selectedTender.recommendedSupplier
+                        );
+                        const result = await getTenders();
+                        if (result.success) {
+                          setTenders(result.data);
+                          const updated =
+                            result.data.find(
+                              (t: any) => t._id === selectedTender._id
+                            ) || result.data[0];
+                          setSelectedTender(updated);
+                        }
+                      }}
+                    >
                       Award tender
                     </Button>
                   </div>
@@ -322,17 +452,34 @@ export default function TendersPage() {
             </div>
           )}
         </div>
-        </div>
+      </div>
       <footer className="border-t border-border p-4 flex items-center justify-between text-xs text-muted-foreground">
         <div className="flex gap-6">
-          <span>Branch: <span className="text-primary">Global HQ</span></span>
-          <span>FY24 Budget Utilization: <span className="font-medium">68% used</span></span>
+          <span>
+            Branch: <span className="text-primary">Global HQ</span>
+          </span>
+          <span>
+            FY24 Budget Utilization:{" "}
+            <span className="font-medium">68% used</span>
+          </span>
         </div>
       </footer>
       {showCreate && <CreateTenderForm onClose={() => setShowCreate(false)} />}
       {showScorecard && selectedTender && (
-        <TenderScorecardModal tender={selectedTender} onClose={() => setShowScorecard(false)} />
+        <TenderScorecardModal
+          tender={selectedTender}
+          onClose={() => setShowScorecard(false)}
+        />
+      )}
+      {showTemplatesRules && (
+        <TemplatesRulesModal onClose={() => setShowTemplatesRules(false)} />
+      )}
+      {showBidForm && selectedTender && (
+        <SubmitBidForm
+          tender={selectedTender}
+          onClose={() => setShowBidForm(false)}
+        />
       )}
     </div>
-  )
+  );
 }

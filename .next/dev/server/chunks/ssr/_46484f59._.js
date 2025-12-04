@@ -1087,6 +1087,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@clerk/shared/dist/runtime/react/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$settings$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Settings$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/settings.js [app-ssr] (ecmascript) <export default as Settings>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-ssr] (ecmascript) <export default as Plus>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/package.js [app-ssr] (ecmascript) <export default as Package>");
@@ -1104,8 +1105,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$create$2d$purc
 ;
 ;
 ;
+;
 const fmtDate = (d)=>d ? new Date(d).toISOString().slice(0, 10) : "";
-const fmtAmount = (n)=>new Intl.NumberFormat('en-US', {
+const fmtAmount = (n)=>new Intl.NumberFormat("en-US", {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(n);
@@ -1116,6 +1118,8 @@ function PurchaseOrdersPage() {
     const [actionLoading, setActionLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [toast, setToast] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [showCreate, setShowCreate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useUser"])();
+    const [canCreatePO, setCanCreatePO] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         let mounted = true;
         setLoading(true);
@@ -1136,6 +1140,17 @@ function PurchaseOrdersPage() {
             mounted = false;
         };
     }, []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const md = user?.publicMetadata || {};
+        const rawRole = String(md.role || "");
+        const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+        setCanCreatePO([
+            "admin",
+            "superadmin"
+        ].includes(normalized));
+    }, [
+        user
+    ]);
     const showToast = (message, type)=>{
         setToast({
             message,
@@ -1144,23 +1159,23 @@ function PurchaseOrdersPage() {
         setTimeout(()=>setToast(null), 3000);
     };
     const handleReceiveGoods = async ()=>{
-        setActionLoading('receive');
+        setActionLoading("receive");
         setTimeout(()=>{
-            showToast('Goods receipt recorded successfully', 'success');
+            showToast("Goods receipt recorded successfully", "success");
             setActionLoading(null);
         }, 1000);
     };
     const handleCreateInvoice = async ()=>{
-        setActionLoading('invoice');
+        setActionLoading("invoice");
         setTimeout(()=>{
-            showToast('Invoice draft created', 'success');
+            showToast("Invoice draft created", "success");
             setActionLoading(null);
         }, 1000);
     };
     const handleClosePO = async ()=>{
         if (!selectedPO) return;
         try {
-            setActionLoading('close');
+            setActionLoading("close");
             const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$data$3a$242b08__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$text$2f$javascript$3e$__["closePurchaseOrder"])(selectedPO._id);
             if (res && res.success) {
                 const list = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$data$3a$43810a__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$text$2f$javascript$3e$__["getPurchaseOrders"])();
@@ -1169,12 +1184,12 @@ function PurchaseOrdersPage() {
                     const updated = list.data.find((p)=>p._id === selectedPO._id) || list.data[0] || null;
                     setSelectedPO(updated);
                 }
-                showToast('Purchase order closed', 'success');
+                showToast("Purchase order closed", "success");
             } else {
-                showToast(res?.error || 'Failed to close purchase order', 'error');
+                showToast(res?.error || "Failed to close purchase order", "error");
             }
         } catch (e) {
-            showToast('Failed to close purchase order', 'error');
+            showToast("Failed to close purchase order", "error");
         } finally{
             setActionLoading(null);
         }
@@ -1183,11 +1198,11 @@ function PurchaseOrdersPage() {
         className: "min-h-screen bg-gray-50",
         children: [
             toast && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `fixed top-4 right-4 z-50 px-4 py-3 rounded-lg shadow-lg ${toast.type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`,
+                className: `fixed top-4 right-4 z-50 px-4 py-3 rounded-lg shadow-lg ${toast.type === "success" ? "bg-green-500" : "bg-red-500"} text-white`,
                 children: toast.message
             }, void 0, false, {
                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                lineNumber: 124,
+                lineNumber: 156,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1205,7 +1220,7 @@ function PurchaseOrdersPage() {
                                             children: "Purchase Orders"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 135,
+                                            lineNumber: 169,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1213,13 +1228,13 @@ function PurchaseOrdersPage() {
                                             children: "Track issuance, receipt, and invoicing status across your POs."
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 136,
+                                            lineNumber: 172,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 134,
+                                    lineNumber: 168,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1232,7 +1247,7 @@ function PurchaseOrdersPage() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 142,
+                                                    lineNumber: 178,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1240,16 +1255,16 @@ function PurchaseOrdersPage() {
                                                     children: "PO settings"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 179,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 141,
+                                            lineNumber: 177,
                                             columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        canCreatePO && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             className: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2",
                                             onClick: ()=>setShowCreate(true),
                                             children: [
@@ -1257,33 +1272,33 @@ function PurchaseOrdersPage() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 146,
-                                                    columnNumber: 17
+                                                    lineNumber: 186,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "hidden sm:inline",
                                                     children: "New PO"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 147,
-                                                    columnNumber: 17
+                                                    lineNumber: 187,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 145,
-                                            columnNumber: 15
+                                            lineNumber: 182,
+                                            columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 140,
+                                    lineNumber: 176,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                            lineNumber: 133,
+                            lineNumber: 167,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1296,7 +1311,7 @@ function PurchaseOrdersPage() {
                                             children: "View:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 154,
+                                            lineNumber: 195,
                                             columnNumber: 15
                                         }, this),
                                         " ",
@@ -1305,13 +1320,13 @@ function PurchaseOrdersPage() {
                                             children: "Open & partially received"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 155,
+                                            lineNumber: 196,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 153,
+                                    lineNumber: 194,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1321,7 +1336,7 @@ function PurchaseOrdersPage() {
                                             children: "Status:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 158,
+                                            lineNumber: 199,
                                             columnNumber: 15
                                         }, this),
                                         " ",
@@ -1330,13 +1345,13 @@ function PurchaseOrdersPage() {
                                             children: "Pending receipt, Pending invoice"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 159,
+                                            lineNumber: 200,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 157,
+                                    lineNumber: 198,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1346,7 +1361,7 @@ function PurchaseOrdersPage() {
                                             children: "Supplier:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 162,
+                                            lineNumber: 205,
                                             columnNumber: 15
                                         }, this),
                                         " ",
@@ -1355,13 +1370,13 @@ function PurchaseOrdersPage() {
                                             children: "Top 20 strategic"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 163,
+                                            lineNumber: 206,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 204,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1371,7 +1386,7 @@ function PurchaseOrdersPage() {
                                             children: "Date:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 166,
+                                            lineNumber: 209,
                                             columnNumber: 15
                                         }, this),
                                         " ",
@@ -1380,19 +1395,19 @@ function PurchaseOrdersPage() {
                                             children: "Last 90 days"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 167,
+                                            lineNumber: 210,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 165,
+                                    lineNumber: 208,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                            lineNumber: 152,
+                            lineNumber: 193,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1406,7 +1421,7 @@ function PurchaseOrdersPage() {
                                             children: purchaseOrders.length
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 173,
+                                            lineNumber: 216,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1414,13 +1429,13 @@ function PurchaseOrdersPage() {
                                             children: "open POs"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 174,
+                                            lineNumber: 219,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 172,
+                                    lineNumber: 215,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1428,10 +1443,10 @@ function PurchaseOrdersPage() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "text-2xl font-bold text-yellow-900",
-                                            children: purchaseOrders.filter((po)=>(po.status || '').toLowerCase().includes('pending receipt')).length
+                                            children: purchaseOrders.filter((po)=>(po.status || "").toLowerCase().includes("pending receipt")).length
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 177,
+                                            lineNumber: 222,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1439,13 +1454,13 @@ function PurchaseOrdersPage() {
                                             children: "awaiting receipt"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 180,
+                                            lineNumber: 229,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 176,
+                                    lineNumber: 221,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1453,10 +1468,10 @@ function PurchaseOrdersPage() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "text-2xl font-bold text-purple-900",
-                                            children: purchaseOrders.filter((po)=>(po.status || '').toLowerCase().includes('pending invoice')).length
+                                            children: purchaseOrders.filter((po)=>(po.status || "").toLowerCase().includes("pending invoice")).length
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 183,
+                                            lineNumber: 232,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1464,30 +1479,30 @@ function PurchaseOrdersPage() {
                                             children: "pending invoice"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 186,
+                                            lineNumber: 239,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 182,
+                                    lineNumber: 231,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                            lineNumber: 171,
+                            lineNumber: 214,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                    lineNumber: 132,
+                    lineNumber: 166,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                lineNumber: 131,
+                lineNumber: 165,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1509,7 +1524,7 @@ function PurchaseOrdersPage() {
                                                     children: "PO worklist"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 197,
+                                                    lineNumber: 250,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1517,7 +1532,7 @@ function PurchaseOrdersPage() {
                                                     children: "Select a PO to review receipt and invoicing details."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 251,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1525,13 +1540,13 @@ function PurchaseOrdersPage() {
                                                     children: "Sorted by delivery date"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 201,
+                                                    lineNumber: 254,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 196,
+                                            lineNumber: 249,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1541,14 +1556,14 @@ function PurchaseOrdersPage() {
                                                 children: "Loading purchase orders..."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                lineNumber: 205,
+                                                lineNumber: 260,
                                                 columnNumber: 19
                                             }, this) : purchaseOrders.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "p-8 text-center text-gray-500",
                                                 children: "No purchase orders found."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                lineNumber: 209,
+                                                lineNumber: 264,
                                                 columnNumber: 19
                                             }, this) : purchaseOrders.map((po)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     onClick: ()=>setSelectedPO(po),
@@ -1562,20 +1577,20 @@ function PurchaseOrdersPage() {
                                                                     children: po.poNumber
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 222,
+                                                                    lineNumber: 277,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StatusBadge"], {
                                                                     status: po.status
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 223,
+                                                                    lineNumber: 280,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 221,
+                                                            lineNumber: 276,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1583,7 +1598,7 @@ function PurchaseOrdersPage() {
                                                             children: po.supplier
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 225,
+                                                            lineNumber: 282,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1597,7 +1612,7 @@ function PurchaseOrdersPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 227,
+                                                                    lineNumber: 286,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1605,24 +1620,24 @@ function PurchaseOrdersPage() {
                                                                     children: fmtDate(po.keyDates?.requestedDelivery)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 228,
+                                                                    lineNumber: 289,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 226,
+                                                            lineNumber: 285,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, po._id, true, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 214,
+                                                    lineNumber: 269,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 203,
+                                            lineNumber: 258,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1632,23 +1647,23 @@ function PurchaseOrdersPage() {
                                                 children: '💡 Tip: Switch "View" to see only POs blocked by invoice or receipt issues.'
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                lineNumber: 237,
+                                                lineNumber: 298,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 236,
+                                            lineNumber: 297,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 195,
+                                    lineNumber: 248,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                lineNumber: 194,
+                                lineNumber: 247,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1673,7 +1688,7 @@ function PurchaseOrdersPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 250,
+                                                                    lineNumber: 312,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1686,7 +1701,7 @@ function PurchaseOrdersPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 252,
+                                                                            lineNumber: 316,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1696,32 +1711,32 @@ function PurchaseOrdersPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 253,
+                                                                            lineNumber: 317,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 251,
+                                                                    lineNumber: 315,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 249,
+                                                            lineNumber: 311,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2d$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StatusBadge"], {
                                                             status: selectedPO.status
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 256,
+                                                            lineNumber: 320,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 248,
+                                                    lineNumber: 310,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1734,26 +1749,27 @@ function PurchaseOrdersPage() {
                                                                     className: "w-5 h-5 text-gray-600"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 261,
+                                                                    lineNumber: 325,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                     className: "font-medium",
                                                                     children: [
                                                                         selectedPO.lineItems.filter((li)=>(li.received || 0) >= (li.ordered || 0)).length,
-                                                                        " of ",
+                                                                        " ",
+                                                                        "of ",
                                                                         selectedPO.lineItems.length,
                                                                         " lines fully received"
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 262,
+                                                                    lineNumber: 326,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 260,
+                                                            lineNumber: 324,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1766,7 +1782,7 @@ function PurchaseOrdersPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 267,
+                                                                    lineNumber: 336,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1776,25 +1792,25 @@ function PurchaseOrdersPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 268,
+                                                                    lineNumber: 339,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 266,
+                                                            lineNumber: 335,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 259,
+                                                    lineNumber: 323,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 247,
+                                            lineNumber: 309,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1805,7 +1821,7 @@ function PurchaseOrdersPage() {
                                                     children: "Summary & commercial terms"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 274,
+                                                    lineNumber: 345,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1818,7 +1834,7 @@ function PurchaseOrdersPage() {
                                                                     children: "Purpose"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 277,
+                                                                    lineNumber: 350,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1826,13 +1842,13 @@ function PurchaseOrdersPage() {
                                                                     children: selectedPO.purpose
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 278,
+                                                                    lineNumber: 351,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 276,
+                                                            lineNumber: 349,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1842,7 +1858,7 @@ function PurchaseOrdersPage() {
                                                                     children: "PO value"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 281,
+                                                                    lineNumber: 354,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1854,13 +1870,13 @@ function PurchaseOrdersPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 282,
+                                                                    lineNumber: 355,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 280,
+                                                            lineNumber: 353,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1870,7 +1886,7 @@ function PurchaseOrdersPage() {
                                                                     children: "Payment terms"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 285,
+                                                                    lineNumber: 360,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1878,13 +1894,13 @@ function PurchaseOrdersPage() {
                                                                     children: selectedPO.paymentTerms
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 286,
+                                                                    lineNumber: 363,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 284,
+                                                            lineNumber: 359,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1894,7 +1910,7 @@ function PurchaseOrdersPage() {
                                                                     children: "Key dates"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 289,
+                                                                    lineNumber: 368,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1902,30 +1918,31 @@ function PurchaseOrdersPage() {
                                                                     children: [
                                                                         "Issued: ",
                                                                         fmtDate(selectedPO.keyDates?.issued),
-                                                                        " · Delivery: ",
+                                                                        " · Delivery:",
+                                                                        " ",
                                                                         fmtDate(selectedPO.keyDates?.requestedDelivery)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 290,
+                                                                    lineNumber: 371,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 288,
+                                                            lineNumber: 367,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 275,
+                                                    lineNumber: 348,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 273,
+                                            lineNumber: 344,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1936,7 +1953,7 @@ function PurchaseOrdersPage() {
                                                     children: "Line items & receipt status"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 296,
+                                                    lineNumber: 381,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1953,7 +1970,7 @@ function PurchaseOrdersPage() {
                                                                             children: "Line"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 301,
+                                                                            lineNumber: 388,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1961,7 +1978,7 @@ function PurchaseOrdersPage() {
                                                                             children: "Description"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 302,
+                                                                            lineNumber: 391,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1969,7 +1986,7 @@ function PurchaseOrdersPage() {
                                                                             children: "Ordered"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 303,
+                                                                            lineNumber: 394,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1977,7 +1994,7 @@ function PurchaseOrdersPage() {
                                                                             children: "Received"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 304,
+                                                                            lineNumber: 397,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1985,7 +2002,7 @@ function PurchaseOrdersPage() {
                                                                             children: "Remaining"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 305,
+                                                                            lineNumber: 400,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1993,18 +2010,18 @@ function PurchaseOrdersPage() {
                                                                             children: "Total"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 306,
+                                                                            lineNumber: 403,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 300,
+                                                                    lineNumber: 387,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                lineNumber: 299,
+                                                                lineNumber: 386,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2017,7 +2034,7 @@ function PurchaseOrdersPage() {
                                                                                 children: item.line
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                lineNumber: 312,
+                                                                                lineNumber: 411,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2025,7 +2042,7 @@ function PurchaseOrdersPage() {
                                                                                 children: item.description
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                lineNumber: 313,
+                                                                                lineNumber: 412,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2033,37 +2050,37 @@ function PurchaseOrdersPage() {
                                                                                 children: item.ordered
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                lineNumber: 314,
+                                                                                lineNumber: 413,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                                                 className: "p-3 text-right",
                                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                    className: item.received === item.ordered ? 'text-green-600 font-medium' : '',
+                                                                                    className: item.received === item.ordered ? "text-green-600 font-medium" : "",
                                                                                     children: item.received
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                    lineNumber: 316,
+                                                                                    lineNumber: 415,
                                                                                     columnNumber: 31
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                lineNumber: 315,
+                                                                                lineNumber: 414,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                                                 className: "p-3 text-right",
                                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                    className: item.remaining > 0 ? 'text-yellow-600 font-medium' : '',
+                                                                                    className: item.remaining > 0 ? "text-yellow-600 font-medium" : "",
                                                                                     children: item.remaining
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                    lineNumber: 321,
+                                                                                    lineNumber: 426,
                                                                                     columnNumber: 31
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                lineNumber: 320,
+                                                                                lineNumber: 425,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2074,35 +2091,35 @@ function PurchaseOrdersPage() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                                lineNumber: 325,
+                                                                                lineNumber: 436,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         ]
                                                                     }, item.line, true, {
                                                                         fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                        lineNumber: 311,
+                                                                        lineNumber: 410,
                                                                         columnNumber: 27
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                lineNumber: 309,
+                                                                lineNumber: 408,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                        lineNumber: 298,
+                                                        lineNumber: 385,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 297,
+                                                    lineNumber: 384,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 295,
+                                            lineNumber: 380,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2113,7 +2130,7 @@ function PurchaseOrdersPage() {
                                                     children: "Delivery & invoicing"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 334,
+                                                    lineNumber: 447,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2126,7 +2143,7 @@ function PurchaseOrdersPage() {
                                                                     children: "Ship-to location"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 337,
+                                                                    lineNumber: 452,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2134,13 +2151,13 @@ function PurchaseOrdersPage() {
                                                                     children: selectedPO.delivery?.shipTo
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 338,
+                                                                    lineNumber: 455,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 336,
+                                                            lineNumber: 451,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2150,7 +2167,7 @@ function PurchaseOrdersPage() {
                                                                     children: "Invoice-to"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 341,
+                                                                    lineNumber: 460,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2158,13 +2175,13 @@ function PurchaseOrdersPage() {
                                                                     children: selectedPO.delivery?.invoiceTo
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 342,
+                                                                    lineNumber: 463,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 340,
+                                                            lineNumber: 459,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2174,7 +2191,7 @@ function PurchaseOrdersPage() {
                                                                     children: "Receipt status"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 345,
+                                                                    lineNumber: 468,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2184,13 +2201,13 @@ function PurchaseOrdersPage() {
                                                                             className: "w-4 h-4 text-green-600"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 348,
+                                                                            lineNumber: 475,
                                                                             columnNumber: 27
                                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"], {
                                                                             className: "w-4 h-4 text-yellow-600"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 350,
+                                                                            lineNumber: 477,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2198,19 +2215,19 @@ function PurchaseOrdersPage() {
                                                                             children: selectedPO.receiptStatus?.status
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 352,
+                                                                            lineNumber: 479,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 346,
+                                                                    lineNumber: 471,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 344,
+                                                            lineNumber: 467,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2220,7 +2237,7 @@ function PurchaseOrdersPage() {
                                                                     children: "Invoice status"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 356,
+                                                                    lineNumber: 485,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2228,25 +2245,25 @@ function PurchaseOrdersPage() {
                                                                     children: selectedPO.invoiceStatus?.status
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 357,
+                                                                    lineNumber: 488,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 355,
+                                                            lineNumber: 484,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 335,
+                                                    lineNumber: 450,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 333,
+                                            lineNumber: 446,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2257,7 +2274,7 @@ function PurchaseOrdersPage() {
                                                     children: "Approval & change history"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 363,
+                                                    lineNumber: 496,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2272,20 +2289,20 @@ function PurchaseOrdersPage() {
                                                                             className: "w-2 h-2 bg-blue-600 rounded-full mt-2"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 368,
+                                                                            lineNumber: 503,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         i < (selectedPO.approvalHistory || []).length - 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                             className: "w-px h-full bg-gray-300 mt-1"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 370,
+                                                                            lineNumber: 506,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 367,
+                                                                    lineNumber: 502,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2296,7 +2313,7 @@ function PurchaseOrdersPage() {
                                                                             children: activity.event
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 374,
+                                                                            lineNumber: 510,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2307,30 +2324,30 @@ function PurchaseOrdersPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                            lineNumber: 375,
+                                                                            lineNumber: 513,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                    lineNumber: 373,
+                                                                    lineNumber: 509,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, i, true, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 366,
+                                                            lineNumber: 501,
                                                             columnNumber: 23
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 364,
+                                                    lineNumber: 499,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 362,
+                                            lineNumber: 495,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2341,7 +2358,7 @@ function PurchaseOrdersPage() {
                                                     children: "Notes"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 383,
+                                                    lineNumber: 524,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2349,13 +2366,13 @@ function PurchaseOrdersPage() {
                                                     children: selectedPO.notes
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 384,
+                                                    lineNumber: 525,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 382,
+                                            lineNumber: 523,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2366,7 +2383,7 @@ function PurchaseOrdersPage() {
                                                     children: "Next actions"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 388,
+                                                    lineNumber: 529,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2374,7 +2391,7 @@ function PurchaseOrdersPage() {
                                                     children: "Record receipts and keep PO aligned with actual deliveries and invoices."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 389,
+                                                    lineNumber: 532,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2384,7 +2401,7 @@ function PurchaseOrdersPage() {
                                                             onClick: handleReceiveGoods,
                                                             disabled: actionLoading !== null,
                                                             className: "flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2",
-                                                            children: actionLoading === 'receive' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                            children: actionLoading === "receive" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                                 children: "Processing..."
                                                             }, void 0, false) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                                 children: [
@@ -2392,7 +2409,7 @@ function PurchaseOrdersPage() {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                        lineNumber: 402,
+                                                                        lineNumber: 546,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     "Receive goods"
@@ -2400,14 +2417,14 @@ function PurchaseOrdersPage() {
                                                             }, void 0, true)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 393,
+                                                            lineNumber: 537,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                             onClick: handleCreateInvoice,
                                                             disabled: actionLoading !== null,
                                                             className: "flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2",
-                                                            children: actionLoading === 'invoice' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                            children: actionLoading === "invoice" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                                 children: "Processing..."
                                                             }, void 0, false) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                                 children: [
@@ -2415,7 +2432,7 @@ function PurchaseOrdersPage() {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                                        lineNumber: 416,
+                                                                        lineNumber: 560,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     "Create invoice draft"
@@ -2423,46 +2440,46 @@ function PurchaseOrdersPage() {
                                                             }, void 0, true)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 407,
+                                                            lineNumber: 551,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                             onClick: handleClosePO,
                                                             disabled: actionLoading !== null,
                                                             className: "flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed",
-                                                            children: actionLoading === 'close' ? 'Processing...' : 'Close PO'
+                                                            children: actionLoading === "close" ? "Processing..." : "Close PO"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                            lineNumber: 421,
+                                                            lineNumber: 565,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                                    lineNumber: 392,
+                                                    lineNumber: 536,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                            lineNumber: 387,
+                                            lineNumber: 528,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                    lineNumber: 246,
+                                    lineNumber: 308,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                                lineNumber: 244,
+                                lineNumber: 306,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                        lineNumber: 193,
+                        lineNumber: 246,
                         columnNumber: 9
                     }, this),
                     showCreate && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$create$2d$purchase$2d$order$2d$form$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CreatePurchaseOrderForm"], {
@@ -2476,19 +2493,19 @@ function PurchaseOrdersPage() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                        lineNumber: 435,
-                        columnNumber: 9
+                        lineNumber: 579,
+                        columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-                lineNumber: 192,
+                lineNumber: 245,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(app)/purchase-orders/page.tsx",
-        lineNumber: 122,
+        lineNumber: 154,
         columnNumber: 5
     }, this);
 }

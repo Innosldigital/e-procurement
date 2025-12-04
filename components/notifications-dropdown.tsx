@@ -8,14 +8,15 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { 
-  getNotifications, 
-  getUnreadCount, 
-  markAsRead, 
+import {
+  getNotifications,
+  getUnreadCount,
+  markAsRead,
   markAllAsRead,
-  deleteNotification 
+  deleteNotification
 } from '@/lib/actions/notification-actions'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -43,26 +44,36 @@ export function NotificationsDropdown() {
   const loadNotifications = async () => {
     setIsLoading(true)
     setError(null)
-    const [notifResult, countResult] = await Promise.all([
-      getNotifications(20),
-      getUnreadCount()
-    ])
-    
-    if (notifResult.success) {
-      setNotifications(notifResult.data || [])
-      setTotalCount((notifResult.data || []).length)
-    } else {
-      setError((notifResult as any).error || 'Failed to fetch notifications')
-    }
-    
-    if (countResult.success) {
-      setUnreadCount(countResult.count)
-    } else if (notifResult.success) {
-      setUnreadCount((notifResult.data || []).filter((n: any) => !n.read).length)
-    } else {
+    try {
+      const [notifResult, countResult] = await Promise.all([
+        getNotifications(20).catch(() => ({ success: false, error: 'Failed to fetch notifications' })),
+        getUnreadCount().catch(() => ({ success: false, count: 0 }))
+      ])
+
+      if (notifResult.success) {
+        setNotifications((notifResult as any).data || [])
+        setTotalCount(((notifResult as any).data || []).length)
+      } else {
+        setNotifications([])
+        setTotalCount(0)
+        setError((notifResult as any).error || 'Failed to fetch notifications')
+      }
+
+      if (countResult.success) {
+        setUnreadCount((countResult as any).count)
+      } else if (notifResult.success) {
+        setUnreadCount((((notifResult as any).data || []).filter((n: any) => !n.read)).length)
+      } else {
+        setUnreadCount(0)
+      }
+    } catch (e) {
+      setNotifications([])
+      setTotalCount(0)
       setUnreadCount(0)
+      setError('Failed to fetch notifications')
+    } finally {
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -86,12 +97,11 @@ export function NotificationsDropdown() {
     await loadNotifications()
   }
 
-
   const handleNotificationClick = async (notification: Notification) => {
     if (!notification.read) {
       await handleMarkAsRead(notification._id)
     }
-    
+
     if (notification.actionUrl) {
       setIsOpen(false)
       router.push(notification.actionUrl)
@@ -142,151 +152,75 @@ export function NotificationsDropdown() {
           )}
         </Button>
       </DropdownMenuTrigger>
-      
+
       <DropdownMenuContent 
-        align="end" 
-        className="w-[400px] p-0"
+        align="end"
+        className="w-[calc(100vw-2rem)] sm:w-[400px] p-0"
         sideOffset={8}
       >
-        <div className="flex items-center justify-between px-4 py-3 border-b">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 px-3 sm:px-4 py-3 border-b">
           <div>
             <h3 className="font-semibold text-sm">Notifications</h3>
             <p className="text-xs text-muted-foreground">
               {totalCount} total{unreadCount > 0 ? ` • ${unreadCount} unread` : ''}
             </p>
           </div>
-          
+
           {notifications.length > 0 && (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
               {unreadCount > 0 && (
                 <Button 
-                  variant="ghost" 
+                  variant="ghost"
                   size="sm"
                   onClick={handleMarkAllAsRead}
-                  className="h-8 text-xs"
+                  className="h-7 sm:h-8 text-xs flex-1 sm:flex-none"
                 >
                   <CheckCheck className="w-3 h-3 mr-1" />
-                  Mark all read
+                  <span className="hidden xs:inline">Mark all read</span>
+                  <span className="xs:hidden">Mark all</span>
                 </Button>
               )}
             </div>
           )}
         </div>
 
-        <ScrollArea className="h-[400px]">
+        <div className="max-h-[300px] overflow-auto">
           {isLoading ? (
-            <div className="p-8 text-center text-sm text-muted-foreground">
-              Loading notifications...
-            </div>
-          ) : notifications.length === 0 ? (
-            <div className="p-8 text-center">
-              <Bell className="w-12 h-12 mx-auto mb-3 text-muted-foreground/50" />
-              <p className="text-sm font-medium">
-                {error?.toLowerCase().includes('unauthorized') ? 'Sign in to view notifications' : 'No notifications'}
-              </p>
-              {!error && (
-                <p className="text-xs text-muted-foreground mt-1">
-                  You're all caught up!
-                </p>
-              )}
-            </div>
-          ) : (
-            <div className="divide-y">
-              {notifications.map((notification) => (
-                <div
-                  key={notification._id}
-                  className={cn(
-                    "relative group p-4 hover:bg-muted/50 transition-colors cursor-pointer",
-                    !notification.read && "bg-primary/5"
-                  )}
-                  onClick={() => handleNotificationClick(notification)}
-                >
-                  <div className="flex gap-3">
-                    <div className="flex-shrink-0 mt-0.5">
-                      <div className={cn(
-                        "w-2 h-2 rounded-full",
-                        !notification.read ? getPriorityColor(notification.priority) : "bg-muted"
-                      )} />
-                    </div>
-                    
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2 mb-1">
-                        <h4 className={cn(
-                          "text-sm font-medium",
-                          !notification.read && "font-semibold"
-                        )}>
-                          {notification.title}
-                        </h4>
-                        <span className="text-xs text-muted-foreground whitespace-nowrap">
-                          {formatTimeAgo(notification.createdAt)}
-                        </span>
-                      </div>
-                      
-                      <p className="text-xs text-muted-foreground line-clamp-2">
-                        {notification.message}
-                      </p>
-
-                      {notification.actionUrl && (
-                        <Button 
-                          variant="link" 
-                          className="h-auto p-0 text-xs mt-2"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            handleNotificationClick(notification)
-                          }}
-                        >
-                          View details →
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {!notification.read && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-6 w-6"
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          handleMarkAsRead(notification._id)
-                        }}
-                      >
-                        <Check className="w-3 h-3" />
-                      </Button>
-                    )}
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-6 w-6 text-destructive hover:text-destructive"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleDelete(notification._id)
-                      }}
+            <div className="px-4 py-3 text-xs text-muted-foreground">Loading...</div>
+          ) : notifications.length > 0 ? (
+            notifications.map((notification) => (
+              <DropdownMenuItem 
+                key={notification._id}
+                onClick={() => handleNotificationClick(notification)}
+                className="px-3 sm:px-4 py-2 flex items-center gap-2 cursor-pointer hover:bg-accent"
+              >
+                <div className={`w-2 h-2 rounded-full ${getPriorityColor(notification.priority)}`} />
+                <div className="flex flex-col w-full">
+                  <div className="flex items-center justify-between">
+                    <span className={cn("text-sm", notification.read ? "font-medium text-muted-foreground" : "font-semibold")}>{notification.title}</span>
+                    <Badge
+                      variant="secondary"
+                      className={cn("text-[10px] px-1.5 py-0.5", notification.read ? "bg-muted text-muted-foreground" : "bg-primary/10 text-primary")}
                     >
-                      <Trash2 className="w-3 h-3" />
-                    </Button>
+                      {notification.read ? "Read" : "Unread"}
+                    </Badge>
                   </div>
+                  <span className="text-xs text-muted-foreground">{formatTimeAgo(notification.createdAt)}</span>
                 </div>
-              ))}
-            </div>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={(e) => { e.stopPropagation(); handleDelete(notification._id) }}
+                  className="w-5 h-5 p-0"
+                >
+                  <Trash2 className="w-3 h-3" />
+                </Button>
+              </DropdownMenuItem>
+            ))
+          ) : (
+            <div className="px-4 py-3 text-xs text-muted-foreground">No notifications</div>
           )}
-        </ScrollArea>
-
-        {notifications.length > 0 && (
-          <div className="border-t p-2">
-            <Button 
-              variant="ghost" 
-              className="w-full text-xs"
-              onClick={() => {
-                setIsOpen(false)
-                router.push('/notifications')
-              }}
-            >
-              View all notifications
-            </Button>
-          </div>
-        )}
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   )

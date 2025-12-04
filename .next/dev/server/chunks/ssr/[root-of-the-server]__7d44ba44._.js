@@ -16,9 +16,6 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$
 ;
 __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].set('strictQuery', false);
 const MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI) {
-    throw new Error("❌ MONGODB_URI is not defined in .env.local");
-}
 // Use global to avoid re-creating connections in Next.js
 let cached = /*TURBOPACK member replacement*/ __turbopack_context__.g.mongoose;
 if (!cached) {
@@ -32,6 +29,9 @@ async function connectDB() {
         return cached.conn;
     }
     if (!cached.promise) {
+        if (!MONGODB_URI) {
+            throw new Error('MONGODB_URI is not defined');
+        }
         cached.promise = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].connect(MONGODB_URI, {
             bufferCommands: false,
             serverSelectionTimeoutMS: 5000,
@@ -1466,9 +1466,13 @@ const Invoice = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$
 "[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-/* __next_internal_action_entry_do_not_use__ [{"009eaa938e05d48f7d0f7e02001ceefd7e0bee7082":"getInvoices","00f578ef6a99852655373bf0ead7f61159c54a74ff":"checkOverdueInvoices","40c90700c4dc2c59c2a64f69370f6d39bdc6f0839d":"getInvoiceById","607caba07c67b30f70f98fe33d670d9fb2a3bd7ea6":"schedulePayment","608c4a7d4518cd52933ef901f1e2e204f58b86a0be":"putInvoiceOnHold"},"",""] */ __turbopack_context__.s([
+/* __next_internal_action_entry_do_not_use__ [{"009eaa938e05d48f7d0f7e02001ceefd7e0bee7082":"getInvoices","00f578ef6a99852655373bf0ead7f61159c54a74ff":"checkOverdueInvoices","40164dc3eda1827908ff1ddf4d897916bdc37e7d69":"approveInvoice","40a423f37cde0da9798c532466f0530c556431c35b":"createInvoice","40c90700c4dc2c59c2a64f69370f6d39bdc6f0839d":"getInvoiceById","607caba07c67b30f70f98fe33d670d9fb2a3bd7ea6":"schedulePayment","608c4a7d4518cd52933ef901f1e2e204f58b86a0be":"putInvoiceOnHold"},"",""] */ __turbopack_context__.s([
+    "approveInvoice",
+    ()=>approveInvoice,
     "checkOverdueInvoices",
     ()=>checkOverdueInvoices,
+    "createInvoice",
+    ()=>createInvoice,
     "getInvoiceById",
     ()=>getInvoiceById,
     "getInvoices",
@@ -1502,10 +1506,10 @@ async function getInvoices() {
             data: JSON.parse(JSON.stringify(invoices))
         };
     } catch (error) {
-        console.error('[v0] Error fetching invoices:', error);
+        console.error("[v0] Error fetching invoices:", error);
         return {
             success: false,
-            error: 'Failed to fetch invoices'
+            error: "Failed to fetch invoices"
         };
     }
 }
@@ -1516,7 +1520,7 @@ async function getInvoiceById(id) {
         if (!invoice) {
             return {
                 success: false,
-                error: 'Invoice not found'
+                error: "Invoice not found"
             };
         }
         return {
@@ -1524,10 +1528,86 @@ async function getInvoiceById(id) {
             data: JSON.parse(JSON.stringify(invoice))
         };
     } catch (error) {
-        console.error('[v0] Error fetching invoice:', error);
+        console.error("[v0] Error fetching invoice:", error);
         return {
             success: false,
-            error: 'Failed to fetch invoice'
+            error: "Failed to fetch invoice"
+        };
+    }
+}
+async function createInvoice(payload) {
+    try {
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
+        const doc = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Invoice$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Invoice"].create({
+            invoiceNumber: payload.invoiceNumber,
+            supplier: payload.supplier,
+            amount: payload.amount,
+            poNumber: payload.poNumber,
+            dueDate: payload.dueDate,
+            invoiceDate: payload.invoiceDate || new Date(),
+            entity: payload.entity,
+            currency: payload.currency || "USD",
+            status: "Pending approval",
+            lineItems: payload.lineItems || [],
+            notes: payload.notes || ""
+        });
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])("/invoices");
+        return {
+            success: true,
+            data: JSON.parse(JSON.stringify(doc))
+        };
+    } catch (error) {
+        console.error("[v0] Error creating invoice:", error);
+        return {
+            success: false,
+            error: "Failed to create invoice"
+        };
+    }
+}
+async function approveInvoice(id) {
+    try {
+        const { userId } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$app$2d$router$2f$server$2f$auth$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["auth"])();
+        if (!userId) {
+            return {
+                success: false,
+                error: "Unauthorized"
+            };
+        }
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
+        const invoice = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Invoice$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Invoice"].findByIdAndUpdate(id, {
+            status: "approved_for_payment"
+        }, {
+            new: true
+        }).lean();
+        if (!invoice) {
+            return {
+                success: false,
+                error: "Invoice not found"
+            };
+        }
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createNotification"])({
+            userId: "FINANCE_USER_ID",
+            type: "invoice_update",
+            title: "Invoice Approved for Payment",
+            message: `Invoice ${String(invoice.invoiceNumber || "")} approved for payment`,
+            actionUrl: `/invoices/${String(invoice._id)}`,
+            priority: "medium",
+            metadata: {
+                invoiceNumber: invoice.invoiceNumber || "",
+                supplier: invoice.supplier || "",
+                amount: invoice.amount ?? 0
+            }
+        });
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])("/invoices");
+        return {
+            success: true,
+            data: JSON.parse(JSON.stringify(invoice))
+        };
+    } catch (error) {
+        console.error("[v0] Error approving invoice:", error);
+        return {
+            success: false,
+            error: "Failed to approve invoice"
         };
     }
 }
@@ -1537,12 +1617,12 @@ async function schedulePayment(id, paymentDate) {
         if (!userId) {
             return {
                 success: false,
-                error: 'Unauthorized'
+                error: "Unauthorized"
             };
         }
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
         const invoice = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Invoice$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Invoice"].findByIdAndUpdate(id, {
-            status: 'scheduled',
+            status: "scheduled",
             scheduledPaymentDate: paymentDate,
             scheduledBy: userId
         }, {
@@ -1551,33 +1631,33 @@ async function schedulePayment(id, paymentDate) {
         if (!invoice) {
             return {
                 success: false,
-                error: 'Invoice not found'
+                error: "Invoice not found"
             };
         }
         const inv = invoice;
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createNotification"])({
-            userId: 'FINANCE_USER_ID',
-            type: 'invoice_overdue',
-            title: 'Payment Scheduled',
-            message: `Invoice ${String(inv.invoiceNumber || '')} payment scheduled for ${new Date(paymentDate).toLocaleDateString()}`,
+            userId: "FINANCE_USER_ID",
+            type: "invoice_overdue",
+            title: "Payment Scheduled",
+            message: `Invoice ${String(inv.invoiceNumber || "")} payment scheduled for ${new Date(paymentDate).toLocaleDateString()}`,
             actionUrl: `/invoices/${String(inv._id)}`,
-            priority: 'low',
+            priority: "low",
             metadata: {
-                invoiceNumber: inv.invoiceNumber || '',
+                invoiceNumber: inv.invoiceNumber || "",
                 amount: inv.amount ?? 0,
                 paymentDate: paymentDate
             }
         });
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])('/invoices');
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])("/invoices");
         return {
             success: true,
             data: JSON.parse(JSON.stringify(invoice))
         };
     } catch (error) {
-        console.error('Error scheduling payment:', error);
+        console.error("Error scheduling payment:", error);
         return {
             success: false,
-            error: 'Failed to schedule payment'
+            error: "Failed to schedule payment"
         };
     }
 }
@@ -1587,12 +1667,12 @@ async function putInvoiceOnHold(id, reason) {
         if (!userId) {
             return {
                 success: false,
-                error: 'Unauthorized'
+                error: "Unauthorized"
             };
         }
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
         const invoice = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Invoice$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Invoice"].findByIdAndUpdate(id, {
-            status: 'on_hold',
+            status: "on_hold",
             holdReason: reason,
             putOnHoldBy: userId
         }, {
@@ -1601,33 +1681,33 @@ async function putInvoiceOnHold(id, reason) {
         if (!invoice) {
             return {
                 success: false,
-                error: 'Invoice not found'
+                error: "Invoice not found"
             };
         }
         const inv2 = invoice;
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createNotification"])({
-            userId: 'PROCUREMENT_USER_ID',
-            type: 'invoice_overdue',
-            title: 'Invoice Put On Hold',
-            message: `Invoice ${String(inv2.invoiceNumber || '')} has been put on hold. Reason: ${reason}`,
+            userId: "PROCUREMENT_USER_ID",
+            type: "invoice_overdue",
+            title: "Invoice Put On Hold",
+            message: `Invoice ${String(inv2.invoiceNumber || "")} has been put on hold. Reason: ${reason}`,
             actionUrl: `/invoices/${String(inv2._id)}`,
-            priority: 'high',
+            priority: "high",
             metadata: {
-                invoiceNumber: inv2.invoiceNumber || '',
+                invoiceNumber: inv2.invoiceNumber || "",
                 amount: inv2.amount ?? 0,
                 holdReason: reason
             }
         });
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])('/invoices');
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])("/invoices");
         return {
             success: true,
             data: JSON.parse(JSON.stringify(invoice))
         };
     } catch (error) {
-        console.error('[v0] Error putting invoice on hold:', error);
+        console.error("[v0] Error putting invoice on hold:", error);
         return {
             success: false,
-            error: 'Failed to put invoice on hold'
+            error: "Failed to put invoice on hold"
         };
     }
 }
@@ -1637,7 +1717,7 @@ async function checkOverdueInvoices() {
         if (!userId) {
             return {
                 success: false,
-                error: 'Unauthorized'
+                error: "Unauthorized"
             };
         }
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mongodb$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
@@ -1645,8 +1725,8 @@ async function checkOverdueInvoices() {
         const overdueInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$Invoice$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Invoice"].find({
             status: {
                 $in: [
-                    'pending_approval',
-                    'pending_match'
+                    "pending_approval",
+                    "pending_match"
                 ]
             },
             dueDate: {
@@ -1655,12 +1735,12 @@ async function checkOverdueInvoices() {
         }).lean();
         for (const invoice of overdueInvoices){
             await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$notification$2d$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createNotification"])({
-                userId: 'FINANCE_USER_ID',
-                type: 'invoice_overdue',
-                title: 'Invoice Overdue',
+                userId: "FINANCE_USER_ID",
+                type: "invoice_overdue",
+                title: "Invoice Overdue",
                 message: `Invoice ${invoice.invoiceNumber} from ${invoice.supplier} is overdue by ${Math.floor((today.getTime() - new Date(invoice.dueDate).getTime()) / (1000 * 60 * 60 * 24))} days`,
                 actionUrl: `/invoices/${invoice._id}`,
-                priority: 'urgent',
+                priority: "urgent",
                 metadata: {
                     invoiceNumber: invoice.invoiceNumber,
                     supplier: invoice.supplier,
@@ -1674,10 +1754,10 @@ async function checkOverdueInvoices() {
             count: overdueInvoices.length
         };
     } catch (error) {
-        console.error('[v0] Error checking overdue invoices:', error);
+        console.error("[v0] Error checking overdue invoices:", error);
         return {
             success: false,
-            error: 'Failed to check overdue invoices'
+            error: "Failed to check overdue invoices"
         };
     }
 }
@@ -1685,12 +1765,16 @@ async function checkOverdueInvoices() {
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
     getInvoices,
     getInvoiceById,
+    createInvoice,
+    approveInvoice,
     schedulePayment,
     putInvoiceOnHold,
     checkOverdueInvoices
 ]);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getInvoices, "009eaa938e05d48f7d0f7e02001ceefd7e0bee7082", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getInvoiceById, "40c90700c4dc2c59c2a64f69370f6d39bdc6f0839d", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(createInvoice, "40a423f37cde0da9798c532466f0530c556431c35b", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(approveInvoice, "40164dc3eda1827908ff1ddf4d897916bdc37e7d69", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(schedulePayment, "607caba07c67b30f70f98fe33d670d9fb2a3bd7ea6", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(putInvoiceOnHold, "608c4a7d4518cd52933ef901f1e2e204f58b86a0be", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(checkOverdueInvoices, "00f578ef6a99852655373bf0ead7f61159c54a74ff", null);
@@ -2283,7 +2367,9 @@ const Company = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$
 "[project]/lib/actions/onboarding-actions.ts [app-rsc] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-/* __next_internal_action_entry_do_not_use__ [{"40b533b5a49f64416e62ca9e75858712f207a9ba1d":"submitSupplierOnboarding","40f25c9448fb0c5a0c4bd6e6f0e64d26543287adad":"submitCompanyOnboarding"},"",""] */ __turbopack_context__.s([
+/* __next_internal_action_entry_do_not_use__ [{"40b533b5a49f64416e62ca9e75858712f207a9ba1d":"submitSupplierOnboarding","40f25c9448fb0c5a0c4bd6e6f0e64d26543287adad":"submitCompanyOnboarding","40f537a1bfe4ff33fc18bcb0a92a91ac5469b7d2b4":"submitAdminOnboarding"},"",""] */ __turbopack_context__.s([
+    "submitAdminOnboarding",
+    ()=>submitAdminOnboarding,
     "submitCompanyOnboarding",
     ()=>submitCompanyOnboarding,
     "submitSupplierOnboarding",
@@ -2303,6 +2389,45 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 ;
+async function submitAdminOnboarding(data) {
+    try {
+        const { userId } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$app$2d$router$2f$server$2f$auth$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["auth"])();
+        if (!userId) return {
+            success: false,
+            error: 'Unauthorized'
+        };
+        const client = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$clerkClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["clerkClient"])();
+        let firstName = '';
+        let lastName = '';
+        const parts = String(data.fullName || '').trim().split(/\s+/);
+        if (parts.length > 0) firstName = parts[0];
+        if (parts.length > 1) lastName = parts.slice(1).join(' ');
+        await client.users.updateUser(userId, {
+            firstName: firstName || undefined,
+            lastName: lastName || undefined,
+            publicMetadata: {
+                role: 'admin',
+                onboarded: true,
+                onboardingStatus: 'pending_superadmin_approval',
+                adminProfile: {
+                    fullName: data.fullName,
+                    title: data.title || '',
+                    company: data.company || '',
+                    profileDetails: data.profileDetails || ''
+                }
+            }
+        });
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$cache$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["revalidatePath"])('/onboarding');
+        return {
+            success: true
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: 'Failed to submit admin onboarding'
+        };
+    }
+}
 async function submitCompanyOnboarding(data) {
     try {
         const { userId } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$app$2d$router$2f$server$2f$auth$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["auth"])();
@@ -2491,9 +2616,11 @@ async function submitSupplierOnboarding(data) {
 }
 ;
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
+    submitAdminOnboarding,
     submitCompanyOnboarding,
     submitSupplierOnboarding
 ]);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(submitAdminOnboarding, "40f537a1bfe4ff33fc18bcb0a92a91ac5469b7d2b4", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(submitCompanyOnboarding, "40f25c9448fb0c5a0c4bd6e6f0e64d26543287adad", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(submitSupplierOnboarding, "40b533b5a49f64416e62ca9e75858712f207a9ba1d", null);
 }),

@@ -4,10 +4,6 @@ mongoose.set('strictQuery', false)
 
 const MONGODB_URI = process.env.MONGODB_URI
 
-if (!MONGODB_URI) {
-  throw new Error("❌ MONGODB_URI is not defined in .env.local")
-}
-
 interface MongooseCache {
   conn: typeof mongoose | null
   promise: Promise<typeof mongoose> | null
@@ -26,11 +22,16 @@ export default async function connectDB() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI!, {
-      bufferCommands: false,
-      serverSelectionTimeoutMS: 5000, 
-      socketTimeoutMS: 45000,          
-    })
+    if (!MONGODB_URI) {
+      cached.conn = mongoose
+      cached.promise = Promise.resolve(mongoose as any)
+    } else {
+      cached.promise = mongoose.connect(MONGODB_URI, {
+        bufferCommands: false,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+      })
+    }
   }
 
   try {
