@@ -31,6 +31,7 @@ export default clerkMiddleware(async (auth, request) => {
       .toLowerCase()
       .replace(/[\s_-]/g, "");
     const onboarded = md?.onboarded === true;
+    const supplierApproved = md?.supplier_approved === true;
 
     const isSuperAdmin =
       normalizedRole === "superadmin" ||
@@ -38,6 +39,7 @@ export default clerkMiddleware(async (auth, request) => {
       userId === "user_35hjSURy4Wv5CPxXRrqfSoCGK7W";
 
     const isAdmin = normalizedRole === "admin";
+    const isSupplier = normalizedRole === "supplier";
 
     console.log("🔍 Proxy Check:", {
       path: request.nextUrl.pathname,
@@ -47,15 +49,45 @@ export default clerkMiddleware(async (auth, request) => {
       normalizedRole,
       isSuperAdmin,
       isAdmin,
+      isSupplier,
       onboarded,
+      supplierApproved,
       metadata: md,
       hasSessionClaims: !!sessionClaims,
     });
 
+    // Allow super admins and admins full access
     if (isSuperAdmin || isAdmin) {
       return NextResponse.next();
     }
 
+    // For suppliers: check if onboarded AND approved
+    if (isSupplier) {
+      if (onboarded && supplierApproved) {
+        // Supplier is onboarded and approved - grant access
+        return NextResponse.next();
+      } else if (
+        !onboarded &&
+        !isOnboardingRoute(request) &&
+        !isApiRoute(request)
+      ) {
+        // Supplier not onboarded - redirect to onboarding
+        const url = new URL("/onboarding", request.url);
+        return NextResponse.redirect(url);
+      } else if (onboarded && !supplierApproved) {
+        // Supplier onboarded but not approved - show pending page
+        if (
+          !request.nextUrl.pathname.startsWith("/pending-approval") &&
+          !isApiRoute(request)
+        ) {
+          const url = new URL("/pending-approval", request.url);
+          return NextResponse.redirect(url);
+        }
+        return NextResponse.next();
+      }
+    }
+
+    // For non-suppliers: redirect to onboarding if not onboarded
     if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
       const url = new URL("/onboarding", request.url);
       return NextResponse.redirect(url);
