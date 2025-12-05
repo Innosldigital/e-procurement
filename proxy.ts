@@ -41,21 +41,6 @@ export default clerkMiddleware(async (auth, request) => {
     const isAdmin = normalizedRole === "admin";
     const isSupplier = normalizedRole === "supplier";
 
-    console.log("🔍 Proxy Check:", {
-      path: request.nextUrl.pathname,
-      userId,
-      email,
-      role: rawRole,
-      normalizedRole,
-      isSuperAdmin,
-      isAdmin,
-      isSupplier,
-      onboarded,
-      supplierApproved,
-      metadata: md,
-      hasSessionClaims: !!sessionClaims,
-    });
-
     // Allow super admins and admins full access
     if (isSuperAdmin || isAdmin) {
       return NextResponse.next();
