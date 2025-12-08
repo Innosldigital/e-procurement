@@ -44,13 +44,13 @@ const EditUser = ({
   isOpen,
   onClose,
   onSubmitComplete,
-  currentUserRole = "admin",
+  currentUserRole, // No default value
 }: {
   userData: any;
   isOpen: boolean;
   onClose: () => void;
   onSubmitComplete: () => void;
-  currentUserRole?: string;
+  currentUserRole: string; // Made required
 }) => {
   const form = useForm<z.infer<typeof lawyerFormSchema>>({
     resolver: zodResolver(lawyerFormSchema),
@@ -89,7 +89,38 @@ const EditUser = ({
 
   const availableRoles = getAvailableRoles();
 
+  // Check if admin is trying to edit a superadmin or admin user
+  const canEditUser = () => {
+    if (currentUserRole === "superadmin") {
+      return true; // Superadmin can edit anyone
+    }
+
+    if (currentUserRole === "admin") {
+      // Admin cannot edit superadmin or admin users
+      if (userData.role === "superadmin" || userData.role === "admin") {
+        return false;
+      }
+      return true;
+    }
+
+    return false;
+  };
+
   const onSubmit = async (data: z.infer<typeof lawyerFormSchema>) => {
+    // Additional validation: prevent admin from assigning superadmin or admin roles
+    if (
+      currentUserRole === "admin" &&
+      (data.role === "superadmin" || data.role === "admin")
+    ) {
+      toast({
+        title: "Error",
+        description:
+          "You don't have permission to assign Superadmin or Admin roles",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
       setIsSubmitting(true);
       const result = await updateUser(
@@ -128,6 +159,44 @@ const EditUser = ({
       setIsSubmitting(false);
     }
   };
+
+  // Show message if admin tries to edit superadmin or admin
+  if (!canEditUser()) {
+    return (
+      <Sheet open={isOpen} onOpenChange={onClose}>
+        <SheetContent
+          side="right"
+          className="w-full max-w-full px-4 sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl sm:px-6"
+        >
+          <SheetHeader className="pb-6 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-destructive/10">
+                <User className="w-5 h-5 text-destructive" />
+              </div>
+              <div>
+                <SheetTitle className="text-lg font-semibold sm:text-xl">
+                  Access Denied
+                </SheetTitle>
+                <SheetDescription className="text-sm sm:text-base text-muted-foreground">
+                  You don't have permission to edit this user.
+                </SheetDescription>
+              </div>
+            </div>
+          </SheetHeader>
+          <div className="mt-6 p-4 rounded-lg bg-destructive/10 border border-destructive/20">
+            <p className="text-sm text-destructive">
+              Only Superadmins can edit Admin and Superadmin accounts.
+            </p>
+          </div>
+          <div className="flex justify-end mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Close
+            </Button>
+          </div>
+        </SheetContent>
+      </Sheet>
+    );
+  }
 
   return (
     <div>

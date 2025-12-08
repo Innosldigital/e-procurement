@@ -43,13 +43,13 @@ interface AddUserProps {
   currentUserRole?: string;
 }
 
-export function AddUser({
-  onSubmitComplete,
-  currentUserRole = "admin",
-}: AddUserProps) {
+export function AddUser({ onSubmitComplete, currentUserRole }: AddUserProps) {
   const [addLawyerModalOpen, setAddLawyerModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Debug log to check what role is being received
+  console.log("Current User Role:", currentUserRole);
 
   const form = useForm<z.infer<typeof lawyerFormSchema>>({
     resolver: zodResolver(lawyerFormSchema),

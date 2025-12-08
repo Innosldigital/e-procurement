@@ -34,9 +34,7 @@ export default clerkMiddleware(async (auth, request) => {
     const supplierApproved = md?.supplier_approved === true;
 
     const isSuperAdmin =
-      normalizedRole === "superadmin" ||
-      email === "keitamorie@gmail.com" ||
-      userId === "user_35hjSURy4Wv5CPxXRrqfSoCGK7W";
+      normalizedRole === "superadmin" || email === "keitamorie@gmail.com";
 
     const isAdmin = normalizedRole === "admin";
     const isSupplier = normalizedRole === "supplier";

@@ -69,8 +69,10 @@ type User = {
 import AddUser from "./components/AddUser";
 import EditUser from "./components/EditUser";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 export default function UsersTable() {
+  const { user } = useUser();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -178,7 +180,14 @@ export default function UsersTable() {
             Manage your team members and their roles
           </p>
         </div>
-        <AddUser onSubmitComplete={onSubmit} />
+        <AddUser
+          currentUserRole={String(
+            (user?.publicMetadata as any)?.role || "admin"
+          )
+            .toLowerCase()
+            .replace(/[\s_-]/g, "")}
+          onSubmitComplete={onSubmit}
+        />
       </div>
 
       <div className="relative w-full sm:max-w-sm">
@@ -197,6 +206,11 @@ export default function UsersTable() {
           userData={userToUpdate}
           isOpen={editDialogOpen}
           onClose={closeEditModal}
+          currentUserRole={String(
+            (user?.publicMetadata as any)?.role || "admin"
+          )
+            .toLowerCase()
+            .replace(/[\s_-]/g, "")}
           onSubmitComplete={onSubmit}
         />
       )}

@@ -22,7 +22,40 @@ interface SystemUser {
   companyId?: string;
 }
 
-async function sendApprovalEmail(to: string, subject: string, html: string) {
+function renderEmailTemplate(
+  title: string,
+  bodyHtml: string,
+  actionUrl?: string,
+  actionText?: string
+) {
+  const cta = actionUrl
+    ? `<div style="margin-top:24px;text-align:center"><a href="${actionUrl}" style="display:inline-block;padding:10px 16px;border-radius:6px;background:#111827;color:#fff;text-decoration:none;font-weight:600">${
+        actionText || "Open"
+      }</a></div>`
+    : "";
+  return `<!DOCTYPE html><html><head><meta charSet="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>${title}</title></head><body style="margin:0;padding:0;background:#f7f7f8;font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111827">
+  <table role="presentation" style="width:100%;border-collapse:collapse"><tr><td align="center" style="padding:24px">
+    <table role="presentation" style="max-width:640px;width:100%;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">
+      <tr><td style="padding:20px 24px;background:#111827;color:#ffffff;font-weight:700;font-size:18px">E‑Procurement Suite</td></tr>
+      <tr><td style="padding:24px">
+        <div style="font-size:16px;font-weight:600;margin-bottom:8px;color:#111827">${title}</div>
+        <div style="font-size:14px;line-height:1.6;color:#374151">${bodyHtml}</div>
+        ${cta}
+        <div style="margin-top:24px;padding-top:16px;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280">This is an automated notification from E‑Procurement Suite.</div>
+      </td></tr>
+    </table>
+    <div style="font-size:11px;color:#9ca3af;margin-top:12px">© ${new Date().getFullYear()} E‑Procurement Suite</div>
+  </td></tr></table>
+  </body></html>`;
+}
+
+async function sendApprovalEmail(
+  to: string,
+  subject: string,
+  html: string,
+  actionUrl?: string,
+  actionText?: string
+) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey || !to) return;
 
@@ -32,9 +65,33 @@ async function sendApprovalEmail(to: string, subject: string, html: string) {
       from: "no-reply@eprocurement.local",
       to,
       subject,
-      html,
+      html: renderEmailTemplate(subject, html, actionUrl, actionText),
     });
   } catch {}
+}
+
+export async function sendEmail(
+  to: string,
+  subject: string,
+  html: string,
+  actionUrl?: string,
+  actionText?: string
+) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey || !to)
+    return { success: false, error: "Missing RESEND_API_KEY or recipient" };
+  const resend = new Resend(apiKey);
+  try {
+    await resend.emails.send({
+      from: "no-reply@eprocurement.local",
+      to,
+      subject,
+      html: renderEmailTemplate(subject, html, actionUrl, actionText),
+    });
+    return { success: true };
+  } catch (e) {
+    return { success: false, error: "Failed to send email" };
+  }
 }
 
 export async function approveSupplierOnboarding(supplierId: string) {
@@ -69,7 +126,9 @@ export async function approveSupplierOnboarding(supplierId: string) {
     await sendApprovalEmail(
       email,
       "Supplier account approved",
-      `<p>Your supplier account has been approved. You now have full access to the system.</p>`
+      `<p>Your supplier account has been approved. You now have full access to the system.</p>`,
+      "/suppliers",
+      "Open Suppliers"
     );
 
     revalidatePath("/suppliers");
@@ -83,7 +142,6 @@ export async function approveSupplierOnboarding(supplierId: string) {
     return { success: false, error: "Failed to approve supplier onboarding" };
   }
 }
-
 
 export async function rejectSupplierOnboarding(
   supplierId: string,
@@ -124,7 +182,9 @@ export async function rejectSupplierOnboarding(
     await sendApprovalEmail(
       email,
       "Supplier onboarding rejected",
-      `<p>Your supplier onboarding was rejected.</p><p>Reason: ${reason}</p>`
+      `<p>Your supplier onboarding was rejected.</p><p>Reason: ${reason}</p>`,
+      "/onboarding",
+      "Continue Onboarding"
     );
 
     revalidatePath("/admin");
@@ -138,7 +198,6 @@ export async function rejectSupplierOnboarding(
   }
 }
 
-
 export async function getPendingSuppliers() {
   try {
     await dbConnect();
@@ -150,7 +209,6 @@ export async function getPendingSuppliers() {
     return { success: false, error: "Failed to fetch pending suppliers" };
   }
 }
-
 
 export async function getAllSuppliers() {
   try {
@@ -295,7 +353,9 @@ export async function approveAdminUser(userId: string) {
     await sendApprovalEmail(
       email,
       "Admin access approved",
-      "<p>Your admin role has been approved.</p>"
+      "<p>Your admin role has been approved.</p>",
+      "/admin",
+      "Open Admin"
     );
 
     revalidatePath("/admin");
@@ -332,7 +392,9 @@ export async function rejectAdminUser(userId: string, reason: string) {
     await sendApprovalEmail(
       email,
       "Admin access rejected",
-      `<p>Your admin role was rejected.</p><p>Reason: ${reason}</p>`
+      `<p>Your admin role was rejected.</p><p>Reason: ${reason}</p>`,
+      "/support",
+      "Contact Support"
     );
 
     revalidatePath("/admin");
@@ -370,7 +432,9 @@ export async function approveAdminInvitation(invitationId: string) {
     await sendApprovalEmail(
       email,
       "Admin access approved",
-      "<p>Your admin role has been approved.</p>"
+      "<p>Your admin role has been approved.</p>",
+      "/admin",
+      "Open Admin"
     );
 
     revalidatePath("/admin");
@@ -399,8 +463,10 @@ export async function rejectAdminInvitation(
 
     await sendApprovalEmail(
       email,
-      "Admin access rejected",
-      `<p>Your admin invitation was rejected.</p><p>Reason: ${reason}</p>`
+      "Admin invitation rejected",
+      `<p>Your admin invitation was rejected.</p><p>Reason: ${reason}</p>`,
+      "/support",
+      "Contact Support"
     );
 
     revalidatePath("/admin");
@@ -464,7 +530,6 @@ export async function getAllSystemUsers(): Promise<
 
     const existingIds = new Set<string>(mapped.map((m) => String(m.userId)));
     const combined = [...mapped];
-
 
     for (const s of suppliers || []) {
       const userId = String(s.ownerUserId || s.supplierId || "");
