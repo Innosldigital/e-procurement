@@ -1,1 +1,55 @@
 [00:00:01.634] Server  LOG      ✓ Ready in 1275ms
+[02:34:59.611] Server  LOG      ○ Compiling / ...
+[02:35:25.613] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[02:35:25.613] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[02:35:26.300] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[02:35:26.300] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[02:35:26.300] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765192698567}
+[02:35:35.621] Browser LOG     Current User Role: admin
+[02:35:35.621] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:35:35.621] Browser LOG     Current User Role: admin
+[02:35:35.621] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:35:35.621] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765192707850}
+[02:35:36.842] Browser LOG     Current User Role: admin
+[02:35:36.842] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:35:37.407] Browser LOG     Current User Role: admin
+[02:35:37.408] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:42:15.063] Browser ERROR   The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
+
+Previous: %s
+Incoming: %s useEffect [false] [false, [object Object]]
+[02:42:15.064] Browser LOG     Current User Role: admin
+[02:42:15.064] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:42:15.064] Browser LOG     Current User Role: admin
+[02:42:15.064] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:46:34.089] Server  LOG      ✓ Compiled in 378ms
+[02:46:35.059] Browser LOG     Current User Role: admin
+[02:46:35.059] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:46:35.059] Browser LOG     Current User Role: admin
+[02:46:35.059] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:46:36.065] Browser LOG     Current User Role: admin
+[02:46:36.065] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:02.307] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765193454569}
+[02:48:13.703] Browser LOG     Current User Role: admin
+[02:48:13.703] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:13.703] Browser LOG     Current User Role: admin
+[02:48:13.703] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:13.703] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765193465945}
+[02:48:15.833] Browser LOG     Current User Role: admin
+[02:48:15.833] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:16.438] Browser LOG     Current User Role: admin
+[02:48:16.438] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:25.056] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765193477319}
+[02:48:27.151] Browser LOG     Current User Role: admin
+[02:48:27.151] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:27.151] Browser LOG     Current User Role: admin
+[02:48:27.151] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:27.151] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765193479406}
+[02:48:28.453] Browser LOG     Current User Role: admin
+[02:48:28.453] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:29.120] Browser LOG     Current User Role: admin
+[02:48:29.120] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:33.792] Browser LOG     Current User Role: admin
+[02:48:33.792] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[02:48:41.839] Browser LOG     Current User Role: admin
+[02:48:41.839] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
