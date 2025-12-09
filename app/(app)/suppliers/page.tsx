@@ -13,6 +13,14 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { getSuppliers, getSupplierById } from "@/lib/actions/supplier-actions";
 import { SettingsModal } from "@/components/settings-modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function SuppliersPage() {
   const [suppliers, setSuppliers] = useState<any[]>([]);
@@ -21,6 +29,7 @@ export default function SuppliersPage() {
   const [selectedDetails, setSelectedDetails] = useState<any | null>(null);
   const [detailsLoading, setDetailsLoading] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [docsOpen, setDocsOpen] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -648,13 +657,95 @@ export default function SuppliersPage() {
               <div className="pt-4 border-t">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-sm font-medium">Key documents</h3>
-                  <Button
-                    variant="link"
-                    size="sm"
-                    className="text-xs h-auto p-0"
-                  >
-                    View all
-                  </Button>
+                  <Dialog open={docsOpen} onOpenChange={setDocsOpen}>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="link"
+                        size="sm"
+                        className="text-xs h-auto p-0"
+                      >
+                        View all
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle>Supplier documents</DialogTitle>
+                        <DialogDescription>
+                          All uploaded and attached documents.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-3 text-xs">
+                        {(() => {
+                          const o = selectedDetails?.onboarding || {};
+                          const uploads = [
+                            ...(o.priceListUploads || []),
+                            ...(o.registrationCertificateUploads || []),
+                            ...(o.businessRegistrationCertificateUploads || []),
+                            ...(o.taxClearanceCertificateUploads || []),
+                            ...(o.gstVatRegistrationCertificateUploads || []),
+                            ...(o.businessLicenseUploads || []),
+                            ...(o.nassitCertificateUploads || []),
+                            ...(o.sectorSpecificCertificateUploads || []),
+                          ];
+                          const docs = selectedDetails?.documents || [];
+                          const empty =
+                            uploads.length === 0 && docs.length === 0;
+                          if (empty) {
+                            return (
+                              <div className="text-muted-foreground">
+                                No documents available
+                              </div>
+                            );
+                          }
+                          return (
+                            <div className="space-y-2">
+                              {uploads.map((d: any, i: number) => (
+                                <div
+                                  key={`up-modal-${i}`}
+                                  className="flex items-center justify-between p-2 rounded border"
+                                >
+                                  {d.url ? (
+                                    <a
+                                      href={d.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="font-medium hover:underline break-all"
+                                    >
+                                      {d.name || "Document"}
+                                    </a>
+                                  ) : (
+                                    <span className="font-medium break-all">
+                                      {d.name || "Document"}
+                                    </span>
+                                  )}
+                                  <div className="flex items-center gap-2 text-muted-foreground">
+                                    <span>
+                                      {d.type || ""} • {d.size || ""}
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                              {docs.map((d: any, i: number) => (
+                                <div
+                                  key={`doc-modal-${i}`}
+                                  className="flex items-center justify-between p-2 rounded border"
+                                >
+                                  <span className="font-medium">
+                                    {d.name || "Document"}
+                                  </span>
+                                  <div className="flex items-center gap-2 text-muted-foreground">
+                                    <span>
+                                      {d.type || ""} • {d.size || ""}
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
                 <div className="space-y-2 text-xs">
                   {(() => {

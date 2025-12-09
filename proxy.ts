@@ -9,7 +9,11 @@ const isApiRoute = createRouteMatcher(["/(api|trpc)(.*)"]);
 
 export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
-    await auth.protect();
+    const path = request.nextUrl.pathname
+    const isUsersApi = path.startsWith("/api/users")
+    if (!isUsersApi) {
+      await auth.protect();
+    }
 
     const { sessionClaims, userId } = await auth();
     const claims: any = sessionClaims || {};

@@ -5,89 +5,17 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import dbConnect from "@/lib/mongodb";
 import { Supplier } from "../models/Supplier";
 
-export async function submitSupplierOnboarding(data: {
+// Type definition for upload objects from API
+type UploadObject = {
   name: string;
-  contactPerson?: string;
-  phone?: string;
-  email?: string;
-  goodsType?: string;
-  productCategories?: string[];
-  supplyAreas?: string[];
-  deliveryTimeline?: string;
-  priceListUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  registrationCertificateUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  businessRegistrationCertificateUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  taxClearanceCertificateUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  gstVatRegistrationCertificateUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  businessLicenseUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  nassitCertificateUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  sectorSpecificCertificateUploads?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  paymentMethods?: string[];
-  bankDetails?: {
-    bankName?: string;
-    accountName?: string;
-    accountNumber?: string;
-    prefersCash?: boolean;
-  };
-  vendorPaymentTerms?: string;
-  businessLeadGender?: string;
-  inBusinessMoreThan3Years?: boolean;
-  businessDurationDocuments?: {
-    name: string;
-    size: number;
-    type: string;
-    url?: string;
-  }[];
-  dateOfIncorporation?: string;
-  averageTurnover?: string;
-  declarations?: { infoAccurate?: boolean; agreeRules?: boolean };
-  category?: string;
-  region?: string;
-  segment?: string;
-}) {
+  size: number;
+  type: string;
+  url: string;
+};
+
+export async function submitSupplierOnboarding(data: any) {
   try {
     console.log("🔍 submitSupplierOnboarding: Starting...");
-    console.log("📦 Data received:", { name: data.name, email: data.email });
 
     const { userId } = await auth();
     if (!userId) {
@@ -95,14 +23,98 @@ export async function submitSupplierOnboarding(data: {
       return { success: false, error: "Unauthorized" };
     }
 
-    console.log("✅ User authenticated:", userId);
+    console.log("User authenticated:", userId);
 
     await dbConnect();
-    console.log("✅ Database connected");
+    console.log("Database connected");
 
     const count = await Supplier.countDocuments();
     const supplierId = `SUP-${(count + 5000).toString()}`;
-    console.log("✅ Generated supplierId:", supplierId);
+    console.log("Generated supplierId:", supplierId);
+
+    // Extract URLs from upload objects - Mongoose schema expects array of strings (URLs)
+    function extractUrls(input: any): string[] {
+      try {
+        // Handle null/undefined
+        if (!input) {
+          return [];
+        }
+
+        // Already an array
+        if (Array.isArray(input)) {
+          return input
+            .filter((item) => {
+              // If item is an object with url property
+              if (item && typeof item === "object" && item.url) {
+                return true;
+              }
+              // If item is already a string (URL)
+              if (typeof item === "string" && item.trim()) {
+                return true;
+              }
+              return false;
+            })
+            .map((item) => {
+              // Extract URL from object or return string as-is
+              if (typeof item === "object" && item.url) {
+                return String(item.url).trim();
+              }
+              return String(item).trim();
+            });
+        }
+
+        // If it's a string, it might be JSON - try parsing
+        if (typeof input === "string" && input.trim()) {
+          try {
+            const parsed = JSON.parse(input);
+            if (Array.isArray(parsed)) {
+              return extractUrls(parsed);
+            }
+          } catch {
+            // Not valid JSON, check if it's a single URL
+            if (input.startsWith("http")) {
+              return [input.trim()];
+            }
+            return [];
+          }
+        }
+
+        // Unknown type
+        return [];
+      } catch (e) {
+        console.error("Error extracting URLs:", e);
+        return [];
+      }
+    }
+
+    // Process all upload fields - extract URLs only
+    const businessRegistrationCertificateUploads = extractUrls(
+      data.businessRegistrationCertificateUploads
+    );
+    const taxClearanceCertificateUploads = extractUrls(
+      data.taxClearanceCertificateUploads
+    );
+    const gstVatRegistrationCertificateUploads = extractUrls(
+      data.gstVatRegistrationCertificateUploads
+    );
+    const businessLicenseUploads = extractUrls(data.businessLicenseUploads);
+    const nassitCertificateUploads = extractUrls(data.nassitCertificateUploads);
+    const sectorSpecificCertificateUploads = extractUrls(
+      data.sectorSpecificCertificateUploads
+    );
+    const businessDurationDocuments = extractUrls(
+      data.businessDurationDocuments
+    );
+
+    // Combine all registration certificates
+    const registrationCertUploads = [
+      ...businessRegistrationCertificateUploads,
+      ...taxClearanceCertificateUploads,
+      ...gstVatRegistrationCertificateUploads,
+      ...businessLicenseUploads,
+      ...nassitCertificateUploads,
+      ...sectorSpecificCertificateUploads,
+    ];
 
     const supplierData = {
       supplierId,
@@ -128,43 +140,15 @@ export async function submitSupplierOnboarding(data: {
           : [],
         supplyAreas: Array.isArray(data.supplyAreas) ? data.supplyAreas : [],
         deliveryTimeline: data.deliveryTimeline || "",
-        priceListUploads: Array.isArray(data.priceListUploads)
-          ? data.priceListUploads
-          : [],
-        registrationCertificateUploads: [
-          ...(Array.isArray(data.registrationCertificateUploads)
-            ? data.registrationCertificateUploads
-            : []),
-          ...(Array.isArray((data as any).businessDurationDocuments)
-            ? (data as any).businessDurationDocuments
-            : []),
-        ],
-        businessRegistrationCertificateUploads: Array.isArray(
-          data.businessRegistrationCertificateUploads
-        )
-          ? data.businessRegistrationCertificateUploads
-          : [],
-        taxClearanceCertificateUploads: Array.isArray(
-          data.taxClearanceCertificateUploads
-        )
-          ? data.taxClearanceCertificateUploads
-          : [],
-        gstVatRegistrationCertificateUploads: Array.isArray(
-          data.gstVatRegistrationCertificateUploads
-        )
-          ? data.gstVatRegistrationCertificateUploads
-          : [],
-        businessLicenseUploads: Array.isArray(data.businessLicenseUploads)
-          ? data.businessLicenseUploads
-          : [],
-        nassitCertificateUploads: Array.isArray(data.nassitCertificateUploads)
-          ? data.nassitCertificateUploads
-          : [],
-        sectorSpecificCertificateUploads: Array.isArray(
-          data.sectorSpecificCertificateUploads
-        )
-          ? data.sectorSpecificCertificateUploads
-          : [],
+        priceListUploads: extractUrls(data.priceListUploads),
+        registrationCertificateUploads: registrationCertUploads,
+        businessRegistrationCertificateUploads,
+        taxClearanceCertificateUploads,
+        gstVatRegistrationCertificateUploads,
+        businessLicenseUploads,
+        nassitCertificateUploads,
+        sectorSpecificCertificateUploads,
+        businessDurationDocuments,
         paymentMethods: Array.isArray(data.paymentMethods)
           ? data.paymentMethods
           : [],
@@ -174,6 +158,11 @@ export async function submitSupplierOnboarding(data: {
           accountNumber: data.bankDetails?.accountNumber || "",
           prefersCash: Boolean(data.bankDetails?.prefersCash),
         },
+        businessLeadGender: data.businessLeadGender || "",
+        inBusinessMoreThan3Years: Boolean(data.inBusinessMoreThan3Years),
+        dateOfIncorporation: data.dateOfIncorporation || "",
+        averageTurnover: data.averageTurnover || "",
+        vendorPaymentTerms: data.vendorPaymentTerms || "",
         declarations: {
           infoAccurate: Boolean(data.declarations?.infoAccurate),
           agreeRules: Boolean(data.declarations?.agreeRules),
@@ -184,12 +173,25 @@ export async function submitSupplierOnboarding(data: {
       totalSpend: 0,
     };
 
-    console.log("📋 Creating supplier with data:", supplierData);
+    console.log("📋 Creating supplier...");
+    console.log("Upload counts:", {
+      businessReg: businessRegistrationCertificateUploads.length,
+      taxClearance: taxClearanceCertificateUploads.length,
+      gstVat: gstVatRegistrationCertificateUploads.length,
+      businessLicense: businessLicenseUploads.length,
+      nassit: nassitCertificateUploads.length,
+      sectorCert: sectorSpecificCertificateUploads.length,
+      businessDuration: businessDurationDocuments.length,
+      totalRegistration: registrationCertUploads.length,
+    });
+    console.log("Sample URLs:", {
+      businessReg: businessRegistrationCertificateUploads[0] || "none",
+      gstVat: gstVatRegistrationCertificateUploads[0] || "none",
+    });
 
     const supplier = await Supplier.create(supplierData);
     console.log("✅ Supplier created:", supplier._id);
 
-    // FIXED: Added await for clerkClient()
     const client = await clerkClient();
 
     try {
@@ -201,18 +203,17 @@ export async function submitSupplierOnboarding(data: {
           onboarded: true,
         },
       });
-      console.log("✅ Clerk user metadata updated");
+      console.log("Clerk user metadata updated");
     } catch (clerkError) {
       console.error("❌ Clerk update failed:", clerkError);
-      // Continue even if Clerk update fails
     }
 
     revalidatePath("/onboarding");
     revalidatePath("/suppliers");
+    revalidatePath(`/onboarding/supplier/${supplier._id}`);
 
-    console.log("✅ Supplier onboarding completed successfully");
+    console.log("Supplier onboarding completed successfully");
 
-    // FIXED: Return the proper data structure
     return {
       success: true,
       data: {

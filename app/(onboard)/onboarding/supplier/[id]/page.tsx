@@ -10,6 +10,7 @@ export default async function SupplierDetailPage({
 }) {
   const { id } = await params;
   const res = await getSupplierById(id);
+
   if (!res || !res.success) {
     return (
       <div className="mx-auto max-w-4xl p-6">
@@ -31,17 +32,42 @@ export default async function SupplierDetailPage({
       </div>
     );
   }
+
   const s: any = res.data;
   const o: any = s.onboarding || {};
+
+  // Since uploads are now just URL strings, we need to create objects for display
+  const createUploadObjects = (urls: string[] | undefined, label: string) => {
+    if (!urls || !Array.isArray(urls)) return [];
+    return urls.map((url, idx) => {
+      const fileName = url.split("/").pop() || `${label}-${idx + 1}`;
+      const extension = fileName.split(".").pop()?.toLowerCase() || "";
+      const type =
+        extension === "pdf" ? "application/pdf" : `image/${extension}`;
+      return {
+        url,
+        name: decodeURIComponent(fileName),
+        type,
+        size: "",
+      };
+    });
+  };
+
   const uploads = [
-    ...(o.priceListUploads || []),
-    ...(o.registrationCertificateUploads || []),
-    ...(o.businessRegistrationCertificateUploads || []),
-    ...(o.taxClearanceCertificateUploads || []),
-    ...(o.gstVatRegistrationCertificateUploads || []),
-    ...(o.businessLicenseUploads || []),
-    ...(o.nassitCertificateUploads || []),
-    ...(o.sectorSpecificCertificateUploads || []),
+    ...createUploadObjects(o.priceListUploads, "Price List"),
+    ...createUploadObjects(
+      o.businessRegistrationCertificateUploads,
+      "Business Registration"
+    ),
+    ...createUploadObjects(o.taxClearanceCertificateUploads, "Tax Clearance"),
+    ...createUploadObjects(o.gstVatRegistrationCertificateUploads, "GST/VAT"),
+    ...createUploadObjects(o.businessLicenseUploads, "Business License"),
+    ...createUploadObjects(o.nassitCertificateUploads, "NASSIT"),
+    ...createUploadObjects(
+      o.sectorSpecificCertificateUploads,
+      "Sector Certificate"
+    ),
+    ...createUploadObjects(o.businessDurationDocuments, "Business Duration"),
   ];
 
   return (
@@ -98,24 +124,78 @@ export default async function SupplierDetailPage({
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
-            <span className="font-medium">Payment & Bank</span>
-            <div className="sm:col-span-2 text-muted-foreground space-y-1">
-              <div className="break-words">
-                {Array.isArray(o.paymentMethods)
-                  ? o.paymentMethods.join(", ")
-                  : ""}
-              </div>
-              <div className="break-words">
-                {[
-                  o.bankDetails?.bankName,
-                  o.bankDetails?.accountName,
-                  o.bankDetails?.accountNumber,
-                ]
-                  .filter(Boolean)
-                  .join(" • ")}
-              </div>
+            <span className="font-medium">Payment Methods</span>
+            <div className="sm:col-span-2 text-muted-foreground break-words">
+              {Array.isArray(o.paymentMethods)
+                ? o.paymentMethods.join(", ")
+                : ""}
             </div>
           </div>
+          {o.vendorPaymentTerms && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+              <span className="font-medium">Payment Terms</span>
+              <div className="sm:col-span-2 text-muted-foreground break-words">
+                {o.vendorPaymentTerms}
+              </div>
+            </div>
+          )}
+          {o.bankDetails &&
+            (o.bankDetails.bankName || o.bankDetails.accountName) && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+                <span className="font-medium">Bank Details</span>
+                <div className="sm:col-span-2 text-muted-foreground space-y-1">
+                  {o.bankDetails.bankName && (
+                    <div>{o.bankDetails.bankName}</div>
+                  )}
+                  {o.bankDetails.accountName && (
+                    <div>{o.bankDetails.accountName}</div>
+                  )}
+                  {o.bankDetails.accountNumber && (
+                    <div>{o.bankDetails.accountNumber}</div>
+                  )}
+                </div>
+              </div>
+            )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Business Information</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4 text-sm">
+          {o.dateOfIncorporation && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+              <span className="font-medium">Date of Incorporation</span>
+              <div className="sm:col-span-2 text-muted-foreground">
+                {new Date(o.dateOfIncorporation).toLocaleDateString()}
+              </div>
+            </div>
+          )}
+          {o.businessLeadGender && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+              <span className="font-medium">Business Lead Gender</span>
+              <div className="sm:col-span-2 text-muted-foreground">
+                {o.businessLeadGender}
+              </div>
+            </div>
+          )}
+          {o.inBusinessMoreThan3Years !== undefined && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+              <span className="font-medium">In Business 3+ Years</span>
+              <div className="sm:col-span-2 text-muted-foreground">
+                {o.inBusinessMoreThan3Years ? "Yes" : "No"}
+              </div>
+            </div>
+          )}
+          {o.averageTurnover && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+              <span className="font-medium">Average Turnover (2 Years)</span>
+              <div className="sm:col-span-2 text-muted-foreground">
+                {o.averageTurnover}
+              </div>
+            </div>
+          )}
         </CardContent>
       </Card>
 
@@ -133,18 +213,18 @@ export default async function SupplierDetailPage({
               {uploads.map((d: any, i: number) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between p-2 rounded border"
+                  className="flex items-center justify-between p-3 rounded-lg border hover:border-primary/50 transition-colors"
                 >
                   <a
                     href={d.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium hover:underline break-all"
+                    className="text-sm font-medium hover:underline break-all flex-1"
                   >
                     {d.name || "Document"}
                   </a>
-                  <div className="text-xs text-muted-foreground">
-                    {d.type || ""} • {d.size || ""}
+                  <div className="text-xs text-muted-foreground ml-4">
+                    {d.type?.split("/")[1]?.toUpperCase() || "FILE"}
                   </div>
                 </div>
               ))}

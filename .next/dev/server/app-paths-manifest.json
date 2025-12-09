@@ -1,4 +1,8 @@
 {
-  "/(app)/admin/page": "app/(app)/admin/page.js",
-  "/page": "app/page.js"
+  "/(app)/pending-approval/page": "app/(app)/pending-approval/page.js",
+  "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
+  "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/upload/route": "app/api/upload/route.js",
+  "/pending-approval/page": "app/pending-approval/page.js"
 }

@@ -17,10 +17,12 @@ import { Separator } from "@/components/ui/separator";
 import { StatusBadge } from "@/components/status-badge";
 import { submitSupplierOnboarding } from "@/lib/actions/onboarding-actions";
 import { useRouter } from "next/navigation";
-import { Package, Upload, CheckCircle2 } from "lucide-react";
+import { Package, Upload, CheckCircle2, AlertCircle } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function OnboardingContent() {
   const [loading, setLoading] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
   const router = useRouter();
 
   const [supplierName, setSupplierName] = useState("");
@@ -52,28 +54,50 @@ export default function OnboardingContent() {
   const [declInfoAccurate, setDeclInfoAccurate] = useState(false);
   const [declAgreeRules, setDeclAgreeRules] = useState(false);
 
+  // Validation function
+  const validateForm = () => {
+    const errors: string[] = [];
+
+    // Only validate truly essential fields
+    if (!supplierName.trim()) errors.push("Vendor Name");
+    if (!contactPerson.trim()) errors.push("Contact Person Name");
+    if (!email.trim()) errors.push("Email Address");
+    if (!declInfoAccurate) errors.push("Information Accuracy Declaration");
+    if (!declAgreeRules) errors.push("Rules Agreement Declaration");
+
+    return errors;
+  };
+
+  const isFormValid = () => {
+    return validateForm().length === 0;
+  };
+
   const submitSupplier = async () => {
     try {
+      setError("");
+
+      // Validate before submission
+      const validationErrors = validateForm();
+      if (validationErrors.length > 0) {
+        setError(
+          `Please complete the following required fields: ${validationErrors.join(
+            ", "
+          )}`
+        );
+        return;
+      }
+
       setLoading("vendor");
+
       async function uploadFiles(list: FileList | null, folder: string) {
-        if (!list || list.length === 0)
-          return [] as Array<{
-            name: string;
-            size: number;
-            type: string;
-            url: string;
-          }>;
+        if (!list || list.length === 0) return [];
         const fd = new FormData();
         Array.from(list).forEach((f) => fd.append("files", f));
         fd.append("folder", folder);
         const resp = await fetch("/api/upload", { method: "POST", body: fd });
         const json = await resp.json();
-        return (json && json.success ? json.data : []) as Array<{
-          name: string;
-          size: number;
-          type: string;
-          url: string;
-        }>;
+        // Return the actual array, not stringified
+        return json && json.success ? json.data : [];
       }
 
       const businessRegistrationCertificateUploads = await uploadFiles(
@@ -114,6 +138,7 @@ export default function OnboardingContent() {
         ...sectorSpecificCertificateUploads,
       ];
 
+      // Pass actual arrays, not stringified versions
       const res = await submitSupplierOnboarding({
         name: supplierName,
         contactPerson,
@@ -150,22 +175,25 @@ export default function OnboardingContent() {
         } else {
           router.push("/onboarding/support");
         }
+      } else {
+        setError("Submission failed. Please try again or contact support.");
       }
     } catch (error) {
       console.log(error);
+      setError("An error occurred during submission. Please try again.");
     } finally {
       setLoading(null);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="w-full max-w-3xl">
         <Card className="shadow-lg border-border/50">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-base">Welcome </CardTitle>
+                <CardTitle className="text-base">Welcome</CardTitle>
                 <CardDescription className="text-xs">
                   Complete vendor onboarding.
                 </CardDescription>
@@ -175,6 +203,13 @@ export default function OnboardingContent() {
           </CardHeader>
           <CardContent>
             <div className="space-y-8">
+              {error && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
               <div className="space-y-8">
                 {/* Vendor Information Section */}
                 <div className="space-y-4">
@@ -614,12 +649,7 @@ export default function OnboardingContent() {
                   <Button
                     onClick={submitSupplier}
                     className="flex-1"
-                    disabled={
-                      !supplierName ||
-                      !declInfoAccurate ||
-                      !declAgreeRules ||
-                      loading !== null
-                    }
+                    disabled={!isFormValid() || loading !== null}
                   >
                     {loading === "vendor"
                       ? "Submitting..."

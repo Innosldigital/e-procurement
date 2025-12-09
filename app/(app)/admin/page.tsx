@@ -47,6 +47,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 import { deleteUser, getUsers } from "@/lib/actions/user-actions";
 import { getSupplierOnboardingByUserId } from "@/lib/actions/supplier-actions";
@@ -89,6 +96,11 @@ export default function UsersTable() {
   const [users, setUsers] = useState<any[]>([]);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [userToView, setUserToView] = useState<User | null>(null);
+  const [detailsLoading, setDetailsLoading] = useState(false);
+  const [onboardingDetails, setOnboardingDetails] = useState<any | null>(null);
+  const [approveLoading, setApproveLoading] = useState(false);
+  const [rejectLoading, setRejectLoading] = useState(false);
+  const [rejectReason, setRejectReason] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -114,6 +126,58 @@ export default function UsersTable() {
   const closeEditModal = () => {
     setEditDialogOpen(false);
     setUserToUpdate(null);
+  };
+
+  useEffect(() => {
+    const load = async () => {
+      if (!detailsOpen || !userToView?.id) return;
+      try {
+        setDetailsLoading(true);
+        const res: any = await getSupplierOnboardingByUserId(userToView.id);
+        const data = res && res.success ? res.data : null;
+        setOnboardingDetails(data);
+      } catch {
+        setOnboardingDetails(null);
+      } finally {
+        setDetailsLoading(false);
+      }
+    };
+    load();
+  }, [detailsOpen, userToView?.id]);
+
+  const handleApproveOnboarding = async () => {
+    const sid = onboardingDetails?.supplierId;
+    if (!sid) return;
+    try {
+      setApproveLoading(true);
+      const res: any = await approveSupplierOnboarding(String(sid));
+      if (res && res.success) {
+        setDetailsOpen(false);
+        setRejectReason("");
+        setSubmited(!submited);
+        router.refresh();
+      }
+    } finally {
+      setApproveLoading(false);
+    }
+  };
+
+  const handleRejectOnboarding = async () => {
+    const sid = onboardingDetails?.supplierId;
+    const reason = rejectReason.trim();
+    if (!sid || !reason) return;
+    try {
+      setRejectLoading(true);
+      const res: any = await rejectSupplierOnboarding(String(sid), reason);
+      if (res && res.success) {
+        setDetailsOpen(false);
+        setRejectReason("");
+        setSubmited(!submited);
+        router.refresh();
+      }
+    } finally {
+      setRejectLoading(false);
+    }
   };
 
   const onSubmit = () => {
@@ -443,6 +507,171 @@ export default function UsersTable() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Dialog open={detailsOpen} onOpenChange={setDetailsOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-base">User onboarding</DialogTitle>
+            <DialogDescription className="text-xs">
+              Details from supplier onboarding
+            </DialogDescription>
+          </DialogHeader>
+          {detailsLoading ? (
+            <div className="text-sm text-muted-foreground">Loading…</div>
+          ) : (
+            <div className="space-y-4">
+              <div className="text-sm">
+                <div className="font-medium">
+                  {userToView?.firstName} {userToView?.lastName}
+                </div>
+                <div className="text-muted-foreground">{userToView?.email}</div>
+              </div>
+              <div className="text-xs text-muted-foreground">
+                Supplier ID: {onboardingDetails?.supplierId || "-"}
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="font-medium">Company</div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="rounded border p-2">
+                    <div className="text-muted-foreground">Name</div>
+                    <div className="font-medium">
+                      {onboardingDetails?.name || "-"}
+                    </div>
+                  </div>
+                  <div className="rounded border p-2">
+                    <div className="text-muted-foreground">Category</div>
+                    <div className="font-medium">
+                      {onboardingDetails?.category || "-"}
+                    </div>
+                  </div>
+                  <div className="rounded border p-2">
+                    <div className="text-muted-foreground">Region</div>
+                    <div className="font-medium">
+                      {onboardingDetails?.region || "-"}
+                    </div>
+                  </div>
+                  <div className="rounded border p-2">
+                    <div className="text-muted-foreground">Segment</div>
+                    <div className="font-medium">
+                      {onboardingDetails?.segment || "-"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="font-medium">Contacts</div>
+                <div className="space-y-2">
+                  {(onboardingDetails?.contacts || []).length === 0 ? (
+                    <div className="text-muted-foreground">None</div>
+                  ) : (
+                    (onboardingDetails?.contacts || []).map(
+                      (c: any, i: number) => (
+                        <div key={i} className="rounded border p-2">
+                          <div className="font-medium">
+                            {c.role || "Contact"}
+                          </div>
+                          <div className="text-muted-foreground">
+                            {c.name || ""} • {c.email || ""} • {c.phone || ""}
+                          </div>
+                        </div>
+                      )
+                    )
+                  )}
+                </div>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="font-medium">Documents</div>
+                <div className="space-y-2">
+                  {(() => {
+                    const o = onboardingDetails?.onboarding || {};
+                    const uploads = [
+                      ...(o.priceListUploads || []),
+                      ...(o.registrationCertificateUploads || []),
+                      ...(o.businessRegistrationCertificateUploads || []),
+                      ...(o.taxClearanceCertificateUploads || []),
+                      ...(o.gstVatRegistrationCertificateUploads || []),
+                      ...(o.businessLicenseUploads || []),
+                      ...(o.nassitCertificateUploads || []),
+                      ...(o.sectorSpecificCertificateUploads || []),
+                    ];
+                    const docs = onboardingDetails?.documents || [];
+                    const empty = uploads.length === 0 && docs.length === 0;
+                    if (empty)
+                      return <div className="text-muted-foreground">None</div>;
+                    return (
+                      <div className="space-y-2">
+                        {uploads.map((d: any, i: number) => (
+                          <div
+                            key={`ud-${i}`}
+                            className="flex items-center justify-between p-2 rounded border"
+                          >
+                            {d.url ? (
+                              <a
+                                href={d.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium hover:underline break-all"
+                              >
+                                {d.name || "Document"}
+                              </a>
+                            ) : (
+                              <span className="font-medium break-all">
+                                {d.name || "Document"}
+                              </span>
+                            )}
+                            <div className="text-muted-foreground">
+                              {d.type || ""} • {d.size || ""}
+                            </div>
+                          </div>
+                        ))}
+                        {docs.map((d: any, i: number) => (
+                          <div
+                            key={`dd-${i}`}
+                            className="flex items-center justify-between p-2 rounded border"
+                          >
+                            <span className="font-medium">
+                              {d.name || "Document"}
+                            </span>
+                            <div className="text-muted-foreground">
+                              {d.type || ""} • {d.size || ""}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="font-medium">Admin Actions</div>
+                <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+                  <Input
+                    placeholder="Rejection reason"
+                    value={rejectReason}
+                    onChange={(e) => setRejectReason(e.target.value)}
+                    className="sm:max-w-xs"
+                  />
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={handleApproveOnboarding}
+                      disabled={approveLoading}
+                    >
+                      {approveLoading ? "Approving..." : "Approve"}
+                    </Button>
+                    <Button
+                      onClick={handleRejectOnboarding}
+                      variant="destructive"
+                      disabled={rejectLoading || !rejectReason.trim()}
+                    >
+                      {rejectLoading ? "Rejecting..." : "Reject"}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

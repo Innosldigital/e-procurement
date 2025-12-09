@@ -24,6 +24,26 @@ export async function getApprovals() {
   }
 }
 
+export async function getPendingApprovalsCount() {
+  try {
+    await dbConnect();
+    const statuses = [
+      "Awaiting your approval",
+      "Pending review",
+      "Parallel approval",
+      "SLA breached",
+    ];
+    const count = await Approval.countDocuments({ status: { $in: statuses } });
+    return { success: true, count };
+  } catch (error) {
+    return {
+      success: false,
+      error: "Failed to count pending approvals",
+      count: 0,
+    };
+  }
+}
+
 export async function getApprovalById(id: string) {
   try {
     await dbConnect();

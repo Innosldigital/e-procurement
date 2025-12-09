@@ -12,7 +12,10 @@ import {
   getPurchaseOrders,
   getSpendMTD,
 } from "@/lib/actions/purchase-order-actions";
-import { getApprovals } from "@/lib/actions/approval-actions";
+import {
+  getApprovals,
+  getPendingApprovalsCount,
+} from "@/lib/actions/approval-actions";
 import { getInvoices } from "@/lib/actions/invoice-actions";
 import {
   getNotifications,
@@ -86,6 +89,7 @@ export default async function DashboardPage() {
     spendResult,
     notificationsResult,
     notificationsPublicResult,
+    pendingApprovalsResult,
   ] = await Promise.all([
     getRequisitions(),
     getPurchaseOrders(),
@@ -94,6 +98,7 @@ export default async function DashboardPage() {
     getSpendMTD(),
     getNotifications(10),
     getNotificationsPublic(10),
+    getPendingApprovalsCount(),
   ]);
 
   const requisitions = (
@@ -109,14 +114,16 @@ export default async function DashboardPage() {
     invoicesResult.success ? invoicesResult.data : []
   ) as InvoiceSummary[];
 
-  const pendingApprovals = approvals.filter((a) =>
-    [
-      "Awaiting your approval",
-      "Pending review",
-      "Parallel approval",
-      "SLA breached",
-    ].includes(a.status)
-  ).length;
+  const pendingApprovals = pendingApprovalsResult.success
+    ? (pendingApprovalsResult as any).count
+    : approvals.filter((a) =>
+        [
+          "Awaiting your approval",
+          "Pending review",
+          "Parallel approval",
+          "SLA breached",
+        ].includes(a.status)
+      ).length;
   const pendingRequisitions = requisitions.filter(
     (r) => r.status === "Pending approval" || r.status === "In review"
   ).length;
@@ -180,7 +187,6 @@ export default async function DashboardPage() {
             real-time.
           </p>
         </div>
-        {/* Client component handles form modals */}
         <DashboardClient />
       </div>
 
