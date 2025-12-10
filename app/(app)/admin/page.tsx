@@ -201,7 +201,7 @@ export default function UsersTable() {
   };
 
   // --------------------------------------------------------------
-  // 🔥 APPLY FILTER HERE: Admin should NOT see superadmin users
+  // APPLY FILTER HERE: Admin should NOT see superadmin users
   // --------------------------------------------------------------
   useEffect(() => {
     const fetchData = async () => {

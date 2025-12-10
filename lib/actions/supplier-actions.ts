@@ -52,7 +52,16 @@ export async function getSupplierOnboardingByUserId(userId: string) {
       supplierId: (supplier as any).supplierId,
       name: (supplier as any).name,
       approved: (supplier as any).approved === true,
+      category: (supplier as any).category || "",
+      region: (supplier as any).region || "",
+      segment: (supplier as any).segment || "",
       onboarding: (supplier as any).onboarding || {},
+      contacts: Array.isArray((supplier as any).contacts)
+        ? (supplier as any).contacts
+        : [],
+      documents: Array.isArray((supplier as any).documents)
+        ? (supplier as any).documents
+        : [],
     };
     return { success: true, data: JSON.parse(JSON.stringify(data)) };
   } catch (error) {

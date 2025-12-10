@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -25,8 +25,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { updateUser } from "@/lib/actions/user-actions";
+import { updateUser, getUserPhoto } from "@/lib/actions/user-actions";
 import { useToast } from "@/hooks/use-toast";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const lawyerFormSchema = z.object({
   firstName: z
@@ -63,6 +64,22 @@ const EditUser = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const [photoUrl, setPhotoUrl] = useState<string | undefined>(
+    String(userData?.photo || userData?.imageUrl || "") || undefined
+  );
+
+  useEffect(() => {
+    const run = async () => {
+      try {
+        if (!userData?.id) return;
+        const res = await getUserPhoto(String(userData.id));
+        if (res?.success && res.photo) {
+          setPhotoUrl(res.photo);
+        }
+      } catch {}
+    };
+    if (isOpen) run();
+  }, [isOpen, userData?.id]);
 
   const getAvailableRoles = () => {
     if (currentUserRole === "superadmin") {
@@ -209,7 +226,27 @@ const EditUser = ({
           <SheetHeader className="pb-6 space-y-3">
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10">
-                <User className="w-5 h-5 text-primary" />
+                {/* <User className="w-5 h-5 text-primary" /> */}
+                <Avatar className="w-10 h-10 sm:w-11 sm:h-11 ring-2 ring-offset-2 ring-primary/10">
+                  <AvatarImage
+                    src={
+                      photoUrl ||
+                      userData?.photo ||
+                      userData?.imageUrl ||
+                      "/placeholder.svg"
+                    }
+                    alt={
+                      `${form.watch("firstName") || ""} ${
+                        form.watch("lastName") || ""
+                      }`.trim() || "Current user"
+                    }
+                  />
+                  <AvatarFallback className="text-sm font-semibold bg-primary/10 text-primary">
+                    {`${(form.watch("firstName") || "").charAt(0)}${(
+                      form.watch("lastName") || ""
+                    ).charAt(0)}` || "U"}
+                  </AvatarFallback>
+                </Avatar>
               </div>
               <div>
                 <SheetTitle className="text-lg font-semibold sm:text-xl">

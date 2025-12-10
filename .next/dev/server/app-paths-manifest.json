@@ -1,5 +1,5 @@
 {
-  "/(onboard)/onboarding/pending-approval/page": "app/(onboard)/onboarding/pending-approval/page.js",
-  "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
-  "/(onboard)/onboarding/support/page": "app/(onboard)/onboarding/support/page.js"
+  "/(app)/admin/page": "app/(app)/admin/page.js",
+  "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
+  "/page": "app/page.js"
 }

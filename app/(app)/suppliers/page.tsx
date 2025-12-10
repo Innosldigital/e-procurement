@@ -30,6 +30,7 @@ export default function SuppliersPage() {
   const [detailsLoading, setDetailsLoading] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [docsOpen, setDocsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     let mounted = true;
@@ -117,6 +118,14 @@ export default function SuppliersPage() {
     );
   }).length;
 
+  const visibleSuppliers = (suppliers || []).filter((s: any) => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return true;
+    const name = String(s?.name || "").toLowerCase();
+    const id = String(s?.supplierId || "").toLowerCase();
+    return name.includes(q) || id.includes(q);
+  });
+
   return (
     <div className="p-4 md:p-6">
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -192,6 +201,8 @@ export default function SuppliersPage() {
             <Input
               placeholder="Search by supplier name, ID, category..."
               className="mb-4"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <div className="space-y-1">
               {loading ? (
@@ -202,8 +213,12 @@ export default function SuppliersPage() {
                 <div className="text-center py-8 text-muted-foreground text-sm">
                   No suppliers found. Connect to MongoDB to see data.
                 </div>
+              ) : visibleSuppliers.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground text-sm">
+                  No suppliers match your search.
+                </div>
               ) : (
-                suppliers.map((supplier: any) => (
+                visibleSuppliers.map((supplier: any) => (
                   <button
                     key={supplier._id}
                     onClick={() => setSelectedSupplier(supplier)}

@@ -204,3 +204,19 @@ export async function getCurrentUserRole(): Promise<string> {
     return "";
   }
 }
+
+export async function getUserPhoto(
+  id: string
+): Promise<{ success: boolean; photo?: string; error?: string }> {
+  try {
+    const client = await clerkClient();
+    const user = await client.users.getUser(id);
+    const photo = String((user as any)?.imageUrl || "");
+    return { success: true, photo };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error?.message || "Failed to fetch user photo",
+    };
+  }
+}
