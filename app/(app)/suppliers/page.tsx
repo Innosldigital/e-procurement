@@ -84,30 +84,40 @@ export default function SuppliersPage() {
     };
   }, [selectedSupplier]);
 
+  const visibleSuppliers = (suppliers || []).filter((s: any) => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return true;
+    const name = String(s?.name || "").toLowerCase();
+    const id = String(s?.supplierId || "").toLowerCase();
+    return name.includes(q) || id.includes(q);
+  });
+
   const segments = Array.from(
-    new Set((suppliers || []).map((s: any) => s?.segment).filter(Boolean))
+    new Set(
+      (visibleSuppliers || []).map((s: any) => s?.segment).filter(Boolean)
+    )
   );
   const categories = Array.from(
     new Set(
-      (suppliers || [])
+      (visibleSuppliers || [])
         .map((s: any) => s?.primaryCategory || s?.category)
         .filter(Boolean)
     )
   );
   const regions = Array.from(
-    new Set((suppliers || []).map((s: any) => s?.region).filter(Boolean))
+    new Set((visibleSuppliers || []).map((s: any) => s?.region).filter(Boolean))
   );
   const risks = Array.from(
     new Set(
-      (suppliers || [])
+      (visibleSuppliers || [])
         .map((s: any) => s?.risk || s?.riskStatus || s?.riskRating)
         .filter(Boolean)
     )
   );
-  const strategicCount = (suppliers || []).filter(
+  const strategicCount = (visibleSuppliers || []).filter(
     (s: any) => String(s?.segment || "").toLowerCase() === "strategic"
   ).length;
-  const watchlistCount = (suppliers || []).filter((s: any) => {
+  const watchlistCount = (visibleSuppliers || []).filter((s: any) => {
     const r = String(
       s?.risk || s?.riskStatus || s?.riskRating || ""
     ).toLowerCase();
@@ -117,14 +127,6 @@ export default function SuppliersPage() {
       r.includes("watchlist")
     );
   }).length;
-
-  const visibleSuppliers = (suppliers || []).filter((s: any) => {
-    const q = searchQuery.trim().toLowerCase();
-    if (!q) return true;
-    const name = String(s?.name || "").toLowerCase();
-    const id = String(s?.supplierId || "").toLowerCase();
-    return name.includes(q) || id.includes(q);
-  });
 
   return (
     <div className="p-4 md:p-6">
@@ -177,7 +179,7 @@ export default function SuppliersPage() {
             </div>
           </div>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <span>{suppliers.length} active suppliers</span>
+            <span>{visibleSuppliers.length} active suppliers</span>
             <span>{strategicCount} strategic</span>
             <span>{watchlistCount} on watchlist</span>
           </div>

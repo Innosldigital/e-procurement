@@ -7,9 +7,11 @@ import { Supplier } from "../models/Supplier";
 export async function getSuppliers() {
   try {
     await dbConnect();
-    const suppliers = await Supplier.find({ approved: true })
+    const suppliers = await Supplier.find({
+      approved: true,
+      onboarding: { $exists: true },
+    })
       .sort({ performanceScore: -1 })
-      .limit(50)
       .lean();
 
     return {
