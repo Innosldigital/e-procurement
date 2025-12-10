@@ -83,15 +83,6 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
-// Validate ../../../app/(app)/pending-approval/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/pending-approval">> = Specific
-  const handler = {} as typeof import("../../../app/(app)/pending-approval/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
 // Validate ../../../app/(app)/purchase-orders/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/purchase-orders">> = Specific
@@ -159,6 +150,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/onboarding">> = Specific
   const handler = {} as typeof import("../../../app/(onboard)/onboarding/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/(onboard)/onboarding/pending-approval/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/onboarding/pending-approval">> = Specific
+  const handler = {} as typeof import("../../../app/(onboard)/onboarding/pending-approval/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

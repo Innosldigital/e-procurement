@@ -221,7 +221,7 @@ export default function OnboardingContent() {
                   </div>
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="supplierName">Vendor Name *</Label>
+                      <Label htmlFor="supplierName">Business Name *</Label>
                       <Input
                         id="supplierName"
                         value={supplierName}

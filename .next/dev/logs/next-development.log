@@ -1,77 +1,55 @@
-[00:00:02.727] Server  LOG      ✓ Ready in 2.2s
-[00:00:10.142] Server  LOG      ○ Compiling /onboarding ...
-[00:00:14.457] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:14.457] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:00:18.086] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:18.086] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:00:18.087] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765291097092}
-[00:02:43.100] Server  ERROR   (node:20324) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-[00:02:59.418] Server  LOG     🔍 submitSupplierOnboarding: Starting...
-[00:02:59.434] Server  LOG     ✅ User authenticated: "user_36bhwYl03kloFoNpaWtbMwjeoZS"
-[00:03:01.203] Server  LOG     ✅ Database connected
-[00:03:02.010] Server  LOG     ✅ Generated supplierId: "SUP-5019"
-[00:03:02.011] Server  LOG     📋 Creating supplier...
-[00:03:02.014] Server  LOG     Upload counts: {}
-[00:03:02.016] Server  LOG     Sample URLs: {}
-[00:03:02.510] Server  LOG     ✅ Supplier created: {}
-[00:03:03.587] Server  LOG     ✅ Clerk user metadata updated
-[00:03:03.588] Server  LOG     ✅ Supplier onboarding completed successfully
-[00:03:06.748] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:03:06.749] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__6a44406a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:03:06.751] Server  WARN    Error: Route "/onboarding/supplier/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:03:08.460] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765291267458}
-[00:05:53.470] Server  LOG      ✓ Compiled in 256ms
-[00:05:57.520] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:05:57.520] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:05:57.962] Browser LOG     User is onboarded or already on onboarding page
-[00:05:58.131] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:05:58.131] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[00:05:58.131] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765291437127}
-[00:06:15.306] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:06:15.306] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:06:15.870] Browser LOG     User is onboarded or already on onboarding page
-[00:06:15.870] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:06:15.870] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[00:06:15.870] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765291454873}
-[00:17:48.244] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:17:48.245] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:17:48.751] Browser LOG     User is onboarded or already on onboarding page
-[00:17:48.751] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:17:48.751] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[00:17:48.751] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765292147754}
-[01:00:41.700] Server  LOG      ✓ Compiled in 321ms
-[01:00:51.324] Server  ERROR    ⨯ Error: aborted
-[01:00:52.297] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[01:00:52.297] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[01:00:52.833] Browser LOG     User is onboarded or already on onboarding page
-[01:00:52.957] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:00:52.957] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[01:00:52.957] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765294731950}
-[01:02:42.576] Server  LOG      ✓ Compiled in 176ms
-[01:03:37.479] Server  LOG      ✓ Compiled in 326ms
-[01:30:01.124] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[01:30:01.124] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[01:30:01.558] Browser LOG     User is onboarded or already on onboarding page
-[01:30:01.558] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:30:01.558] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[01:30:01.558] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765296480568}
-[01:32:42.827] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[01:32:42.827] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[01:32:43.270] Browser LOG     User is onboarded or already on onboarding page
-[01:32:43.270] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:32:43.270] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[01:32:43.270] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765296642277}
-[01:34:16.807] Server  LOG      ✓ Compiled in 272ms
-[01:34:21.397] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[01:34:21.397] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[01:34:21.829] Browser LOG     User is onboarded or already on onboarding page
-[01:34:21.829] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:34:21.829] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[01:34:21.829] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765296740838}
-[01:39:46.741] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[01:39:46.741] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[01:39:47.147] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:39:47.147] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
-[01:39:47.147] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765297066146}
-[01:39:47.147] Browser LOG     User is onboarded or already on onboarding page
+[00:00:02.417] Server  LOG      ✓ Ready in 1831ms
+[00:00:20.209] Server  LOG      ○ Compiling /onboarding/pending-approval ...
+[00:00:33.253] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:33.253] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:33.373] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:33.373] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[00:00:33.373] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765324910674}
+[00:00:44.671] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:44.672] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__6a44406a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:44.675] Server  WARN    Error: Route "/onboarding/supplier/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:47.388] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765324924645}
+[00:03:41.078] Server  LOG      ✓ Compiled in 299ms
+[00:03:46.901] Server  LOG     getSupplierById: {}
+[00:12:24.600] Server  LOG      ✓ Compiled in 123ms
+[00:12:30.491] Server  LOG     getSupplierById: {}
+[00:13:22.496] Server  LOG      ✓ Compiled in 141ms
+[00:13:24.806] Server  LOG     getSupplierById: {}
+[00:13:31.443] Server  LOG      ✓ Compiled in 155ms
+[00:13:31.849] Server  LOG     getSupplierById: {}
+[00:13:49.689] Server  LOG     getSupplierById: {}
+[00:13:56.895] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:13:56.895] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:13:56.895] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:13:56.895] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[00:13:56.895] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765325714193}
+[00:14:11.625] Server  LOG     getSupplierById: {}
+[00:14:13.735] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765325731029}
+[00:15:09.547] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:15:09.547] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:15:09.774] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:15:09.774] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/support","route":"/onboarding/support"}
+[00:15:09.774] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/support color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/support","o":"http://localhost:3000/onboarding/support","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765325787066}
+[00:15:53.883] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:15:53.883] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:15:53.883] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:15:53.883] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[00:15:53.883] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765325831173}
+[00:16:33.659] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/support color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/support","o":"http://localhost:3000/onboarding/support","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765325870958}
+[00:17:48.787] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765325946079}
+[00:18:05.129] Server  LOG     getSupplierById: {}
+[00:18:05.816] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765325963114}
+[00:19:26.537] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:19:26.537] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:19:26.718] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:19:26.718] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[00:19:26.718] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765326044021}
+[00:25:55.526] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/support color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/support","o":"http://localhost:3000/onboarding/support","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765326432811}
+[00:26:00.283] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765326437577}
+[00:26:04.924] Server  LOG     getSupplierById: {}
+[00:26:05.231] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693834fdc212d06b033e44de","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765326442515}
+[00:36:52.250] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:36:52.250] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[00:36:52.250] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765327088375}
+[00:36:52.250] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:36:52.250] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props

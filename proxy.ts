@@ -9,8 +9,8 @@ const isApiRoute = createRouteMatcher(["/(api|trpc)(.*)"]);
 
 export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
-    const path = request.nextUrl.pathname
-    const isUsersApi = path.startsWith("/api/users")
+    const path = request.nextUrl.pathname;
+    const isUsersApi = path.startsWith("/api/users");
     if (!isUsersApi) {
       await auth.protect();
     }
@@ -62,12 +62,14 @@ export default clerkMiddleware(async (auth, request) => {
         const url = new URL("/onboarding", request.url);
         return NextResponse.redirect(url);
       } else if (onboarded && !supplierApproved) {
-        // Supplier onboarded but not approved - show pending page
-        if (
-          !request.nextUrl.pathname.startsWith("/pending-approval") &&
-          !isApiRoute(request)
-        ) {
-          const url = new URL("/pending-approval", request.url);
+        const p = request.nextUrl.pathname;
+        const allowed =
+          p.startsWith("/onboarding/pending-approval") ||
+          p.startsWith("/onboarding/support") ||
+          p === "/onboarding" ||
+          p.startsWith("/onboarding/supplier/");
+        if (!allowed && !isApiRoute(request)) {
+          const url = new URL("/onboarding/pending-approval", request.url);
           return NextResponse.redirect(url);
         }
         return NextResponse.next();

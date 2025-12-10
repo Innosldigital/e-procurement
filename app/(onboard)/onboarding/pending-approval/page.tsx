@@ -4,17 +4,22 @@ import { StatusBadge } from "@/components/status-badge";
 import { auth } from "@clerk/nextjs/server";
 import dbConnect from "@/lib/mongodb";
 import { Supplier } from "@/lib/models/Supplier";
+import Link from "next/link";
 
 export default async function PendingApprovalPage() {
   const { userId } = await auth();
   let supplierHref = "/onboarding";
+  let supplierId: string | null = null;
   if (userId) {
     await dbConnect();
     const s = (await Supplier.findOne(
       { ownerUserId: userId },
       { _id: 1 }
     ).lean()) as { _id: string } | null;
-    if (s && s._id) supplierHref = `/onboarding/supplier/${String(s._id)}`;
+    if (s && s._id) {
+      supplierId = String(s._id);
+      supplierHref = `/onboarding/supplier/${supplierId}`;
+    }
   }
   return (
     <div className="mx-auto max-w-4xl p-6">
@@ -39,10 +44,13 @@ export default async function PendingApprovalPage() {
           </p>
           <div className="flex gap-2">
             <Button asChild variant="outline">
-              <a href="/onboarding">Back to onboarding</a>
+              <Link href="/onboarding/support">Contact Support</Link>
             </Button>
+
             <Button asChild>
-              <a href={supplierHref}>View supplier details</a>
+              <Link href={supplierHref}>
+                {supplierId ? "View Supplier Details" : "Continue Onboarding"}
+              </Link>
             </Button>
           </div>
         </CardContent>
