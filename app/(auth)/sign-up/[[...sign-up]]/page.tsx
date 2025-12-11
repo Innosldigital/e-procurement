@@ -22,8 +22,8 @@ export default function SignUpPage() {
               card: "shadow-lg border border-border",
             },
           }}
-          fallbackRedirectUrl="/"
-          forceRedirectUrl="/"
+          afterSignUpUrl="/sign-in"
+          afterSignInUrl="/"
         />
       </div>
     </div>
