@@ -1,4 +1,4 @@
-# E-Procurement Suite
+# Inno-SL Procurement
 
 A comprehensive enterprise procurement management system built with Next.js 16, MongoDB, Clerk Authentication, and TypeScript.
 
@@ -27,33 +27,37 @@ A comprehensive enterprise procurement management system built with Next.js 16, 
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - MongoDB (local installation or MongoDB Atlas account)
 - Clerk account
 
 ### Installation
 
 1. Clone and install dependencies:
-\`\`\`bash
-npm install
-\`\`\`
+   \`\`\`bash
+   npm install
+   \`\`\`
 
 2. Set up environment variables:
-\`\`\`bash
-cp .env.example .env.local
-\`\`\`
+   \`\`\`bash
+   cp .env.example .env.local
+   \`\`\`
 
 Edit `.env.local` and add your MongoDB and Clerk credentials:
 \`\`\`env
+
 # MongoDB
+
 MONGODB_URI=mongodb://localhost:27017/eprocurement
 
 # Clerk Authentication
+
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
 CLERK_SECRET_KEY=your_secret_key
 \`\`\`
 
 **Get your Clerk credentials:**
+
 1. Sign up at [clerk.com](https://clerk.com)
 2. Create a new application
 3. Copy your API keys from the dashboard
@@ -64,14 +68,14 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/eprocurement?ret
 \`\`\`
 
 3. Seed the database with sample data:
-\`\`\`bash
-npm run seed
-\`\`\`
+   \`\`\`bash
+   npm run seed
+   \`\`\`
 
 4. Run the development server:
-\`\`\`bash
-npm run dev
-\`\`\`
+   \`\`\`bash
+   npm run dev
+   \`\`\`
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -84,20 +88,24 @@ npm run dev
 1. Install MongoDB Community Edition from [mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
 
 2. Start MongoDB service:
-\`\`\`bash
+   \`\`\`bash
+
 # macOS
+
 brew services start mongodb-community
 
 # Linux
+
 sudo systemctl start mongod
 
 # Windows - runs as a service automatically
+
 \`\`\`
 
 3. Use the connection string in `.env.local`:
-\`\`\`env
-MONGODB_URI=mongodb://localhost:27017/eprocurement
-\`\`\`
+   \`\`\`env
+   MONGODB_URI=mongodb://localhost:27017/eprocurement
+   \`\`\`
 
 ### Option 2: MongoDB Atlas (Cloud)
 
@@ -118,6 +126,7 @@ This application uses [Clerk](https://clerk.com) for authentication and user man
 2. Create a new application in the Clerk Dashboard
 
 3. Copy your API keys:
+
    - Go to **API Keys** in the sidebar
    - Copy the **Publishable Key** and **Secret Key**
    - Add them to your `.env.local` file
@@ -136,6 +145,7 @@ This application uses [Clerk](https://clerk.com) for authentication and user man
 ### User Roles
 
 User roles and permissions are managed through Clerk's metadata:
+
 - **Procurement Manager**: Full access to all features
 - **Approver**: Can review and approve requisitions and POs
 - **Requester**: Can create requisitions and view their submissions
@@ -158,27 +168,27 @@ See the Mongoose models in `lib/models/` for detailed schemas.
 ## Project Structure
 
 \`\`\`
-├── app/                    # Next.js app directory
-│   ├── page.tsx           # Dashboard
-│   ├── requisitions/      # Requisitions module
-│   ├── suppliers/         # Suppliers module
-│   ├── approvals/         # Approvals module
-│   ├── invoices/          # Invoices module
-│   ├── purchase-orders/   # Purchase orders module
-│   ├── tenders/           # Tenders/RFP module
-│   ├── reports/           # Reports & analytics
-│   └── admin/             # Admin settings
-├── components/            # React components
-│   ├── ui/               # shadcn/ui components
-│   ├── navigation.tsx    # Main navigation sidebar
-│   ├── header.tsx        # Global header
-│   └── status-badge.tsx  # Status indicator component
-├── lib/                   # Utility functions and configurations
-│   ├── actions/          # Server actions for data operations
-│   ├── models/           # Mongoose models
-│   ├── mongodb.ts        # MongoDB connection
-│   └── utils.ts          # Helper functions
-└── scripts/              # Database seeding scripts
+├── app/ # Next.js app directory
+│ ├── page.tsx # Dashboard
+│ ├── requisitions/ # Requisitions module
+│ ├── suppliers/ # Suppliers module
+│ ├── approvals/ # Approvals module
+│ ├── invoices/ # Invoices module
+│ ├── purchase-orders/ # Purchase orders module
+│ ├── tenders/ # Tenders/RFP module
+│ ├── reports/ # Reports & analytics
+│ └── admin/ # Admin settings
+├── components/ # React components
+│ ├── ui/ # shadcn/ui components
+│ ├── navigation.tsx # Main navigation sidebar
+│ ├── header.tsx # Global header
+│ └── status-badge.tsx # Status indicator component
+├── lib/ # Utility functions and configurations
+│ ├── actions/ # Server actions for data operations
+│ ├── models/ # Mongoose models
+│ ├── mongodb.ts # MongoDB connection
+│ └── utils.ts # Helper functions
+└── scripts/ # Database seeding scripts
 \`\`\`
 
 ## Server Actions
@@ -225,6 +235,7 @@ Add these to `.env.local` (never commit this file to git).
 ### Other Platforms
 
 The application can be deployed to any platform that supports Next.js:
+
 - Netlify
 - AWS Amplify
 - Railway
@@ -239,6 +250,7 @@ Make sure to set the `MONGODB_URI`, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, and `CL
 **Error**: `MongooseServerSelectionError`
 
 **Solutions**:
+
 - Verify MongoDB is running: `mongosh` (should connect)
 - Check `MONGODB_URI` in `.env.local`
 - For Atlas: Verify IP whitelist and credentials
@@ -266,6 +278,7 @@ PORT=3001 npm run dev
 **Error**: `Clerk: Missing publishable key`
 
 **Solutions**:
+
 - Verify `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` is set in `.env.local`
 - Restart the dev server after adding environment variables
 - Check that the key starts with `pk_test_` or `pk_live_`
@@ -273,6 +286,7 @@ PORT=3001 npm run dev
 **Error**: Redirects not working after sign in
 
 **Solutions**:
+
 - Check `NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL` in `.env.local`
 - Verify middleware configuration in `middleware.ts`
 - Clear browser cookies and try again

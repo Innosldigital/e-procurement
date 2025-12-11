@@ -1,6 +1,6 @@
-# Quick Start Guide - E-Procurement Suite
+# Quick Start Guide - Inno-SL Procurement
 
-Get your E-Procurement Suite running in 5 minutes!
+Get your Inno-SL Procurement running in 5 minutes!
 
 ## Prerequisites
 
@@ -18,19 +18,24 @@ npm install
 ### Option A: Local MongoDB (Recommended for Development)
 
 1. Install MongoDB Community Edition:
+
    - **macOS**: `brew install mongodb-community`
    - **Windows**: [Download installer](https://www.mongodb.com/try/download/community)
    - **Linux**: [Follow guide](https://www.mongodb.com/docs/manual/administration/install-on-linux/)
 
 2. Start MongoDB:
    \`\`\`bash
+
    # macOS
+
    brew services start mongodb-community
-   
+
    # Linux
+
    sudo systemctl start mongod
-   
+
    # Windows (runs automatically after installation)
+
    \`\`\`
 
 3. Create `.env.local` file:
@@ -56,6 +61,7 @@ npm run seed
 \`\`\`
 
 This will populate your database with:
+
 - 5 Suppliers
 - 4 Requisitions
 - 3 Approvals
@@ -91,7 +97,8 @@ Explore the different modules:
 
 **Error**: `MongooseServerSelectionError`
 
-**Solution**: 
+**Solution**:
+
 - Check MongoDB is running: `mongosh` (should connect)
 - Verify `MONGODB_URI` in `.env.local`
 - For Atlas: Check IP whitelist and credentials
@@ -102,7 +109,9 @@ Explore the different modules:
 
 **Solution**:
 \`\`\`bash
+
 # Re-run the seed script
+
 npm run seed
 \`\`\`
 
@@ -112,7 +121,9 @@ npm run seed
 
 **Solution**:
 \`\`\`bash
+
 # Kill the process or use a different port
+
 PORT=3001 npm run dev
 \`\`\`
 

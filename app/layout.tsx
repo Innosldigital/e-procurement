@@ -5,7 +5,7 @@ import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "E-Procurement Suite",
+  title: "Inno-SL Procurement",
   description: "Enterprise procurement management platform",
   icons: {
     icon: [

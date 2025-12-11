@@ -1,10 +1,21 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from "next/link"
-import { usePathname } from 'next/navigation'
-import { LayoutDashboard, FileText, CheckSquare, Package, ShoppingCart, Building2, Receipt, BarChart3, Settings, X } from 'lucide-react'
-import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  LayoutDashboard,
+  FileText,
+  CheckSquare,
+  Package,
+  ShoppingCart,
+  Building2,
+  Receipt,
+  BarChart3,
+  Settings,
+  X,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", icon: LayoutDashboard, label: "Dashboard" },
@@ -16,56 +27,67 @@ const navItems = [
   { href: "/invoices", icon: Receipt, label: "Invoices" },
   { href: "/reports", icon: BarChart3, label: "Reports" },
   { href: "/admin", icon: Settings, label: "Admin" },
-]
+];
 
 interface NavigationProps {
-  mobileOpen?: boolean
-  setMobileOpen?: (open: boolean) => void
+  mobileOpen?: boolean;
+  setMobileOpen?: (open: boolean) => void;
 }
 
-export function Navigation({ mobileOpen = false, setMobileOpen }: NavigationProps) {
-  const pathname = usePathname()
-  const [localMobileOpen, setLocalMobileOpen] = useState(false)
-  
-  const isOpen = setMobileOpen ? mobileOpen : localMobileOpen
-  const handleToggle = setMobileOpen || setLocalMobileOpen
+export function Navigation({
+  mobileOpen = false,
+  setMobileOpen,
+}: NavigationProps) {
+  const pathname = usePathname();
+  const [localMobileOpen, setLocalMobileOpen] = useState(false);
+
+  const isOpen = setMobileOpen ? mobileOpen : localMobileOpen;
+  const handleToggle = setMobileOpen || setLocalMobileOpen;
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen])
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   return (
     <>
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-200"
           onClick={() => handleToggle(false)}
         />
       )}
 
-      <nav className={cn(
-        "w-64 bg-background border-r border-border h-screen fixed md:sticky top-0 z-50 transition-all duration-300 ease-out shadow-xl md:shadow-none",
-        "flex flex-col",
-        isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-      )}>
+      <nav
+        className={cn(
+          "w-64 bg-background border-r border-border h-screen fixed md:sticky top-0 z-50 transition-all duration-300 ease-out shadow-xl md:shadow-none",
+          "flex flex-col",
+          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        )}
+      >
         <div className="flex items-center justify-between p-4 border-b border-border md:border-0">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">EP</span>
+              <span className="text-primary-foreground font-bold text-sm">
+                EP
+              </span>
             </div>
             <div className="flex flex-col">
-              <span className="font-semibold text-sm leading-tight">E-Procurement</span>
-              <span className="text-xs text-muted-foreground leading-tight">Suite</span>
+              <span className="font-semibold text-sm leading-tight">
+                E-Procurement
+              </span>
+              <span className="text-xs text-muted-foreground leading-tight">
+                Suite
+              </span>
             </div>
           </div>
-          
+
           <button
             onClick={() => handleToggle(false)}
             className="md:hidden p-2 hover:bg-accent rounded-md transition-colors"
@@ -74,13 +96,15 @@ export function Navigation({ mobileOpen = false, setMobileOpen }: NavigationProp
             <X className="w-5 w-5" />
           </button>
         </div>
-        
+
         <div className="flex-1 overflow-y-auto p-4">
           <div className="space-y-1">
-            <p className="text-xs font-medium text-muted-foreground px-3 mb-3 uppercase tracking-wider">Navigation</p>
+            <p className="text-xs font-medium text-muted-foreground px-3 mb-3 uppercase tracking-wider">
+              Navigation
+            </p>
             {navItems.map((item) => {
-              const isActive = pathname === item.href
-              const Icon = item.icon
+              const isActive = pathname === item.href;
+              const Icon = item.icon;
               return (
                 <Link
                   key={item.href}
@@ -97,7 +121,7 @@ export function Navigation({ mobileOpen = false, setMobileOpen }: NavigationProp
                   <Icon className="w-4 h-4 flex-shrink-0" />
                   <span>{item.label}</span>
                 </Link>
-              )
+              );
             })}
           </div>
         </div>
@@ -105,10 +129,10 @@ export function Navigation({ mobileOpen = false, setMobileOpen }: NavigationProp
         <div className="p-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
             <p className="font-medium">Version 1.0.0</p>
-            <p className="mt-1">© 2025 E-Procurement Suite</p>
+            <p className="mt-1">© 2025 Inno-SL Procurement</p>
           </div>
         </div>
       </nav>
     </>
-  )
+  );
 }

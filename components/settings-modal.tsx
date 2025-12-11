@@ -1,25 +1,47 @@
-"use client"
-import { X, Building2, Globe, Mail, Phone, MapPin, CreditCard, Shield, Bell, Users, Database, Zap } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+"use client";
+import {
+  X,
+  Building2,
+  Globe,
+  Mail,
+  Phone,
+  MapPin,
+  CreditCard,
+  Shield,
+  Bell,
+  Users,
+  Database,
+  Zap,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface SettingsModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
       {/* Modal */}
       <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-background rounded-lg shadow-2xl mx-4 animate-in fade-in-0 zoom-in-95 duration-200">
@@ -27,7 +49,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         <div className="sticky top-0 z-10 bg-background border-b px-6 py-4 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-semibold">Settings</h2>
-            <p className="text-sm text-muted-foreground">Manage your procurement system configuration</p>
+            <p className="text-sm text-muted-foreground">
+              Manage your procurement system configuration
+            </p>
           </div>
           <Button variant="ghost" size="icon" onClick={onClose}>
             <X className="h-5 w-5" />
@@ -52,13 +76,15 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <Globe className="h-5 w-5" />
                     System Information
                   </CardTitle>
-                  <CardDescription>Basic system configuration and details</CardDescription>
+                  <CardDescription>
+                    Basic system configuration and details
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label>System Name</Label>
-                      <Input value="E-Procurement Suite" readOnly />
+                      <Input value="Inno-SL Procurement" readOnly />
                     </div>
                     <div className="space-y-2">
                       <Label>Version</Label>
@@ -82,13 +108,17 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <Shield className="h-5 w-5" />
                     Security & Access
                   </CardTitle>
-                  <CardDescription>Manage security settings and authentication</CardDescription>
+                  <CardDescription>
+                    Manage security settings and authentication
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Two-Factor Authentication</Label>
-                      <p className="text-sm text-muted-foreground">Require 2FA for all users</p>
+                      <p className="text-sm text-muted-foreground">
+                        Require 2FA for all users
+                      </p>
                     </div>
                     <Switch defaultChecked />
                   </div>
@@ -96,7 +126,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>SSO Integration</Label>
-                      <p className="text-sm text-muted-foreground">Single sign-on enabled</p>
+                      <p className="text-sm text-muted-foreground">
+                        Single sign-on enabled
+                      </p>
                     </div>
                     <Switch defaultChecked />
                   </div>
@@ -104,7 +136,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Session Timeout</Label>
-                      <p className="text-sm text-muted-foreground">Auto logout after inactivity</p>
+                      <p className="text-sm text-muted-foreground">
+                        Auto logout after inactivity
+                      </p>
                     </div>
                     <Input className="w-32" value="30 minutes" readOnly />
                   </div>
@@ -120,7 +154,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <Building2 className="h-5 w-5" />
                     Company Details
                   </CardTitle>
-                  <CardDescription>Your organization information</CardDescription>
+                  <CardDescription>
+                    Your organization information
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
@@ -169,7 +205,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <CreditCard className="h-5 w-5" />
                     Budget & Fiscal Year
                   </CardTitle>
-                  <CardDescription>Financial year and budget configuration</CardDescription>
+                  <CardDescription>
+                    Financial year and budget configuration
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -202,15 +240,21 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <Database className="h-5 w-5" />
                     Database Connection
                   </CardTitle>
-                  <CardDescription>MongoDB configuration and status</CardDescription>
+                  <CardDescription>
+                    MongoDB configuration and status
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <span className="text-sm font-medium">MongoDB Connected</span>
+                      <span className="text-sm font-medium">
+                        MongoDB Connected
+                      </span>
                     </div>
-                    <span className="text-xs text-muted-foreground">Atlas Cluster</span>
+                    <span className="text-xs text-muted-foreground">
+                      Atlas Cluster
+                    </span>
                   </div>
                   <div className="space-y-2">
                     <Label>Database Name</Label>
@@ -235,7 +279,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <Zap className="h-5 w-5" />
                     Authentication Provider
                   </CardTitle>
-                  <CardDescription>Clerk authentication integration</CardDescription>
+                  <CardDescription>
+                    Clerk authentication integration
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
@@ -243,7 +289,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                       <span className="text-sm font-medium">Clerk Active</span>
                     </div>
-                    <span className="text-xs text-muted-foreground">Production</span>
+                    <span className="text-xs text-muted-foreground">
+                      Production
+                    </span>
                   </div>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
@@ -264,13 +312,17 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <Users className="h-5 w-5" />
                     External Systems
                   </CardTitle>
-                  <CardDescription>Third-party integrations status</CardDescription>
+                  <CardDescription>
+                    Third-party integrations status
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center justify-between p-3 border rounded-lg">
                     <div>
                       <p className="font-medium text-sm">ERP - SAP S/4HANA</p>
-                      <p className="text-xs text-muted-foreground">Financial sync</p>
+                      <p className="text-xs text-muted-foreground">
+                        Financial sync
+                      </p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full" />
@@ -280,7 +332,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between p-3 border rounded-lg">
                     <div>
                       <p className="font-medium text-sm">SSO - Azure AD</p>
-                      <p className="text-xs text-muted-foreground">User authentication</p>
+                      <p className="text-xs text-muted-foreground">
+                        User authentication
+                      </p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full" />
@@ -290,7 +344,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between p-3 border rounded-lg">
                     <div>
                       <p className="font-medium text-sm">Email - SendGrid</p>
-                      <p className="text-xs text-muted-foreground">Notifications</p>
+                      <p className="text-xs text-muted-foreground">
+                        Notifications
+                      </p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-orange-500 rounded-full" />
@@ -309,13 +365,17 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     <Bell className="h-5 w-5" />
                     Notification Preferences
                   </CardTitle>
-                  <CardDescription>Configure system-wide notification settings</CardDescription>
+                  <CardDescription>
+                    Configure system-wide notification settings
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Approval Notifications</Label>
-                      <p className="text-sm text-muted-foreground">Notify when items require approval</p>
+                      <p className="text-sm text-muted-foreground">
+                        Notify when items require approval
+                      </p>
                     </div>
                     <Switch defaultChecked />
                   </div>
@@ -323,7 +383,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Invoice Alerts</Label>
-                      <p className="text-sm text-muted-foreground">Alert on overdue invoices</p>
+                      <p className="text-sm text-muted-foreground">
+                        Alert on overdue invoices
+                      </p>
                     </div>
                     <Switch defaultChecked />
                   </div>
@@ -331,7 +393,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Budget Warnings</Label>
-                      <p className="text-sm text-muted-foreground">Warn when approaching budget limits</p>
+                      <p className="text-sm text-muted-foreground">
+                        Warn when approaching budget limits
+                      </p>
                     </div>
                     <Switch defaultChecked />
                   </div>
@@ -339,7 +403,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Tender Updates</Label>
-                      <p className="text-sm text-muted-foreground">Updates on tender responses</p>
+                      <p className="text-sm text-muted-foreground">
+                        Updates on tender responses
+                      </p>
                     </div>
                     <Switch defaultChecked />
                   </div>
@@ -347,7 +413,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Email Notifications</Label>
-                      <p className="text-sm text-muted-foreground">Send notifications via email</p>
+                      <p className="text-sm text-muted-foreground">
+                        Send notifications via email
+                      </p>
                     </div>
                     <Switch />
                   </div>
@@ -357,7 +425,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               <Card>
                 <CardHeader>
                   <CardTitle>Notification Channels</CardTitle>
-                  <CardDescription>How you receive notifications</CardDescription>
+                  <CardDescription>
+                    How you receive notifications
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -370,7 +440,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       <Input value="Real-time" readOnly />
                     </div>
                   </div>
-                  <div className="text-sm text-muted-foreground">Last notification sent: 2 hours ago</div>
+                  <div className="text-sm text-muted-foreground">
+                    Last notification sent: 2 hours ago
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -386,5 +458,5 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

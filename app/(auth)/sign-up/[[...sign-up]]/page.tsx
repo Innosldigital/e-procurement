@@ -9,7 +9,7 @@ export default function SignUpPage() {
             <span className="text-xl font-bold">EP</span>
           </div>
           <h1 className="text-2xl font-semibold text-foreground mb-2">
-            E-Procurement Suite
+            Inno-SL Procurement
           </h1>
           <p className="text-sm text-muted-foreground">
             Create your account to get started
