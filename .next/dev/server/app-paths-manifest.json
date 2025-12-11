@@ -1,8 +1,6 @@
 {
-  "/(app)/admin/page": "app/(app)/admin/page.js",
   "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
+  "/(onboard)/onboarding/pending-approval/page": "app/(onboard)/onboarding/pending-approval/page.js",
   "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
-  "/(onboard)/onboarding/support/page": "app/(onboard)/onboarding/support/page.js",
-  "/api/upload/route": "app/api/upload/route.js",
-  "/page": "app/page.js"
+  "/(onboard)/onboarding/support/page": "app/(onboard)/onboarding/support/page.js"
 }
