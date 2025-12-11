@@ -63,7 +63,7 @@ export default function SupportPage() {
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Jane Doe"
+                      placeholder="Ngevao Sesay"
                     />
                   </div>
                   <div className="space-y-2">
@@ -140,22 +140,22 @@ export default function SupportPage() {
                   Email:{" "}
                   <a
                     className="text-primary hover:underline"
-                    href="mailto:support@eprocurement.local"
+                    href="mailto:platformlead@innosldigital.com"
                   >
-                    support@eprocurement.local
+                    platformlead@innosldigital.com
                   </a>
                 </div>
                 <div>
                   Phone:{" "}
                   <a
                     className="text-primary hover:underline"
-                    href="tel:+23276000000"
+                    href="tel:++23288196555"
                   >
-                    +232 76 000 000
+                    +232-88-196555
                   </a>
                 </div>
                 <div>Hours: Mon–Fri, 9:00–17:00 GMT</div>
-                <div>Address: 123 Signal Hill Rd, Freetown, Sierra Leone</div>
+                <div>Address: 9b Spur Loop</div>
               </div>
             </CardContent>
           </Card>

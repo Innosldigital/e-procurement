@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Get Started | E-Procurement Suite",
+  title: "Get Started | Inno-SL Procurement",
   description: "Complete your onboarding to unlock all features",
 };
 
@@ -17,11 +17,11 @@ export default function OnboardingLayout({
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center size-8 sm:size-10 rounded-md bg-primary/10 text-primary font-semibold">
-              EP
+              IP
             </div>
             <div className="flex flex-col">
               <span className="text-sm sm:text-base font-semibold">
-                E-Procurement Suite
+                Inno-SL Procurement
               </span>
               <span className="text-xs sm:text-sm text-muted-foreground">
                 Onboarding
@@ -46,7 +46,7 @@ export default function OnboardingLayout({
       </main>
       <footer className="relative z-10 py-6 border-t border-border/50 bg-background/80 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 text-sm text-center text-muted-foreground">
-          <p>© 2025 E-Procurement Suite. All rights reserved.</p>
+          <p>© 2025 Inno-SL Procurement. All rights reserved.</p>
         </div>
       </footer>
     </div>

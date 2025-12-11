@@ -126,7 +126,7 @@ export async function submitSupplierOnboarding(data: any) {
       segment: data.segment || "Standard",
       commercialTerms: {
         paymentTerms: (
-          data.vendorPaymentTerms || "initial payment for 20%"
+          data.vendorPaymentTerms || "Payment for 20% upfront"
         ).trim(),
         diversityStatus: "",
       },

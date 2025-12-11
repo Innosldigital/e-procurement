@@ -44,6 +44,7 @@ export default function OnboardingContent() {
   const [sectorCertFiles, setSectorCertFiles] = useState<FileList | null>(null);
   const [paymentMethods, setPaymentMethods] = useState<string[]>([]);
   const [vendorPaymentTerms, setVendorPaymentTerms] = useState("");
+  const [declVendorUpfront20, setDeclVendorUpfront20] = useState(false);
   const [businessLeadGender, setBusinessLeadGender] = useState("");
   const [inBusinessMoreThan3Years, setInBusinessMoreThan3Years] =
     useState(false);
@@ -226,7 +227,7 @@ export default function OnboardingContent() {
                         id="supplierName"
                         value={supplierName}
                         onChange={(e) => setSupplierName(e.target.value)}
-                        placeholder="Northwind Trading Co."
+                        placeholder="Two Brother's Enterprise."
                       />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -238,7 +239,7 @@ export default function OnboardingContent() {
                           id="contactPerson"
                           value={contactPerson}
                           onChange={(e) => setContactPerson(e.target.value)}
-                          placeholder="John Doe"
+                          placeholder="Ngevao Sesay"
                         />
                       </div>
                       <div className="space-y-2">
@@ -579,23 +580,6 @@ export default function OnboardingContent() {
                         ))}
                       </div>
                     </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="vendorPaymentTerms">
-                        Vendor Payment Terms *
-                      </Label>
-                      <Textarea
-                        id="vendorPaymentTerms"
-                        value={vendorPaymentTerms}
-                        onChange={(e) => setVendorPaymentTerms(e.target.value)}
-                        placeholder="Enter payment terms including any penalties for late payments (e.g., Net 30 days, 5% penalty if payment is delayed beyond 30 days)"
-                        rows={4}
-                      />
-                      <p className="text-xs text-muted-foreground">
-                        For food and other vendors, specify if there are
-                        penalties for late payments
-                      </p>
-                    </div>
                   </div>
                 </div>
 
@@ -639,6 +623,25 @@ export default function OnboardingContent() {
                       >
                         I agree to follow all procurement and delivery rules and
                         regulations of the platform.
+                      </Label>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Checkbox
+                        id="declVendorUpfront20"
+                        checked={declVendorUpfront20}
+                        onCheckedChange={(checked) => {
+                          const v = Boolean(checked);
+                          setDeclVendorUpfront20(v);
+                          setVendorPaymentTerms(
+                            v ? "Payment for 20% upfront" : ""
+                          );
+                        }}
+                      />
+                      <Label
+                        htmlFor="declVendorUpfront20"
+                        className="text-sm font-normal cursor-pointer leading-relaxed"
+                      >
+                        Payment for 20% upfront
                       </Label>
                     </div>
                   </div>
