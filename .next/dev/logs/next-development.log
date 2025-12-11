@@ -32,3 +32,8 @@
 [00:07:29.481] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/supplier/693aac0ada42ea11447ea672","route":"/onboarding/supplier/[id]"}
 [00:07:29.481] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693aac0ada42ea11447ea672 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693aac0ada42ea11447ea672","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765458634619}
 [00:11:27.802] Server  LOG      ✓ Compiled in 212ms
+[00:23:44.754] Server  LOG      ✓ Compiled in 112ms
+[00:23:49.131] Server  LOG     getSupplierById: {}
+[00:23:49.205] Server  LOG     getSupplierById: {}
+[00:23:49.285] Server  LOG     getSupplierById: {}
+[00:23:49.456] Server  LOG     getSupplierById: {}
