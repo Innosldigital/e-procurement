@@ -389,3 +389,161 @@
 [02:41:33.760] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/invoices color: rgb(120, 120, 120) color: inherit {"dp":"/invoices","o":"http://localhost:3000/invoices","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765369090258}
 [02:41:42.492] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765369098981}
 [02:41:43.014] Server  LOG     getSupplierById: {}
+[02:44:00.946] Server  LOG     getSupplierById: {}
+[02:44:03.792] Server  LOG     getSupplierById: {}
+[02:44:08.415] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765369244912}
+[02:44:11.600] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765369248066}
+[02:56:34.120] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765369990618}
+[02:56:44.273] Server  LOG      ✓ Compiled in 146ms
+[02:57:00.125] Server  LOG      ✓ Compiled in 270ms
+[02:57:00.230] Browser ERROR   ./components/create-requisition-form.tsx:143:71
+Parsing ecmascript source code failed
+  141 |               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  142 |                 <div className="space-y-2">
+> 143 |                   <Label htmlFor="requester">Requester Name *</nLabel>
+      |                                                                       ^
+> 144 |                   <Input
+      | ^^^^^^^^^^^^^^^^^^^
+  145 |                     id="requester"
+  146 |                     name="requester"
+  147 |                     required
+
+Expected '</', got 'jsx text (
+                  )'
+
+Import traces:
+  Client Component Browser:
+    ./components/create-requisition-form.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/create-requisition-form.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:57:21.312] Browser ERROR   ./components/create-requisition-form.tsx:143:71
+Parsing ecmascript source code failed
+  141 |               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  142 |                 <div className="space-y-2">
+> 143 |                   <Label htmlFor="requester">Requester Name *</nLabel>
+      |                                                                       ^
+> 144 |                   <Input
+      | ^^^^^^^^^^^^^^^^^^^
+  145 |                     id="requester"
+  146 |                     name="requester"
+  147 |                     required
+
+Expected '</', got 'jsx text (
+                  )'
+
+Import traces:
+  Client Component Browser:
+    ./components/create-requisition-form.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/create-requisition-form.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:57:21.676] Browser ERROR   ./components/create-requisition-form.tsx:143:71
+Parsing ecmascript source code failed
+  141 |               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  142 |                 <div className="space-y-2">
+> 143 |                   <Label htmlFor="requester">Requester Name *</nLabel>
+      |                                                                       ^
+> 144 |                   <Input
+      | ^^^^^^^^^^^^^^^^^^^
+  145 |                     id="requester"
+  146 |                     name="requester"
+  147 |                     required
+
+Expected '</', got 'jsx text (
+                  )'
+
+Import traces:
+  Client Component Browser:
+    ./components/create-requisition-form.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/create-requisition-form.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:57:52.084] Browser ERROR   ./components/create-requisition-form.tsx:143:71
+Parsing ecmascript source code failed
+  141 |               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  142 |                 <div className="space-y-2">
+> 143 |                   <Label htmlFor="requester">Requester Name *</nLabel>
+      |                                                                       ^
+> 144 |                   <Input
+      | ^^^^^^^^^^^^^^^^^^^
+  145 |                     id="requester"
+  146 |                     name="requester"
+  147 |                     required
+
+Expected '</', got 'jsx text (
+                  )'
+
+Import traces:
+  Client Component Browser:
+    ./components/create-requisition-form.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/create-requisition-form.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:57:53.040] Browser ERROR   ./components/create-requisition-form.tsx:143:71
+Parsing ecmascript source code failed
+  141 |               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  142 |                 <div className="space-y-2">
+> 143 |                   <Label htmlFor="requester">Requester Name *</nLabel>
+      |                                                                       ^
+> 144 |                   <Input
+      | ^^^^^^^^^^^^^^^^^^^
+  145 |                     id="requester"
+  146 |                     name="requester"
+  147 |                     required
+
+Expected '</', got 'jsx text (
+                  )'
+
+Import traces:
+  Client Component Browser:
+    ./components/create-requisition-form.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Client Component Browser]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/create-requisition-form.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Client Component SSR]
+    ./components/dashboard-client.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:57:55.473] Server  LOG      ✓ Compiled in 429ms
+[02:57:59.973] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765370076440}
+[02:58:03.987] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals?id=6925b3ee6f0aedbee33555d3 color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals?id=6925b3ee6f0aedbee33555d3","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765370080501}
+[02:58:11.665] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765370088139}
+[02:59:17.482] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[02:59:17.482] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[02:59:17.939] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[02:59:17.939] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/requisitions","route":"/requisitions"}
+[02:59:17.939] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765370154455}
+[03:18:01.490] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765371277999}
+[03:36:33.207] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765372389689}
+[03:36:49.118] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765372405618}
+[03:50:43.258] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765373239752}
+[04:20:12.651] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765375009153}
+[04:20:58.831] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765375055311}
+[04:21:06.688] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765375063189}

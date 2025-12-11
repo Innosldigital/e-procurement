@@ -220,3 +220,25 @@ export async function getUserPhoto(
     };
   }
 }
+
+export async function getCurrentUserName(): Promise<
+  { success: true; name: string } | { success: false; error: string }
+> {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const name = `${String(user.firstName || "").trim()} ${String(
+      user.lastName || ""
+    ).trim()}`.trim();
+    return { success: true, name };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error?.message || "Failed to fetch current user name",
+    };
+  }
+}

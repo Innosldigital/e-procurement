@@ -170,8 +170,8 @@ export function CreateRequisitionForm({
       // Auto-generate requisitionId
       const now = new Date();
       const year = now.getFullYear();
-      const count = attachedFiles.length > 0 ? 1 : 0; // fallback, real count should come from DB
-      const requisitionId = `REQ-${year}-${String(Date.now()).slice(-6)}`; // Simple unique ID
+      const count = attachedFiles.length > 0 ? 1 : 0;
+      const requisitionId = `REQ-${year}-${String(Date.now()).slice(-6)}`;
       // Or better: fetch count from server (we'll improve this later)
 
       // Required fields

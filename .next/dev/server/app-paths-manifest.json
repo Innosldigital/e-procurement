@@ -1,7 +1,10 @@
 {
   "/(app)/admin/page": "app/(app)/admin/page.js",
+  "/(app)/approvals/page": "app/(app)/approvals/page.js",
   "/(app)/invoices/page": "app/(app)/invoices/page.js",
+  "/(app)/purchase-orders/page": "app/(app)/purchase-orders/page.js",
   "/(app)/requisitions/page": "app/(app)/requisitions/page.js",
   "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
+  "/(app)/tenders/page": "app/(app)/tenders/page.js",
   "/page": "app/page.js"
 }

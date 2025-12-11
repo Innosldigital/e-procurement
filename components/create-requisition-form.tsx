@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { X, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { createRequisition } from "@/lib/actions/requisition-actions";
 import { useRouter } from "next/navigation";
+import { getCurrentUserName } from "@/lib/actions/user-actions";
 
 interface CreateRequisitionFormProps {
   onClose: () => void;
@@ -38,6 +39,21 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
       unit: "Unit",
     },
   ]);
+  const [requesterName, setRequesterName] = useState("");
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const res = await getCurrentUserName();
+      if (mounted && res && (res as any).success) {
+        setRequesterName((res as any).name || "");
+      }
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const addLineItem = () => {
     const newItem: LineItem = {
@@ -130,6 +146,8 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                     name="requester"
                     required
                     placeholder="Enter requester name"
+                    value={requesterName}
+                    onChange={(e) => setRequesterName(e.target.value)}
                   />
                 </div>
 
