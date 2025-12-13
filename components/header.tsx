@@ -165,10 +165,12 @@ export function Header({ onMenuClick }: HeaderProps) {
           </Button>
 
           <div className="flex items-center gap-2 md:hidden">
-            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xs">
-                EP
-              </span>
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center">
+              <img
+                src="/apple-icon.png"
+                alt="Inno-SL Procurement"
+                className="w-6 h-6"
+              />
             </div>
           </div>
 

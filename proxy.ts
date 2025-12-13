@@ -39,12 +39,12 @@ export default clerkMiddleware(async (auth, request) => {
     const isAdmin = normalizedRole === "admin";
     const isSupplier = normalizedRole === "supplier";
 
-    // ✅ Super admins and admins get full access - no onboarding required
+    // Super admins and admins get full access - no onboarding required
     if (isSuperAdmin || isAdmin) {
       return NextResponse.next();
     }
 
-    // ✅ Handle suppliers
+    // Handle suppliers
     if (isSupplier) {
       // Approved suppliers get full access
       if (onboarded && supplierApproved) {
@@ -79,7 +79,7 @@ export default clerkMiddleware(async (auth, request) => {
       return NextResponse.next();
     }
 
-    // ✅ For other roles: check onboarding status
+    // For other roles: check onboarding status
     if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }

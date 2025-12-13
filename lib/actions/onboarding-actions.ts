@@ -15,7 +15,7 @@ type UploadObject = {
 
 export async function submitSupplierOnboarding(data: any) {
   try {
-    console.log("🔍 submitSupplierOnboarding: Starting...");
+    console.log("submitSupplierOnboarding: Starting...");
 
     const { userId } = await auth();
     if (!userId) {

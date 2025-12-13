@@ -1,5 +1,6 @@
 {
+  "/(app)/admin/page": "app/(app)/admin/page.js",
   "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
   "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
-  "/api/upload/route": "app/api/upload/route.js"
+  "/page": "app/page.js"
 }

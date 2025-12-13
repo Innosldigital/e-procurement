@@ -6,7 +6,7 @@ export default function SignInPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground mb-4">
-            <span className="text-xl font-bold">EP</span>
+            <span className="text-xl font-bold">IP</span>
           </div>
           <h1 className="text-2xl font-semibold text-foreground mb-2">
             Inno-SL Procurement
@@ -22,8 +22,7 @@ export default function SignInPage() {
               card: "shadow-lg border border-border",
             },
           }}
-          afterSignInUrl="/"
-          afterSignUpUrl="/sign-up"
+          afterSignInUrl="/onboarding"
         />
       </div>
     </div>

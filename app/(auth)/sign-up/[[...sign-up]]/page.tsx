@@ -22,8 +22,8 @@ export default function SignUpPage() {
               card: "shadow-lg border border-border",
             },
           }}
-          afterSignUpUrl="/sign-in"
-          afterSignInUrl="/"
+          // afterSignUpUrl="/sign-in"
+          afterSignInUrl="/onboarding"
         />
       </div>
     </div>

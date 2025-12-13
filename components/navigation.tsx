@@ -73,14 +73,16 @@ export function Navigation({
       >
         <div className="flex items-center justify-between p-4 border-b border-border md:border-0">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">
-                EP
-              </span>
+            <div className="w-10 h-10 rounded-lg  flex items-center justify-center">
+              <img
+                src="/apple-icon.png"
+                alt="Inno-SL Procurement"
+                className="w-6 h-6"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-semibold text-sm leading-tight">
-                E-Procurement
+                Inno-SL Procurement
               </span>
               <span className="text-xs text-muted-foreground leading-tight">
                 Suite

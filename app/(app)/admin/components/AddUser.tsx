@@ -69,21 +69,21 @@ export function AddUser({ onSubmitComplete, currentUserRole }: AddUserProps) {
   const getAvailableRoles = () => {
     if (currentUserRole === "superadmin") {
       return [
-        { value: "superadmin", label: "Superadmin" },
-        { value: "admin", label: "Admin" },
-        { value: "financial_controller", label: "Financial Controller" },
-        { value: "financial_accountant", label: "Financial Accountant" },
-        { value: "procurement_officer", label: "Procurement Officer" },
-        { value: "project_lead", label: "Project Lead" },
-        { value: "supplier", label: "Supplier" },
+        { value: "Super Admin", label: "Superadmin" },
+        { value: "Admin", label: "Admin" },
+        { value: "Financial Controller", label: "Financial Controller" },
+        { value: "Financial Accountant", label: "Financial Accountant" },
+        { value: "Procurement Officer", label: "Procurement Officer" },
+        { value: "Project Lead", label: "Project Lead" },
+        { value: "Supplier", label: "Supplier" },
       ];
     } else if (currentUserRole === "admin") {
       // Admin can only assign these 4 specific roles
       return [
-        { value: "financial_controller", label: "Financial Controller" },
-        { value: "financial_accountant", label: "Financial Accountant" },
-        { value: "procurement_officer", label: "Procurement Officer" },
-        { value: "project_lead", label: "Project Lead" },
+        { value: "Financial Controller", label: "Financial Controller" },
+        { value: "Financial Accountant", label: "Financial Accountant" },
+        { value: "Procurement Officer", label: "Procurement Officer" },
+        { value: "Project Lead", label: "Project Lead" },
       ];
     }
     return [];

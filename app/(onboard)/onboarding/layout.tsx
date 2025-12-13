@@ -16,9 +16,11 @@ export default function OnboardingLayout({
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center size-8 sm:size-10 rounded-md bg-primary/10 text-primary font-semibold">
-              IP
-            </div>
+            <img
+              src="/apple-icon.png"
+              alt="Inno-SL Procurement"
+              className="w-8 h-8"
+            />
             <div className="flex flex-col">
               <span className="text-sm sm:text-base font-semibold">
                 Inno-SL Procurement

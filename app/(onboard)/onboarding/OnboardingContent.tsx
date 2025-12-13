@@ -72,6 +72,119 @@ export default function OnboardingContent() {
     return validateForm().length === 0;
   };
 
+  // const submitSupplier = async () => {
+  //   try {
+  //     setError("");
+
+  //     // Validate before submission
+  //     const validationErrors = validateForm();
+  //     if (validationErrors.length > 0) {
+  //       setError(
+  //         `Please complete the following required fields: ${validationErrors.join(
+  //           ", "
+  //         )}`
+  //       );
+  //       return;
+  //     }
+
+  //     setLoading("vendor");
+
+  //     async function uploadFiles(list: FileList | null, folder: string) {
+  //       if (!list || list.length === 0) return [];
+  //       const fd = new FormData();
+  //       Array.from(list).forEach((f) => fd.append("files", f));
+  //       fd.append("folder", folder);
+  //       const resp = await fetch("/api/upload", { method: "POST", body: fd });
+  //       const json = await resp.json();
+  //       // Return the actual array, not stringified
+  //       return json && json.success ? json.data : [];
+  //     }
+
+  //     const businessRegistrationCertificateUploads = await uploadFiles(
+  //       businessRegCertFiles,
+  //       "onboarding/business_registration"
+  //     );
+  //     const taxClearanceCertificateUploads = await uploadFiles(
+  //       taxClearanceFiles,
+  //       "onboarding/tax_clearance"
+  //     );
+  //     const gstVatRegistrationCertificateUploads = await uploadFiles(
+  //       gstVatFiles,
+  //       "onboarding/gst_vat"
+  //     );
+  //     const businessLicenseUploads = await uploadFiles(
+  //       businessLicenseFiles,
+  //       "onboarding/business_license"
+  //     );
+  //     const nassitCertificateUploads = await uploadFiles(
+  //       nassitFiles,
+  //       "onboarding/nassit"
+  //     );
+  //     const sectorSpecificCertificateUploads = await uploadFiles(
+  //       sectorCertFiles,
+  //       "onboarding/sector_specific"
+  //     );
+  //     const businessDurationDocuments = await uploadFiles(
+  //       businessDurationFiles,
+  //       "onboarding/business_duration"
+  //     );
+
+  //     const registrationCertificateUploads = [
+  //       ...businessRegistrationCertificateUploads,
+  //       ...taxClearanceCertificateUploads,
+  //       ...gstVatRegistrationCertificateUploads,
+  //       ...businessLicenseUploads,
+  //       ...nassitCertificateUploads,
+  //       ...sectorSpecificCertificateUploads,
+  //     ];
+
+  //     // Pass actual arrays, not stringified versions
+  //     const res = await submitSupplierOnboarding({
+  //       name: supplierName,
+  //       contactPerson,
+  //       phone,
+  //       email,
+  //       productCategories,
+  //       supplyAreas,
+  //       deliveryTimeline: leadTime,
+  //       registrationCertificateUploads,
+  //       businessRegistrationCertificateUploads,
+  //       taxClearanceCertificateUploads,
+  //       gstVatRegistrationCertificateUploads,
+  //       businessLicenseUploads,
+  //       nassitCertificateUploads,
+  //       sectorSpecificCertificateUploads,
+  //       paymentMethods,
+  //       vendorPaymentTerms,
+  //       businessLeadGender,
+  //       inBusinessMoreThan3Years,
+  //       businessDurationDocuments,
+  //       dateOfIncorporation,
+  //       averageTurnover,
+  //       declarations: {
+  //         infoAccurate: declInfoAccurate,
+  //         agreeRules: declAgreeRules,
+  //       },
+  //     });
+
+  //     setLoading(null);
+  //     if (res && (res as any).success) {
+  //       const id = (res as any).data?._id || (res as any).data?.id;
+  //       if (id) {
+  //         router.push(`/onboarding/supplier/${id}`);
+  //       } else {
+  //         router.push("/onboarding/support");
+  //       }
+  //     } else {
+  //       setError("Submission failed. Please try again or contact support.");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     setError("An error occurred during submission. Please try again.");
+  //   } finally {
+  //     setLoading(null);
+  //   }
+  // };
   const submitSupplier = async () => {
     try {
       setError("");
@@ -84,7 +197,7 @@ export default function OnboardingContent() {
             ", "
           )}`
         );
-        return;
+        return; // This was already here but make sure it actually stops execution
       }
 
       setLoading("vendor");
@@ -95,8 +208,10 @@ export default function OnboardingContent() {
         Array.from(list).forEach((f) => fd.append("files", f));
         fd.append("folder", folder);
         const resp = await fetch("/api/upload", { method: "POST", body: fd });
+        if (!resp.ok) {
+          throw new Error(`Upload failed: ${resp.statusText}`);
+        }
         const json = await resp.json();
-        // Return the actual array, not stringified
         return json && json.success ? json.data : [];
       }
 
@@ -138,7 +253,8 @@ export default function OnboardingContent() {
         ...sectorSpecificCertificateUploads,
       ];
 
-      // Pass actual arrays, not stringified versions
+      console.log("Submitting onboarding data...");
+
       const res = await submitSupplierOnboarding({
         name: supplierName,
         contactPerson,
@@ -167,22 +283,38 @@ export default function OnboardingContent() {
         },
       });
 
-      setLoading(null);
-      if (res && (res as any).success) {
-        const id = (res as any).data?._id || (res as any).data?.id;
-        if (id) {
-          router.push(`/onboarding/supplier/${id}`);
-        } else {
-          router.push("/onboarding/support");
-        }
+      console.log("Submission response:", res);
+
+      if (res && res.success) {
+        console.log("Success! Supplier created:", res.data);
+        // Change to success state
+        setLoading("success");
+
+        // Redirect after showing success
+        setTimeout(() => {
+          const supplierId = res.data?._id || res.data?.id;
+          if (supplierId) {
+            router.push(`/onboarding/supplier/${supplierId}`);
+          } else {
+            router.push("/onboarding");
+          }
+        }, 1000);
       } else {
-        setError("Submission failed. Please try again or contact support.");
+        setLoading(null);
+        const errorMsg =
+          res?.error ||
+          "Submission failed. Please try again or contact support.";
+        console.error("Submission failed:", errorMsg);
+        setError(errorMsg);
       }
     } catch (error) {
-      console.log(error);
-      setError("An error occurred during submission. Please try again.");
-    } finally {
+      console.error("Submission error:", error);
       setLoading(null);
+      setError(
+        error instanceof Error
+          ? `An error occurred: ${error.message}`
+          : "An error occurred during submission. Please try again."
+      );
     }
   };
 
@@ -640,7 +772,7 @@ export default function OnboardingContent() {
                         htmlFor="declVendorUpfront20"
                         className="text-sm font-normal cursor-pointer leading-relaxed"
                       >
-                        Payment for 20% upfront
+                        Payment terms: 40% part payment and 60% upon delivery.
                       </Label>
                     </div>
                   </div>
@@ -648,7 +780,7 @@ export default function OnboardingContent() {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4">
-                  <Button
+                  {/* <Button
                     onClick={submitSupplier}
                     className="flex-1"
                     disabled={!isFormValid() || loading !== null}
@@ -656,6 +788,15 @@ export default function OnboardingContent() {
                     {loading === "vendor"
                       ? "Submitting..."
                       : "Submit Application"}
+                  </Button> */}
+                  <Button
+                    onClick={submitSupplier}
+                    className="flex-1"
+                    disabled={!isFormValid() || loading !== null}
+                  >
+                    {loading === "vendor" && "Submitting..."}
+                    {loading === "success" && "Success! Redirecting..."}
+                    {loading === null && "Submit Application"}
                   </Button>
                 </div>
               </div>
