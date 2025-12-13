@@ -734,6 +734,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
 
 import { deleteUser, getUsers } from "@/lib/actions/user-actions";
 import { getSupplierOnboardingByUserId } from "@/lib/actions/supplier-actions";
@@ -841,6 +842,8 @@ export default function UsersTable() {
   const [approveLoading, setApproveLoading] = useState(false);
   const [rejectLoading, setRejectLoading] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
+  const [rejectReasonType, setRejectReasonType] = useState("");
+  const [rejectNotes, setRejectNotes] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -935,14 +938,18 @@ export default function UsersTable() {
 
   const handleRejectOnboarding = async () => {
     const sid = onboardingDetails?.supplierId;
-    const reason = rejectReason.trim();
-    if (!sid || !reason) return;
+    const type = rejectReasonType.trim();
+    const notes = rejectNotes.trim();
+    const reason = notes ? `${type}: ${notes}` : type;
+    if (!sid || !type) return;
     try {
       setRejectLoading(true);
       const res: any = await rejectSupplierOnboarding(String(sid), reason);
       if (res && res.success) {
         setDetailsOpen(false);
         setRejectReason("");
+        setRejectReasonType("");
+        setRejectNotes("");
         setSubmited(!submited);
         router.refresh();
       }
@@ -1880,25 +1887,50 @@ export default function UsersTable() {
               </Card>
             )}
           </ScrollArea>
-
           {/* Admin Actions Footer */}
           {onboardingDetails && !onboardingDetails.approved && (
             <div className="sticky bottom-0 border-t bg-background/80 backdrop-blur-sm px-4 sm:px-6 py-4">
               <div className="space-y-3">
                 <h4 className="text-sm font-semibold">Admin Actions</h4>
                 <div className="flex flex-col gap-3">
-                  <Input
-                    placeholder="Enter rejection reason (required to reject)"
-                    value={rejectReason}
-                    onChange={(e) => setRejectReason(e.target.value)}
-                    className="w-full"
-                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <Select
+                        value={rejectReasonType}
+                        onValueChange={(v) => setRejectReasonType(v)}
+                      >
+                        <SelectTrigger aria-label="Rejection reason">
+                          <SelectValue placeholder="Select rejection reason" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Non compliance">
+                            Non compliance
+                          </SelectItem>
+                          <SelectItem value="Incomplete documentation">
+                            Incomplete documentation
+                          </SelectItem>
+                          <SelectItem value="Not within the budget">
+                            Not within the budget
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-1">
+                      <Textarea
+                        placeholder="Add notes (optional)"
+                        value={rejectNotes}
+                        onChange={(e) => setRejectNotes(e.target.value)}
+                        className="w-full"
+                        rows={3}
+                      />
+                    </div>
+                  </div>
                   <div className="flex flex-col-reverse sm:flex-row gap-2 sm:justify-end">
                     <Button
                       onClick={handleRejectOnboarding}
                       variant="destructive"
                       disabled={
-                        rejectLoading || !rejectReason.trim() || approveLoading
+                        rejectLoading || !rejectReasonType || approveLoading
                       }
                       className="w-full sm:w-auto sm:min-w-[120px]"
                     >

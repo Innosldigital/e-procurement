@@ -21,8 +21,15 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useUser } from "@clerk/nextjs";
 
 export default function SuppliersPage() {
+  const { user } = useUser();
+  const role =
+    String((user?.publicMetadata as any)?.role || "")
+      .toLowerCase()
+      .replace(/[\s_-]/g, "") || "";
+  const currentUserId = String(user?.id || "");
   const [suppliers, setSuppliers] = useState<any[]>([]);
   const [selectedSupplier, setSelectedSupplier] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
@@ -39,9 +46,15 @@ export default function SuppliersPage() {
       .then((res: any) => {
         const all = res && res.success ? res.data : [];
         const data = (all || []).filter((s: any) => s && s.approved === true);
+        const filtered =
+          role === "supplier" && currentUserId
+            ? data.filter(
+                (s: any) => String(s?.ownerUserId || "") === currentUserId
+              )
+            : data;
         if (!mounted) return;
-        setSuppliers(data);
-        setSelectedSupplier(data[0] || null);
+        setSuppliers(filtered);
+        setSelectedSupplier(filtered[0] || null);
       })
       .catch(() => {
         if (!mounted) return;
@@ -63,11 +76,26 @@ export default function SuppliersPage() {
       setSelectedDetails(null);
       return;
     }
+    if (
+      role === "supplier" &&
+      String(selectedSupplier?.ownerUserId || "") !== currentUserId
+    ) {
+      setSelectedDetails(null);
+      return;
+    }
     let mounted = true;
     setDetailsLoading(true);
     getSupplierById(String(id))
       .then((res: any) => {
         const data = res && res.success ? res.data : selectedSupplier;
+        if (
+          role === "supplier" &&
+          String((data as any)?.ownerUserId || "") !== currentUserId
+        ) {
+          if (!mounted) return;
+          setSelectedDetails(null);
+          return;
+        }
         if (!mounted) return;
         setSelectedDetails(data);
       })

@@ -11,6 +11,7 @@ import { getRequisitions } from "@/lib/actions/requisition-actions";
 import {
   getPurchaseOrders,
   getSpendMTD,
+  getSpendVsBudgetThisQuarter,
 } from "@/lib/actions/purchase-order-actions";
 import {
   getApprovals,
@@ -90,6 +91,7 @@ export default async function DashboardPage() {
     notificationsResult,
     notificationsPublicResult,
     pendingApprovalsResult,
+    spendVsBudgetResult,
   ] = await Promise.all([
     getRequisitions(),
     getPurchaseOrders(),
@@ -99,6 +101,7 @@ export default async function DashboardPage() {
     getNotifications(10),
     getNotificationsPublic(10),
     getPendingApprovalsCount(),
+    getSpendVsBudgetThisQuarter(),
   ]);
 
   const requisitions = (
@@ -131,6 +134,28 @@ export default async function DashboardPage() {
   const totalSpendMTD = (
     spendResult.success ? (spendResult as any).data : 0
   ) as number;
+
+  const spendVsBudget = spendVsBudgetResult.success
+    ? (spendVsBudgetResult as any).data
+    : {
+        actual: 6800000,
+        budget: 9500000,
+        savings: 420000,
+        topBranch: "EMEA",
+        topCategory: "IT & software",
+      };
+  const fmtNLe = (n: number) =>
+    new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 1,
+    }).format(n);
+  const fmtNLeCompact = (n: number) =>
+    n >= 1_000_000
+      ? `${fmtNLe(n / 1_000_000)}M`
+      : `${new Intl.NumberFormat("en-US", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }).format(Math.round(n / 1_000))}K`;
 
   // Get recent requisitions (last 5)
   const fmtDate = (d?: string | Date | null) => {
@@ -261,28 +286,34 @@ export default async function DashboardPage() {
                   <span className="w-3 h-3 rounded-full bg-primary"></span>
                   Actual spend
                 </span>
-                <span className="text-sm font-semibold">$6.8M</span>
+                <span className="text-sm font-semibold">
+                  {`NLe ${fmtNLe(spendVsBudget.actual / 1_000_000)}M`}
+                </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-muted"></span>
                   Budget
                 </span>
-                <span className="text-sm font-semibold">$9.5M</span>
+                <span className="text-sm font-semibold">
+                  {`NLe ${fmtNLe(spendVsBudget.budget / 1_000_000)}M`}
+                </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-success"></span>
                   Savings
                 </span>
-                <span className="text-sm font-semibold">$420K</span>
+                <span className="text-sm font-semibold">
+                  {`NLe ${fmtNLeCompact(spendVsBudget.savings)}`}
+                </span>
               </div>
               <div className="pt-4 border-t">
                 <p className="text-xs text-muted-foreground">
-                  Top branch: EMEA
+                  {`Top branch: ${spendVsBudget.topBranch || "-"}`}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Category: IT & software
+                  {`Category: ${spendVsBudget.topCategory || "-"}`}
                 </p>
               </div>
             </div>
@@ -397,12 +428,6 @@ export default async function DashboardPage() {
                         <span>•</span>
                         <span>{fmtDate(req.createdAt)}</span>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <StatusBadge status={req.status} />
-                      <span className="text-sm font-medium w-20 text-right">
-                        ${fmtAmount(req.amount)}
-                      </span>
                     </div>
                   </div>
                 ))}

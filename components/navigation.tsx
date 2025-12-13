@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useUser } from "@clerk/nextjs";
 
 const navItems = [
   { href: "/", icon: LayoutDashboard, label: "Dashboard" },
@@ -40,6 +41,14 @@ export function Navigation({
 }: NavigationProps) {
   const pathname = usePathname();
   const [localMobileOpen, setLocalMobileOpen] = useState(false);
+  const { user } = useUser();
+  const role =
+    String((user?.publicMetadata as any)?.role || "")
+      .toLowerCase()
+      .replace(/[\s_-]/g, "") || "";
+  const items = navItems.filter((n) =>
+    n.href === "/admin" ? role === "admin" || role === "superadmin" : true
+  );
 
   const isOpen = setMobileOpen ? mobileOpen : localMobileOpen;
   const handleToggle = setMobileOpen || setLocalMobileOpen;
@@ -104,7 +113,7 @@ export function Navigation({
             <p className="text-xs font-medium text-muted-foreground px-3 mb-3 uppercase tracking-wider">
               Navigation
             </p>
-            {navItems.map((item) => {
+            {items.map((item) => {
               const isActive = pathname === item.href;
               const Icon = item.icon;
               return (
