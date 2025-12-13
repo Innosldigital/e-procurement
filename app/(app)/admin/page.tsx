@@ -760,6 +760,65 @@ import EditUser from "./components/EditUser";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 
+type UploadObject = {
+  name?: string;
+  size?: number;
+  type?: string;
+  url?: string;
+};
+type BankDetails = {
+  bankName?: string;
+  accountName?: string;
+  accountNumber?: string;
+  prefersCash?: boolean;
+};
+type OnboardingData = {
+  contactPerson?: string;
+  phone?: string;
+  email?: string;
+  goodsType?: string;
+  productCategories?: string[];
+  supplyAreas?: string[];
+  deliveryTimeline?: string;
+  priceListUploads?: UploadObject[];
+  registrationCertificateUploads?: UploadObject[];
+  businessRegistrationCertificateUploads?: UploadObject[];
+  taxClearanceCertificateUploads?: UploadObject[];
+  gstVatRegistrationCertificateUploads?: UploadObject[];
+  businessLicenseUploads?: UploadObject[];
+  nassitCertificateUploads?: UploadObject[];
+  sectorSpecificCertificateUploads?: UploadObject[];
+  businessDurationDocuments?: UploadObject[];
+  paymentMethods?: string[];
+  bankDetails?: BankDetails;
+  vendorPaymentTerms?: string;
+  businessLeadGender?: string;
+  inBusinessMoreThan3Years?: boolean;
+  dateOfIncorporation?: string;
+  averageTurnover?: string;
+  declarations?: { infoAccurate?: boolean; agreeRules?: boolean };
+};
+type Contact = { role?: string; name?: string; email?: string; phone?: string };
+type Document = {
+  name?: string;
+  type?: string;
+  size?: string;
+  signedDate?: string;
+  expiresDate?: string;
+  owner?: string;
+};
+type SupplierOnboardingDetails = {
+  supplierId?: string;
+  name?: string;
+  approved?: boolean;
+  category?: string;
+  region?: string;
+  segment?: string;
+  onboarding?: OnboardingData;
+  contacts?: Contact[];
+  documents?: Document[];
+};
+
 export default function UsersTable() {
   const { user } = useUser();
   const currentUserRole = String((user?.publicMetadata as any)?.role || "")
@@ -777,7 +836,8 @@ export default function UsersTable() {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [userToView, setUserToView] = useState<User | null>(null);
   const [detailsLoading, setDetailsLoading] = useState(false);
-  const [onboardingDetails, setOnboardingDetails] = useState<any | null>(null);
+  const [onboardingDetails, setOnboardingDetails] =
+    useState<SupplierOnboardingDetails | null>(null);
   const [approveLoading, setApproveLoading] = useState(false);
   const [rejectLoading, setRejectLoading] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
@@ -790,6 +850,12 @@ export default function UsersTable() {
 
   // Check if user is an invitation (pending)
   const isInvitation = (userId: string) => userId.startsWith("invitation_");
+
+  // Check if user has completed onboarding
+  const hasCompletedOnboarding = (user: User | null) => {
+    if (!user) return false;
+    return user.onboarded === true || user.onboardingStatus === "approved";
+  };
 
   const handleDelete = (userId: string) => {
     setUserToDelete(userId);
@@ -804,8 +870,10 @@ export default function UsersTable() {
   };
 
   const handleViewDetails = (user: User) => {
-    // Don't allow viewing details for invitations
-    if (isInvitation(user.id)) return;
+    // Don't allow viewing details for invitations or users who haven't completed onboarding
+    if (isInvitation(user.id) || !hasCompletedOnboarding(user)) {
+      return;
+    }
     setUserToView(user);
     setDetailsOpen(true);
   };
@@ -819,6 +887,21 @@ export default function UsersTable() {
     const load = async () => {
       if (!detailsOpen || !userToView?.id || isInvitation(userToView.id))
         return;
+
+      // Only fetch onboarding details if user has completed onboarding
+      if (!hasCompletedOnboarding(userToView)) {
+        setOnboardingDetails(null);
+        setDetailsLoading(false);
+        return;
+      }
+
+      // Only fetch onboarding details for supplier role
+      if (userToView.role?.toLowerCase() !== "supplier") {
+        setOnboardingDetails(null);
+        setDetailsLoading(false);
+        return;
+      }
+
       try {
         setDetailsLoading(true);
         const res: any = await getSupplierOnboardingByUserId(userToView.id);
@@ -965,6 +1048,17 @@ export default function UsersTable() {
     return <Badge variant="secondary">{user.role}</Badge>;
   };
 
+  // Check if View Details should be available for a user
+  const canViewDetails = (user: User | null) => {
+    if (!user) return false;
+    // Only suppliers can have onboarding details
+    return (
+      !isInvitation(user.id) &&
+      hasCompletedOnboarding(user) &&
+      user.role?.toLowerCase() === "supplier"
+    );
+  };
+
   return (
     <>
       {/* ---------------- PAGE HEADER ---------------- */}
@@ -1069,7 +1163,7 @@ export default function UsersTable() {
                               <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-                                {!isInvitation(user.id) && (
+                                {canViewDetails(user) && (
                                   <>
                                     <DropdownMenuItem
                                       className="cursor-pointer"
@@ -1078,7 +1172,12 @@ export default function UsersTable() {
                                       <Pencil className="w-4 h-4 mr-2" />
                                       View Details
                                     </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                  </>
+                                )}
 
+                                {!isInvitation(user.id) && (
+                                  <>
                                     <DropdownMenuItem
                                       className="cursor-pointer"
                                       onClick={() => handleEdit(user)}
@@ -1086,7 +1185,6 @@ export default function UsersTable() {
                                       <Pencil className="w-4 h-4 mr-2" />
                                       Edit
                                     </DropdownMenuItem>
-
                                     <DropdownMenuSeparator />
                                   </>
                                 )}
@@ -1241,7 +1339,7 @@ export default function UsersTable() {
                   Review and manage supplier onboarding information
                 </DialogDescription>
               </div>
-              {onboardingDetails?.approved !== undefined && (
+              {onboardingDetails && (
                 <Badge
                   variant={onboardingDetails.approved ? "default" : "secondary"}
                   className="shrink-0"
@@ -1262,6 +1360,30 @@ export default function UsersTable() {
                   </p>
                 </div>
               </div>
+            ) : !userToView ? (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    No user selected
+                  </p>
+                </CardContent>
+              </Card>
+            ) : !hasCompletedOnboarding(userToView) ? (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    This user has not completed onboarding yet.
+                  </p>
+                </CardContent>
+              </Card>
+            ) : userToView?.role?.toLowerCase() !== "supplier" ? (
+              <Card>
+                <CardContent className="p-8 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    Onboarding details are only available for supplier users.
+                  </p>
+                </CardContent>
+              </Card>
             ) : onboardingDetails ? (
               <div className="space-y-6">
                 {/* User Info Section */}
@@ -1304,13 +1426,13 @@ export default function UsersTable() {
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold flex items-center gap-2">
                     <div className="w-1 h-4 bg-primary rounded-full" />
-                    Company Information
+                    Suppler Information
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     <Card>
                       <CardContent className="p-3 sm:p-4">
                         <div className="text-xs text-muted-foreground mb-1">
-                          Company Name
+                          Supplier Name
                         </div>
                         <div className="text-sm font-medium">
                           {onboardingDetails?.name || "-"}
@@ -1390,6 +1512,261 @@ export default function UsersTable() {
                   )}
                 </div>
 
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold flex items-center gap-2">
+                    <div className="w-1 h-4 bg-primary rounded-full" />
+                    Onboarding Details
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Contact Person
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.contactPerson || "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Contact Phone
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.phone || "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Contact Email
+                        </div>
+                        <div className="text-sm font-medium break-all">
+                          {onboardingDetails?.onboarding?.email || "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Goods Type
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.goodsType || "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Product Categories
+                        </div>
+                        <div className="text-sm font-medium">
+                          {(() => {
+                            const v = (
+                              (onboardingDetails?.onboarding
+                                ?.productCategories || []) as string[]
+                            ).filter(Boolean);
+                            return v.length ? v.join(", ") : "-";
+                          })()}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Supply Areas
+                        </div>
+                        <div className="text-sm font-medium">
+                          {(() => {
+                            const v = (
+                              (onboardingDetails?.onboarding?.supplyAreas ||
+                                []) as string[]
+                            ).filter(Boolean);
+                            return v.length ? v.join(", ") : "-";
+                          })()}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Delivery Timeline
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.deliveryTimeline ||
+                            "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Date of Incorporation
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.dateOfIncorporation ||
+                            "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          In Business &gt; 3 Years
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding
+                            ?.inBusinessMoreThan3Years
+                            ? "Yes"
+                            : "No"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Average Turnover
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.averageTurnover ||
+                            "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Business Lead Gender
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.businessLeadGender ||
+                            "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold flex items-center gap-2">
+                    <div className="w-1 h-4 bg-primary rounded-full" />
+                    Payment & Bank
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Payment Methods
+                        </div>
+                        <div className="text-sm font-medium">
+                          {(() => {
+                            const v = (
+                              (onboardingDetails?.onboarding?.paymentMethods ||
+                                []) as string[]
+                            ).filter(Boolean);
+                            return v.length ? v.join(", ") : "-";
+                          })()}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Vendor Payment Terms
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.vendorPaymentTerms ||
+                            "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Bank Name
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.bankDetails
+                            ?.bankName || "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Account Name
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.bankDetails
+                            ?.accountName || "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Account Number
+                        </div>
+                        <div className="text-sm font-medium break-all">
+                          {onboardingDetails?.onboarding?.bankDetails
+                            ?.accountNumber || "-"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Prefers Cash
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.bankDetails
+                            ?.prefersCash
+                            ? "Yes"
+                            : "No"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold flex items-center gap-2">
+                    <div className="w-1 h-4 bg-primary rounded-full" />
+                    Declarations
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Information Accurate
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.declarations
+                            ?.infoAccurate
+                            ? "Yes"
+                            : "No"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="text-xs text-muted-foreground mb-1">
+                          Agrees to Rules
+                        </div>
+                        <div className="text-sm font-medium">
+                          {onboardingDetails?.onboarding?.declarations
+                            ?.agreeRules
+                            ? "Yes"
+                            : "No"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+
                 {/* Documents Section */}
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold flex items-center gap-2">
@@ -1407,6 +1784,7 @@ export default function UsersTable() {
                       ...(o.businessLicenseUploads || []),
                       ...(o.nassitCertificateUploads || []),
                       ...(o.sectorSpecificCertificateUploads || []),
+                      ...(o.businessDurationDocuments || []),
                     ];
                     const docs = onboardingDetails?.documents || [];
                     const empty = uploads.length === 0 && docs.length === 0;

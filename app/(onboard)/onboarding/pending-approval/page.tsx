@@ -22,32 +22,36 @@ export default async function PendingApprovalPage() {
     }
   }
   return (
-    <div className="mx-auto max-w-4xl p-6">
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 className="text-xl font-semibold">Pending Approval</h1>
-          <p className="text-sm text-muted-foreground">
+    <div className="mx-auto w-full max-w-full px-4 py-6 sm:max-w-4xl sm:px-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
+        <div className="min-w-0">
+          <h1 className="text-lg sm:text-xl font-semibold">Pending Approval</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Your supplier onboarding is awaiting admin review.
           </p>
         </div>
-        <StatusBadge status={"Pending approval"} />
+        <div className="flex-shrink-0">
+          <StatusBadge status={"Pending approval"} />
+        </div>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">What happens next</CardTitle>
+      <Card className="w-full">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-sm sm:text-base">
+            What happens next
+          </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3 text-sm">
-          <p className="text-muted-foreground">
+        <CardContent className="space-y-3 text-sm sm:text-base px-4 sm:px-6">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Thank you for submitting your onboarding details. An administrator
             will review and approve your account shortly.
           </p>
-          <div className="flex gap-2">
-            <Button asChild variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <Button asChild variant="outline" className="w-full sm:w-auto">
               <Link href="/onboarding/support">Contact Support</Link>
             </Button>
 
-            <Button asChild>
+            <Button asChild className="w-full sm:w-auto">
               <Link href={supplierHref}>
                 {supplierId ? "View Supplier Details" : "Continue Onboarding"}
               </Link>
