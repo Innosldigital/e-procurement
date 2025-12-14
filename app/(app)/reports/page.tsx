@@ -26,12 +26,28 @@ import { getRequisitions } from "@/lib/actions/requisition-actions";
 import { getPurchaseOrders } from "@/lib/actions/purchase-order-actions";
 import { getInvoices } from "@/lib/actions/invoice-actions";
 import { getSuppliers } from "@/lib/actions/supplier-actions";
+import {
+  getSpendVsBudgetThisQuarter,
+  getCycleTimes,
+} from "@/lib/actions/purchase-order-actions";
 
 const fmtAmount = (n: number) =>
   new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(n);
+const fmtNLe = (n: number) =>
+  new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 1,
+  }).format(n);
+const fmtNLeCompact = (n: number) =>
+  n >= 1_000_000
+    ? `${fmtNLe(n / 1_000_000)}M`
+    : `${new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(n / 1_000))}K`;
 
 export default function ReportsPage() {
   const [categoryData, setCategoryData] = useState<
@@ -43,6 +59,8 @@ export default function ReportsPage() {
   const [cycleReqToPO, setCycleReqToPO] = useState(0);
   const [cyclePOToInv, setCyclePOToInv] = useState(0);
   const [cycleInvToPay, setCycleInvToPay] = useState(0);
+  const [savingsThisQ, setSavingsThisQ] = useState(0);
+  const [budgetThisQ, setBudgetThisQ] = useState(0);
   const [customOpen, setCustomOpen] = useState(false);
   const [customLoading, setCustomLoading] = useState(false);
   const [customDim, setCustomDim] = useState("category");
@@ -62,8 +80,10 @@ export default function ReportsPage() {
       getPurchaseOrders().catch(() => ({ success: false, data: [] })),
       getInvoices().catch(() => ({ success: false, data: [] })),
       getSuppliers().catch(() => ({ success: false, data: [] })),
+      getSpendVsBudgetThisQuarter().catch(() => ({ success: false, data: {} })),
+      getCycleTimes().catch(() => ({ success: false, data: {} })),
     ])
-      .then(([reqRes, poRes, invRes, supRes]) => {
+      .then(([reqRes, poRes, invRes, supRes, svbRes, ctRes]) => {
         const reqs =
           reqRes && (reqRes as any).success ? (reqRes as any).data : [];
         const pos = poRes && (poRes as any).success ? (poRes as any).data : [];
@@ -71,6 +91,9 @@ export default function ReportsPage() {
           invRes && (invRes as any).success ? (invRes as any).data : [];
         const sups =
           supRes && (supRes as any).success ? (supRes as any).data : [];
+        const svb =
+          svbRes && (svbRes as any).success ? (svbRes as any).data : {};
+        const ct = ctRes && (ctRes as any).success ? (ctRes as any).data : {};
 
         const catTotals: Record<string, number> = {};
         for (const r of reqs as any[]) {
@@ -104,91 +127,15 @@ export default function ReportsPage() {
           .reduce((sum, p) => sum + Number(p.total || 0), 0);
         const compliance = total > 0 ? (approvedSpend / total) * 100 : 0;
 
-        const reqById: Record<string, any> = {};
-        for (const r of reqs as any[]) {
-          const rid = String(r.requisitionId || "");
-          if (rid) reqById[rid] = r;
-        }
-        const msPerDay = 1000 * 60 * 60 * 24;
-        const diffsReqToPO: number[] = [];
-        for (const p of pos as any[]) {
-          const rid = String(p.linkedRequisition || "");
-          const r = rid ? reqById[rid] : null;
-          const rDate = r
-            ? new Date(String(r.date || r.createdAt || ""))
-            : null;
-          const pDate = p?.keyDates?.issued
-            ? new Date(p.keyDates.issued as any)
-            : null;
-          if (
-            rDate &&
-            pDate &&
-            !isNaN(rDate.getTime()) &&
-            !isNaN(pDate.getTime())
-          ) {
-            diffsReqToPO.push(
-              Math.max(0, (pDate.getTime() - rDate.getTime()) / msPerDay)
-            );
-          }
-        }
-        const avgReqToPO = diffsReqToPO.length
-          ? diffsReqToPO.reduce((a, b) => a + b, 0) / diffsReqToPO.length
-          : 0;
-
-        const poByNumber: Record<string, any> = {};
-        for (const p of pos as any[]) {
-          const num = String(p.poNumber || "");
-          if (num) poByNumber[num] = p;
-        }
-        const diffsPOToInv: number[] = [];
-        for (const i of invs as any[]) {
-          const num = String(i.poNumber || "");
-          const p = num ? poByNumber[num] : null;
-          const pDate = p?.keyDates?.issued
-            ? new Date(p.keyDates.issued as any)
-            : null;
-          const iDate = i?.invoiceDate ? new Date(i.invoiceDate as any) : null;
-          if (
-            pDate &&
-            iDate &&
-            !isNaN(pDate.getTime()) &&
-            !isNaN(iDate.getTime())
-          ) {
-            diffsPOToInv.push(
-              Math.max(0, (iDate.getTime() - pDate.getTime()) / msPerDay)
-            );
-          }
-        }
-        const avgPOToInv = diffsPOToInv.length
-          ? diffsPOToInv.reduce((a, b) => a + b, 0) / diffsPOToInv.length
-          : 0;
-
-        const diffsInvToPay: number[] = [];
-        for (const i of invs as any[]) {
-          const iDate = i?.invoiceDate ? new Date(i.invoiceDate as any) : null;
-          const dDate = i?.dueDate ? new Date(i.dueDate as any) : null;
-          if (
-            iDate &&
-            dDate &&
-            !isNaN(iDate.getTime()) &&
-            !isNaN(dDate.getTime())
-          ) {
-            diffsInvToPay.push(
-              Math.max(0, (dDate.getTime() - iDate.getTime()) / msPerDay)
-            );
-          }
-        }
-        const avgInvToPay = diffsInvToPay.length
-          ? diffsInvToPay.reduce((a, b) => a + b, 0) / diffsInvToPay.length
-          : 0;
-
         if (!mounted) return;
         setCategoryData(topCats);
         setTotalSpend(total);
         setCompliancePct(compliance);
-        setCycleReqToPO(avgReqToPO);
-        setCyclePOToInv(avgPOToInv);
-        setCycleInvToPay(avgInvToPay);
+        setCycleReqToPO(Number((ct as any).reqToPO || 0));
+        setCyclePOToInv(Number((ct as any).poToInv || 0));
+        setCycleInvToPay(Number((ct as any).invToPay || 0));
+        setSavingsThisQ(Number((svb as any).savings || 0));
+        setBudgetThisQ(Number((svb as any).budget || 0));
       })
       .catch(() => {
         if (!mounted) return;
@@ -198,6 +145,8 @@ export default function ReportsPage() {
         setCycleReqToPO(0);
         setCyclePOToInv(0);
         setCycleInvToPay(0);
+        setSavingsThisQ(0);
+        setBudgetThisQ(0);
       })
       .finally(() => {
         if (!mounted) return;
@@ -489,7 +438,7 @@ export default function ReportsPage() {
               ) : (
                 <div className="space-y-2">
                   <div className="text-sm">
-                    Total: ${fmtAmount(customTotal)}
+                    Total: NLe {fmtAmount(customTotal)}
                   </div>
                   <div className="space-y-2">
                     {customItems.map((it, idx) => (
@@ -499,7 +448,7 @@ export default function ReportsPage() {
                       >
                         <span className="text-sm">{it.label}</span>
                         <span className="text-sm font-medium">
-                          ${fmtAmount(it.amount)}
+                          NLe {fmtAmount(it.amount)}
                         </span>
                       </div>
                     ))}
@@ -532,7 +481,7 @@ export default function ReportsPage() {
           </div>
           <div>
             <span className="text-muted-foreground">Currency:</span>{" "}
-            <span className="font-medium">USD (reporting)</span>
+            <span className="font-medium">NLE (reporting)</span>
           </div>
         </div>
         <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
@@ -563,7 +512,7 @@ export default function ReportsPage() {
                 Total addressable spend
               </div>
               <div className="text-2xl font-semibold mb-1">
-                ${fmtAmount(totalSpend)}
+                NLe {fmtAmount(totalSpend)}
               </div>
               <div className="text-xs text-success">Data-driven</div>
               <div className="text-xs text-muted-foreground mt-1">
@@ -574,8 +523,15 @@ export default function ReportsPage() {
               <div className="text-sm text-muted-foreground mb-1">
                 Realized savings
               </div>
-              <div className="text-2xl font-semibold mb-1">$1.26M</div>
-              <div className="text-xs text-success">+4.1% vs target</div>
+              <div className="text-2xl font-semibold mb-1">
+                NLe {fmtNLeCompact(savingsThisQ)}
+              </div>
+              <div className="text-xs text-success">
+                {`${(budgetThisQ > 0
+                  ? (savingsThisQ / budgetThisQ) * 100
+                  : 0
+                ).toFixed(1)}% vs budget`}
+              </div>
               <div className="text-xs text-muted-foreground mt-1">
                 From negotiations, rebates & avoided cost
               </div>
@@ -620,7 +576,7 @@ export default function ReportsPage() {
                       <span className="text-sm">{item.category}</span>
                     </div>
                     <span className="text-sm font-medium">
-                      ${fmtAmount(item.amount)}
+                      NLe {fmtAmount(item.amount)}
                     </span>
                   </div>
                 ))}

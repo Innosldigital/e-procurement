@@ -5,6 +5,7 @@ import dbConnect from "@/lib/mongodb";
 import { PurchaseOrder } from "../models/PurchaseOrder";
 import { Requisition } from "../models/Requisition";
 import { Supplier } from "../models/Supplier";
+import { Invoice } from "../models/Invoice";
 
 export async function getPurchaseOrders() {
   try {
@@ -95,6 +96,109 @@ export async function getSpendVsBudgetThisQuarter() {
   } catch (error) {
     console.error("[v0] Error aggregating spend vs budget:", error);
     return { success: false, error: "Failed to aggregate spend vs budget" };
+  }
+}
+
+export async function getCycleTimes() {
+  try {
+    await dbConnect();
+    const reqs = await Requisition.find({})
+      .select(["requisitionId", "date", "createdAt"])
+      .lean();
+    const pos = await PurchaseOrder.find({})
+      .select(["linkedRequisition", "keyDates.issued", "poNumber"])
+      .lean();
+    const invs = await Invoice.find({})
+      .select(["poNumber", "invoiceDate", "dueDate"])
+      .lean();
+
+    const reqById: Record<string, any> = {};
+    for (const r of reqs as any[]) {
+      const rid = String(r.requisitionId || "");
+      if (rid) reqById[rid] = r;
+    }
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const diffsReqToPO: number[] = [];
+    for (const p of pos as any[]) {
+      const rid = String(p.linkedRequisition || "");
+      const r = rid ? reqById[rid] : null;
+      const rDate = r ? new Date(String(r.date || r.createdAt || "")) : null;
+      const pDate = p?.keyDates?.issued
+        ? new Date(p.keyDates.issued as any)
+        : null;
+      if (
+        rDate &&
+        pDate &&
+        !isNaN(rDate.getTime()) &&
+        !isNaN(pDate.getTime())
+      ) {
+        diffsReqToPO.push(
+          Math.max(0, (pDate.getTime() - rDate.getTime()) / msPerDay)
+        );
+      }
+    }
+    const avgReqToPO = diffsReqToPO.length
+      ? diffsReqToPO.reduce((a, b) => a + b, 0) / diffsReqToPO.length
+      : 0;
+
+    const poByNumber: Record<string, any> = {};
+    for (const p of pos as any[]) {
+      const num = String(p.poNumber || "");
+      if (num) poByNumber[num] = p;
+    }
+    const diffsPOToInv: number[] = [];
+    for (const i of invs as any[]) {
+      const num = String(i.poNumber || "");
+      const p = num ? poByNumber[num] : null;
+      const pDate = p?.keyDates?.issued
+        ? new Date(p.keyDates.issued as any)
+        : null;
+      const iDate = i?.invoiceDate ? new Date(i.invoiceDate as any) : null;
+      if (
+        pDate &&
+        iDate &&
+        !isNaN(pDate.getTime()) &&
+        !isNaN(iDate.getTime())
+      ) {
+        diffsPOToInv.push(
+          Math.max(0, (iDate.getTime() - pDate.getTime()) / msPerDay)
+        );
+      }
+    }
+    const avgPOToInv = diffsPOToInv.length
+      ? diffsPOToInv.reduce((a, b) => a + b, 0) / diffsPOToInv.length
+      : 0;
+
+    const diffsInvToPay: number[] = [];
+    for (const i of invs as any[]) {
+      const iDate = i?.invoiceDate ? new Date(i.invoiceDate as any) : null;
+      const dDate = i?.dueDate ? new Date(i.dueDate as any) : null;
+      if (
+        iDate &&
+        dDate &&
+        !isNaN(iDate.getTime()) &&
+        !isNaN(dDate.getTime())
+      ) {
+        diffsInvToPay.push(
+          Math.max(0, (dDate.getTime() - iDate.getTime()) / msPerDay)
+        );
+      }
+    }
+    const avgInvToPay = diffsInvToPay.length
+      ? diffsInvToPay.reduce((a, b) => a + b, 0) / diffsInvToPay.length
+      : 0;
+
+    return {
+      success: true,
+      data: {
+        reqToPO: avgReqToPO,
+        poToInv: avgPOToInv,
+        invToPay: avgInvToPay,
+      },
+    };
+  } catch (error) {
+    console.error("[v0] Error aggregating cycle times:", error);
+    return { success: false, error: "Failed to aggregate cycle times" };
   }
 }
 

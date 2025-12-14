@@ -406,15 +406,13 @@ export default function OnboardingContent() {
                       <Label>Product / Service Categories *</Label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-lg border border-border bg-muted/30">
                         {[
-                          "Catering Services",
-                          "Beverages",
+                          "Catering & Consumables",
+                          "Merchandise & Stationeres",
                           "Facilitators",
                           "Venue",
                           "Cleaning",
-                          "IT Equipment",
-                          "Stationeries",
-                          "Transport / Delivery",
-                          "Telecom",
+                          "​Logistics",
+                          "​Facilities​",
                         ].map((cat) => (
                           <div
                             key={cat}
