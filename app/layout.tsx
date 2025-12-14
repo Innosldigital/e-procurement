@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { AppShell } from "@/components/app-shell";
 import "./globals.css";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 export const metadata: Metadata = {
   title: "Inno-SL Procurement",
@@ -35,7 +36,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`font-sans antialiased overflow-x-hidden`}>
-          <AppShell>{children}</AppShell>
+          <EdgeStoreProvider>
+            <AppShell>{children}</AppShell>
+          </EdgeStoreProvider>
           <Analytics />
         </body>
       </html>

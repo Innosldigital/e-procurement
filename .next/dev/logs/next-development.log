@@ -1606,3 +1606,359 @@ Check the render method of `div`.  It was passed a child from UsersTable.
 [18:49:48.385] Browser LOG     Current User Role: superadmin
 [18:49:48.385] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
 [18:49:49.294] Server  LOG     getSupplierById: {}
+[19:04:02.793] Server  LOG     Current User Role: "admin"
+[19:04:03.490] Browser LOG     Current User Role: admin
+[19:04:03.490] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:04:03.490] Browser LOG     Current User Role: admin
+[19:04:03.490] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:04:03.490] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:04:03.490] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:04:03.970] Browser LOG     Current User Role: superadmin
+[19:04:03.970] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:04:03.970] Browser LOG     Current User Role: superadmin
+[19:04:03.970] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:04:03.970] Browser LOG     Current User Role: superadmin
+[19:04:03.970] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:04:03.970] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:04:03.970] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:04:03.970] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765750650205}
+[19:04:05.124] Browser LOG     Current User Role: superadmin
+[19:04:05.124] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:04:07.495] Browser LOG     Current User Role: superadmin
+[19:04:07.495] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:05:25.514] Server  LOG        Reload env: .env.local
+[19:05:28.346] Browser LOG     Current User Role: superadmin
+[19:05:28.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:06:45.344] Browser LOG     Current User Role: superadmin
+[19:06:45.344] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:08:16.902] Server  LOG     Current User Role: "admin"
+[19:08:16.922] Server  LOG      ✓ Compiled in 1567ms
+[19:08:17.097] Server  LOG     Current User Role: "admin"
+[19:08:19.347] Browser LOG     Current User Role: admin
+[19:08:19.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:08:19.347] Browser LOG     Current User Role: admin
+[19:08:19.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:08:19.347] Browser LOG     Current User Role: admin
+[19:08:19.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:08:19.347] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:08:19.347] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:08:19.347] Browser LOG     Current User Role: superadmin
+[19:08:19.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:08:19.347] Browser LOG     Current User Role: superadmin
+[19:08:19.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:08:19.347] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:08:19.347] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:08:19.347] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765750905165}
+[19:08:20.677] Browser LOG     Current User Role: superadmin
+[19:08:20.677] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:08:23.348] Browser LOG     Current User Role: superadmin
+[19:08:23.349] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:22:34.517] Server  LOG     getSupplierById: {}
+[19:22:35.763] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:22:36.085] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__66027047._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[19:22:36.087] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__6a44406a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[19:22:36.140] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\bson\lib\bson.cjs: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[19:22:36.162] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__66027047._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[19:22:36.186] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__6a44406a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[19:22:36.197] Server  ERROR   Error fetching supplier: CastError: Cast to ObjectId failed for value "logo.png" (type string) at path "_id" for model "Supplier"
+[19:22:36.440] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:22:36.440] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:22:36.831] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:22:36.831] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/supplier/693f2f9aac47915fa035bbc6","route":"/onboarding/supplier/[id]"}
+[19:22:36.831] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765751763064}
+[19:22:48.414] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:22:48.570] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:22:48.570] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:22:49.782] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:22:49.782] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:22:49.782] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765751775118}
+[19:22:53.753] Server  LOG     getSupplierById: {}
+[19:22:53.972] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765751780202}
+[19:22:57.949] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:22:58.083] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:22:58.083] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:22:58.304] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:22:58.304] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:22:58.304] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765751784532}
+[19:23:04.003] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:23:04.135] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:23:04.135] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:23:04.355] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:23:04.355] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:23:04.355] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765751790581}
+[19:23:25.599] Server  LOG     Current User Role: "admin"
+[19:23:26.711] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:23:26.711] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:23:26.711] Browser LOG     Current User Role: admin
+[19:23:26.711] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:23:26.711] Browser LOG     Current User Role: admin
+[19:23:26.711] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:23:26.711] Browser LOG     Current User Role: admin
+[19:23:26.711] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:23:26.947] Browser LOG     Current User Role: superadmin
+[19:23:26.947] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:23:26.947] Browser LOG     Current User Role: superadmin
+[19:23:26.947] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:23:26.947] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:23:26.947] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:23:26.947] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765751813181}
+[19:23:28.237] Browser LOG     Current User Role: superadmin
+[19:23:28.237] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:23:30.299] Browser LOG     Current User Role: superadmin
+[19:23:30.299] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:23:34.728] Browser LOG     Current User Role: superadmin
+[19:23:34.728] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:23:34.728] Browser LOG     Current User Role: superadmin
+[19:23:34.728] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:23:34.883] Server  LOG     supplier: {}
+[19:23:34.885] Server  LOG     data: {}
+[19:23:35.112] Browser LOG     Current User Role: superadmin
+[19:23:35.112] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:23:35.112] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `div`.  It was passed a child from UsersTable.
+[19:23:55.592] Browser LOG     Current User Role: superadmin
+[19:23:55.592] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:25:54.703] Server  LOG      ✓ Compiled in 148ms
+[19:25:55.342] Browser LOG     Current User Role: superadmin
+[19:25:55.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:26:14.085] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_@clerk_shared_dist_runtime_eb6a74a0._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[19:26:14.089] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\_40c35fd2._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[19:26:14.090] Server  ERROR    ⨯ Error: useUser can only be used within the <ClerkProvider /> component.
+
+Possible fixes:
+1. Ensure that the <ClerkProvider /> is correctly wrapping your application where this component is used.
+2. Check for multiple versions of the `@clerk/shared` package in your project. Use a tool like `npm ls @clerk/shared` to identify multiple versions, and update your dependencies to only rely on one.
+
+Learn more: https://clerk.com/docs/components/clerk-provider
+[19:26:15.810] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:26:15.810] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[19:26:15.810] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765751981616}
+[19:26:15.810] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:26:15.810] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:26:53.913] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:26:53.913] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:26:54.374] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:26:54.374] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[19:26:54.374] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752020605}
+[19:26:59.633] Browser ERROR   Failed to fetch RSC payload for http://localhost:3000/. Falling back to browser navigation. {}
+[19:27:25.907] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:27:25.907] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:27:25.907] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:27:25.907] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[19:27:25.907] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752052138}
+[19:29:14.173] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[19:29:14.173] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[19:29:15.897] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[19:29:16.874] Browser LOG     Premiere Pro Course Guide.pdf: 100%
+[19:29:17.324] Browser LOG     6_month_software_development_timetable.pdf: 0%
+[19:29:17.324] Browser LOG     6_month_software_development_timetable.pdf: 0%
+[19:29:18.448] Browser LOG     6_month_software_development_timetable.pdf: 0%
+[19:29:18.784] Browser LOG     6_month_software_development_timetable.pdf: 100%
+[19:29:18.915] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[19:29:18.915] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[19:29:19.535] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[19:29:19.910] Browser LOG     LICENSE AGREEMENT.pdf: 14.98%
+[19:29:20.127] Browser LOG     LICENSE AGREEMENT.pdf: 52.42%
+[19:29:20.355] Browser LOG     LICENSE AGREEMENT.pdf: 100%
+[19:29:21.995] Browser LOG     Payment Advise.pdf: 0%
+[19:29:21.996] Browser LOG     Payment Advise.pdf: 0%
+[19:29:22.629] Browser LOG     Payment Advise.pdf: 0%
+[19:29:22.937] Browser LOG     Payment Advise.pdf: 100%
+[19:29:23.594] Browser LOG     MINUTES OF MEETING.pdf: 0%
+[19:29:23.594] Browser LOG     MINUTES OF MEETING.pdf: 0%
+[19:29:24.691] Browser LOG     MINUTES OF MEETING.pdf: 0%
+[19:29:25.021] Browser LOG     MINUTES OF MEETING.pdf: 100%
+[19:29:27.219] Server  LOG     submitSupplierOnboarding: Starting...
+[19:29:27.245] Server  LOG     User authenticated: "user_36r5rg66e37BsJBWH7qQW6wE5g9"
+[19:29:27.246] Server  LOG     Database connected
+[19:29:27.267] Browser LOG     Submitting onboarding data...
+[19:29:27.493] Server  LOG     Generated supplierId: "SUP-5006"
+[19:29:27.495] Server  LOG     📋 Creating supplier...
+[19:29:27.497] Server  LOG     Upload counts: {}
+[19:29:27.498] Server  LOG     Sample URLs: {}
+[19:29:27.803] Server  LOG     ✅ Supplier created: {}
+[19:29:28.767] Server  LOG     Clerk user metadata updated
+[19:29:28.768] Server  LOG     Supplier onboarding completed successfully
+[19:29:29.123] Browser LOG     Submission response: {"data":{"_id":"693f3d6dac47915fa035bc9d","id":"693f3d6dac47915fa035bc9d","name":"Embedded Computer Experts Organisation ","supplierId":"SUP-5006"},"success":true}
+[19:29:29.123] Browser LOG     Success! Supplier created: {"_id":"693f3d6dac47915fa035bc9d","id":"693f3d6dac47915fa035bc9d","name":"Embedded Computer Experts Organisation ","supplierId":"SUP-5006"}
+[19:29:30.269] Server  LOG     getSupplierById: {}
+[19:29:30.676] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693f3d6dac47915fa035bc9d color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693f3d6dac47915fa035bc9d","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752176900}
+[19:32:42.429] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:32:42.430] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:32:42.829] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:32:42.830] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:32:42.830] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752369052}
+[19:32:45.762] Server  LOG     getSupplierById: {}
+[19:32:46.300] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:32:46.300] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:32:46.479] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:32:46.479] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/supplier/693f3d6dac47915fa035bc9d","route":"/onboarding/supplier/[id]"}
+[19:32:46.479] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693f3d6dac47915fa035bc9d color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693f3d6dac47915fa035bc9d","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752372713}
+[19:32:48.354] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752374546}
+[19:33:14.789] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:33:14.789] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:33:15.215] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:33:15.215] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:33:15.215] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752401450}
+[19:33:20.755] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:33:20.755] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:33:20.872] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:33:20.872] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:33:20.872] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752407105}
+[19:33:24.031] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:33:24.031] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:33:24.158] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:33:24.158] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:33:24.158] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752410392}
+[19:33:33.698] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:33:33.698] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:33:34.006] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:33:34.006] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:33:34.006] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752420239}
+[19:33:38.714] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:33:38.714] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:33:38.830] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:33:38.830] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:33:38.830] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752425060}
+[19:33:40.964] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:33:40.964] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:33:41.097] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:33:41.097] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[19:33:41.097] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752427321}
+[19:34:26.186] Browser ERROR   Failed to fetch RSC payload for http://localhost:3000/onboarding/pending-approval. Falling back to browser navigation. {}
+[19:34:46.088] Browser ERROR   Failed to fetch RSC payload for http://localhost:3000/onboarding/pending-approval. Falling back to browser navigation. {}
+[19:34:56.504] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:34:56.504] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:34:56.950] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:34:56.950] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[19:34:56.950] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752503180}
+[19:35:16.369] Browser LOG     Current User Role: superadmin
+[19:35:16.369] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:16.369] Browser LOG     Current User Role: superadmin
+[19:35:16.369] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:16.369] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752522586}
+[19:35:18.072] Browser LOG     Current User Role: superadmin
+[19:35:18.072] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:19.018] Browser LOG     Current User Role: superadmin
+[19:35:19.018] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:43.528] Browser LOG     Current User Role: superadmin
+[19:35:43.528] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:45.241] Browser LOG     Current User Role: superadmin
+[19:35:45.241] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:46.216] Browser LOG     Current User Role: superadmin
+[19:35:46.216] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:46.216] Browser LOG     Current User Role: superadmin
+[19:35:46.216] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:47.805] Browser LOG     Current User Role: superadmin
+[19:35:47.805] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:52.058] Browser LOG     Current User Role: superadmin
+[19:35:52.058] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:53.560] Browser LOG     Current User Role: superadmin
+[19:35:53.560] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:54.603] Browser LOG     Current User Role: superadmin
+[19:35:54.603] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:54.603] Browser LOG     Current User Role: superadmin
+[19:35:54.603] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:35:56.340] Browser LOG     Current User Role: superadmin
+[19:35:56.340] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:00.372] Browser LOG     Current User Role: superadmin
+[19:36:00.372] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:01.923] Browser LOG     Current User Role: superadmin
+[19:36:01.923] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:02.780] Browser LOG     Current User Role: superadmin
+[19:36:02.780] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:02.780] Browser LOG     Current User Role: superadmin
+[19:36:02.780] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:04.751] Browser LOG     Current User Role: superadmin
+[19:36:04.751] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:09.107] Browser LOG     Current User Role: superadmin
+[19:36:09.107] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:10.502] Browser LOG     Current User Role: superadmin
+[19:36:10.502] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:11.585] Browser LOG     Current User Role: superadmin
+[19:36:11.585] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:11.585] Browser LOG     Current User Role: superadmin
+[19:36:11.585] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:12.964] Browser LOG     Current User Role: superadmin
+[19:36:12.964] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:20.707] Browser LOG     Current User Role: superadmin
+[19:36:20.707] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:22.136] Browser LOG     Current User Role: superadmin
+[19:36:22.136] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:22.889] Browser LOG     Current User Role: superadmin
+[19:36:22.889] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:22.889] Browser LOG     Current User Role: superadmin
+[19:36:22.889] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:24.092] Browser LOG     Current User Role: superadmin
+[19:36:24.092] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:26.244] Server  LOG     Current User Role: "admin"
+[19:36:26.856] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:36:26.856] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:36:26.856] Browser LOG     Current User Role: admin
+[19:36:26.856] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:36:26.856] Browser LOG     Current User Role: admin
+[19:36:26.856] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:36:26.856] Browser LOG     Current User Role: admin
+[19:36:26.856] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:36:27.096] Browser LOG     Current User Role: superadmin
+[19:36:27.096] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:27.096] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:36:27.096] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:36:27.096] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752593312}
+[19:36:27.096] Browser LOG     Current User Role: superadmin
+[19:36:27.096] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:28.059] Browser LOG     Current User Role: superadmin
+[19:36:28.059] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:30.149] Browser LOG     Current User Role: superadmin
+[19:36:30.149] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:34.157] Browser LOG     Current User Role: superadmin
+[19:36:34.157] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:35.938] Browser LOG     Current User Role: superadmin
+[19:36:35.939] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:36.771] Browser LOG     Current User Role: superadmin
+[19:36:36.771] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:36.771] Browser LOG     Current User Role: superadmin
+[19:36:36.771] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:38.229] Browser LOG     Current User Role: superadmin
+[19:36:38.229] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:43.019] Server  LOG     Current User Role: "admin"
+[19:36:43.507] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:36:43.507] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:36:43.507] Browser LOG     Current User Role: admin
+[19:36:43.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:36:43.507] Browser LOG     Current User Role: admin
+[19:36:43.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:36:43.507] Browser LOG     Current User Role: admin
+[19:36:43.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:36:43.760] Browser LOG     Current User Role: superadmin
+[19:36:43.760] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:43.760] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:36:43.760] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:36:43.760] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752609965}
+[19:36:43.760] Browser LOG     Current User Role: superadmin
+[19:36:43.760] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:45.142] Browser LOG     Current User Role: superadmin
+[19:36:45.142] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:36:47.990] Browser LOG     Current User Role: superadmin
+[19:36:47.990] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:38:55.686] Server  LOG     Current User Role: "admin"
+[19:38:56.161] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:38:56.161] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:38:56.161] Browser LOG     Current User Role: admin
+[19:38:56.161] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:38:56.161] Browser LOG     Current User Role: admin
+[19:38:56.161] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:38:56.161] Browser LOG     Current User Role: admin
+[19:38:56.161] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:38:56.432] Browser LOG     Current User Role: superadmin
+[19:38:56.432] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:38:56.432] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:38:56.432] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:38:56.432] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765752742634}
+[19:38:56.432] Browser LOG     Current User Role: superadmin
+[19:38:56.432] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:38:58.683] Browser LOG     Current User Role: superadmin
+[19:38:58.683] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:39:00.808] Browser LOG     Current User Role: superadmin
+[19:39:00.808] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin

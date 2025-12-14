@@ -1181,6 +1181,7 @@ export default function UsersTable() {
                                 ) : (
                                   d.uploads.map((u: any, i: number) => (
                                     <a
+                                      key={i}
                                       href={u}
                                       target="_blank"
                                       rel="noopener noreferrer"

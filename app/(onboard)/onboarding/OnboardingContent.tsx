@@ -18,6 +18,7 @@ import { submitSupplierOnboarding } from "@/lib/actions/onboarding-actions";
 import { useRouter } from "next/navigation";
 import { Package, Upload, CheckCircle2, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useEdgeStore } from "@/lib/edgestore";
 
 export default function OnboardingContent() {
   const [loading, setLoading] = useState<string | null>(null);
@@ -53,7 +54,7 @@ export default function OnboardingContent() {
   const [averageTurnover, setAverageTurnover] = useState("");
   const [declInfoAccurate, setDeclInfoAccurate] = useState(false);
   const [declAgreeRules, setDeclAgreeRules] = useState(false);
-
+  const { edgestore } = useEdgeStore();
   // Validation function
   const validateForm = () => {
     const errors: string[] = [];
@@ -215,34 +216,82 @@ export default function OnboardingContent() {
         return json && json.success ? json.data : [];
       }
 
-      const businessRegistrationCertificateUploads = await uploadFiles(
-        businessRegCertFiles,
-        "onboarding/business_registration"
+      async function uploadFilesWithEdgeStore(list: FileList | null) {
+        if (!list || list.length === 0) return [];
+
+        const uploads = [];
+
+        for (const file of Array.from(list)) {
+          const res = await edgestore.publicFiles.upload({
+            file,
+            onProgressChange: (progress) => {
+              console.log(`${file.name}: ${progress}%`);
+            },
+          });
+
+          uploads.push({
+            url: res.url,
+            size: file.size,
+            type: file.type,
+            name: file.name,
+          });
+        }
+
+        return uploads;
+      }
+
+      const businessRegistrationCertificateUploads =
+        await uploadFilesWithEdgeStore(businessRegCertFiles);
+
+      const taxClearanceCertificateUploads = await uploadFilesWithEdgeStore(
+        taxClearanceFiles
       );
-      const taxClearanceCertificateUploads = await uploadFiles(
-        taxClearanceFiles,
-        "onboarding/tax_clearance"
+      const gstVatRegistrationCertificateUploads =
+        await uploadFilesWithEdgeStore(gstVatFiles);
+
+      const businessLicenseUploads = await uploadFilesWithEdgeStore(
+        businessLicenseFiles
       );
-      const gstVatRegistrationCertificateUploads = await uploadFiles(
-        gstVatFiles,
-        "onboarding/gst_vat"
+
+      const nassitCertificateUploads = await uploadFilesWithEdgeStore(
+        nassitFiles
       );
-      const businessLicenseUploads = await uploadFiles(
-        businessLicenseFiles,
-        "onboarding/business_license"
+
+      const sectorSpecificCertificateUploads = await uploadFilesWithEdgeStore(
+        sectorCertFiles
       );
-      const nassitCertificateUploads = await uploadFiles(
-        nassitFiles,
-        "onboarding/nassit"
+      const businessDurationDocumentsUploads = await uploadFilesWithEdgeStore(
+        businessDurationFiles
       );
-      const sectorSpecificCertificateUploads = await uploadFiles(
-        sectorCertFiles,
-        "onboarding/sector_specific"
-      );
-      const businessDurationDocuments = await uploadFiles(
-        businessDurationFiles,
-        "onboarding/business_duration"
-      );
+
+      // const businessRegistrationCertificateUploads = await uploadFiles(
+      //   businessRegCertFiles,
+      //   "onboarding/business_registration"
+      // );
+      // const taxClearanceCertificateUploads = await uploadFiles(
+      //   taxClearanceFiles,
+      //   "onboarding/tax_clearance"
+      // );
+      // const gstVatRegistrationCertificateUploads = await uploadFiles(
+      //   gstVatFiles,
+      //   "onboarding/gst_vat"
+      // );
+      // const businessLicenseUploads = await uploadFiles(
+      //   businessLicenseFiles,
+      //   "onboarding/business_license"
+      // );
+      // const nassitCertificateUploads = await uploadFiles(
+      //   nassitFiles,
+      //   "onboarding/nassit"
+      // );
+      // const sectorSpecificCertificateUploads = await uploadFiles(
+      //   sectorCertFiles,
+      //   "onboarding/sector_specific"
+      // );
+      // const businessDurationDocuments = await uploadFiles(
+      //   businessDurationFiles,
+      //   "onboarding/business_duration"
+      // );
 
       const registrationCertificateUploads = [
         ...businessRegistrationCertificateUploads,
@@ -274,7 +323,7 @@ export default function OnboardingContent() {
         vendorPaymentTerms,
         businessLeadGender,
         inBusinessMoreThan3Years,
-        businessDurationDocuments,
+        businessDurationDocumentsUploads,
         dateOfIncorporation,
         averageTurnover,
         declarations: {
