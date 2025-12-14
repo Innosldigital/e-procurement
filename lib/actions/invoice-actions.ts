@@ -5,6 +5,8 @@ import { auth } from "@clerk/nextjs/server";
 import dbConnect from "@/lib/mongodb";
 import { Invoice } from "../models/Invoice";
 import { createNotification } from "./notification-actions";
+import { Supplier } from "../models/Supplier";
+import { PurchaseOrder } from "../models/PurchaseOrder";
 
 export async function getInvoices() {
   try {
@@ -60,20 +62,54 @@ export async function createInvoice(payload: {
     lineTotal?: number;
   }>;
   notes?: string;
+  documents?: {
+    name: string;
+    size: number;
+    type: string;
+    url: string;
+  }[];
 }) {
   try {
     await dbConnect();
+    let supplierRef: any = undefined;
+    let purchaseOrderRef: any = undefined;
+    try {
+      if (payload.supplier) {
+        const s = await Supplier.findOne({
+          $or: [{ name: payload.supplier }, { supplierId: payload.supplier }],
+        }).select(["_id"]);
+        supplierRef = s?._id || undefined;
+      }
+    } catch {}
+    try {
+      if (payload.poNumber) {
+        const po = await PurchaseOrder.findOne({
+          poNumber: payload.poNumber,
+        }).select(["_id"]);
+        purchaseOrderRef = po?._id || undefined;
+      }
+    } catch {}
     const doc = await Invoice.create({
       invoiceNumber: payload.invoiceNumber,
       supplier: payload.supplier,
+      supplierRef,
       amount: payload.amount,
       poNumber: payload.poNumber,
+      purchaseOrderRef,
       dueDate: payload.dueDate,
       invoiceDate: payload.invoiceDate || new Date(),
       entity: payload.entity,
       currency: payload.currency || "USD",
       status: "Pending approval",
       lineItems: payload.lineItems || [],
+      documents: Array.isArray(payload.documents)
+        ? payload.documents.map((d) => ({
+            name: d.name,
+            size: d.size,
+            type: d.type,
+            url: d.url,
+          }))
+        : [],
       notes: payload.notes || "",
     });
 
@@ -286,5 +322,52 @@ export async function checkOverdueInvoices() {
   } catch (error) {
     console.error("[v0] Error checking overdue invoices:", error);
     return { success: false, error: "Failed to check overdue invoices" };
+  }
+}
+
+export async function attachInvoiceDocuments(
+  id: string,
+  docs: {
+    name: string;
+    size: number;
+    type: string;
+    url: string;
+  }[]
+) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+    await dbConnect();
+    const updated = await Invoice.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          documents: {
+            $each: docs.map((d) => ({
+              name: d.name,
+              size: d.size,
+              type: d.type,
+              url: d.url,
+            })),
+          },
+          activity: {
+            event: "Invoice document uploaded",
+            date: new Date(),
+            details: `${docs.length} file(s) attached`,
+          },
+        },
+      },
+      { new: true }
+    ).lean();
+    if (!updated) {
+      return { success: false, error: "Invoice not found" };
+    }
+    revalidatePath("/invoices");
+    return { success: true, data: JSON.parse(JSON.stringify(updated)) };
+  } catch (error) {
+    console.error("[v0] Error attaching invoice documents:", error);
+    return { success: false, error: "Failed to attach documents" };
   }
 }

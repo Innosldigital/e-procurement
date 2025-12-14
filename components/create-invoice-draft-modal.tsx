@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, FileText, Save } from "lucide-react";
+import { createInvoice } from "@/lib/actions/invoice-actions";
 
 type LineItem = {
   line: number;
@@ -68,6 +69,7 @@ export function CreateInvoiceDraftModal({
   onCreated,
 }: InvoiceDraftModalProps) {
   const [saving, setSaving] = useState(false);
+  const [invoiceFiles, setInvoiceFiles] = useState<FileList | null>(null);
 
   // Generate initial invoice number
   const generateInvoiceNumber = () => {
@@ -152,12 +154,68 @@ export function CreateInvoiceDraftModal({
 
   const handleSave = async () => {
     setSaving(true);
-    // Simulate API call
-    setTimeout(() => {
-      onCreated?.();
+    try {
+      async function uploadFiles(list: FileList | null, folder: string) {
+        if (!list || list.length === 0)
+          return [] as Array<{
+            name: string;
+            size: number;
+            type: string;
+            url: string;
+          }>;
+        const fd = new FormData();
+        Array.from(list).forEach((f) => fd.append("files", f));
+        fd.append("folder", folder);
+        const resp = await fetch("/api/upload", { method: "POST", body: fd });
+        const json = await resp.json();
+        return (json && json.success ? json.data : []) as Array<{
+          name: string;
+          size: number;
+          type: string;
+          url: string;
+        }>;
+      }
+
+      const uploads = await uploadFiles(
+        invoiceFiles,
+        `invoices/${String(invoiceNumber || purchaseOrder.poNumber)}`
+      );
+
+      const selected = lineItems.filter((li) => li.selected);
+      const mapped = selected.map((li) => {
+        const base = li.unitPrice * li.quantityToInvoice;
+        const tax = base * (taxRate / 100);
+        return {
+          description: li.description,
+          qty: li.quantityToInvoice,
+          unitPrice: li.unitPrice,
+          tax,
+          lineTotal: base + tax,
+        };
+      });
+
+      const res = await createInvoice({
+        invoiceNumber: String(invoiceNumber),
+        supplier: String(purchaseOrder.supplier || ""),
+        amount: Number(total),
+        poNumber: String(purchaseOrder.poNumber || ""),
+        dueDate: new Date(dueDate),
+        invoiceDate: new Date(invoiceDate),
+        entity: String(purchaseOrder.department || ""),
+        currency: String(purchaseOrder.currency || "USD"),
+        lineItems: mapped,
+        notes,
+        documents: uploads,
+      });
+
+      if (res && (res as any).success) {
+        onCreated?.();
+        onClose();
+      }
+    } catch (e) {
+    } finally {
       setSaving(false);
-      onClose();
-    }, 1000);
+    }
   };
 
   const selectedItemCount = lineItems.filter((item) => item.selected).length;
@@ -414,6 +472,25 @@ export function CreateInvoiceDraftModal({
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Add any additional notes or instructions..."
             />
+          </div>
+
+          {/* Upload */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Upload Invoice Document
+            </label>
+            <input
+              type="file"
+              multiple
+              accept="application/pdf,image/*,.pdf"
+              onChange={(e) => setInvoiceFiles(e.target.files)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            {invoiceFiles && (
+              <div className="text-xs text-gray-600 mt-1">
+                {invoiceFiles.length} file(s) selected
+              </div>
+            )}
           </div>
 
           {/* Summary */}

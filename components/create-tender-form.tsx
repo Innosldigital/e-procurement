@@ -30,6 +30,7 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
       .toLowerCase()
       .replace(/[\s_-]/g, "") || "";
   const isSupplier = role === "supplier";
+  const [tenderFiles, setTenderFiles] = useState<FileList | null>(null);
   const [formData, setFormData] = useState({
     title: "",
     type: "RFP",
@@ -49,6 +50,40 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
     setIsSubmitting(true);
 
     try {
+      async function uploadFiles(list: FileList | null, folder: string) {
+        if (!list || list.length === 0)
+          return [] as Array<{
+            name: string;
+            size: number;
+            type: string;
+            url: string;
+          }>;
+        const fd = new FormData();
+        Array.from(list)
+          .filter(
+            (f) =>
+              f.type === "application/pdf" ||
+              String((f as any).name || "")
+                .toLowerCase()
+                .endsWith(".pdf")
+          )
+          .forEach((f) => fd.append("files", f));
+        fd.append("folder", folder);
+        const resp = await fetch("/api/upload", { method: "POST", body: fd });
+        const json = await resp.json();
+        return (json && json.success ? json.data : []) as Array<{
+          name: string;
+          size: number;
+          type: string;
+          url: string;
+        }>;
+      }
+
+      const tenderUploads = await uploadFiles(
+        tenderFiles,
+        `tenders/${Date.now()}`
+      );
+
       const result = await createTender({
         ...formData,
         estimatedValue: formData.estimatedValue
@@ -60,6 +95,7 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
         closeDate: formData.closeDate
           ? new Date(formData.closeDate)
           : undefined,
+        tenderDocuments: tenderUploads,
       });
 
       if (result.success) {
@@ -297,6 +333,28 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                 value={formData.closeDate}
                 onChange={(e) => handleChange("closeDate", e.target.value)}
               />
+            </div>
+          </div>
+
+          {/* Tender Documents */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold">Tender documents</h3>
+            <div className="space-y-2">
+              <Label htmlFor="tenderDocuments">
+                Upload documents (PDF only)
+              </Label>
+              <Input
+                id="tenderDocuments"
+                type="file"
+                accept="application/pdf,.pdf"
+                multiple
+                onChange={(e) => setTenderFiles(e.target.files)}
+              />
+              {tenderFiles && (
+                <div className="text-xs text-muted-foreground">
+                  {tenderFiles.length} file(s) selected
+                </div>
+              )}
             </div>
           </div>
 

@@ -22,8 +22,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export default function SuppliersPage() {
+  const router = useRouter();
   const { user } = useUser();
   const role =
     String((user?.publicMetadata as any)?.role || "")
@@ -887,7 +889,17 @@ export default function SuppliersPage() {
               <div className="pt-4 border-t">
                 <h3 className="text-sm font-medium mb-3">Next actions</h3>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const id = String(selectedDetails?._id || "");
+                      if (id) {
+                        router.push(`/suppliers/${id}/edit`);
+                      }
+                    }}
+                    disabled={!selectedDetails?._id}
+                  >
                     Edit supplier profile
                   </Button>
                   <Button variant="outline" size="sm">

@@ -46,9 +46,13 @@ export function Navigation({
     String((user?.publicMetadata as any)?.role || "")
       .toLowerCase()
       .replace(/[\s_-]/g, "") || "";
-  const items = navItems.filter((n) =>
-    n.href === "/admin" ? role === "admin" || role === "superadmin" : true
-  );
+  const items = navItems.filter((n) => {
+    if (n.href === "/admin") return role === "admin" || role === "superadmin";
+    if (n.href === "/reports") return role !== "supplier";
+    if (n.href === "/tenders") return role !== "supplier";
+    if (n.href === "/approvals") return role !== "supplier";
+    return true;
+  });
 
   const isOpen = setMobileOpen ? mobileOpen : localMobileOpen;
   const handleToggle = setMobileOpen || setLocalMobileOpen;

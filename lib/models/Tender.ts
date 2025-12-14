@@ -23,18 +23,21 @@ const TenderSchema = new Schema({
   contractTerm: { type: String },
   sourcingType: { type: String },
   invitedSuppliers: { type: Number },
+  tenderDocuments: [{ name: String, size: Number, type: String, url: String }],
   keyDates: {
     published: Date,
     closed: Date
   },
   evaluationSummary: {
     recommendedSupplier: String,
+    recommendedSupplierId: { type: Schema.Types.ObjectId, ref: 'Supplier' },
     score: Number,
     totalBids: Number,
     disqualified: Number
   },
   bids: [{
     supplier: String,
+    supplierId: { type: Schema.Types.ObjectId, ref: 'Supplier' },
     totalPrice: Number,
     score: Number,
     compliance: String,

@@ -55,7 +55,7 @@ export async function awardTender(id: string, supplierId: string) {
       {
         stage: "Awarded",
         keyDates: { closed: now },
-        evaluationSummary: { recommendedSupplier: supplierId },
+        evaluationSummary: { recommendedSupplier: supplierId, recommendedSupplierId: supplierId },
         status: "awarded",
       },
       { new: true }
@@ -117,6 +117,12 @@ export async function createTender(data: {
   sourcingType?: string;
   invitedSuppliers?: number;
   closeDate?: Date;
+  tenderDocuments?: {
+    name: string;
+    size: number;
+    type: string;
+    url: string;
+  }[];
 }) {
   try {
     const { userId } = await auth();
@@ -144,6 +150,14 @@ export async function createTender(data: {
       sourcingType: data.sourcingType,
       invitedSuppliers: data.invitedSuppliers,
       closeDate: data.closeDate,
+      tenderDocuments: Array.isArray(data.tenderDocuments)
+        ? data.tenderDocuments.map((d) => ({
+            name: d.name,
+            size: d.size,
+            type: d.type,
+            url: d.url,
+          }))
+        : [],
       stage: "Planned",
       responses: 0,
       owner: userId,
@@ -295,8 +309,17 @@ export async function submitBid(
 
     await dbConnect();
 
+    let supplierRef: any = undefined;
+    try {
+      const s = await Supplier.findOne({
+        $or: [{ name: data.supplierName }, { supplierId: data.supplierName }],
+      }).select(["_id"]);
+      supplierRef = s?._id || undefined;
+    } catch {}
+
     const bid = {
       supplier: data.supplierName,
+      supplierId: supplierRef,
       totalPrice: Number(data.totalPrice || 0),
       score: undefined,
       compliance: data.complianceStatement || "",

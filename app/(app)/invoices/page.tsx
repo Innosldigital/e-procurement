@@ -19,6 +19,7 @@ import {
   putInvoiceOnHold,
   approveInvoice,
   createInvoice,
+  attachInvoiceDocuments,
 } from "@/lib/actions/invoice-actions";
 
 const fmtDate = (d?: string | Date) =>
@@ -50,6 +51,9 @@ export default function InvoicesPage() {
   const [scheduleStr, setScheduleStr] = useState("");
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [actionNotice, setActionNotice] = useState<string | null>(null);
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [invoiceFiles, setInvoiceFiles] = useState<FileList | null>(null);
 
   useEffect(() => {
     async function loadInvoices() {
@@ -464,6 +468,42 @@ export default function InvoicesPage() {
               <div>
                 <h3 className="text-sm font-medium mb-3">Activity & notes</h3>
                 <div className="space-y-3">
+                  {Array.isArray(selectedInvoice?.documents) &&
+                  selectedInvoice.documents.length > 0 ? (
+                    <div className="rounded border border-border p-3 mb-3">
+                      <div className="text-xs text-muted-foreground mb-2">
+                        Documents
+                      </div>
+                      <div className="space-y-2">
+                        {selectedInvoice.documents.map(
+                          (d: any, idx: number) => (
+                            <div
+                              key={`doc-${idx}`}
+                              className="flex items-center justify-between gap-3"
+                            >
+                              {d.url ? (
+                                <a
+                                  href={d.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-sm font-medium truncate hover:underline"
+                                >
+                                  {d.name || "Document"}
+                                </a>
+                              ) : (
+                                <span className="text-sm font-medium truncate">
+                                  {d.name || "Document"}
+                                </span>
+                              )}
+                              <span className="text-xs text-muted-foreground">
+                                {d.type || ""} · {String(d.size || 0)}
+                              </span>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  ) : null}
                   {invoiceActivities.map((activity: any, i: number) => (
                     <div key={i} className="flex gap-3">
                       <div className="w-2 h-2 rounded-full bg-primary mt-1.5" />
@@ -542,6 +582,15 @@ export default function InvoicesPage() {
                     disabled={!selectedInvoice || actionLoading !== null}
                   >
                     Put on hold
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex-1 sm:flex-none"
+                    onClick={() => setUploadOpen(true)}
+                    disabled={!selectedInvoice || actionLoading !== null}
+                  >
+                    Upload invoice
                   </Button>
                   <Button
                     size="sm"
@@ -763,6 +812,93 @@ export default function InvoicesPage() {
               disabled={actionLoading !== null}
             >
               Confirm schedule
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Upload invoice document</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div className="space-y-2">
+              <Label>Files</Label>
+              <Input
+                type="file"
+                multiple
+                accept="application/pdf,image/*,.pdf"
+                onChange={(e) => setInvoiceFiles(e.target.files)}
+              />
+              {invoiceFiles && (
+                <div className="text-xs text-muted-foreground">
+                  {invoiceFiles.length} file(s) selected
+                </div>
+              )}
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setUploadOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={async () => {
+                if (!selectedInvoice?._id) return;
+                setUploading(true);
+                try {
+                  async function uploadFiles(
+                    list: FileList | null,
+                    folder: string
+                  ) {
+                    if (!list || list.length === 0)
+                      return [] as Array<{
+                        name: string;
+                        size: number;
+                        type: string;
+                        url: string;
+                      }>;
+                    const fd = new FormData();
+                    Array.from(list).forEach((f) => fd.append("files", f));
+                    fd.append("folder", folder);
+                    const resp = await fetch("/api/upload", {
+                      method: "POST",
+                      body: fd,
+                    });
+                    const json = await resp.json();
+                    return (json && json.success ? json.data : []) as Array<{
+                      name: string;
+                      size: number;
+                      type: string;
+                      url: string;
+                    }>;
+                  }
+                  const folder = `invoices/${String(
+                    selectedInvoice?.invoiceNumber ||
+                      selectedInvoice?._id ||
+                      "misc"
+                  )}`;
+                  const uploads = await uploadFiles(invoiceFiles, folder);
+                  const res = await attachInvoiceDocuments(
+                    String(selectedInvoice._id),
+                    uploads
+                  );
+                  if (res && (res as any).success) {
+                    const updated = (res as any).data;
+                    setInvoices((prev) =>
+                      prev.map((inv) =>
+                        inv._id === updated._id ? updated : inv
+                      )
+                    );
+                    setSelectedInvoice(updated);
+                    setUploadOpen(false);
+                    setInvoiceFiles(null);
+                  }
+                } catch (e) {}
+                setUploading(false);
+              }}
+              disabled={uploading}
+            >
+              {uploading ? "Uploading..." : "Upload"}
             </Button>
           </DialogFooter>
         </DialogContent>

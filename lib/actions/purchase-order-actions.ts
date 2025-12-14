@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import dbConnect from "@/lib/mongodb";
 import { PurchaseOrder } from "../models/PurchaseOrder";
 import { Requisition } from "../models/Requisition";
+import { Supplier } from "../models/Supplier";
 
 export async function getPurchaseOrders() {
   try {
@@ -215,6 +216,16 @@ export async function createPurchaseOrder(data: {
     const po = await PurchaseOrder.create({
       poNumber,
       supplier: data.supplier,
+      supplierRef: await (async () => {
+        try {
+          const s = await Supplier.findOne({
+            $or: [{ name: data.supplier }, { supplierId: data.supplier }],
+          }).select(["_id"]);
+          return s?._id || undefined;
+        } catch {
+          return undefined;
+        }
+      })(),
       status: "Issued",
       total,
       requester: data.requester,
