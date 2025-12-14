@@ -10,6 +10,8 @@ import { StatusBadge } from "@/components/status-badge";
 import { Badge } from "@/components/ui/badge";
 import { getApprovals } from "@/lib/actions/approval-actions";
 import { bulkApprove } from "@/lib/actions/approval-actions";
+import { getRequisitions } from "@/lib/actions/requisition-actions";
+import { getPurchaseOrders } from "@/lib/actions/purchase-order-actions";
 import ApprovalsClient from "@/components/approvals-client";
 import { Suspense } from "react";
 import Link from "next/link";
@@ -50,6 +52,14 @@ export default async function ApprovalsPage(props: any) {
   const result = await getApprovals();
   const approvals = result.success ? result.data : [];
   const selected = approvals.length ? approvals[0] : null;
+  const [reqResult, poResult] = await Promise.all([
+    getRequisitions().catch(() => ({ success: false, data: [] })),
+    getPurchaseOrders().catch(() => ({ success: false, data: [] })),
+  ]);
+  const requisitions =
+    reqResult && (reqResult as any).success ? (reqResult as any).data : [];
+  const purchaseOrders =
+    poResult && (poResult as any).success ? (poResult as any).data : [];
   const pendingIds = approvals
     .filter((a: any) => {
       const s = String(a.status || "").toLowerCase();
@@ -112,7 +122,11 @@ export default async function ApprovalsPage(props: any) {
             </div>
           }
         >
-          <ApprovalsClient approvals={approvals} />
+          <ApprovalsClient
+            approvals={approvals}
+            requisitions={requisitions}
+            purchaseOrders={purchaseOrders}
+          />
         </Suspense>
         {false && (
           <>

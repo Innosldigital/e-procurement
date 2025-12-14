@@ -182,7 +182,7 @@ export function CreateRequisitionForm({
       formDataPayload.append("amount", totalAmount.toString());
       formDataPayload.append("neededBy", formData.neededBy);
       formDataPayload.append("costCenter", formData.costCenter || "");
-      formDataPayload.append("date", new Date().toISOString()); // current date
+      formDataPayload.append("date", new Date().toISOString());
 
       // Optional
       formDataPayload.append("notes", formData.notes || "");

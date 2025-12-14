@@ -111,9 +111,25 @@ export function AddUser({ onSubmitComplete, currentUserRole }: AddUserProps) {
         return;
       }
 
+      // Show success with invitation URL
       toast({
         title: "Success",
-        description: "User created successfully",
+        description: (
+          <div className="space-y-2">
+            <p>User invitation sent successfully!</p>
+            {result.invitationUrl && (
+              <div className="mt-2">
+                <p className="text-xs text-muted-foreground mb-1">
+                  If email doesn't arrive, copy this link:
+                </p>
+                <code className="text-xs bg-muted p-1 rounded block break-all">
+                  {result.invitationUrl}
+                </code>
+              </div>
+            )}
+          </div>
+        ),
+        duration: 10000,
       });
 
       setAddLawyerModalOpen(false);

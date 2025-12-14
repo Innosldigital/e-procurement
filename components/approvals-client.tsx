@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 const fmtDate = (d?: string | Date) => d ? new Date(d).toISOString().slice(0, 10) : ""
 const fmtAmount = (n: number) => new Intl.NumberFormat('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n)
 
-export default function ApprovalsClient({ approvals }: { approvals: any[] }) {
+export default function ApprovalsClient({ approvals, requisitions, purchaseOrders }: { approvals: any[]; requisitions?: any[]; purchaseOrders?: any[] }) {
   const params = useSearchParams()
   const router = useRouter()
   const selectedId = params.get("id") || ""

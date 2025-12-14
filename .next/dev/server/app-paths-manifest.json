@@ -1,4 +1,10 @@
 {
+  "/(app)/admin/page": "app/(app)/admin/page.js",
+  "/(app)/approvals/page": "app/(app)/approvals/page.js",
   "/(app)/invoices/page": "app/(app)/invoices/page.js",
-  "/(app)/reports/page": "app/(app)/reports/page.js"
+  "/(app)/reports/page": "app/(app)/reports/page.js",
+  "/(app)/requisitions/page": "app/(app)/requisitions/page.js",
+  "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
+  "/api/upload/route": "app/api/upload/route.js",
+  "/page": "app/page.js"
 }
