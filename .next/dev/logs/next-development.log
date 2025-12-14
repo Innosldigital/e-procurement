@@ -1593,3 +1593,16 @@ Check the render method of `div`.  It was passed a child from UsersTable.
 [18:30:29.957] Browser LOG     Success! Supplier created: {"_id":"693f2f9aac47915fa035bbc6","id":"693f2f9aac47915fa035bbc6","name":"Ministry of Tourism and Cultural Affairs Sierra Leone","supplierId":"SUP-5005"}
 [18:30:43.365] Server  LOG     getSupplierById: {}
 [18:30:43.792] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765748650016}
+[18:49:45.302] Server  LOG      ✓ Compiled in 222ms
+[18:49:46.281] Server  LOG     getSupplierById: {}
+[18:49:46.659] Server  LOG     getSupplierById: {}
+[18:49:47.066] Server  LOG     getSupplierById: {}
+[18:49:47.219] Server  LOG     getSupplierById: {}
+[18:49:47.500] Server  LOG     getSupplierById: {}
+[18:49:47.893] Server  LOG     getSupplierById: {}
+[18:49:48.211] Server  LOG     getSupplierById: {}
+[18:49:48.257] Server  LOG     getSupplierById: {}
+[18:49:48.268] Server  LOG     getSupplierById: {}
+[18:49:48.385] Browser LOG     Current User Role: superadmin
+[18:49:48.385] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:49:49.294] Server  LOG     getSupplierById: {}

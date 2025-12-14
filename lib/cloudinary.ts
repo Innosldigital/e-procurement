@@ -16,6 +16,12 @@ if (cloud_name && api_key && api_secret) {
   });
 }
 
+function ensureConfigured() {
+  if (!cloud_name || !api_key || !api_secret) {
+    throw new Error("Cloudinary is not configured. Missing CLOUDINARY_* envs.");
+  }
+}
+
 // -------------------------------
 // Upload BUFFER (handles PDF correctly)
 // -------------------------------
@@ -25,6 +31,7 @@ export async function uploadBufferToCloudinary(
   folder: string,
   mimeType?: string
 ) {
+  ensureConfigured();
   const isPdf = mimeType === "application/pdf" || filename.endsWith(".pdf");
 
   return new Promise<{
@@ -38,6 +45,7 @@ export async function uploadBufferToCloudinary(
       {
         folder,
         resource_type: isPdf ? "raw" : "auto",
+        format: isPdf ? "pdf" : undefined,
         filename_override: filename,
         use_filename: true,
         unique_filename: true,
@@ -47,7 +55,6 @@ export async function uploadBufferToCloudinary(
           return reject(error || new Error("Cloudinary upload failed"));
         }
 
-        // FORCE correct URL for PDFs
         const secureUrl = isPdf
           ? result.secure_url.replace("/image/upload/", "/raw/upload/")
           : result.secure_url;
@@ -66,10 +73,8 @@ export async function uploadBufferToCloudinary(
   });
 }
 
-// -------------------------------
-// Upload FILE (Next.js / FormData)
-// -------------------------------
 export async function uploadFileToCloudinary(file: File, folder: string) {
+  ensureConfigured();
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
   const name = file.name || "upload";
