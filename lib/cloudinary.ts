@@ -1,3 +1,6 @@
+// ================================
+// lib/cloudinary.ts (FIXED: PDF-safe)
+// ================================
 import { v2 as cloudinary } from "cloudinary";
 
 const cloud_name = process.env.CLOUDINARY_CLOUD_NAME;
@@ -13,44 +16,65 @@ if (cloud_name && api_key && api_secret) {
   });
 }
 
+// -------------------------------
+// Upload BUFFER (handles PDF correctly)
+// -------------------------------
 export async function uploadBufferToCloudinary(
   buffer: Buffer,
   filename: string,
-  folder: string
+  folder: string,
+  mimeType?: string
 ) {
+  const isPdf = mimeType === "application/pdf" || filename.endsWith(".pdf");
+
   return new Promise<{
     url: string;
-    public_id: string;
     secure_url: string;
+    public_id: string;
     original_filename?: string;
+    resource_type?: string;
   }>((resolve, reject) => {
-    const upload_stream = cloudinary.uploader.upload_stream(
+    const uploadStream = cloudinary.uploader.upload_stream(
       {
         folder,
-        resource_type: "auto",
+        resource_type: isPdf ? "raw" : "auto",
         filename_override: filename,
         use_filename: true,
+        unique_filename: true,
       },
       (error, result) => {
-        if (error || !result)
+        if (error || !result) {
           return reject(error || new Error("Cloudinary upload failed"));
+        }
+
+        // FORCE correct URL for PDFs
+        const secureUrl = isPdf
+          ? result.secure_url.replace("/image/upload/", "/raw/upload/")
+          : result.secure_url;
+
         resolve({
-          url: result.url,
-          secure_url: result.secure_url,
+          url: secureUrl,
+          secure_url: secureUrl,
           public_id: result.public_id,
           original_filename: (result as any).original_filename,
+          resource_type: result.resource_type,
         });
       }
     );
-    upload_stream.end(buffer);
+
+    uploadStream.end(buffer);
   });
 }
 
+// -------------------------------
+// Upload FILE (Next.js / FormData)
+// -------------------------------
 export async function uploadFileToCloudinary(file: File, folder: string) {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
-  const name = (file as any).name || "upload";
-  return uploadBufferToCloudinary(buffer, name, folder);
+  const name = file.name || "upload";
+
+  return uploadBufferToCloudinary(buffer, name, folder, file.type);
 }
 
 export default cloudinary;

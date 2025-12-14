@@ -253,3 +253,1343 @@
 [12:05:17.413] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
 [12:05:17.550] Browser LOG     Current User Role: superadmin
 [12:05:17.550] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:16:41.433] Browser LOG     Current User Role: superadmin
+[12:16:41.433] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:16:52.325] Browser LOG     Current User Role: superadmin
+[12:16:52.325] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:16:52.863] Browser LOG     Current User Role: superadmin
+[12:16:52.863] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:16:58.120] Browser LOG     Current User Role: superadmin
+[12:16:58.120] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:16:58.686] Browser LOG     Current User Role: superadmin
+[12:16:58.686] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:17:49.227] Browser LOG     Current User Role: superadmin
+[12:17:49.227] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:17:51.808] Browser LOG     Current User Role: superadmin
+[12:17:51.808] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:17:54.918] Browser LOG     Current User Role: superadmin
+[12:17:54.919] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:08.219] Server  LOG     Current User Role: "admin"
+[12:28:08.886] Browser LOG     Current User Role: admin
+[12:28:08.886] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:28:08.886] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[12:28:08.886] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[12:28:08.886] Browser LOG     Current User Role: admin
+[12:28:08.886] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:28:09.496] Browser LOG     Current User Role: superadmin
+[12:28:09.497] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:09.497] Browser LOG     Current User Role: superadmin
+[12:28:09.497] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:09.497] Browser LOG     Current User Role: superadmin
+[12:28:09.497] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:09.497] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[12:28:09.497] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[12:28:09.497] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765726895731}
+[12:28:10.384] Browser LOG     Current User Role: superadmin
+[12:28:10.384] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:12.339] Browser LOG     Current User Role: superadmin
+[12:28:12.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:18.665] Browser LOG     Current User Role: superadmin
+[12:28:18.665] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:18.665] Browser LOG     Current User Role: superadmin
+[12:28:18.665] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:18.950] Browser LOG     Current User Role: superadmin
+[12:28:18.950] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:44.301] Browser LOG     Current User Role: superadmin
+[12:28:44.301] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:46.655] Server  LOG     Current User Role: "admin"
+[12:28:47.039] Browser LOG     Current User Role: admin
+[12:28:47.039] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:28:47.039] Browser LOG     Current User Role: admin
+[12:28:47.039] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:28:47.039] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[12:28:47.039] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[12:28:47.788] Browser LOG     Current User Role: superadmin
+[12:28:47.788] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:47.788] Browser LOG     Current User Role: superadmin
+[12:28:47.788] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:47.788] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[12:28:47.788] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[12:28:47.788] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765726934004}
+[12:28:47.788] Browser LOG     Current User Role: superadmin
+[12:28:47.788] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:48.364] Browser LOG     Current User Role: superadmin
+[12:28:48.364] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:50.065] Browser LOG     Current User Role: superadmin
+[12:28:50.065] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:53.395] Browser LOG     Current User Role: superadmin
+[12:28:53.395] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:53.395] Browser LOG     Current User Role: superadmin
+[12:28:53.395] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:28:53.662] Browser LOG     Current User Role: superadmin
+[12:28:53.662] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:29:54.207] Browser LOG     Current User Role: superadmin
+[12:29:54.207] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:28.463] Server  LOG      ✓ Compiled in 293ms
+[12:42:29.350] Browser LOG     Current User Role: superadmin
+[12:42:29.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:29.350] Browser LOG     Current User Role: superadmin
+[12:42:29.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:30.646] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_8fcf1a44._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.648] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\[root-of-the-server]__559b8dd1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.653] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.667] Server  ERROR   C:\my-projects\InnoslProcura\.next\dev\server\chunks\ssr\node_modules_next_dist_5fcb8006._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.668] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.669] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.670] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.670] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.671] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.672] Server  ERROR   C:\my-projects\InnoslProcura\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:42:30.674] Server  ERROR    ⨯ [ClerkAPIResponseError]
+Message:Bad Gateway
+Status:502
+Serialized errors: 
+Clerk Trace ID: 9adee3708d5cd424-LOS
+[12:42:31.344] Browser LOG     Current User Role: superadmin
+[12:42:31.344] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:55.459] Server  LOG     Current User Role: "admin"
+[12:42:56.051] Browser LOG     Current User Role: admin
+[12:42:56.051] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:42:56.051] Browser LOG     Current User Role: admin
+[12:42:56.051] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:42:56.051] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[12:42:56.051] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[12:42:56.701] Browser LOG     Current User Role: superadmin
+[12:42:56.701] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:56.701] Browser LOG     Current User Role: superadmin
+[12:42:56.701] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:56.701] Browser LOG     Current User Role: superadmin
+[12:42:56.701] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:56.701] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[12:42:56.701] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[12:42:56.701] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765727782926}
+[12:42:57.707] Browser LOG     Current User Role: superadmin
+[12:42:57.707] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:42:59.781] Browser LOG     Current User Role: superadmin
+[12:42:59.781] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:43:19.825] Browser LOG     Current User Role: superadmin
+[12:43:19.825] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:43:19.825] Browser LOG     Current User Role: superadmin
+[12:43:19.825] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:43:20.132] Browser LOG     Current User Role: superadmin
+[12:43:20.132] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:19.776] Browser LOG     Current User Role: superadmin
+[12:44:19.776] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:31.507] Server  LOG     Current User Role: "admin"
+[12:44:31.869] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[12:44:31.869] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[12:44:31.869] Browser LOG     Current User Role: admin
+[12:44:31.869] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:44:31.869] Browser LOG     Current User Role: admin
+[12:44:31.869] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[12:44:32.189] Browser LOG     Current User Role: superadmin
+[12:44:32.189] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:32.189] Browser LOG     Current User Role: superadmin
+[12:44:32.189] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:32.189] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[12:44:32.189] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[12:44:32.189] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765727878410}
+[12:44:32.189] Browser LOG     Current User Role: superadmin
+[12:44:32.189] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:33.494] Browser LOG     Current User Role: superadmin
+[12:44:33.494] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:35.453] Browser LOG     Current User Role: superadmin
+[12:44:35.453] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:37.282] Browser LOG     Current User Role: superadmin
+[12:44:37.282] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:37.282] Browser LOG     Current User Role: superadmin
+[12:44:37.282] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:37.539] Browser LOG     Current User Role: superadmin
+[12:44:37.539] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:44:38.930] Browser LOG     Current User Role: superadmin
+[12:44:38.930] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:45:47.869] Browser LOG     Current User Role: superadmin
+[12:45:47.869] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:45:47.869] Browser LOG     Current User Role: superadmin
+[12:45:47.869] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:45:48.151] Browser LOG     Current User Role: superadmin
+[12:45:48.151] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:46:07.790] Browser LOG     Current User Role: superadmin
+[12:46:07.790] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:51:26.454] Server  LOG      ✓ Compiled in 147ms
+[12:51:27.350] Browser ERROR   ./app/(app)/admin/page.tsx:1572:15
+Parsing ecmascript source code failed
+  1570 |                 </div>
+  1571 |               </div>
+> 1572 |             ) : (
+       |               ^
+  1573 |               <Card>
+  1574 |                 <CardContent className="p-8 text-center">
+  1575 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[12:51:43.350] Browser LOG     Current User Role: superadmin
+[12:51:43.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:51:43.350] Browser LOG     Current User Role: superadmin
+[12:51:43.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[12:59:44.351] Server  LOG      ✓ Compiled in 141ms
+[12:59:45.341] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:16.340] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:22.418] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[13:00:23.349] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:23.349] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:23.349] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:23.771] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[13:00:24.349] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:24.349] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:24.349] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:00:24.349] Browser ERROR   ./app/(app)/admin/page.tsx:1645:15
+Parsing ecmascript source code failed
+  1643 |                 </div>
+  1644 |               </div>
+> 1645 |             ) : (
+       |               ^
+  1646 |               <Card>
+  1647 |                 <CardContent className="p-8 text-center">
+  1648 |                   <p className="text-sm text-muted-foreground">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[13:01:21.815] Server  LOG      ✓ Compiled in 116ms
+[13:01:22.355] Browser LOG     Current User Role: superadmin
+[13:01:22.355] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:01:22.355] Browser LOG     Skipping load - dialog closed, no user, or invitation
+[13:01:22.355] Browser LOG     Current User Role: superadmin
+[13:01:22.355] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:01:24.343] Browser LOG     Current User Role: superadmin
+[13:01:24.343] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:01:25.344] Browser LOG     Current User Role: superadmin
+[13:01:25.344] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:01:52.298] Browser LOG     Current User Role: superadmin
+[13:01:52.298] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:01:52.298] Browser LOG     Loading onboarding details for user: {"id":"user_36qGDzkWCosLT5BQevhwPL3SBpb","onboarded":true,"onboardingStatus":"pending_admin_approval","role":"supplier"}
+[13:01:52.298] Browser LOG     Fetching supplier onboarding data...
+[13:01:52.298] Browser LOG     Current User Role: superadmin
+[13:01:52.298] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:01:52.592] Browser LOG     Supplier onboarding response: {"error":"Supplier not found for user","success":false}
+[13:01:52.592] Browser LOG     Processed onboarding data: null
+[13:01:52.592] Browser LOG     Current User Role: superadmin
+[13:01:52.592] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:02:09.697] Browser LOG     Current User Role: superadmin
+[13:02:09.697] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:02:09.697] Browser LOG     Skipping load - dialog closed, no user, or invitation
+[13:03:29.563] Server  LOG      ✓ Compiled in 259ms
+[13:03:30.346] Browser LOG     Current User Role: superadmin
+[13:03:30.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:03:30.346] Browser LOG     Current User Role: superadmin
+[13:03:30.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:03:32.342] Browser LOG     Current User Role: superadmin
+[13:03:32.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:03:35.776] Server  LOG      ✓ Compiled in 146ms
+[13:03:36.342] Browser LOG     Current User Role: superadmin
+[13:03:36.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:03:36.342] Browser LOG     Current User Role: superadmin
+[13:03:36.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:03:38.340] Browser LOG     Current User Role: superadmin
+[13:03:38.340] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:07:31.688] Browser LOG     Current User Role: superadmin
+[13:07:31.688] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:07:31.688] Browser LOG     Current User Role: superadmin
+[13:07:31.688] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:07:31.939] Browser LOG     Current User Role: superadmin
+[13:07:31.939] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:07:34.870] Browser LOG     Current User Role: superadmin
+[13:07:34.870] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:10:36.584] Browser LOG     Current User Role: superadmin
+[13:10:36.584] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:10:36.584] Browser LOG     Current User Role: superadmin
+[13:10:36.584] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:10:36.849] Browser LOG     Current User Role: superadmin
+[13:10:36.849] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:10:54.972] Browser LOG     Current User Role: superadmin
+[13:10:54.972] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:13:12.296] Server  LOG      ✓ Compiled in 124ms
+[13:13:13.349] Browser LOG     Current User Role: superadmin
+[13:13:13.349] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:14:10.255] Browser LOG     user {"createdAt":1765726572542,"email":"europacampbell@gmail.com","firstName":"Rechael Joy","id":"user_36qGDzkWCosLT5BQevhwPL3SBpb","lastName":"Sesay","lastSignInAt":1765726572553,"onboarded":true,"onboardingStatus":"pending_admin_approval","photo":"https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18zNWhpVjF6d0pGc2E0dGJsdWdxV1h1UTZEcm8iLCJyaWQiOiJ1c2VyXzM2cUdEemtXQ29zTFQ1QlFldmh3UEwzU0JwYiIsImluaXRpYWxzIjoiUlMifQ","role":"supplier"}
+[13:14:10.255] Browser LOG     Current User Role: superadmin
+[13:14:10.255] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:14:10.255] Browser LOG     Current User Role: superadmin
+[13:14:10.255] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:14:10.541] Browser LOG     Current User Role: superadmin
+[13:14:10.541] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:17:34.280] Server  LOG      ✓ Compiled in 143ms
+[13:17:35.345] Browser LOG     Current User Role: superadmin
+[13:17:35.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:17:42.032] Browser LOG     Current User Role: superadmin
+[13:17:42.032] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:17:47.026] Browser LOG     Current User Role: superadmin
+[13:17:47.026] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:17:47.026] Browser LOG     Current User Role: superadmin
+[13:17:47.026] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:17:48.946] Browser LOG     Current User Role: superadmin
+[13:17:48.946] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:21:11.256] Server  LOG      ✓ Compiled in 206ms
+[13:21:12.339] Browser LOG     Current User Role: superadmin
+[13:21:12.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:21:19.211] Browser LOG     Current User Role: superadmin
+[13:21:19.211] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:21:19.211] Browser LOG     {"createdAt":1765726572542,"email":"europacampbell@gmail.com","firstName":"Rechael Joy","id":"user_36qGDzkWCosLT5BQevhwPL3SBpb","lastName":"Sesay","lastSignInAt":1765726572553,"onboarded":true,"onboardingStatus":"pending_admin_approval","photo":"https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18zNWhpVjF6d0pGc2E0dGJsdWdxV1h1UTZEcm8iLCJyaWQiOiJ1c2VyXzM2cUdEemtXQ29zTFQ1QlFldmh3UEwzU0JwYiIsImluaXRpYWxzIjoiUlMifQ","role":"supplier"}
+[13:21:24.434] Browser LOG     Current User Role: superadmin
+[13:21:24.434] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:21:24.434] Browser LOG     {"createdAt":1765726572542,"email":"europacampbell@gmail.com","firstName":"Rechael Joy","id":"user_36qGDzkWCosLT5BQevhwPL3SBpb","lastName":"Sesay","lastSignInAt":1765726572553,"onboarded":true,"onboardingStatus":"pending_admin_approval","photo":"https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18zNWhpVjF6d0pGc2E0dGJsdWdxV1h1UTZEcm8iLCJyaWQiOiJ1c2VyXzM2cUdEemtXQ29zTFQ1QlFldmh3UEwzU0JwYiIsImluaXRpYWxzIjoiUlMifQ","role":"supplier"}
+[13:21:24.434] Browser LOG     Current User Role: superadmin
+[13:21:24.434] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:21:24.715] Browser LOG     Current User Role: superadmin
+[13:21:24.715] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:22:50.874] Server  LOG      ✓ Compiled in 131ms
+[13:22:51.342] Browser LOG     Current User Role: superadmin
+[13:22:51.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:26.685] Server  LOG      ✓ Compiled in 103ms
+[13:23:27.335] Browser LOG     Current User Role: superadmin
+[13:23:27.336] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:34.787] Server  LOG     Current User Role: "admin"
+[13:23:35.560] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[13:23:35.560] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[13:23:36.069] Browser LOG     Current User Role: admin
+[13:23:36.069] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:23:36.069] Browser LOG     Current User Role: admin
+[13:23:36.069] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:23:36.654] Browser LOG     Current User Role: superadmin
+[13:23:36.654] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:36.654] Browser LOG     Current User Role: superadmin
+[13:23:36.654] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:36.654] Browser LOG     Current User Role: superadmin
+[13:23:36.654] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:36.654] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[13:23:36.654] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[13:23:36.654] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765730222862}
+[13:23:38.146] Browser LOG     Current User Role: superadmin
+[13:23:38.146] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:40.045] Browser LOG     Current User Role: superadmin
+[13:23:40.045] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:45.056] Browser LOG     Current User Role: superadmin
+[13:23:45.056] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:45.056] Browser LOG     Current User Role: superadmin
+[13:23:45.056] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:23:45.394] Browser LOG     Current User Role: superadmin
+[13:23:45.394] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:24:17.002] Server  LOG      ✓ Compiled in 110ms
+[13:24:17.345] Browser LOG     Current User Role: superadmin
+[13:24:17.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:24:56.892] Server  LOG      ✓ Compiled in 134ms
+[13:24:57.342] Browser LOG     Current User Role: superadmin
+[13:24:57.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:04.000] Browser LOG     Current User Role: superadmin
+[13:25:04.000] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:04.000] Browser LOG     Current User Role: superadmin
+[13:25:04.000] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:04.582] Browser LOG     {"error":"Supplier not found for user","success":false}
+[13:25:04.582] Browser LOG     Current User Role: superadmin
+[13:25:04.582] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:12.818] Browser LOG     Current User Role: superadmin
+[13:25:12.818] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:12.818] Browser LOG     Current User Role: superadmin
+[13:25:12.818] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:13.207] Browser LOG     {"error":"Supplier not found for user","success":false}
+[13:25:13.207] Browser LOG     Current User Role: superadmin
+[13:25:13.207] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:45.476] Server  LOG      ✓ Compiled in 101ms
+[13:25:46.346] Browser LOG     Current User Role: superadmin
+[13:25:46.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:51.562] Server  LOG     Current User Role: "admin"
+[13:25:52.516] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[13:25:52.516] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[13:25:52.979] Browser LOG     Current User Role: admin
+[13:25:52.979] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:25:52.979] Browser LOG     Current User Role: admin
+[13:25:52.979] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:25:53.407] Browser LOG     Current User Role: superadmin
+[13:25:53.407] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:53.407] Browser LOG     Current User Role: superadmin
+[13:25:53.407] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:53.407] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[13:25:53.407] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[13:25:53.407] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765730359584}
+[13:25:53.407] Browser LOG     Current User Role: superadmin
+[13:25:53.407] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:55.599] Browser LOG     Current User Role: superadmin
+[13:25:55.599] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:25:57.455] Browser LOG     Current User Role: superadmin
+[13:25:57.455] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:01.843] Browser LOG     Current User Role: superadmin
+[13:26:01.843] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:01.843] Browser LOG     Current User Role: superadmin
+[13:26:01.843] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:02.175] Browser LOG     user_36qGDzkWCosLT5BQevhwPL3SBpb {"error":"Supplier not found for user","success":false}
+[13:26:02.175] Browser LOG     Current User Role: superadmin
+[13:26:02.175] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:18.739] Server  LOG      ✓ Compiled in 187ms
+[13:26:19.338] Browser LOG     Current User Role: superadmin
+[13:26:19.338] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:41.744] Server  LOG      ✓ Compiled in 576ms
+[13:26:42.210] Server  LOG     Current User Role: "admin"
+[13:26:45.339] Browser LOG     Current User Role: admin
+[13:26:45.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:26:45.339] Browser LOG     Current User Role: admin
+[13:26:45.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:26:45.339] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[13:26:45.339] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[13:26:45.340] Browser LOG     Current User Role: superadmin
+[13:26:45.340] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:45.340] Browser LOG     Current User Role: superadmin
+[13:26:45.340] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:45.340] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[13:26:45.340] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[13:26:45.340] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765730411287}
+[13:26:45.340] Browser LOG     Current User Role: superadmin
+[13:26:45.340] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:46.029] Browser LOG     Current User Role: superadmin
+[13:26:46.029] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:48.251] Browser LOG     Current User Role: superadmin
+[13:26:48.251] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:53.507] Browser LOG     Current User Role: superadmin
+[13:26:53.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:53.507] Browser LOG     Current User Role: superadmin
+[13:26:53.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:26:53.538] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[13:26:53.910] Browser LOG     Current User Role: superadmin
+[13:26:53.910] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:48.149] Server  LOG      ✓ Compiled in 459ms
+[13:29:48.495] Server  LOG     Current User Role: "admin"
+[13:29:51.342] Browser LOG     Current User Role: admin
+[13:29:51.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:29:51.342] Browser LOG     Current User Role: admin
+[13:29:51.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:29:51.342] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[13:29:51.342] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[13:29:51.342] Browser LOG     Current User Role: superadmin
+[13:29:51.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:51.342] Browser LOG     Current User Role: superadmin
+[13:29:51.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:51.342] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[13:29:51.342] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[13:29:51.342] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765730597440}
+[13:29:51.342] Browser LOG     Current User Role: superadmin
+[13:29:51.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:52.386] Browser LOG     Current User Role: superadmin
+[13:29:52.386] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:54.024] Browser LOG     Current User Role: superadmin
+[13:29:54.024] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:58.572] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[13:29:58.576] Browser LOG     Current User Role: superadmin
+[13:29:58.576] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:58.576] Browser LOG     Current User Role: superadmin
+[13:29:58.576] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:29:58.749] Server  LOG     supplierss: [{...},{...},{...}]
+[13:29:59.066] Browser LOG     Current User Role: superadmin
+[13:29:59.066] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:32:39.444] Browser LOG     Current User Role: superadmin
+[13:32:39.444] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:32:39.444] Browser LOG     Current User Role: superadmin
+[13:32:39.444] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:32:39.474] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[13:32:39.671] Server  LOG     supplierss: [{...},{...},{...}]
+[13:32:39.988] Browser LOG     Current User Role: superadmin
+[13:32:39.988] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:33:38.898] Server  LOG      ✓ Compiled in 468ms
+[13:33:39.365] Server  LOG     Current User Role: "admin"
+[13:33:43.339] Browser LOG     Current User Role: admin
+[13:33:43.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:33:43.339] Browser LOG     Current User Role: admin
+[13:33:43.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:33:43.339] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[13:33:43.339] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[13:33:43.339] Browser LOG     Current User Role: superadmin
+[13:33:43.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:33:43.339] Browser LOG     Current User Role: superadmin
+[13:33:43.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:33:43.339] Browser LOG     Current User Role: superadmin
+[13:33:43.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:33:43.339] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[13:33:43.339] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[13:33:43.339] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765730828748}
+[13:33:43.339] Browser LOG     Current User Role: superadmin
+[13:33:43.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:33:45.350] Browser LOG     Current User Role: superadmin
+[13:33:45.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:08.358] Browser LOG     Current User Role: superadmin
+[13:48:08.358] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:08.358] Browser LOG     Current User Role: superadmin
+[13:48:08.358] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:08.741] Browser LOG     Current User Role: superadmin
+[13:48:08.741] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:10.801] Browser LOG     Current User Role: superadmin
+[13:48:10.801] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:10.801] Browser LOG     Current User Role: superadmin
+[13:48:10.801] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:11.147] Browser LOG     Current User Role: superadmin
+[13:48:11.147] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:48.988] Server  LOG     Current User Role: "admin"
+[13:48:49.896] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[13:48:49.896] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[13:48:50.173] Browser LOG     Current User Role: admin
+[13:48:50.173] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:48:50.173] Browser LOG     Current User Role: admin
+[13:48:50.173] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[13:48:50.733] Browser LOG     Current User Role: superadmin
+[13:48:50.733] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:50.733] Browser LOG     Current User Role: superadmin
+[13:48:50.733] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:50.733] Browser LOG     Current User Role: superadmin
+[13:48:50.733] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:50.733] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[13:48:50.733] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[13:48:50.733] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765731736950}
+[13:48:52.230] Browser LOG     Current User Role: superadmin
+[13:48:52.230] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:48:53.899] Browser LOG     Current User Role: superadmin
+[13:48:53.899] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:49:02.166] Browser LOG     Current User Role: superadmin
+[13:49:02.166] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:49:02.166] Browser LOG     Current User Role: superadmin
+[13:49:02.166] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:49:02.514] Browser LOG     Current User Role: superadmin
+[13:49:02.514] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:49:04.515] Browser LOG     Current User Role: superadmin
+[13:49:04.515] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:49:04.515] Browser LOG     Current User Role: superadmin
+[13:49:04.515] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[13:49:04.876] Browser LOG     Current User Role: superadmin
+[13:49:04.876] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:22:52.330] Server  LOG      ✓ Compiled in 143ms
+[14:22:53.346] Browser LOG     Current User Role: superadmin
+[14:22:53.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:11.226] Browser LOG     Current User Role: superadmin
+[14:23:11.226] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:11.226] Browser LOG     Current User Role: superadmin
+[14:23:11.226] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:11.564] Browser LOG     user_36qGDzkWCosLT5BQevhwPL3SBpb {"error":"Supplier not found for user","success":false}
+[14:23:11.564] Browser LOG     Current User Role: superadmin
+[14:23:11.564] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:18.503] Browser LOG     Current User Role: superadmin
+[14:23:18.503] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:18.503] Browser LOG     Current User Role: superadmin
+[14:23:18.503] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:18.838] Browser LOG     user_36qGDzkWCosLT5BQevhwPL3SBpb {"error":"Supplier not found for user","success":false}
+[14:23:18.838] Browser LOG     Current User Role: superadmin
+[14:23:18.838] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:33.137] Server  LOG      ✓ Compiled in 170ms
+[14:23:34.335] Browser LOG     Current User Role: superadmin
+[14:23:34.335] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:47.893] Server  LOG      ✓ Compiled in 114ms
+[14:23:48.359] Browser LOG     Current User Role: superadmin
+[14:23:48.359] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:55.901] Browser LOG     Current User Role: superadmin
+[14:23:55.901] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:55.901] Browser LOG     Current User Role: superadmin
+[14:23:55.901] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:56.214] Browser LOG     Current User Role: superadmin
+[14:23:56.214] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:23:59.308] Browser LOG     Current User Role: superadmin
+[14:23:59.308] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:24:13.910] Server  LOG      ✓ Compiled in 164ms
+[14:24:14.338] Browser LOG     Current User Role: superadmin
+[14:24:14.338] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:29:14.285] Browser LOG     Current User Role: superadmin
+[14:29:14.285] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:29:14.285] Browser LOG     Current User Role: superadmin
+[14:29:14.285] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:29:14.582] Browser LOG     Current User Role: superadmin
+[14:29:14.582] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:29:38.732] Browser LOG     Current User Role: superadmin
+[14:29:38.732] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:30:23.101] Server  LOG      ✓ Compiled in 656ms
+[14:30:23.911] Server  LOG     Current User Role: "admin"
+[14:30:27.580] Browser LOG     Current User Role: admin
+[14:30:27.580] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[14:30:27.580] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[14:30:27.580] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[14:30:27.580] Browser LOG     Current User Role: admin
+[14:30:27.580] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[14:30:27.580] Browser LOG     Current User Role: superadmin
+[14:30:27.580] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:30:27.580] Browser LOG     Current User Role: superadmin
+[14:30:27.580] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:30:27.580] Browser LOG     Current User Role: superadmin
+[14:30:27.580] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:30:27.580] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[14:30:27.580] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[14:30:27.580] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765734232771}
+[14:30:27.580] Browser LOG     Current User Role: superadmin
+[14:30:27.580] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:30:29.393] Browser LOG     Current User Role: superadmin
+[14:30:29.393] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:03.207] Server  LOG      ✓ Compiled in 520ms
+[14:38:03.498] Server  LOG     Current User Role: "admin"
+[14:38:03.666] Server  LOG     Current User Role: "admin"
+[14:38:06.337] Browser LOG     Current User Role: admin
+[14:38:06.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[14:38:06.337] Browser LOG     Current User Role: admin
+[14:38:06.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[14:38:06.337] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[14:38:06.337] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[14:38:06.337] Browser LOG     Current User Role: superadmin
+[14:38:06.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:06.337] Browser LOG     Current User Role: superadmin
+[14:38:06.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:06.337] Browser LOG     Current User Role: superadmin
+[14:38:06.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:06.337] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[14:38:06.337] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[14:38:06.337] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765734692415}
+[14:38:07.335] Browser LOG     Current User Role: superadmin
+[14:38:07.335] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:09.344] Browser LOG     Current User Role: superadmin
+[14:38:09.344] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:33.231] Browser LOG     Current User Role: superadmin
+[14:38:33.231] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:33.231] Browser LOG     Current User Role: superadmin
+[14:38:33.231] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:33.249] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[14:38:33.443] Server  LOG     supplierss: [{...},{...},{...}]
+[14:38:33.803] Browser LOG     Current User Role: superadmin
+[14:38:33.803] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:38:41.412] Browser LOG     Current User Role: superadmin
+[14:38:41.412] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:39:28.498] Server  LOG      ✓ Compiled in 443ms
+[14:39:28.797] Server  LOG     Current User Role: "admin"
+[14:39:31.345] Browser LOG     Current User Role: admin
+[14:39:31.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[14:39:31.345] Browser LOG     Current User Role: admin
+[14:39:31.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[14:39:31.345] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[14:39:31.345] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[14:39:31.345] Browser LOG     Current User Role: superadmin
+[14:39:31.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:39:31.345] Browser LOG     Current User Role: superadmin
+[14:39:31.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:39:31.345] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[14:39:31.345] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[14:39:31.345] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765734777339}
+[14:39:31.345] Browser LOG     Current User Role: superadmin
+[14:39:31.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:39:32.392] Browser LOG     Current User Role: superadmin
+[14:39:32.392] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:39:34.346] Browser LOG     Current User Role: superadmin
+[14:39:34.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:40:02.342] Browser LOG     Current User Role: superadmin
+[14:40:02.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:40:23.300] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[14:40:23.308] Browser LOG     Current User Role: superadmin
+[14:40:23.308] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:40:23.308] Browser LOG     Current User Role: superadmin
+[14:40:23.308] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:40:23.599] Browser LOG     Current User Role: superadmin
+[14:40:23.599] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[14:40:28.106] Browser LOG     Current User Role: superadmin
+[14:40:28.106] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:02:07.795] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[15:02:07.798] Browser LOG     Current User Role: superadmin
+[15:02:07.798] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:02:07.798] Browser LOG     Current User Role: superadmin
+[15:02:07.798] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:02:08.120] Browser LOG     Current User Role: superadmin
+[15:02:08.120] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:02:10.645] Browser LOG     Current User Role: superadmin
+[15:02:10.645] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:09.737] Browser LOG     Current User Role: superadmin
+[15:16:09.737] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:09.737] Browser LOG     Current User Role: superadmin
+[15:16:09.737] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:09.772] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[15:16:10.161] Browser LOG     Current User Role: superadmin
+[15:16:10.161] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:13.576] Browser LOG     Current User Role: superadmin
+[15:16:13.576] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:37.297] Server  LOG     getSupplierOnboardingByUserId: "user_36qGDzkWCosLT5BQevhwPL3SBpb"
+[15:16:37.300] Browser LOG     Current User Role: superadmin
+[15:16:37.300] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:37.300] Browser LOG     Current User Role: superadmin
+[15:16:37.300] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:37.598] Browser LOG     Current User Role: superadmin
+[15:16:37.598] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:16:45.729] Browser LOG     Current User Role: superadmin
+[15:16:45.730] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:22:44.929] Server  LOG      ✓ Compiled in 456ms
+[15:22:46.315] Server  LOG     Current User Role: "admin"
+[15:22:50.347] Browser LOG     Current User Role: admin
+[15:22:50.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[15:22:50.348] Browser LOG     Current User Role: admin
+[15:22:50.348] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[15:22:50.348] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[15:22:50.348] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[15:22:50.348] Browser LOG     Current User Role: superadmin
+[15:22:50.348] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:22:50.348] Browser LOG     Current User Role: superadmin
+[15:22:50.348] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:22:50.348] Browser LOG     Current User Role: superadmin
+[15:22:50.348] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:22:50.348] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[15:22:50.348] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[15:22:50.348] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765737375611}
+[15:22:50.348] Browser LOG     Current User Role: superadmin
+[15:22:50.348] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:22:52.479] Browser LOG     Current User Role: superadmin
+[15:22:52.479] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:22:53.341] Browser LOG     Current User Role: superadmin
+[15:22:53.341] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:24:26.351] Browser LOG     Current User Role: superadmin
+[15:24:26.351] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:24:41.345] Browser LOG     Current User Role: superadmin
+[15:24:41.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:36:36.037] Server  LOG      ✓ Compiled in 163ms
+[15:36:36.533] Browser LOG     Current User Role: superadmin
+[15:36:36.533] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:41:49.077] Server  LOG     Current User Role: "admin"
+[15:41:49.721] Browser LOG     Current User Role: admin
+[15:41:49.721] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[15:41:49.721] Browser LOG     Current User Role: admin
+[15:41:49.721] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[15:41:50.044] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[15:41:50.044] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[15:41:50.527] Browser LOG     Current User Role: superadmin
+[15:41:50.527] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:41:50.527] Browser LOG     Current User Role: superadmin
+[15:41:50.527] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:41:50.527] Browser LOG     Current User Role: superadmin
+[15:41:50.527] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:41:50.527] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[15:41:50.527] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[15:41:50.527] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765738516756}
+[15:41:51.308] Browser LOG     Current User Role: superadmin
+[15:41:51.308] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:41:53.614] Browser LOG     Current User Role: superadmin
+[15:41:53.614] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:41:59.773] Browser LOG     Current User Role: superadmin
+[15:41:59.773] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:41:59.773] Browser LOG     Current User Role: superadmin
+[15:41:59.773] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:42:00.113] Browser LOG     Current User Role: superadmin
+[15:42:00.113] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:42:37.985] Browser LOG     Current User Role: superadmin
+[15:42:37.985] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:42:40.566] Browser LOG     Current User Role: superadmin
+[15:42:40.566] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:42:40.566] Browser LOG     Current User Role: superadmin
+[15:42:40.566] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:42:42.288] Browser LOG     Current User Role: superadmin
+[15:42:42.288] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:42:42.430] Browser LOG     Current User Role: superadmin
+[15:42:42.430] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:44:31.507] Browser LOG     Current User Role: superadmin
+[15:44:31.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:44:31.507] Browser LOG     Current User Role: superadmin
+[15:44:31.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:44:31.825] Browser LOG     Current User Role: superadmin
+[15:44:31.825] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:44:35.371] Browser LOG     Current User Role: superadmin
+[15:44:35.371] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:11.821] Browser LOG     Current User Role: superadmin
+[15:47:11.821] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:11.821] Browser LOG     Current User Role: superadmin
+[15:47:11.821] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:12.114] Browser LOG     Current User Role: superadmin
+[15:47:12.114] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:14.151] Browser LOG     Current User Role: superadmin
+[15:47:14.151] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:15.538] Server  LOG     Current User Role: "admin"
+[15:47:16.115] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[15:47:16.115] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[15:47:16.115] Browser LOG     Current User Role: admin
+[15:47:16.115] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[15:47:16.115] Browser LOG     Current User Role: admin
+[15:47:16.115] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[15:47:16.338] Browser LOG     Current User Role: superadmin
+[15:47:16.338] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:16.338] Browser LOG     Current User Role: superadmin
+[15:47:16.338] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:16.338] Browser LOG     Current User Role: superadmin
+[15:47:16.338] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:16.338] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[15:47:16.338] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[15:47:16.338] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765738842574}
+[15:47:17.759] Browser LOG     Current User Role: superadmin
+[15:47:17.759] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[15:47:19.626] Browser LOG     Current User Role: superadmin
+[15:47:19.626] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:31:34.090] Server  LOG     Current User Role: "admin"
+[16:31:34.612] Browser LOG     Current User Role: admin
+[16:31:34.612] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:31:34.612] Browser LOG     Current User Role: admin
+[16:31:34.612] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:31:34.723] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[16:31:34.723] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[16:31:35.219] Browser LOG     Current User Role: superadmin
+[16:31:35.219] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:31:35.219] Browser LOG     Current User Role: superadmin
+[16:31:35.219] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:31:35.219] Browser LOG     Current User Role: superadmin
+[16:31:35.219] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:31:35.219] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[16:31:35.219] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[16:31:35.219] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765741501444}
+[16:31:36.647] Browser LOG     Current User Role: superadmin
+[16:31:36.647] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:31:38.560] Browser LOG     Current User Role: superadmin
+[16:31:38.560] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:22.607] Server  LOG     Current User Role: "admin"
+[16:32:22.995] Browser LOG     Current User Role: admin
+[16:32:22.995] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:32:22.995] Browser LOG     Current User Role: admin
+[16:32:22.995] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:32:22.995] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[16:32:22.995] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[16:32:23.418] Browser LOG     Current User Role: superadmin
+[16:32:23.418] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:23.418] Browser LOG     Current User Role: superadmin
+[16:32:23.418] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:23.418] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[16:32:23.418] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[16:32:23.418] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765741549638}
+[16:32:23.418] Browser LOG     Current User Role: superadmin
+[16:32:23.418] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:24.488] Browser LOG     Current User Role: superadmin
+[16:32:24.488] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:26.850] Browser LOG     Current User Role: superadmin
+[16:32:26.850] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:38.170] Browser LOG     Current User Role: superadmin
+[16:32:38.170] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:38.170] Browser LOG     Current User Role: superadmin
+[16:32:38.170] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:32:38.456] Browser LOG     Current User Role: superadmin
+[16:32:38.456] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:25.864] Server  LOG      ✓ Compiled in 1102ms
+[16:39:26.380] Server  LOG     Current User Role: "admin"
+[16:39:29.341] Browser LOG     Current User Role: admin
+[16:39:29.341] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:39:29.341] Browser LOG     Current User Role: admin
+[16:39:29.341] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:39:29.341] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[16:39:29.341] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[16:39:29.341] Browser LOG     Current User Role: superadmin
+[16:39:29.341] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:29.341] Browser LOG     Current User Role: superadmin
+[16:39:29.341] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:29.341] Browser LOG     Current User Role: superadmin
+[16:39:29.341] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:29.341] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[16:39:29.341] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[16:39:29.341] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765741975406}
+[16:39:30.050] Browser LOG     Current User Role: superadmin
+[16:39:30.050] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:32.312] Browser LOG     Current User Role: superadmin
+[16:39:32.312] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:35.817] Browser LOG     Current User Role: superadmin
+[16:39:35.817] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:35.817] Browser LOG     Current User Role: superadmin
+[16:39:35.817] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:39:35.998] Server  LOG     supplier: {}
+[16:39:35.999] Server  LOG     data: {}
+[16:39:36.157] Browser LOG     Current User Role: superadmin
+[16:39:36.157] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:45:30.419] Server  LOG      ✓ Compiled in 211ms
+[16:45:31.345] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'contactPerson')
+[16:46:14.718] Server  LOG     Current User Role: "admin"
+[16:46:15.313] Browser LOG     Current User Role: admin
+[16:46:15.313] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:46:15.313] Browser LOG     Current User Role: admin
+[16:46:15.313] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:46:16.248] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[16:46:16.248] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[16:46:16.806] Browser LOG     Current User Role: superadmin
+[16:46:16.806] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:46:16.806] Browser LOG     Current User Role: superadmin
+[16:46:16.806] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:46:16.806] Browser LOG     Current User Role: superadmin
+[16:46:16.806] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:46:16.806] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[16:46:16.806] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[16:46:16.806] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765742383037}
+[16:46:17.781] Browser LOG     Current User Role: superadmin
+[16:46:17.781] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:46:19.794] Browser LOG     Current User Role: superadmin
+[16:46:19.794] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:46:21.356] Browser LOG     Current User Role: superadmin
+[16:46:21.356] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:46:21.356] Browser LOG     Current User Role: superadmin
+[16:46:21.356] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:46:21.531] Server  LOG     supplier: {}
+[16:46:21.532] Server  LOG     data: {}
+[16:46:21.672] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'contactPerson')
+[16:47:33.045] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[16:47:33.059] Server  LOG      ✓ Compiled in 121ms
+[16:47:33.732] Server  LOG     Current User Role: "admin"
+[16:47:35.337] Browser LOG     Current User Role: admin
+[16:47:35.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:47:35.337] Browser LOG     Current User Role: admin
+[16:47:35.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:47:35.337] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[16:47:35.337] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[16:47:35.337] Browser LOG     Current User Role: superadmin
+[16:47:35.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:47:35.337] Browser LOG     Current User Role: superadmin
+[16:47:35.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:47:35.337] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[16:47:35.337] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[16:47:35.337] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765742461268}
+[16:47:35.337] Browser LOG     Current User Role: superadmin
+[16:47:35.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:47:36.391] Browser LOG     Current User Role: superadmin
+[16:47:36.391] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:47:38.337] Browser LOG     Current User Role: superadmin
+[16:47:38.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:48:09.539] Browser LOG     Current User Role: superadmin
+[16:48:09.539] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:48:09.539] Browser LOG     Current User Role: superadmin
+[16:48:09.539] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:48:09.712] Server  LOG     supplier: {}
+[16:48:09.715] Server  LOG     data: {}
+[16:48:09.907] Browser LOG     onboardingDetails: {"approved":false,"category":"General","contacts":[],"documents":[],"name":"Hawa Lansana Enterprise ","onboarding":{"averageTurnover":"10000","bankDetails":{"accountName":"","accountNumber":"","bankName":"","prefersCash":false},"businessDurationDocuments":[],"businessLeadGender":"Female","businessLicenseUploads":[],"businessRegistrationCertificateUploads":["https://res.cloudinary.com/dqohb33dd/image/upload/v1765741529/onboarding/business_registration/2025-06-EL_Cover_letter_qnivmw.pdf"],"contactPerson":"Hawa Lansana","dateOfIncorporation":"2019-01-14","declarations":{"agreeRules":true,"infoAccurate":true},"deliveryTimeline":"2 days","email":"platformlead@innosldigital.com","goodsType":"","gstVatRegistrationCertificateUploads":[],"inBusinessMoreThan3Years":false,"nassitCertificateUploads":[],"paymentMethods":["Bank"],"phone":"","priceListUploads":[],"productCategories":["Merchandise & Stationeres"],"registrationCertificateUploads":["https://res.cloudinary.com/dqohb33dd/image/upload/v1765741529/onboarding/business_registration/2025-06-EL_Cover_letter_qnivmw.pdf","https://res.cloudinary.com/dqohb33dd/image/upload/v1765741531/onboarding/tax_clearance/Complementary_material_toe2kc.pdf"],"sectorSpecificCertificateUploads":[],"supplyAreas":["Eastern Province"],"taxClearanceCertificateUploads":["https://res.cloudinary.com/dqohb33dd/image/upload/v1765741531/onboarding/tax_clearance/Complementary_material_toe2kc.pdf"],"vendorPaymentTerms":"Company will pay 40% part payment"},"region":"Global","segment":"Standard","supplierId":"SUP-5004"}
+[16:48:09.907] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'contactPerson')
+[16:48:43.510] Server  LOG      ✓ Compiled in 157ms
+[16:48:43.519] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[16:48:45.175] Server  LOG     Current User Role: "admin"
+[16:48:48.350] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[16:48:48.350] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[16:48:48.350] Browser LOG     Current User Role: admin
+[16:48:48.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:48:48.350] Browser LOG     Current User Role: admin
+[16:48:48.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:48:48.350] Browser LOG     Current User Role: superadmin
+[16:48:48.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:48:48.350] Browser LOG     Current User Role: superadmin
+[16:48:48.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:48:48.350] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[16:48:48.350] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[16:48:48.350] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765742533640}
+[16:48:48.350] Browser LOG     Current User Role: superadmin
+[16:48:48.350] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:48:49.334] Browser LOG     Current User Role: superadmin
+[16:48:49.334] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:48:51.345] Browser LOG     Current User Role: superadmin
+[16:48:51.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:50:47.983] Server  LOG      ✓ Compiled in 144ms
+[16:50:48.343] Browser LOG     Current User Role: superadmin
+[16:50:48.343] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:50:56.126] Browser LOG     Current User Role: superadmin
+[16:50:56.126] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:50:56.126] Browser LOG     Current User Role: superadmin
+[16:50:56.126] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:50:56.342] Server  LOG     supplier: {}
+[16:50:56.344] Server  LOG     data: {}
+[16:50:56.536] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'contactPerson')
+[16:51:56.398] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[16:51:56.400] Server  LOG      ✓ Compiled in 95ms
+[16:51:57.020] Server  LOG     Current User Role: "admin"
+[16:51:57.073] Server  ERROR    ⨯ Error: aborted
+[16:52:00.347] Browser LOG     Current User Role: admin
+[16:52:00.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:52:00.347] Browser LOG     Current User Role: admin
+[16:52:00.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[16:52:00.347] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[16:52:00.347] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[16:52:00.347] Browser LOG     Current User Role: superadmin
+[16:52:00.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:52:00.347] Browser LOG     Current User Role: superadmin
+[16:52:00.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:52:00.347] Browser LOG     Current User Role: superadmin
+[16:52:00.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:52:00.347] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[16:52:00.347] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[16:52:00.347] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765742726510}
+[16:52:01.339] Browser LOG     Current User Role: superadmin
+[16:52:01.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:52:04.352] Browser LOG     Current User Role: superadmin
+[16:52:04.352] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:52:29.910] Server  LOG      ✓ Compiled in 114ms
+[16:52:30.345] Browser LOG     Current User Role: superadmin
+[16:52:30.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:52:53.734] Server  LOG      ✓ Compiled in 130ms
+[16:52:54.344] Browser LOG     Current User Role: superadmin
+[16:52:54.344] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:53:04.765] Browser LOG     Current User Role: superadmin
+[16:53:04.765] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:53:04.765] Browser LOG     Current User Role: superadmin
+[16:53:04.765] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:53:04.951] Server  LOG     supplier: {}
+[16:53:04.952] Server  LOG     data: {}
+[16:53:05.178] Browser LOG     Current User Role: superadmin
+[16:53:05.178] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:54:38.382] Server  LOG      ✓ Compiled in 179ms
+[16:54:39.347] Browser LOG     Current User Role: superadmin
+[16:54:39.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:54:47.135] Browser LOG     Current User Role: superadmin
+[16:54:47.135] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:54:51.668] Browser LOG     Current User Role: superadmin
+[16:54:51.668] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:54:51.668] Browser LOG     Current User Role: superadmin
+[16:54:51.668] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:54:51.827] Server  LOG     supplier: {}
+[16:54:51.829] Server  LOG     data: {}
+[16:54:52.039] Browser LOG     Current User Role: superadmin
+[16:54:52.039] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:55:26.865] Server  LOG      ✓ Compiled in 214ms
+[16:55:27.371] Browser LOG     Current User Role: superadmin
+[16:55:27.371] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:57:00.404] Server  LOG      ✓ Compiled in 196ms
+[16:57:01.336] Browser LOG     Current User Role: superadmin
+[16:57:01.336] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:57:11.265] Server  LOG      ✓ Compiled in 121ms
+[16:57:12.342] Browser LOG     Current User Role: superadmin
+[16:57:12.342] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:57:21.676] Server  LOG      ✓ Compiled in 207ms
+[16:57:22.345] Browser LOG     Current User Role: superadmin
+[16:57:22.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:57:31.970] Server  LOG      ✓ Compiled in 129ms
+[16:57:32.339] Browser LOG     Current User Role: superadmin
+[16:57:32.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:57:38.163] Server  LOG      ✓ Compiled in 129ms
+[16:57:39.337] Browser LOG     Current User Role: superadmin
+[16:57:39.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:57:48.341] Server  LOG      ✓ Compiled in 129ms
+[16:57:49.338] Browser LOG     Current User Role: superadmin
+[16:57:49.338] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:58:44.366] Server  LOG      ✓ Compiled in 121ms
+[16:58:45.343] Browser ERROR   ./app/(app)/admin/page.tsx:1212:24
+Parsing ecmascript source code failed
+  1210 |               </Card>
+  1211 |             )}
+> 1212 |           </ScrollArea>
+       |                        ^
+> 1213 |           {/* Admin Actions Footer */}
+       | ^^^^^^^^^^^
+  1214 |           {onboardingDetails && !onboardingDetails.approved && (
+  1215 |             <div className="sticky bottom-0 border-t bg-background/80 backdrop-blur-sm px-4 sm:px-6 py-4">
+  1216 |               <div className="space-y-3">
+
+Expected '</', got 'jsx text (
+          )'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[16:58:56.351] Browser LOG     Current User Role: superadmin
+[16:58:56.351] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:58:56.351] Browser LOG     Current User Role: superadmin
+[16:58:56.351] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:59:02.457] Browser LOG     Current User Role: superadmin
+[16:59:02.457] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:59:07.092] Browser LOG     Current User Role: superadmin
+[16:59:07.092] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:59:07.092] Browser LOG     Current User Role: superadmin
+[16:59:07.092] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:59:08.280] Server  LOG     supplier: {}
+[16:59:08.282] Server  LOG     data: {}
+[16:59:08.570] Browser LOG     Current User Role: superadmin
+[16:59:08.570] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:59:36.501] Server  LOG      ✓ Compiled in 197ms
+[16:59:37.337] Browser LOG     Current User Role: superadmin
+[16:59:37.337] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[16:59:53.026] Server  LOG      ✓ Compiled in 125ms
+[16:59:53.402] Browser LOG     Current User Role: superadmin
+[16:59:53.402] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:00:15.061] Server  LOG      ✓ Compiled in 342ms
+[17:00:15.522] Browser LOG     Current User Role: superadmin
+[17:00:15.522] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:01:06.956] Server  LOG      ✓ Compiled in 214ms
+[17:01:07.340] Browser LOG     Current User Role: superadmin
+[17:01:07.340] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:01:28.777] Server  LOG      ✓ Compiled in 354ms
+[17:01:29.356] Browser LOG     Current User Role: superadmin
+[17:01:29.356] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:01:47.134] Server  LOG      ✓ Compiled in 286ms
+[17:01:47.334] Browser LOG     Current User Role: superadmin
+[17:01:47.334] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:02:05.563] Server  LOG      ✓ Compiled in 192ms
+[17:02:06.339] Browser LOG     Current User Role: superadmin
+[17:02:06.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:10:00.566] Server  LOG      ✓ Compiled in 178ms
+[17:10:01.346] Browser LOG     Current User Role: superadmin
+[17:10:01.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:12:43.227] Server  LOG      ✓ Compiled in 261ms
+[17:12:43.338] Browser LOG     Current User Role: superadmin
+[17:12:43.338] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:13:53.416] Server  LOG      ✓ Compiled in 150ms
+[17:13:54.345] Browser LOG     Current User Role: superadmin
+[17:13:54.345] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:13:54.345] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `div`.  It was passed a child from UsersTable.
+[17:15:09.731] Server  LOG      ✓ Compiled in 97ms
+[17:15:10.346] Browser LOG     Current User Role: superadmin
+[17:15:10.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:43:15.347] Browser LOG     Current User Role: superadmin
+[17:43:15.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:47:12.162] Server  LOG      ✓ Compiled in 225ms
+[17:47:12.334] Browser LOG     Current User Role: superadmin
+[17:47:12.334] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:48:37.044] Server  LOG      ✓ Compiled in 176ms
+[17:48:37.380] Browser LOG     Current User Role: superadmin
+[17:48:37.380] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[17:50:22.773] Browser LOG     Current User Role: superadmin
+[17:50:22.773] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:37.897] Server  LOG     Current User Role: "admin"
+[18:01:38.397] Browser LOG     Current User Role: admin
+[18:01:38.397] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[18:01:38.397] Browser LOG     Current User Role: admin
+[18:01:38.397] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[18:01:38.630] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[18:01:38.630] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[18:01:39.257] Browser LOG     Current User Role: superadmin
+[18:01:39.257] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:39.257] Browser LOG     Current User Role: superadmin
+[18:01:39.257] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:39.257] Browser LOG     Current User Role: superadmin
+[18:01:39.257] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:39.257] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[18:01:39.257] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[18:01:39.257] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765746905490}
+[18:01:40.312] Browser LOG     Current User Role: superadmin
+[18:01:40.312] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:42.210] Browser LOG     Current User Role: superadmin
+[18:01:42.210] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:48.394] Browser LOG     Current User Role: superadmin
+[18:01:48.394] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:50.960] Browser LOG     Current User Role: superadmin
+[18:01:50.960] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:51.829] Browser LOG     Current User Role: superadmin
+[18:01:51.829] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:51.829] Browser LOG     Current User Role: superadmin
+[18:01:51.829] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:53.819] Browser LOG     Current User Role: superadmin
+[18:01:53.819] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:01:53.940] Browser LOG     Current User Role: superadmin
+[18:01:53.940] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[18:27:37.753] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:27:38.418] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[18:27:38.418] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[18:27:38.646] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[18:27:38.646] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[18:27:38.646] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765748464881}
+[18:30:28.005] Server  LOG     submitSupplierOnboarding: Starting...
+[18:30:28.015] Server  LOG     User authenticated: "user_36qyaQe01AajW1oWS8vwO38wang"
+[18:30:28.017] Server  LOG     Database connected
+[18:30:28.036] Browser LOG     Submitting onboarding data...
+[18:30:28.198] Server  LOG     Generated supplierId: "SUP-5005"
+[18:30:28.201] Server  LOG     📋 Creating supplier...
+[18:30:28.203] Server  LOG     Upload counts: {}
+[18:30:28.205] Server  LOG     Sample URLs: {}
+[18:30:28.447] Server  LOG     ✅ Supplier created: {}
+[18:30:29.585] Server  LOG     Clerk user metadata updated
+[18:30:29.588] Server  LOG     Supplier onboarding completed successfully
+[18:30:29.957] Browser LOG     Submission response: {"data":{"_id":"693f2f9aac47915fa035bbc6","id":"693f2f9aac47915fa035bbc6","name":"Ministry of Tourism and Cultural Affairs Sierra Leone","supplierId":"SUP-5005"},"success":true}
+[18:30:29.957] Browser LOG     Success! Supplier created: {"_id":"693f2f9aac47915fa035bbc6","id":"693f2f9aac47915fa035bbc6","name":"Ministry of Tourism and Cultural Affairs Sierra Leone","supplierId":"SUP-5005"}
+[18:30:43.365] Server  LOG     getSupplierById: {}
+[18:30:43.792] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693f2f9aac47915fa035bbc6","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765748650016}

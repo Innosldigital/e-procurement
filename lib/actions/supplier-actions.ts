@@ -50,6 +50,9 @@ export async function getSupplierOnboardingByUserId(userId: string) {
     if (!supplier) {
       return { success: false, error: "Supplier not found for user" };
     }
+
+    console.log("supplier:", supplier);
+
     const data = {
       supplierId: (supplier as any).supplierId,
       name: (supplier as any).name,
@@ -65,6 +68,7 @@ export async function getSupplierOnboardingByUserId(userId: string) {
         ? (supplier as any).documents
         : [],
     };
+    console.log("data:", data);
     return { success: true, data: JSON.parse(JSON.stringify(data)) };
   } catch (error) {
     console.error("Error fetching supplier onboarding:", error);
