@@ -25,6 +25,7 @@ import {
 import DashboardClient from "@/components/dashboard-client";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { sendEmail } from "@/lib/actions/admin-approval-actions";
+import { redirect } from "next/navigation";
 
 type ApprovalSummary = { status: string };
 type RequisitionSummary = {
@@ -60,10 +61,14 @@ type NotificationItem = {
 export default async function DashboardPage() {
   const { userId, sessionClaims } = await auth();
   if (userId) {
-    const role = String(
+    const roleRaw = String(
       ((sessionClaims as any)?.publicMetadata || {}).role || ""
     ).toLowerCase();
-    if (role === "super_admin") {
+    const roleNorm = roleRaw.replace(/[\s_-]/g, "");
+    if (roleNorm === "supplier") {
+      redirect("/onboarding");
+    }
+    if (roleRaw === "super_admin") {
       const client = await clerkClient();
       const user = await client.users.getUser(userId);
       const md = (user?.publicMetadata || {}) as any;

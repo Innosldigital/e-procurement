@@ -47,7 +47,29 @@ export default clerkMiddleware(async (auth, request) => {
     // Handle suppliers
     if (isSupplier) {
       // Approved suppliers get full access
+      // if (onboarded && supplierApproved) {
+      //   return NextResponse.next();
+      // }
+      // Approved suppliers — restrict access
       if (onboarded && supplierApproved) {
+        const p = request.nextUrl.pathname;
+
+        const allowedSupplierPaths = [
+          "/purchase-orders",
+          "/suppliers",
+          "/invoices",
+        ];
+
+        const isAllowed =
+          allowedSupplierPaths.some((path) => p.startsWith(path)) ||
+          isApiRoute(request);
+
+        if (!isAllowed) {
+          return NextResponse.redirect(
+            new URL("/purchase-orders", request.url)
+          );
+        }
+
         return NextResponse.next();
       }
 
