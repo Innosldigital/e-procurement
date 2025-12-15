@@ -1962,3 +1962,1090 @@ Learn more: https://clerk.com/docs/components/clerk-provider
 [19:38:58.683] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
 [19:39:00.808] Browser LOG     Current User Role: superadmin
 [19:39:00.808] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:44:40.611] Browser LOG     Current User Role: superadmin
+[19:44:40.611] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:44:42.712] Browser LOG     Current User Role: superadmin
+[19:44:42.712] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:44:44.512] Browser LOG     Current User Role: superadmin
+[19:44:44.512] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:44:44.512] Browser LOG     Current User Role: superadmin
+[19:44:44.512] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:44:46.255] Browser LOG     Current User Role: superadmin
+[19:44:46.255] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:44:46.255] Browser LOG     Current User Role: superadmin
+[19:44:46.255] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:45:04.701] Server  LOG     Current User Role: "admin"
+[19:45:05.653] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:45:05.653] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:45:05.653] Browser LOG     Current User Role: admin
+[19:45:05.653] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:45:05.653] Browser LOG     Current User Role: admin
+[19:45:05.653] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:45:05.653] Browser LOG     Current User Role: admin
+[19:45:05.653] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:45:05.918] Browser LOG     Current User Role: superadmin
+[19:45:05.918] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:45:05.918] Browser LOG     Current User Role: superadmin
+[19:45:05.918] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:45:05.918] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:45:05.918] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:45:05.918] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765753112153}
+[19:45:07.410] Browser LOG     Current User Role: superadmin
+[19:45:07.410] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:45:09.452] Browser LOG     Current User Role: superadmin
+[19:45:09.452] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:46:13.538] Server  LOG     Current User Role: "admin"
+[19:46:13.998] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:46:13.998] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:46:13.998] Browser LOG     Current User Role: admin
+[19:46:13.998] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:46:13.998] Browser LOG     Current User Role: admin
+[19:46:13.998] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:46:13.998] Browser LOG     Current User Role: admin
+[19:46:13.998] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:46:14.480] Browser LOG     Current User Role: superadmin
+[19:46:14.480] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:46:14.480] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:46:14.480] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:46:14.480] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765753180679}
+[19:46:14.480] Browser LOG     Current User Role: superadmin
+[19:46:14.480] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:46:16.227] Browser LOG     Current User Role: superadmin
+[19:46:16.227] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:46:18.308] Browser LOG     Current User Role: superadmin
+[19:46:18.308] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:49:22.947] Server  LOG     Current User Role: "admin"
+[19:49:23.459] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:49:23.459] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:49:23.459] Browser LOG     Current User Role: admin
+[19:49:23.459] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:49:23.459] Browser LOG     Current User Role: admin
+[19:49:23.459] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:49:23.459] Browser LOG     Current User Role: admin
+[19:49:23.459] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:49:23.898] Browser LOG     Current User Role: superadmin
+[19:49:23.898] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:49:23.898] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:49:23.898] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:49:23.898] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765753370101}
+[19:49:23.898] Browser LOG     Current User Role: superadmin
+[19:49:23.898] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:49:25.562] Browser LOG     Current User Role: superadmin
+[19:49:25.562] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:49:29.552] Browser LOG     Current User Role: superadmin
+[19:49:29.552] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:49:30.395] Browser LOG     Current User Role: superadmin
+[19:49:30.395] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:49:30.395] Browser LOG     Current User Role: superadmin
+[19:49:30.395] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:49:30.657] Server  LOG     supplier: {}
+[19:49:30.658] Server  LOG     data: {}
+[19:49:30.799] Browser LOG     Current User Role: superadmin
+[19:49:30.799] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:51:58.730] Browser LOG     Current User Role: superadmin
+[19:51:58.730] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:05.407] Browser LOG     Current User Role: superadmin
+[19:56:05.407] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:05.407] Browser LOG     Current User Role: superadmin
+[19:56:05.407] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:07.234] Server  LOG     supplier: {}
+[19:56:07.236] Server  LOG     data: {}
+[19:56:07.402] Browser LOG     Current User Role: superadmin
+[19:56:07.402] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:24.541] Browser LOG     Current User Role: superadmin
+[19:56:24.541] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:27.755] Browser LOG     Current User Role: superadmin
+[19:56:27.755] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:29.406] Browser LOG     Current User Role: superadmin
+[19:56:29.406] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:34.318] Browser LOG     Current User Role: superadmin
+[19:56:34.318] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:34.318] Browser LOG     Current User Role: superadmin
+[19:56:34.318] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:35.845] Browser LOG     Current User Role: superadmin
+[19:56:35.845] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:56:36.077] Browser LOG     Current User Role: superadmin
+[19:56:36.077] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:58:10.878] Server  LOG     Current User Role: "admin"
+[19:58:11.529] Browser LOG     Current User Role: admin
+[19:58:11.529] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:58:11.529] Browser LOG     Current User Role: admin
+[19:58:11.529] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:58:11.529] Browser LOG     Current User Role: admin
+[19:58:11.529] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[19:58:11.744] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[19:58:11.744] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[19:58:12.215] Browser LOG     Current User Role: superadmin
+[19:58:12.215] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:58:12.215] Browser LOG     Current User Role: superadmin
+[19:58:12.215] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:58:12.215] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:58:12.215] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:58:12.215] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765753898450}
+[19:58:13.568] Browser LOG     Current User Role: superadmin
+[19:58:13.568] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[19:58:19.783] Browser LOG     Current User Role: superadmin
+[19:58:19.783] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:00:17.795] Server  LOG     Current User Role: "admin"
+[20:00:18.376] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[20:00:18.376] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[20:00:18.376] Browser LOG     Current User Role: admin
+[20:00:18.376] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[20:00:18.376] Browser LOG     Current User Role: admin
+[20:00:18.376] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[20:00:18.376] Browser LOG     Current User Role: admin
+[20:00:18.376] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[20:00:18.654] Browser LOG     Current User Role: superadmin
+[20:00:18.654] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:00:18.654] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[20:00:18.654] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[20:00:18.654] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765754024848}
+[20:00:18.654] Browser LOG     Current User Role: superadmin
+[20:00:18.654] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:00:20.558] Browser LOG     Current User Role: superadmin
+[20:00:20.558] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:00:25.814] Browser LOG     Current User Role: superadmin
+[20:00:25.814] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:00:25.814] Browser LOG     Current User Role: superadmin
+[20:00:25.814] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:00:28.602] Browser LOG     Current User Role: superadmin
+[20:00:28.602] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:00:28.664] Server  LOG     supplier: {}
+[20:00:28.666] Server  LOG     data: {}
+[20:00:28.852] Browser LOG     Current User Role: superadmin
+[20:00:28.852] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:01:52.712] Browser LOG     Current User Role: superadmin
+[20:01:52.712] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:01:59.782] Browser LOG     Current User Role: superadmin
+[20:01:59.782] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:01:59.782] Browser LOG     Current User Role: superadmin
+[20:01:59.782] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:02:01.348] Browser LOG     Current User Role: superadmin
+[20:02:01.348] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[20:02:01.554] Browser LOG     Current User Role: superadmin
+[20:02:01.554] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[21:15:30.123] Browser LOG     Current User Role: superadmin
+[21:15:30.123] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[21:15:30.123] Browser LOG     Current User Role: superadmin
+[21:15:30.123] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[21:15:30.328] Server  LOG     supplier: {}
+[21:15:30.335] Server  LOG     data: {}
+[21:15:30.551] Browser LOG     Current User Role: superadmin
+[21:15:30.551] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[21:16:02.205] Browser LOG     Current User Role: superadmin
+[21:16:02.205] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[21:36:27.831] Server  LOG      ✓ Compiled in 673ms
+[21:36:28.343] Browser ERROR   uncaughtError: ReferenceError: SectionHeader is not defined
+[21:59:53.369] Server  LOG      ✓ Compiled in 312ms
+[21:59:54.342] Browser ERROR   ./app/(app)/admin/page.tsx:662:30
+Parsing ecmascript source code failed
+  660 |
+  661 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 662 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  663 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  664 |     <CardContent className="p-4">
+  665 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[21:59:58.445] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[21:59:58.446] Server  LOG      ✓ Compiled in 148ms
+[21:59:59.347] Browser LOG     Current User Role: admin
+[21:59:59.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[21:59:59.347] Browser LOG     Current User Role: admin
+[21:59:59.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[21:59:59.347] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765761204844}
+[21:59:59.347] Browser LOG     Current User Role: superadmin
+[21:59:59.347] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[21:59:59.755] Server  LOG     Current User Role: "admin"
+[21:59:59.791] Server  ERROR   Error: aborted
+[21:59:59.792] Server  ERROR    ⨯ "uncaughtException:" Error: aborted
+[21:59:59.793] Server  ERROR    ⨯ "uncaughtException: " Error: aborted
+[22:00:04.554] Browser LOG     Current User Role: admin
+[22:00:04.554] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:00:04.554] Browser LOG     Current User Role: admin
+[22:00:04.554] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:00:04.554] Browser LOG     Current User Role: admin
+[22:00:04.554] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:00:04.554] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[22:00:04.554] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[22:00:04.554] Browser LOG     Current User Role: superadmin
+[22:00:04.554] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:00:04.554] Browser LOG     Current User Role: superadmin
+[22:00:04.554] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:00:04.554] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:00:04.554] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[22:00:04.554] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765761208319}
+[22:00:06.354] Browser LOG     Current User Role: superadmin
+[22:00:06.354] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:00:08.336] Browser LOG     Current User Role: superadmin
+[22:00:08.336] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:00:34.211] Browser LOG     Current User Role: superadmin
+[22:00:34.211] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:00:34.211] Browser LOG     Current User Role: superadmin
+[22:00:34.211] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:00:34.415] Server  LOG     supplier: {}
+[22:00:34.418] Server  LOG     data: {}
+[22:00:34.670] Browser LOG     Current User Role: superadmin
+[22:00:34.670] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:01:26.476] Server  LOG      ✓ Compiled in 122ms
+[22:01:27.344] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:01:31.524] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:01:31.755] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:01:32.340] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:01:32.340] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:01:32.340] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:01:32.340] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:01.505] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:02:01.668] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:02:02.348] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:02.348] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:02.348] Browser ERROR   ./app/(app)/admin/page.tsx:660:30
+Parsing ecmascript source code failed
+  658 |
+  659 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 660 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  661 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  662 |     <CardContent className="p-4">
+  663 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:18.335] Browser ERROR   ./app/(app)/admin/page.tsx:670:30
+Parsing ecmascript source code failed
+  668 |
+  669 |       {/* ---------------- USER DETAILS DIALOG ---------------- */}
+> 670 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  671 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  672 |     <CardContent className="p-4">
+  673 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:23.791] Server  LOG      ✓ Compiled in 121ms
+[22:02:24.377] Browser ERROR   ./app/(app)/admin/page.tsx:669:66
+Parsing ecmascript source code failed
+  667 |       </AlertDialog>
+  668 |
+> 669 |       /* ---------------- USER DETAILS DIALOG ---------------- */}
+      |                                                                  ^
+  670 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+  671 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  672 |     <CardContent className="p-4">
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:31.436] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:669:66
+Parsing ecmascript source code failed
+  667 |       </AlertDialog>
+  668 |
+> 669 |       /* ---------------- USER DETAILS DIALOG ---------------- */}
+      |                                                                  ^
+  670 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+  671 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  672 |     <CardContent className="p-4">
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:02:31.514] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:669:66
+Parsing ecmascript source code failed
+  667 |       </AlertDialog>
+  668 |
+> 669 |       /* ---------------- USER DETAILS DIALOG ---------------- */}
+      |                                                                  ^
+  670 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+  671 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  672 |     <CardContent className="p-4">
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:02:32.345] Browser ERROR   ./app/(app)/admin/page.tsx:669:66
+Parsing ecmascript source code failed
+  667 |       </AlertDialog>
+  668 |
+> 669 |       /* ---------------- USER DETAILS DIALOG ---------------- */}
+      |                                                                  ^
+  670 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+  671 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  672 |     <CardContent className="p-4">
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:32.345] Browser ERROR   ./app/(app)/admin/page.tsx:669:66
+Parsing ecmascript source code failed
+  667 |       </AlertDialog>
+  668 |
+> 669 |       /* ---------------- USER DETAILS DIALOG ---------------- */}
+      |                                                                  ^
+  670 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+  671 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  672 |     <CardContent className="p-4">
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:02:46.674] Server  LOG      ✓ Compiled in 238ms
+[22:02:47.343] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:01.432] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:03:01.507] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:03:02.378] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:02.378] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:02.378] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:31.449] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:03:31.596] Server  ERROR    ⨯ ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+
+[22:03:32.346] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:32.346] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:32.346] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:32.346] Browser ERROR   ./app/(app)/admin/page.tsx:671:30
+Parsing ecmascript source code failed
+  669 |
+  670 |       /* ---------------- USER DETAILS DIALOG ---------------- */
+> 671 |      const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
+      |                              ^
+  672 |   <Card className={`border border-gray-200 hover:border-primary/50 transition-all duration-200 ${className}`}>
+  673 |     <CardContent className="p-4">
+  674 |       <div className="flex items-start gap-3">
+
+Expected '</', got ':'
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/admin/page.tsx [Client Component Browser]
+    ./app/(app)/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/admin/page.tsx [Client Component SSR]
+    ./app/(app)/admin/page.tsx [Server Component]
+[22:03:51.349] Browser LOG     Current User Role: superadmin
+[22:03:51.349] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:03:51.349] Browser LOG     Current User Role: superadmin
+[22:03:51.349] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:04:18.572] Browser LOG     Current User Role: superadmin
+[22:04:18.572] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:04:29.187] Browser LOG     Current User Role: superadmin
+[22:04:29.187] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:04:29.187] Browser LOG     Current User Role: superadmin
+[22:04:29.187] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:04:29.395] Server  LOG     supplier: {}
+[22:04:29.397] Server  LOG     data: {}
+[22:04:29.630] Browser LOG     Current User Role: superadmin
+[22:04:29.630] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:07:46.711] Browser LOG     Current User Role: superadmin
+[22:07:46.711] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:07:50.844] Browser LOG     Current User Role: superadmin
+[22:07:50.844] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:07:50.844] Browser LOG     Current User Role: superadmin
+[22:07:50.844] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:07:50.997] Server  LOG     supplier: {}
+[22:07:51.000] Server  LOG     data: {}
+[22:07:51.162] Browser LOG     Current User Role: superadmin
+[22:07:51.162] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:10:51.734] Server  LOG      ✓ Compiled in 188ms
+[22:10:52.339] Browser LOG     Current User Role: superadmin
+[22:10:52.339] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:10:58.528] Server  LOG     Current User Role: "admin"
+[22:10:59.138] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[22:10:59.138] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[22:10:59.138] Browser LOG     Current User Role: admin
+[22:10:59.138] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:10:59.138] Browser LOG     Current User Role: admin
+[22:10:59.138] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:10:59.138] Browser LOG     Current User Role: admin
+[22:10:59.138] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:10:59.507] Browser LOG     Current User Role: superadmin
+[22:10:59.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:10:59.507] Browser LOG     Current User Role: superadmin
+[22:10:59.507] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:10:59.507] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:10:59.507] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[22:10:59.507] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765761865742}
+[22:11:00.921] Browser LOG     Current User Role: superadmin
+[22:11:00.921] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:02.664] Browser LOG     Current User Role: superadmin
+[22:11:02.664] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:05.390] Browser LOG     Current User Role: superadmin
+[22:11:05.390] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:05.390] Browser LOG     Current User Role: superadmin
+[22:11:05.390] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:05.543] Server  LOG     supplier: {}
+[22:11:05.544] Server  LOG     data: {}
+[22:11:05.684] Browser LOG     Current User Role: superadmin
+[22:11:05.684] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:41.525] Browser LOG     Current User Role: superadmin
+[22:11:41.525] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:45.465] Browser LOG     Current User Role: superadmin
+[22:11:45.465] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:45.465] Browser LOG     Current User Role: superadmin
+[22:11:45.465] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:11:45.621] Server  LOG     supplier: {}
+[22:11:45.623] Server  LOG     data: {}
+[22:11:45.754] Browser LOG     Current User Role: superadmin
+[22:11:45.754] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:16:55.933] Server  LOG      ✓ Compiled in 120ms
+[22:16:56.346] Browser LOG     Current User Role: superadmin
+[22:16:56.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:18:38.371] Browser LOG     Current User Role: superadmin
+[22:18:38.371] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:27:18.435] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:27:18.668] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:27:18.668] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/pending-approval","route":"/onboarding/pending-approval"}
+[22:27:18.668] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765762844902}
+[22:27:18.865] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[22:27:18.865] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[22:29:44.485] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765762990693}
+[22:29:56.375] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765763002594}
+[22:30:02.412] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/support color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/support","o":"http://localhost:3000/onboarding/support","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765763008641}
+[22:30:06.071] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/pending-approval","o":"http://localhost:3000/onboarding/pending-approval","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765763012297}
+[22:30:08.218] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765763014422}
+[22:32:57.509] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[22:32:57.509] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[22:32:58.560] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[22:32:59.461] Browser LOG     LICENSE AGREEMENT.pdf: 14.98%
+[22:32:59.686] Browser LOG     LICENSE AGREEMENT.pdf: 17.47%
+[22:32:59.897] Browser LOG     LICENSE AGREEMENT.pdf: 22.47%
+[22:33:00.123] Browser LOG     LICENSE AGREEMENT.pdf: 62.4%
+[22:33:00.334] Browser LOG     LICENSE AGREEMENT.pdf: 69.89%
+[22:33:00.559] Browser LOG     LICENSE AGREEMENT.pdf: 89.86%
+[22:33:00.783] Browser LOG     LICENSE AGREEMENT.pdf: 100%
+[22:33:01.537] Browser LOG     Payment Advise.pdf: 0%
+[22:33:01.537] Browser LOG     Payment Advise.pdf: 0%
+[22:33:02.307] Browser LOG     Payment Advise.pdf: 0%
+[22:33:02.647] Browser LOG     Payment Advise.pdf: 100%
+[22:33:02.837] Browser LOG     MINUTES OF MEETING.pdf: 0%
+[22:33:02.837] Browser LOG     MINUTES OF MEETING.pdf: 0%
+[22:33:03.574] Browser LOG     MINUTES OF MEETING.pdf: 0%
+[22:33:03.913] Browser LOG     MINUTES OF MEETING.pdf: 100%
+[22:33:04.557] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 0%
+[22:33:04.557] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 0%
+[22:33:05.289] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 0%
+[22:33:05.629] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 13.72%
+[22:33:06.082] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 18.29%
+[22:33:06.294] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 22.1%
+[22:33:06.519] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 25.15%
+[22:33:06.747] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 28.96%
+[22:33:07.070] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 32.01%
+[22:33:07.070] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 32.77%
+[22:33:07.183] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 35.82%
+[22:33:07.409] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 40.4%
+[22:33:07.620] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 41.16%
+[22:33:07.844] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 46.49%
+[22:33:08.071] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 48.02%
+[22:33:08.295] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 51.07%
+[22:33:08.521] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 54.12%
+[22:33:08.744] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 56.4%
+[22:33:08.969] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 60.21%
+[22:33:09.197] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 62.5%
+[22:33:09.420] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 66.31%
+[22:33:09.645] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 68.6%
+[22:33:09.872] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 71.65%
+[22:33:10.098] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 75.46%
+[22:33:10.421] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 77.74%
+[22:33:10.421] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 78.51%
+[22:33:10.633] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 80.79%
+[22:33:10.633] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 81.55%
+[22:33:10.744] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 83.84%
+[22:33:10.968] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 88.41%
+[22:33:11.197] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 91.46%
+[22:33:11.423] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 94.51%
+[22:33:11.647] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 97.56%
+[22:33:11.874] Browser LOG     Cyber Security_WB1_PC2B.4.23 (1).pdf: 100%
+[22:33:12.743] Browser LOG     VisualBasicCurriculum.pdf: 0%
+[22:33:12.743] Browser LOG     VisualBasicCurriculum.pdf: 0%
+[22:33:13.667] Browser LOG     VisualBasicCurriculum.pdf: 0%
+[22:33:14.007] Browser LOG     VisualBasicCurriculum.pdf: 100%
+[22:33:14.134] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[22:33:14.134] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[22:33:14.899] Browser LOG     LICENSE AGREEMENT.pdf: 0%
+[22:33:15.240] Browser LOG     LICENSE AGREEMENT.pdf: 44.93%
+[22:33:15.805] Browser LOG     LICENSE AGREEMENT.pdf: 54.91%
+[22:33:16.031] Browser LOG     LICENSE AGREEMENT.pdf: 62.4%
+[22:33:16.147] Browser LOG     LICENSE AGREEMENT.pdf: 64.9%
+[22:33:16.262] Browser LOG     LICENSE AGREEMENT.pdf: 69.89%
+[22:33:16.372] Browser LOG     LICENSE AGREEMENT.pdf: 72.39%
+[22:33:16.486] Browser LOG     LICENSE AGREEMENT.pdf: 79.88%
+[22:33:16.711] Browser LOG     LICENSE AGREEMENT.pdf: 89.86%
+[22:33:16.937] Browser LOG     LICENSE AGREEMENT.pdf: 97.35%
+[22:33:17.163] Browser LOG     LICENSE AGREEMENT.pdf: 100%
+[22:33:18.178] Server  LOG     submitSupplierOnboarding: Starting...
+[22:33:18.184] Server  LOG     User authenticated: "user_36rRjty57fTTxDxpCil1x5GYmyd"
+[22:33:18.184] Server  LOG     Database connected
+[22:33:18.247] Browser LOG     Submitting onboarding data...
+[22:33:18.336] Server  LOG     Generated supplierId: "SUP-5009"
+[22:33:18.338] Server  LOG     📋 Creating supplier...
+[22:33:18.340] Server  LOG     Upload counts: {}
+[22:33:18.342] Server  LOG     Sample URLs: {}
+[22:33:18.542] Server  LOG     ✅ Supplier created: {}
+[22:33:19.342] Server  LOG     Clerk user metadata updated
+[22:33:19.346] Server  LOG     Supplier onboarding completed successfully
+[22:33:19.543] Browser LOG     Submission response: {"data":{"_id":"693f6884ac47915fa035be33","id":"693f6884ac47915fa035be33","name":"Ministry of Tourism and Cultural Affairs Sierra Leone","supplierId":"SUP-5009"},"success":true}
+[22:33:19.543] Browser LOG     Success! Supplier created: {"_id":"693f6884ac47915fa035be33","id":"693f6884ac47915fa035be33","name":"Ministry of Tourism and Cultural Affairs Sierra Leone","supplierId":"SUP-5009"}
+[22:33:20.680] Server  LOG     getSupplierById: {}
+[22:33:20.860] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/693f6884ac47915fa035be33 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/693f6884ac47915fa035be33","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765763207090}
+[22:33:38.215] Server  LOG     Current User Role: "admin"
+[22:33:38.850] Browser LOG     Current User Role: admin
+[22:33:38.850] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:33:38.850] Browser LOG     Current User Role: admin
+[22:33:38.850] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:33:38.850] Browser LOG     Current User Role: admin
+[22:33:38.850] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[22:33:38.850] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[22:33:38.850] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[22:33:39.804] Browser LOG     Current User Role: superadmin
+[22:33:39.804] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:33:39.804] Browser LOG     Current User Role: superadmin
+[22:33:39.804] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:33:39.804] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:33:39.804] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[22:33:39.804] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765763226039}
+[22:33:41.373] Browser LOG     Current User Role: superadmin
+[22:33:41.373] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:33:43.348] Browser LOG     Current User Role: superadmin
+[22:33:43.348] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:33:48.127] Browser LOG     Current User Role: superadmin
+[22:33:48.127] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:33:48.127] Browser LOG     Current User Role: superadmin
+[22:33:48.127] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:33:48.268] Server  LOG     supplier: {}
+[22:33:48.269] Server  LOG     data: {}
+[22:33:48.408] Browser LOG     Current User Role: superadmin
+[22:33:48.408] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:36:59.454] Browser LOG     Current User Role: superadmin
+[22:36:59.454] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:37:03.370] Browser LOG     Current User Role: superadmin
+[22:37:03.370] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:37:03.370] Browser LOG     Current User Role: superadmin
+[22:37:03.370] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:37:04.985] Browser LOG     Current User Role: superadmin
+[22:37:04.985] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:37:04.985] Browser LOG     Current User Role: superadmin
+[22:37:04.985] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:54:40.718] Browser LOG     Current User Role: superadmin
+[22:54:40.718] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:54:43.501] Browser LOG     Delete invitation: inv_36AxDZm8FhwRqjB7pnQPpCsdFXO
+[22:54:43.501] Browser LOG     Current User Role: superadmin
+[22:54:43.501] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:54:43.501] Browser LOG     Current User Role: superadmin
+[22:54:43.501] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:54:45.050] Browser LOG     Current User Role: superadmin
+[22:54:45.050] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[22:55:48.238] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:55:48.587] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[22:55:48.587] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[22:55:48.983] Browser LOG     User is onboarded or already on onboarding page
+[22:55:48.983] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:55:48.983] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[22:55:48.983] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765764555214}
+[22:56:30.080] Browser LOG     User is onboarded or already on onboarding page
+[22:56:30.080] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765764596272}
+[22:56:41.345] Browser LOG     User is onboarded or already on onboarding page
+[22:56:41.345] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765764607574}
+[22:56:53.636] Browser LOG     User is onboarded or already on onboarding page
+[22:56:53.636] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765764619858}
+[23:01:39.733] Browser LOG     User is onboarded or already on onboarding page
+[23:01:39.733] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765764905929}
+[23:01:44.162] Browser LOG     User is onboarded or already on onboarding page
+[23:01:44.162] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765764910395}
