@@ -46,11 +46,27 @@ export function Navigation({
     String((user?.publicMetadata as any)?.role || "")
       .toLowerCase()
       .replace(/[\s_-]/g, "") || "";
+  // const items = navItems.filter((n) => {
+  //   if (n.href === "/admin") return role === "admin" || role === "superadmin";
+  //   if (n.href === "/reports") return role !== "supplier";
+  //   if (n.href === "/tenders") return role !== "supplier";
+  //   if (n.href === "/approvals") return role !== "supplier";
+  //   return true;
+
+  const supplierRestrictedRoutes = ["/approvals", "/requisitions", "/reports"];
+
   const items = navItems.filter((n) => {
-    if (n.href === "/admin") return role === "admin" || role === "superadmin";
-    if (n.href === "/reports") return role !== "supplier";
-    if (n.href === "/tenders") return role !== "supplier";
-    if (n.href === "/approvals") return role !== "supplier";
+    // Only admins can see Admin page
+    if (n.href === "/admin") {
+      return role === "admin" || role === "superadmin";
+    }
+
+    // Suppliers cannot see these pages
+    if (supplierRestrictedRoutes.includes(n.href)) {
+      return role !== "supplier";
+    }
+
+    // All other pages are visible to everyone
     return true;
   });
 
