@@ -1,5 +1,10 @@
 {
+  "/(app)/admin/page": "app/(app)/admin/page.js",
+  "/(app)/invoices/page": "app/(app)/invoices/page.js",
+  "/(app)/purchase-orders/page": "app/(app)/purchase-orders/page.js",
   "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
+  "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
+  "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js",
   "/page": "app/page.js"

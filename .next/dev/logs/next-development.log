@@ -60,3 +60,251 @@
 [00:27:44.863] Browser LOG     ====================
 [00:49:38.863] Server  LOG      ✓ Compiled in 326ms
 [00:49:50.952] Server  LOG      ✓ Compiled in 277ms
+[00:54:52.520] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:53.264] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:54:53.264] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:54:53.526] Browser LOG     === USER DEBUG INFO ===
+[00:54:53.526] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-15T01:40:41.761Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_36rRjshNYm33rlEuZbafXg6jpTm","linkedTo":[{"id":"idn_36rRjv360QRV2MKtIO9f1bJQpnW","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T17:29:38.985Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_36rRjtloMgkryJ1892DHNbgg5a3","identificationId":"idn_36rRjv360QRV2MKtIO9f1bJQpnW","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T01:46:32.185Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_36rRjty57fTTxDxpCil1x5GYmyd","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNnJSanBEaXJxWUdUOFpqakFreDVwN2FjTEcifQ","lastName":null,"lastSignInAt":"2025-12-15T01:40:41.775Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_36rRjshNYm33rlEuZbafXg6jpTm","linkedTo":[{"id":"idn_36rRjv360QRV2MKtIO9f1bJQpnW","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T17:29:38.985Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36rRjshNYm33rlEuZbafXg6jpTm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"approved"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-15T01:50:27.388Z","username":null,"web3Wallets":[]}
+[00:54:53.526] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"approved"}
+[00:54:53.526] Browser LOG     Unsafe metadata: {}
+[00:54:53.526] Browser LOG     Raw role: 
+[00:54:53.526] Browser LOG     Normalized role: 
+[00:54:53.526] Browser LOG     Is loaded: true
+[00:54:53.526] Browser LOG     ====================
+[00:54:53.526] Browser LOG     User is onboarded or already on onboarding page
+[00:54:53.526] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:54:53.526] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:54:53.526] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765819779090}
+[00:55:47.596] Browser ERROR   Failed to fetch RSC payload for http://localhost:3000/. Falling back to browser navigation. {}
+[00:58:58.611] Browser LOG     Current User Role: superadmin
+[00:58:58.611] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:58:58.611] Browser LOG     Current User Role: superadmin
+[00:58:58.611] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:58:58.611] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765820024138}
+[00:59:00.814] Browser LOG     Current User Role: superadmin
+[00:59:00.814] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:06.088] Browser LOG     Current User Role: superadmin
+[00:59:06.088] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:13.702] Browser LOG     Current User Role: superadmin
+[00:59:13.702] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:15.115] Browser LOG     Current User Role: superadmin
+[00:59:15.115] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:16.004] Browser LOG     Current User Role: superadmin
+[00:59:16.004] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:16.004] Browser LOG     Current User Role: superadmin
+[00:59:16.004] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:17.556] Browser LOG     Current User Role: superadmin
+[00:59:17.556] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:17.681] Browser LOG     Current User Role: superadmin
+[00:59:17.681] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:28.276] Browser LOG     Current User Role: superadmin
+[00:59:28.276] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:29.805] Browser LOG     Current User Role: superadmin
+[00:59:29.805] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:33.435] Browser LOG     Current User Role: superadmin
+[00:59:33.435] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:33.435] Browser LOG     Current User Role: superadmin
+[00:59:33.435] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:34.898] Browser LOG     Current User Role: superadmin
+[00:59:34.898] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:42.780] Browser LOG     Current User Role: superadmin
+[00:59:42.780] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:44.846] Browser LOG     Current User Role: superadmin
+[00:59:44.846] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:52.769] Browser LOG     Current User Role: superadmin
+[00:59:52.769] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:52.769] Browser LOG     Current User Role: superadmin
+[00:59:52.769] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:54.346] Browser LOG     Current User Role: superadmin
+[00:59:54.346] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:59.905] Browser LOG     Current User Role: superadmin
+[00:59:59.905] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:59:59.905] Browser LOG     Current User Role: superadmin
+[00:59:59.905] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:00:00.087] Server  LOG     supplier: {}
+[01:00:00.088] Server  LOG     data: {}
+[01:00:00.242] Browser LOG     Current User Role: superadmin
+[01:00:00.242] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:00:23.943] Browser LOG     Current User Role: superadmin
+[01:00:23.943] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:00:27.568] Browser LOG     Current User Role: superadmin
+[01:00:27.568] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:00:29.367] Browser LOG     Current User Role: superadmin
+[01:00:29.367] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:00:37.331] Browser LOG     Current User Role: superadmin
+[01:00:37.331] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:00:37.331] Browser LOG     Current User Role: superadmin
+[01:00:37.331] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:00:39.042] Browser LOG     Current User Role: superadmin
+[01:00:39.042] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:08:50.646] Server  LOG      ✓ Compiled in 182ms
+[01:09:02.136] Server  LOG     Current User Role: "admin"
+[01:09:03.000] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:09:03.000] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:09:03.000] Browser LOG     Current User Role: admin
+[01:09:03.000] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[01:09:03.000] Browser LOG     Current User Role: admin
+[01:09:03.000] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[01:09:03.000] Browser LOG     Current User Role: admin
+[01:09:03.000] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[01:09:03.382] Browser LOG     Current User Role: superadmin
+[01:09:03.382] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:09:03.382] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:09:03.382] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:09:03.382] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765820628902}
+[01:09:03.382] Browser LOG     Current User Role: superadmin
+[01:09:03.382] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:09:03.382] Browser LOG     === USER DEBUG INFO ===
+[01:09:03.382] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T17:43:48.836Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2025-12-14T22:48:19.374Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T17:43:48.836Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-14T22:48:19.403Z","username":null,"web3Wallets":[]}
+[01:09:03.382] Browser LOG     Public metadata: {"role":"super_admin"}
+[01:09:03.382] Browser LOG     Unsafe metadata: {}
+[01:09:03.382] Browser LOG     Raw role: super_admin
+[01:09:03.382] Browser LOG     Normalized role: superadmin
+[01:09:03.382] Browser LOG     Is loaded: true
+[01:09:03.382] Browser LOG     ====================
+[01:09:05.550] Browser LOG     Current User Role: superadmin
+[01:09:05.550] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:09:07.625] Browser LOG     Current User Role: superadmin
+[01:09:07.625] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:09:26.270] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765820651831}
+[01:21:12.660] Browser LOG     Current User Role: superadmin
+[01:21:12.660] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:21:12.660] Browser LOG     Current User Role: superadmin
+[01:21:12.660] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:21:12.660] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821358212}
+[01:21:14.897] Browser LOG     Current User Role: superadmin
+[01:21:14.897] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:21:16.223] Browser LOG     Current User Role: superadmin
+[01:21:16.224] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:22:24.113] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:22:25.010] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:22:25.010] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:22:25.193] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:22:25.193] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[01:22:25.193] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821430768}
+[01:24:12.324] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[01:24:12.324] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[01:24:13.025] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[01:24:13.940] Browser LOG     Premiere Pro Course Guide.pdf: 100%
+[01:24:14.306] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[01:24:14.306] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[01:24:15.024] Browser LOG     Premiere Pro Course Guide.pdf: 0%
+[01:24:15.340] Browser LOG     Premiere Pro Course Guide.pdf: 100%
+[01:24:15.419] Server  LOG     submitSupplierOnboarding: Starting...
+[01:24:15.425] Server  LOG     User authenticated: "user_36tMU4WXLuD1DMfghGBvRii0uk4"
+[01:24:15.426] Server  LOG     Database connected
+[01:24:15.491] Browser LOG     Submitting onboarding data...
+[01:24:15.573] Server  LOG     Generated supplierId: "SUP-5010"
+[01:24:15.574] Server  LOG     📋 Creating supplier...
+[01:24:15.575] Server  LOG     Upload counts: {}
+[01:24:15.575] Server  LOG     Sample URLs: {}
+[01:24:15.776] Server  LOG     ✅ Supplier created: {}
+[01:24:17.217] Server  LOG     Clerk user metadata updated
+[01:24:17.219] Server  LOG     Supplier onboarding completed successfully
+[01:24:17.374] Browser LOG     Submission response: {"data":{"_id":"69404c6558db218d56ec7bcf","id":"69404c6558db218d56ec7bcf","name":"Ministry of Tourism and Cultural Affairs Sierra Leone","supplierId":"SUP-5010"},"success":true}
+[01:24:17.374] Browser LOG     Success! Supplier created: {"_id":"69404c6558db218d56ec7bcf","id":"69404c6558db218d56ec7bcf","name":"Ministry of Tourism and Cultural Affairs Sierra Leone","supplierId":"SUP-5010"}
+[01:24:20.979] Server  LOG     getSupplierById: {}
+[01:24:21.203] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/69404c6558db218d56ec7bcf color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/69404c6558db218d56ec7bcf","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821546773}
+[01:24:35.064] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:24:35.598] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:24:35.598] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[01:24:35.598] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821561166}
+[01:24:35.598] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:24:35.598] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:24:49.798] Server  LOG     Current User Role: "admin"
+[01:24:56.992] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:24:56.993] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:24:56.993] Browser LOG     Current User Role: admin
+[01:24:56.993] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[01:24:56.993] Browser LOG     Current User Role: admin
+[01:24:56.993] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[01:24:56.993] Browser LOG     Current User Role: admin
+[01:24:56.993] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[01:24:57.394] Browser LOG     Current User Role: superadmin
+[01:24:57.394] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:24:57.394] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:24:57.394] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:24:57.394] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821582919}
+[01:24:57.394] Browser LOG     Current User Role: superadmin
+[01:24:57.394] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:24:57.394] Browser LOG     === USER DEBUG INFO ===
+[01:24:57.394] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T17:59:42.866Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2025-12-14T22:48:19.374Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T17:59:42.866Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-14T22:48:19.403Z","username":null,"web3Wallets":[]}
+[01:24:57.394] Browser LOG     Public metadata: {"role":"super_admin"}
+[01:24:57.394] Browser LOG     Unsafe metadata: {}
+[01:24:57.394] Browser LOG     Raw role: super_admin
+[01:24:57.394] Browser LOG     Normalized role: superadmin
+[01:24:57.394] Browser LOG     Is loaded: true
+[01:24:57.394] Browser LOG     ====================
+[01:24:58.941] Browser LOG     Current User Role: superadmin
+[01:24:58.941] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:01.094] Browser LOG     Current User Role: superadmin
+[01:25:01.094] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:08.569] Browser LOG     Current User Role: superadmin
+[01:25:08.569] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:08.569] Browser LOG     Current User Role: superadmin
+[01:25:08.569] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:08.749] Server  LOG     supplier: {}
+[01:25:08.750] Server  LOG     data: {}
+[01:25:08.903] Browser LOG     Current User Role: superadmin
+[01:25:08.903] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:16.008] Browser LOG     Current User Role: superadmin
+[01:25:16.008] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:27.635] Browser LOG     Current User Role: superadmin
+[01:25:27.635] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:27.635] Browser LOG     Current User Role: superadmin
+[01:25:27.635] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:29.756] Browser LOG     Current User Role: superadmin
+[01:25:29.756] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:29.914] Browser LOG     Current User Role: superadmin
+[01:25:29.914] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:35.865] Browser LOG     Current User Role: superadmin
+[01:25:35.865] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:35.865] Browser LOG     Current User Role: superadmin
+[01:25:35.865] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:36.011] Server  LOG     supplier: {}
+[01:25:36.013] Server  LOG     data: {}
+[01:25:36.157] Browser LOG     Current User Role: superadmin
+[01:25:36.157] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:39.510] Browser LOG     Current User Role: superadmin
+[01:25:39.510] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:25:54.148] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:25:54.532] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:25:54.532] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:25:55.179] Browser LOG     === USER DEBUG INFO ===
+[01:25:55.180] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-15T17:57:06.369Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:00:40.564Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_36tMTDK0EI1XIMebfUbpmhAPZXt","identificationId":"idn_36tMTAKAl3VwmR1SrJJG980DidU","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:06:53.311Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_36tMU4WXLuD1DMfghGBvRii0uk4","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNnRNVTQ5cmxBTEVaTTBpMHFONUx6dElqTk0ifQ","lastName":null,"lastSignInAt":"2025-12-15T17:57:06.395Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:00:40.564Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36tMT98lorUyk1iRNMDPAaIkUif","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-15T18:00:05.873Z","username":null,"web3Wallets":[]}
+[01:25:55.180] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true}
+[01:25:55.180] Browser LOG     Unsafe metadata: {}
+[01:25:55.180] Browser LOG     Raw role: supplier
+[01:25:55.180] Browser LOG     Normalized role: supplier
+[01:25:55.180] Browser LOG     Is loaded: true
+[01:25:55.180] Browser LOG     ====================
+[01:25:55.180] Browser LOG     User is onboarded or already on onboarding page
+[01:25:55.180] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:25:55.180] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/purchase-orders","route":"/purchase-orders"}
+[01:25:55.180] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821640730}
+[01:25:57.719] Browser LOG     User is onboarded or already on onboarding page
+[01:25:57.719] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821643274}
+[01:25:58.336] Server  LOG     getSupplierById: {}
+[01:25:59.805] Browser LOG     User is onboarded or already on onboarding page
+[01:25:59.805] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/invoices color: rgb(120, 120, 120) color: inherit {"dp":"/invoices","o":"http://localhost:3000/invoices","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821645371}
+[01:26:08.997] Browser LOG     User is onboarded or already on onboarding page
+[01:26:08.997] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765821654551}
+[01:26:09.556] Server  LOG     getSupplierById: {}
+[04:41:45.044] Server  LOG      ✓ Compiled in 129ms
+[04:43:04.311] Server  LOG      ✓ Compiled in 105ms
+[04:43:04.883] Browser LOG     Current User Role: superadmin
+[04:43:04.883] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[04:47:20.260] Server  LOG      ✓ Compiled in 121ms
+[04:51:23.851] Server  LOG      ✓ Compiled in 89ms
+[04:55:34.688] Server  LOG      ✓ Compiled in 94ms
+[04:56:48.291] Server  LOG      ✓ Compiled in 90ms
+[05:01:25.694] Server  LOG      ✓ Compiled in 105ms
+[05:12:56.462] Server  LOG      ✓ Compiled in 111ms
+[05:18:58.709] Server  LOG      ✓ Compiled in 88ms
+[05:21:07.875] Browser LOG     Current User Role: superadmin
+[05:21:07.875] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[05:28:01.903] Browser LOG     Current User Role: superadmin
+[05:28:01.903] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[05:28:24.869] Browser LOG     Current User Role: superadmin
+[05:28:24.869] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[05:31:01.322] Server  LOG      ✓ Compiled in 176ms

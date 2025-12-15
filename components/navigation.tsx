@@ -80,9 +80,10 @@ export function Navigation({
       return normalizedRole === "admin" || normalizedRole === "superadmin";
     }
 
-    // Suppliers can ONLY see these three items
+    // Suppliers can ONLY see four items
     if (normalizedRole === "supplier") {
       const supplierAllowedPaths = [
+        "/tenders",
         "/purchase-orders",
         "/suppliers",
         "/invoices",
@@ -157,21 +158,11 @@ export function Navigation({
             <p className="text-xs font-medium text-muted-foreground px-3 mb-3 uppercase tracking-wider">
               Navigation
             </p>
-
-            {/* Debug info - ALWAYS SHOWN FOR NOW */}
-            <div className="px-3 py-2 mb-2 text-xs bg-yellow-100 dark:bg-yellow-900/20 rounded space-y-1">
-              <div>Loaded: {isLoaded ? "✓" : "✗"}</div>
-              <div>User: {user ? "✓" : "✗"}</div>
-              <div>Role: "{normalizedRole || "EMPTY"}"</div>
-              <div>Items: {items.length}</div>
-            </div>
-
             {!isLoaded && (
               <div className="px-3 py-2 text-sm text-muted-foreground">
                 Loading...
               </div>
             )}
-
             {items.map((item) => {
               const isActive = pathname === item.href;
               const Icon = item.icon;

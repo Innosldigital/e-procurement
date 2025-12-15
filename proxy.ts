@@ -170,16 +170,15 @@ export default clerkMiddleware(async (auth, request) => {
         const p = request.nextUrl.pathname;
 
         const allowedSupplierPaths = [
+          "/tenders",
           "/purchase-orders",
           "/suppliers",
           "/invoices",
         ];
 
-        // Redirect root "/" to purchase-orders
+        // Redirect root "/" to suppliers
         if (p === "/") {
-          return NextResponse.redirect(
-            new URL("/purchase-orders", request.url)
-          );
+          return NextResponse.redirect(new URL("/suppliers", request.url));
         }
 
         const isAllowed =
@@ -187,9 +186,7 @@ export default clerkMiddleware(async (auth, request) => {
           isApiRoute(request);
 
         if (!isAllowed) {
-          return NextResponse.redirect(
-            new URL("/purchase-orders", request.url)
-          );
+          return NextResponse.redirect(new URL("/not-authorized", request.url));
         }
 
         return NextResponse.next();
