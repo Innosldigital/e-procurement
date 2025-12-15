@@ -107,8 +107,18 @@ export async function approveSupplierOnboarding(supplierId: string) {
     if (!supplierDoc) return { success: false, error: "Supplier not found" };
 
     const client = await clerkClient();
+    const currentUser = await client.users.getUser(
+      String(supplierDoc.ownerUserId)
+    );
+    const md = (currentUser?.publicMetadata || {}) as any;
     await client.users.updateUser(String(supplierDoc.ownerUserId), {
-      publicMetadata: { onboarded: true, onboardingStatus: "approved" },
+      publicMetadata: {
+        ...md,
+        role: "supplier",
+        onboarded: true,
+        onboardingStatus: "approved",
+        supplier_approved: true,
+      },
     });
 
     await Notification.create({
@@ -159,11 +169,18 @@ export async function rejectSupplierOnboarding(
     if (!supplierDoc) return { success: false, error: "Supplier not found" };
 
     const client = await clerkClient();
+    const currentUser = await client.users.getUser(
+      String(supplierDoc.ownerUserId)
+    );
+    const md = (currentUser?.publicMetadata || {}) as any;
     await client.users.updateUser(String(supplierDoc.ownerUserId), {
       publicMetadata: {
+        ...md,
+        role: "supplier",
         onboarded: false,
         onboardingStatus: "rejected",
         rejectionReason: reason,
+        supplier_approved: false,
       },
     });
 
