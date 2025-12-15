@@ -3074,3 +3074,24 @@ Import traces:
 [23:18:41.189] Browser LOG     User is onboarded or already on onboarding page
 [23:18:41.189] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765765927422}
 [23:31:31.723] Server  LOG      ✓ Compiled in 297ms
+[29:40:11.559] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[29:40:12.852] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[29:40:12.852] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[29:40:12.852] Browser LOG     User is onboarded or already on onboarding page
+[29:40:12.852] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[29:40:12.852] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/approvals","route":"/approvals"}
+[29:40:12.852] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765788811443}
+[29:40:23.841] Browser LOG     User is onboarded or already on onboarding page
+[29:40:23.841] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765788822775}
+[29:40:30.900] Browser LOG     User is onboarded or already on onboarding page
+[29:40:30.900] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765788829801}
+[29:40:34.168] Browser LOG     User is onboarded or already on onboarding page
+[29:40:34.168] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765788833096}
+[29:40:38.546] Browser LOG     User is onboarded or already on onboarding page
+[29:40:38.546] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765788837478}
+[29:40:42.706] Browser LOG     User is onboarded or already on onboarding page
+[29:40:42.706] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765788841638}
+[29:40:46.743] Browser LOG     User is onboarded or already on onboarding page
+[29:40:46.743] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765788845666}
+[29:41:11.125] Server  LOG      ✓ Compiled in 158ms
+[29:54:46.188] Server  LOG      ✓ Compiled in 124ms
