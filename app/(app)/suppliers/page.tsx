@@ -42,6 +42,10 @@ export default function SuppliersPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
+    if (role === "supplier") {
+      router.replace("/suppliers");
+      return;
+    }
     let mounted = true;
     setLoading(true);
     getSuppliers()
@@ -160,147 +164,155 @@ export default function SuppliersPage() {
 
   return (
     <div className="p-4 md:p-6">
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-xl md:text-2xl font-semibold mb-1">Suppliers</h1>
-          <p className="text-xs md:text-sm text-muted-foreground">
-            Manage strategic vendors, performance, and risk across your supplier
-            base.
-          </p>
-        </div>
-        <div className="flex gap-2 md:gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            className="flex-1 sm:flex-none"
-            onClick={() => setSettingsOpen(true)}
-          >
-            Supplier settings
-          </Button>
-        </div>
-      </div>
-
-      <Card className="mb-6">
-        <CardContent className="pt-4 md:pt-6">
-          <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-4">
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Segment:</span>
-              <Badge variant="secondary" className="text-xs">
-                {segments.length > 0 ? segments.join(", ") : "-"}
-              </Badge>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Category:</span>
-              <Badge variant="secondary" className="text-xs">
-                {categories.length > 0 ? categories.join(", ") : "-"}
-              </Badge>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Region:</span>
-              <Badge variant="secondary" className="text-xs">
-                {regions.length > 0 ? regions.join(", ") : "-"}
-              </Badge>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Risk:</span>
-              <Badge variant="secondary" className="text-xs">
-                {risks.length > 0 ? risks.join(", ") : "-"}
-              </Badge>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <span>{visibleSuppliers.length} active suppliers</span>
-            <span>{strategicCount} strategic</span>
-            <span>{watchlistCount} on watchlist</span>
-          </div>
-        </CardContent>
-      </Card>
-
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 md:gap-6">
-        <Card className="xl:col-span-5">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base">Supplier directory</CardTitle>
-              <span className="text-xs text-muted-foreground">
-                Sorted by spend (FY24)
-              </span>
-            </div>
-            <CardDescription className="text-xs">
-              Select a supplier to view performance and compliance details.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Input
-              placeholder="Search by supplier name, ID, category..."
-              className="mb-4"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <div className="space-y-1">
-              {loading ? (
-                <div className="text-center py-8 text-muted-foreground text-sm">
-                  Loading suppliers...
-                </div>
-              ) : suppliers.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground text-sm">
-                  No suppliers found. Connect to MongoDB to see data.
-                </div>
-              ) : visibleSuppliers.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground text-sm">
-                  No suppliers match your search.
-                </div>
-              ) : (
-                visibleSuppliers.map((supplier: any) => (
-                  <button
-                    key={supplier._id}
-                    onClick={() => setSelectedSupplier(supplier)}
-                    className={`w-full text-left p-3 rounded-lg hover:bg-accent cursor-pointer border transition-colors ${
-                      selectedSupplier?._id === supplier._id
-                        ? "bg-accent border-border"
-                        : "border-transparent"
-                    }`}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex-1">
-                        <div className="font-medium text-sm mb-1">
-                          {supplier.name}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {supplier.supplierId}
-                        </div>
-                      </div>
-                      <StatusBadge
-                        status={supplier.risk || supplier.riskStatus}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <span>
-                          {supplier.primaryCategory || supplier.category}
-                        </span>
-                        <span>•</span>
-                        <span>
-                          Score:{" "}
-                          {supplier.performanceScore != null
-                            ? supplier.performanceScore
-                            : 0}
-                          /100
-                        </span>
-                      </div>
-                      <span className="font-medium">
-                        ${supplier.fy24Spend?.toLocaleString() || "0"}
-                      </span>
-                    </div>
-                  </button>
-                ))
-              )}
-            </div>
-            <p className="text-xs text-muted-foreground mt-4 px-3">
-              Tip: Change "Segment" to see all suppliers and identify
-              consolidation opportunities.
+      {role === "supplier" ? null : (
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-xl md:text-2xl font-semibold mb-1">
+              Suppliers
+            </h1>
+            <p className="text-xs md:text-sm text-muted-foreground">
+              Manage strategic vendors, performance, and risk across your
+              supplier base.
             </p>
+          </div>
+          <div className="flex gap-2 md:gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex-1 sm:flex-none"
+              onClick={() => setSettingsOpen(true)}
+            >
+              Supplier settings
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {role === "supplier" ? null : (
+        <Card className="mb-6">
+          <CardContent className="pt-4 md:pt-6">
+            <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-4">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Segment:</span>
+                <Badge variant="secondary" className="text-xs">
+                  {segments.length > 0 ? segments.join(", ") : "-"}
+                </Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Category:</span>
+                <Badge variant="secondary" className="text-xs">
+                  {categories.length > 0 ? categories.join(", ") : "-"}
+                </Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Region:</span>
+                <Badge variant="secondary" className="text-xs">
+                  {regions.length > 0 ? regions.join(", ") : "-"}
+                </Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Risk:</span>
+                <Badge variant="secondary" className="text-xs">
+                  {risks.length > 0 ? risks.join(", ") : "-"}
+                </Badge>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+              <span>{visibleSuppliers.length} active suppliers</span>
+              <span>{strategicCount} strategic</span>
+              <span>{watchlistCount} on watchlist</span>
+            </div>
           </CardContent>
         </Card>
+      )}
+
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 md:gap-6">
+        {role === "supplier" ? null : (
+          <Card className="xl:col-span-5">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-base">Supplier directory</CardTitle>
+                <span className="text-xs text-muted-foreground">
+                  Sorted by spend (FY24)
+                </span>
+              </div>
+              <CardDescription className="text-xs">
+                Select a supplier to view performance and compliance details.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Input
+                placeholder="Search by supplier name, ID, category..."
+                className="mb-4"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div className="space-y-1">
+                {loading ? (
+                  <div className="text-center py-8 text-muted-foreground text-sm">
+                    Loading suppliers...
+                  </div>
+                ) : suppliers.length === 0 ? (
+                  <div className="text-center py-8 text-muted-foreground text-sm">
+                    No suppliers found. Connect to MongoDB to see data.
+                  </div>
+                ) : visibleSuppliers.length === 0 ? (
+                  <div className="text-center py-8 text-muted-foreground text-sm">
+                    No suppliers match your search.
+                  </div>
+                ) : (
+                  visibleSuppliers.map((supplier: any) => (
+                    <button
+                      key={supplier._id}
+                      onClick={() => setSelectedSupplier(supplier)}
+                      className={`w-full text-left p-3 rounded-lg hover:bg-accent cursor-pointer border transition-colors ${
+                        selectedSupplier?._id === supplier._id
+                          ? "bg-accent border-border"
+                          : "border-transparent"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex-1">
+                          <div className="font-medium text-sm mb-1">
+                            {supplier.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {supplier.supplierId}
+                          </div>
+                        </div>
+                        <StatusBadge
+                          status={supplier.risk || supplier.riskStatus}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <span>
+                            {supplier.primaryCategory || supplier.category}
+                          </span>
+                          <span>•</span>
+                          <span>
+                            Score:{" "}
+                            {supplier.performanceScore != null
+                              ? supplier.performanceScore
+                              : 0}
+                            /100
+                          </span>
+                        </div>
+                        <span className="font-medium">
+                          ${supplier.fy24Spend?.toLocaleString() || "0"}
+                        </span>
+                      </div>
+                    </button>
+                  ))
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground mt-4 px-3">
+                Tip: Change "Segment" to see all suppliers and identify
+                consolidation opportunities.
+              </p>
+            </CardContent>
+          </Card>
+        )}
 
         <Card className="xl:col-span-7">
           <CardHeader className="border-b pb-4">

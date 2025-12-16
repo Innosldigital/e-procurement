@@ -68,8 +68,7 @@ export function Navigation({
     }
   }, [user, isLoaded, userRole, normalizedRole]);
 
-  // Filter navigation items based on role
-  const items = navItems.filter((n) => {
+  const filteredItems = navItems.filter((n) => {
     // If user hasn't loaded yet, show nothing or default items
     if (!isLoaded || !user) {
       return false;
@@ -94,6 +93,11 @@ export function Navigation({
     // All other roles can see everything except admin (handled above)
     return true;
   });
+  const items = filteredItems.map((n) =>
+    normalizedRole === "supplier" && n.href === "/suppliers"
+      ? { ...n, label: "Supplier Profile" }
+      : n
+  );
 
   const isOpen = setMobileOpen ? mobileOpen : localMobileOpen;
   const handleToggle = setMobileOpen || setLocalMobileOpen;
@@ -127,11 +131,12 @@ export function Navigation({
       >
         <div className="flex items-center justify-between p-4 border-b border-border md:border-0">
           <div className="flex items-center gap-2">
+            {/* Branding */}
             <div className="w-10 h-10 rounded-lg flex items-center justify-center">
               <img
                 src="/apple-icon.png"
                 alt="Inno-SL Procurement"
-                className="w-6 h-6"
+                className="w-8 h-8"
               />
             </div>
             <div className="flex flex-col">
