@@ -117,7 +117,7 @@ export default function EditSupplierPage({
   };
 
   return (
-    <div className="p-4 md:p-6 mx-auto w-full max-w-3xl">
+    <div className="p-4 md:p-6 mx-auto w-full ">
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Edit Supplier</CardTitle>
@@ -229,6 +229,83 @@ export default function EditSupplierPage({
                   />
                 </div>
               </div>
+
+              <div className="pt-2 border-t">
+                <h3 className="text-sm font-medium mb-2">Uploaded documents</h3>
+                <div className="space-y-2 text-xs">
+                  {(() => {
+                    const o = (supplier?.onboarding || {}) as any;
+                    const uploads = [
+                      ...(o.priceListUploads || []),
+                      ...(o.registrationCertificateUploads || []),
+                      ...(o.businessRegistrationCertificateUploads || []),
+                      ...(o.taxClearanceCertificateUploads || []),
+                      ...(o.gstVatRegistrationCertificateUploads || []),
+                      ...(o.businessLicenseUploads || []),
+                      ...(o.nassitCertificateUploads || []),
+                      ...(o.sectorSpecificCertificateUploads || []),
+                      ...(o.businessDurationDocuments || []),
+                    ];
+                    const docs = (supplier?.documents || []) as any[];
+                    const empty = uploads.length === 0 && docs.length === 0;
+                    if (empty) {
+                      return (
+                        <div className="text-muted-foreground">
+                          No documents uploaded
+                        </div>
+                      );
+                    }
+                    return (
+                      <>
+                        {uploads.map((d: any, i: number) => (
+                          <div
+                            key={`up-${i}`}
+                            className="flex items-center justify-between p-2 rounded border"
+                          >
+                            {d?.url ? (
+                              <a
+                                href={d.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium hover:underline break-all"
+                              >
+                                {d.name || "Document"}
+                              </a>
+                            ) : (
+                              <span className="font-medium break-all">
+                                {d.name || "Document"}
+                              </span>
+                            )}
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <span>
+                                {(d.type || "") +
+                                  (d.size ? ` • ${d.size}` : "")}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                        {docs.map((d: any, i: number) => (
+                          <div
+                            key={`doc-${i}`}
+                            className="flex items-center justify-between p-2 rounded border"
+                          >
+                            <span className="font-medium">
+                              {d.name || "Document"}
+                            </span>
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <span>
+                                {(d.type || "") +
+                                  (d.size ? ` • ${d.size}` : "")}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+
               <div className="flex gap-2 pt-2">
                 <Button
                   variant="outline"
