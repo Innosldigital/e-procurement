@@ -51,6 +51,7 @@ export default clerkMiddleware(async (auth, request) => {
         const p = request.nextUrl.pathname;
 
         const allowedSupplierPaths = [
+          "/supplier-dashboard",
           "/tenders",
           "/purchase-orders",
           "/suppliers",
@@ -59,7 +60,9 @@ export default clerkMiddleware(async (auth, request) => {
 
         // Redirect root "/" to suppliers
         if (p === "/") {
-          return NextResponse.redirect(new URL("/suppliers", request.url));
+          return NextResponse.redirect(
+            new URL("/supplier-dashboard", request.url)
+          );
         }
 
         const isAllowed =
