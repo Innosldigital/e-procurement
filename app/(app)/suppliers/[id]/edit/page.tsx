@@ -184,7 +184,7 @@ export default function EditSupplierPage({
                   />
                 </div>
               </div>
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="vendorPaymentTerms">Payment terms</Label>
                 <Input
                   id="vendorPaymentTerms"
@@ -193,7 +193,7 @@ export default function EditSupplierPage({
                     setField("vendorPaymentTerms", e.target.value)
                   }
                 />
-              </div>
+              </div> */}
               <div className="space-y-2">
                 <Label htmlFor="paymentMethods">Payment methods</Label>
                 <Textarea

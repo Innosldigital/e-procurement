@@ -6811,3 +6811,4 @@ Import traces:
 [18:18:20.088] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers/69404c6558db218d56ec7bcf/edit color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers/[id]/edit","o":"http://localhost:3000/suppliers/69404c6558db218d56ec7bcf/edit","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765882379758}
 [18:18:20.215] Server  LOG     getSupplierById: {}
 [18:18:20.415] Server  LOG     getSupplierById: {}
+[18:25:10.271] Server  LOG      ✓ Compiled in 198ms
