@@ -21,6 +21,8 @@ import {
   createInvoice,
   attachInvoiceDocuments,
 } from "@/lib/actions/invoice-actions";
+import { useEdgeStore } from "@/lib/edgestore";
+import { useUser } from "@clerk/nextjs";
 
 const fmtDate = (d?: string | Date) =>
   d ? new Date(d).toISOString().slice(0, 10) : "";
@@ -54,6 +56,13 @@ export default function InvoicesPage() {
   const [uploadOpen, setUploadOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [invoiceFiles, setInvoiceFiles] = useState<FileList | null>(null);
+  const { edgestore } = useEdgeStore();
+  const { user } = useUser();
+  const role =
+    String((user?.publicMetadata as any)?.role || "")
+      .toLowerCase()
+      .replace(/[\s_-]/g, "") || "";
+  const isAdmin = role === "admin";
 
   useEffect(() => {
     async function loadInvoices() {
@@ -537,52 +546,56 @@ export default function InvoicesPage() {
                   </div>
                 ) : null}
                 <div className="flex flex-col sm:flex-row gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 sm:flex-none"
-                    onClick={async () => {
-                      if (!selectedInvoice?._id) return;
-                      const status = String(
-                        selectedInvoice?.status || ""
-                      ).toLowerCase();
-                      if (status === "on_hold") {
-                        setActionNotice(
-                          "Invoice is currently on hold. Remove hold before approving for payment."
+                  {isAdmin && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 sm:flex-none"
+                      onClick={async () => {
+                        if (!selectedInvoice?._id) return;
+                        const status = String(
+                          selectedInvoice?.status || ""
+                        ).toLowerCase();
+                        if (status === "on_hold") {
+                          setActionNotice(
+                            "Invoice is currently on hold. Remove hold before approving for payment."
+                          );
+                          return;
+                        }
+                        setActionLoading("approve");
+                        const res = await approveInvoice(
+                          String(selectedInvoice._id)
                         );
-                        return;
-                      }
-                      setActionLoading("approve");
-                      const res = await approveInvoice(
-                        String(selectedInvoice._id)
-                      );
-                      if (res && (res as any).success) {
-                        const updated = (res as any).data;
-                        setInvoices((prev) =>
-                          prev.map((inv) =>
-                            inv._id === updated._id ? updated : inv
-                          )
-                        );
-                        setSelectedInvoice(updated);
-                        setActionNotice(null);
-                      }
-                      setActionLoading(null);
-                    }}
-                    disabled={!selectedInvoice || actionLoading !== null}
-                  >
-                    {actionLoading === "approve"
-                      ? "Processing..."
-                      : "Approve for payment"}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 sm:flex-none"
-                    onClick={() => setHoldOpen(true)}
-                    disabled={!selectedInvoice || actionLoading !== null}
-                  >
-                    Put on hold
-                  </Button>
+                        if (res && (res as any).success) {
+                          const updated = (res as any).data;
+                          setInvoices((prev) =>
+                            prev.map((inv) =>
+                              inv._id === updated._id ? updated : inv
+                            )
+                          );
+                          setSelectedInvoice(updated);
+                          setActionNotice(null);
+                        }
+                        setActionLoading(null);
+                      }}
+                      disabled={!selectedInvoice || actionLoading !== null}
+                    >
+                      {actionLoading === "approve"
+                        ? "Processing..."
+                        : "Approve for payment"}
+                    </Button>
+                  )}
+                  {isAdmin && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 sm:flex-none"
+                      onClick={() => setHoldOpen(true)}
+                      disabled={!selectedInvoice || actionLoading !== null}
+                    >
+                      Put on hold
+                    </Button>
+                  )}
                   <Button
                     variant="outline"
                     size="sm"
@@ -592,25 +605,27 @@ export default function InvoicesPage() {
                   >
                     Upload invoice
                   </Button>
-                  <Button
-                    size="sm"
-                    className="flex-1 sm:flex-none"
-                    onClick={() => {
-                      const status = String(
-                        selectedInvoice?.status || ""
-                      ).toLowerCase();
-                      if (status === "on_hold") {
-                        setActionNotice(
-                          "Invoice is currently on hold. Remove hold before scheduling payment."
-                        );
-                        return;
-                      }
-                      setScheduleOpen(true);
-                    }}
-                    disabled={!selectedInvoice || actionLoading !== null}
-                  >
-                    Schedule payment
-                  </Button>
+                  {isAdmin && (
+                    <Button
+                      size="sm"
+                      className="flex-1 sm:flex-none"
+                      onClick={() => {
+                        const status = String(
+                          selectedInvoice?.status || ""
+                        ).toLowerCase();
+                        if (status === "on_hold") {
+                          setActionNotice(
+                            "Invoice is currently on hold. Remove hold before scheduling payment."
+                          );
+                          return;
+                        }
+                        setScheduleOpen(true);
+                      }}
+                      disabled={!selectedInvoice || actionLoading !== null}
+                    >
+                      Schedule payment
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -846,38 +861,30 @@ export default function InvoicesPage() {
                 if (!selectedInvoice?._id) return;
                 setUploading(true);
                 try {
-                  async function uploadFiles(
-                    list: FileList | null,
-                    folder: string
+                  async function uploadFilesWithEdgeStore(
+                    list: FileList | null
                   ) {
-                    if (!list || list.length === 0)
-                      return [] as Array<{
-                        name: string;
-                        size: number;
-                        type: string;
-                        url: string;
-                      }>;
-                    const fd = new FormData();
-                    Array.from(list).forEach((f) => fd.append("files", f));
-                    fd.append("folder", folder);
-                    const resp = await fetch("/api/upload", {
-                      method: "POST",
-                      body: fd,
-                    });
-                    const json = await resp.json();
-                    return (json && json.success ? json.data : []) as Array<{
+                    if (!list || list.length === 0) return [];
+                    const uploads: Array<{
                       name: string;
                       size: number;
                       type: string;
                       url: string;
-                    }>;
+                    }> = [];
+                    for (const file of Array.from(list)) {
+                      const res = await edgestore.publicFiles.upload({
+                        file,
+                      });
+                      uploads.push({
+                        url: res.url,
+                        size: file.size,
+                        type: file.type,
+                        name: file.name,
+                      });
+                    }
+                    return uploads;
                   }
-                  const folder = `invoices/${String(
-                    selectedInvoice?.invoiceNumber ||
-                      selectedInvoice?._id ||
-                      "misc"
-                  )}`;
-                  const uploads = await uploadFiles(invoiceFiles, folder);
+                  const uploads = await uploadFilesWithEdgeStore(invoiceFiles);
                   const res = await attachInvoiceDocuments(
                     String(selectedInvoice._id),
                     uploads

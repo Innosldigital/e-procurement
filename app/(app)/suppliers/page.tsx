@@ -1701,6 +1701,7 @@ export default function SuppliersPage() {
                                       href={d.url}
                                       target="_blank"
                                       rel="noopener noreferrer"
+                                      download
                                       className="font-medium hover:underline break-all"
                                     >
                                       {d.name || "Document"}
@@ -1722,9 +1723,21 @@ export default function SuppliersPage() {
                                   key={`doc-modal-${i}`}
                                   className="flex items-center justify-between p-2 rounded border"
                                 >
-                                  <span className="font-medium">
-                                    {d.name || "Document"}
-                                  </span>
+                                  {d.url ? (
+                                    <a
+                                      href={d.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      download
+                                      className="font-medium hover:underline break-all"
+                                    >
+                                      {d.name || "Document"}
+                                    </a>
+                                  ) : (
+                                    <span className="font-medium break-all">
+                                      {d.name || "Document"}
+                                    </span>
+                                  )}
                                   <div className="flex items-center gap-2 text-muted-foreground">
                                     <span>
                                       {d.type || ""} • {d.size || ""}
@@ -1772,6 +1785,7 @@ export default function SuppliersPage() {
                               href={d.url}
                               target="_blank"
                               rel="noopener noreferrer"
+                              download
                               className="font-medium hover:underline break-all"
                             >
                               {d.name || "Document"}
@@ -1788,9 +1802,21 @@ export default function SuppliersPage() {
                             key={`doc-${i}`}
                             className="flex items-center justify-between p-2 rounded border"
                           >
-                            <span className="font-medium">
-                              {d.name || "Document"}
-                            </span>
+                            {d.url ? (
+                              <a
+                                href={d.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                download
+                                className="font-medium hover:underline break-all"
+                              >
+                                {d.name || "Document"}
+                              </a>
+                            ) : (
+                              <span className="font-medium break-all">
+                                {d.name || "Document"}
+                              </span>
+                            )}
                             <div className="flex items-center gap-2 text-muted-foreground">
                               <span>
                                 {d.type || ""} • {d.size || ""}

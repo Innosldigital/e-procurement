@@ -16,6 +16,7 @@ import {
 import { X } from "lucide-react";
 import { createTender } from "@/lib/actions/tender-actions";
 import { useUser } from "@clerk/nextjs";
+import { useEdgeStore } from "@/lib/edgestore";
 
 interface CreateTenderFormProps {
   onClose: () => void;
@@ -25,6 +26,7 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useUser();
+  const { edgestore } = useEdgeStore();
   const role =
     String((user?.publicMetadata as any)?.role || "")
       .toLowerCase()
@@ -50,39 +52,35 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
     setIsSubmitting(true);
 
     try {
-      async function uploadFiles(list: FileList | null, folder: string) {
-        if (!list || list.length === 0)
-          return [] as Array<{
-            name: string;
-            size: number;
-            type: string;
-            url: string;
-          }>;
-        const fd = new FormData();
-        Array.from(list)
-          .filter(
-            (f) =>
-              f.type === "application/pdf" ||
-              String((f as any).name || "")
-                .toLowerCase()
-                .endsWith(".pdf")
-          )
-          .forEach((f) => fd.append("files", f));
-        fd.append("folder", folder);
-        const resp = await fetch("/api/upload", { method: "POST", body: fd });
-        const json = await resp.json();
-        return (json && json.success ? json.data : []) as Array<{
+      async function uploadFilesWithEdgeStore(list: FileList | null) {
+        if (!list || list.length === 0) return [];
+        const uploads: Array<{
           name: string;
           size: number;
           type: string;
           url: string;
-        }>;
+        }> = [];
+        for (const file of Array.from(list).filter(
+          (f) =>
+            f.type === "application/pdf" ||
+            String(f.name || "")
+              .toLowerCase()
+              .endsWith(".pdf")
+        )) {
+          const res = await edgestore.publicFiles.upload({
+            file,
+          });
+          uploads.push({
+            url: res.url,
+            size: file.size,
+            type: file.type,
+            name: file.name,
+          });
+        }
+        return uploads;
       }
 
-      const tenderUploads = await uploadFiles(
-        tenderFiles,
-        `tenders/${Date.now()}`
-      );
+      const tenderUploads = await uploadFilesWithEdgeStore(tenderFiles);
 
       const result = await createTender({
         ...formData,
@@ -218,25 +216,6 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                   onChange={(e) => handleChange("businessUnit", e.target.value)}
                 />
               </div>
-
-              {/* <div className="space-y-2">
-                <Label htmlFor="region">Region</Label>
-                <Select
-                  value={formData.region}
-                  onValueChange={(value) => handleChange("region", value)}
-                >
-                  <SelectTrigger id="region">
-                    <SelectValue placeholder="Select region" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Global">Global</SelectItem>
-                    <SelectItem value="APAC">APAC</SelectItem>
-                    <SelectItem value="EMEA">EMEA</SelectItem>
-                    <SelectItem value="NA">North America</SelectItem>
-                    <SelectItem value="LATAM">LATAM</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div> */}
             </div>
 
             <div className="space-y-2">

@@ -184,16 +184,6 @@ export default function EditSupplierPage({
                   />
                 </div>
               </div>
-              {/* <div className="space-y-2">
-                <Label htmlFor="vendorPaymentTerms">Payment terms</Label>
-                <Input
-                  id="vendorPaymentTerms"
-                  value={form.vendorPaymentTerms}
-                  onChange={(e) =>
-                    setField("vendorPaymentTerms", e.target.value)
-                  }
-                />
-              </div> */}
               <div className="space-y-2">
                 <Label htmlFor="paymentMethods">Payment methods</Label>
                 <Textarea

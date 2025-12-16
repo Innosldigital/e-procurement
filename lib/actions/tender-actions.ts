@@ -276,6 +276,46 @@ export async function getEvaluationRules() {
   }
 }
 
+export async function getTenderStats() {
+  try {
+    await dbConnect();
+    const [openCount, evalCount] = await Promise.all([
+      Tender.countDocuments({ stage: "Open" }),
+      Tender.countDocuments({ stage: "Evaluation" }),
+    ]);
+    const agg = await Tender.aggregate([
+      {
+        $project: {
+          bidsCount: {
+            $size: { $ifNull: ["$bids", []] },
+          },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          totalBids: { $sum: "$bidsCount" },
+          tenders: { $sum: 1 },
+        },
+      },
+    ]);
+    const totalBids = agg[0]?.totalBids || 0;
+    const tenders = agg[0]?.tenders || 0;
+    const avgBids = tenders > 0 ? totalBids / tenders : 0;
+    return {
+      success: true,
+      data: {
+        openCount,
+        evalCount,
+        avgBids,
+      },
+    };
+  } catch (error) {
+    console.error("[v0] Error fetching tender stats:", error);
+    return { success: false, error: "Failed to fetch tender stats" };
+  }
+}
+
 export async function submitBid(
   id: string,
   data: {

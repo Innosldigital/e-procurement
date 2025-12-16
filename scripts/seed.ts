@@ -609,16 +609,6 @@ async function seed() {
       },
     ]);
     console.log(`✅ Created ${notifications.length} notifications`);
-
-    // --------------------- Reports ---------------------
-    // console.log('📊 Seeding reports...');
-    // const reports = await Report.create([
-    //   { title: 'Quarterly Spend Overview', description: 'Summarizes spending across suppliers per quarter.', category: 'finance', type: 'saved', filters: { dateFrom: '2025-01-01', dateTo: '2025-03-31' }, exportFormat: 'pdf', createdBy: DEMO_USER_ID, sharedWith: [] },
-    //   { title: 'Pending Approvals Summary', description: 'Lists all pending approvals across departments.', category: 'procurement', type: 'scheduled', filters: { status: 'Pending approval' }, exportFormat: 'xlsx', schedule: { frequency: 'daily', nextRun: new Date(Date.now() + 24*60*60*1000) }, createdBy: DEMO_USER_ID, sharedWith: [] },
-    //   { title: 'IT Asset Utilization Report', description: 'Monthly report on IT hardware and software usage.', category: 'other', type: 'recent', filters: { department: 'IT', month: 'March 2025' }, exportFormat: 'csv', createdBy: DEMO_USER_ID, sharedWith: [] }
-    // ]);
-    // console.log(`✅ Created ${reports.length} reports`);
-
     console.log("🎉 Seeding complete!");
 
     // Disconnect

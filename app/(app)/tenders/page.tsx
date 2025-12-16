@@ -9,6 +9,7 @@ import {
   getTenders,
   awardTender,
   requestRevisedBids,
+  getTenderStats,
 } from "@/lib/actions/tender-actions";
 import { CreateTenderForm } from "@/components/create-tender-form";
 import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
@@ -25,6 +26,11 @@ export default function TendersPage() {
   const [showBidForm, setShowBidForm] = useState(false);
   const { user } = useUser();
   const [canCreateTender, setCanCreateTender] = useState(false);
+  const [stats, setStats] = useState<{
+    openCount: number;
+    evalCount: number;
+    avgBids: number;
+  } | null>(null);
 
   useEffect(() => {
     async function loadTenders() {
@@ -38,6 +44,18 @@ export default function TendersPage() {
       setLoading(false);
     }
     loadTenders();
+  }, []);
+
+  useEffect(() => {
+    async function loadStats() {
+      const result = await getTenderStats();
+      if (result.success) {
+        setStats(result.data ?? null);
+      } else {
+        setStats(null);
+      }
+    }
+    loadStats();
   }, []);
 
   useEffect(() => {
@@ -97,13 +115,16 @@ export default function TendersPage() {
             </div>
             <div>
               <span className="text-muted-foreground">Region:</span>{" "}
-              <span className="font-medium">Global, APAC</span>
+              <span className="font-medium">InnoSL HQ</span>
             </div>
           </div>
           <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
-            <span>6 open tenders</span>
-            <span>2 in final evaluation</span>
-            <span>Avg. 4.3 bids per tender</span>
+            <span>{stats ? stats.openCount : "-"} open tenders</span>
+            <span>{stats ? stats.evalCount : "-"} in final evaluation</span>
+            <span>
+              Avg. {stats ? (stats.avgBids || 0).toFixed(1) : "-"} bids per
+              tender
+            </span>
           </div>
         </div>
         <div className="grid grid-cols-5 gap-6">

@@ -2683,6 +2683,21 @@
       "filename": "lib/actions/tender-actions.ts",
       "exportedName": "requestRevisedBids"
     },
+    "00aa222e53df67c5e5d9bc1e6d8ba7652c61ba23d3": {
+      "workers": {
+        "app/(app)/tenders/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/tenders/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/server/keyless-custom-headers.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/lib/actions/tender-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getTenderStats",
+          "filename": "lib/actions/tender-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/tenders/page": "action-browser"
+      },
+      "filename": "lib/actions/tender-actions.ts",
+      "exportedName": "getTenderStats"
+    },
     "00ffa4c8be17548f17b7ac562d8a0c9a74dddaa3e8": {
       "workers": {
         "app/(app)/tenders/page": {
