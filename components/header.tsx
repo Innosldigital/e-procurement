@@ -31,6 +31,7 @@ export function Header({ onMenuClick }: HeaderProps) {
   const [showResults, setShowResults] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [roleLabel, setRoleLabel] = useState<string>("");
+  const [isSupplier, setIsSupplier] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -45,6 +46,7 @@ export function Header({ onMenuClick }: HeaderProps) {
     const normalizedRole = String(rawRole)
       .toLowerCase()
       .replace(/[\s_-]/g, "");
+    setIsSupplier(normalizedRole === "supplier");
     const email = user.primaryEmailAddress?.emailAddress?.toLowerCase() || "";
 
     const isSuperAdmin =
@@ -237,14 +239,16 @@ export function Header({ onMenuClick }: HeaderProps) {
 
             {mounted && <NotificationsDropdown />}
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hidden sm:flex"
-              onClick={() => setSettingsOpen(true)}
-            >
-              <Settings className="w-4 h-4" />
-            </Button>
+            {!isSupplier && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hidden sm:flex"
+                onClick={() => setSettingsOpen(true)}
+              >
+                <Settings className="w-4 h-4" />
+              </Button>
+            )}
 
             <UserButton
               appearance={{

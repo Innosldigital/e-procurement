@@ -39,10 +39,10 @@ async function seed() {
       Notification.deleteMany({}),
       // Report.deleteMany({})
     ]);
-    console.log("✅ Cleared existing data");
+    console.log("Cleared existing data");
 
     // --------------------- Suppliers ---------------------
-    console.log("📦 Seeding suppliers...");
+    console.log("Seeding suppliers...");
     const suppliers = await Supplier.create([
       {
         supplierId: "SUP-2045",
@@ -106,10 +106,10 @@ async function seed() {
         deliveryPerformance: { onTimePercentage: 71, averageLeadTime: 8.5 },
       },
     ]);
-    console.log(`✅ Created ${suppliers.length} suppliers`);
+    console.log(`Created ${suppliers.length} suppliers`);
 
     // --------------------- Requisitions ---------------------
-    console.log("📋 Seeding requisitions...");
+    console.log("Seeding requisitions...");
     const requisitions = await Requisition.create([
       {
         requisitionId: "REQ-1044",
@@ -243,10 +243,10 @@ async function seed() {
         ],
       },
     ]);
-    console.log(`✅ Created ${requisitions.length} requisitions`);
+    console.log(`Created ${requisitions.length} requisitions`);
 
     // --------------------- Approvals ---------------------
-    console.log("✅ Seeding approvals...");
+    console.log("Seeding approvals...");
     const approvals = await Approval.create([
       {
         approvalId: "APR-1001",
@@ -288,10 +288,10 @@ async function seed() {
         branch: "LATAM",
       },
     ]);
-    console.log(`✅ Created ${approvals.length} approvals`);
+    console.log(`Created ${approvals.length} approvals`);
 
     // --------------------- Invoices ---------------------
-    console.log("🧾 Seeding invoices...");
+    console.log("Seeding invoices...");
     const invoices = await Invoice.create([
       {
         invoiceNumber: "INV-10452",
@@ -350,10 +350,10 @@ async function seed() {
         entity: "Global HQ",
       },
     ]);
-    console.log(`✅ Created ${invoices.length} invoices`);
+    console.log(`Created ${invoices.length} invoices`);
 
     // --------------------- Purchase Orders ---------------------
-    console.log("📦 Seeding purchase orders...");
+    console.log("Seeding purchase orders...");
     const purchaseOrders = await PurchaseOrder.create([
       {
         poNumber: "PO-10432",
@@ -496,10 +496,10 @@ async function seed() {
         ],
       },
     ]);
-    console.log(`✅ Created ${purchaseOrders.length} purchase orders`);
+    console.log(`Created ${purchaseOrders.length} purchase orders`);
 
     // --------------------- Tenders ---------------------
-    console.log("📝 Seeding tenders...");
+    console.log("Seeding tenders...");
     const tenders = await Tender.create([
       {
         tenderId: "RFP-2308",
@@ -552,10 +552,10 @@ async function seed() {
         bids: [],
       },
     ]);
-    console.log(`✅ Created ${tenders.length} tenders`);
+    console.log(`Created ${tenders.length} tenders`);
 
     // --------------------- Notifications ---------------------
-    console.log("🔔 Seeding notifications...");
+    console.log("Seeding notifications...");
     const notifications = await Notification.create([
       {
         userId: DEMO_USER_ID,
@@ -608,14 +608,14 @@ async function seed() {
         createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
       },
     ]);
-    console.log(`✅ Created ${notifications.length} notifications`);
-    console.log("🎉 Seeding complete!");
+    console.log(`Created ${notifications.length} notifications`);
+    console.log("Seeding complete!");
 
     // Disconnect
     await mongoose.disconnect();
-    console.log("🔌 Disconnected from MongoDB");
+    console.log("Disconnected from MongoDB");
   } catch (error) {
-    console.error("❌ Seeding failed:", error);
+    console.error("Seeding failed:", error);
     await mongoose.disconnect();
   }
 }

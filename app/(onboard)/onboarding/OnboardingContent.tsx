@@ -198,7 +198,7 @@ export default function OnboardingContent() {
             ", "
           )}`
         );
-        return; // This was already here but make sure it actually stops execution
+        return;
       }
 
       setLoading("vendor");

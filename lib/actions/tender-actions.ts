@@ -55,7 +55,10 @@ export async function awardTender(id: string, supplierId: string) {
       {
         stage: "Awarded",
         keyDates: { closed: now },
-        evaluationSummary: { recommendedSupplier: supplierId, recommendedSupplierId: supplierId },
+        evaluationSummary: {
+          recommendedSupplier: supplierId,
+          recommendedSupplierId: supplierId,
+        },
         status: "awarded",
       },
       { new: true }
@@ -276,46 +279,6 @@ export async function getEvaluationRules() {
   }
 }
 
-export async function getTenderStats() {
-  try {
-    await dbConnect();
-    const [openCount, evalCount] = await Promise.all([
-      Tender.countDocuments({ stage: "Open" }),
-      Tender.countDocuments({ stage: "Evaluation" }),
-    ]);
-    const agg = await Tender.aggregate([
-      {
-        $project: {
-          bidsCount: {
-            $size: { $ifNull: ["$bids", []] },
-          },
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          totalBids: { $sum: "$bidsCount" },
-          tenders: { $sum: 1 },
-        },
-      },
-    ]);
-    const totalBids = agg[0]?.totalBids || 0;
-    const tenders = agg[0]?.tenders || 0;
-    const avgBids = tenders > 0 ? totalBids / tenders : 0;
-    return {
-      success: true,
-      data: {
-        openCount,
-        evalCount,
-        avgBids,
-      },
-    };
-  } catch (error) {
-    console.error("[v0] Error fetching tender stats:", error);
-    return { success: false, error: "Failed to fetch tender stats" };
-  }
-}
-
 export async function submitBid(
   id: string,
   data: {
@@ -407,5 +370,50 @@ export async function submitBid(
   } catch (error) {
     console.error("[v0] Error submitting bid:", error);
     return { success: false, error: "Failed to submit bid" };
+  }
+}
+
+// Add this function to your lib/actions/tender-actions.ts file
+
+export async function getTenderStats() {
+  try {
+    await dbConnect();
+
+    const tenders = await Tender.find({}).lean();
+
+    // Count open tenders (stage is "Open" or "Planned" or "Published")
+    const openCount = tenders.filter((t: any) => {
+      const stage = String(t.stage || t.status || "").toLowerCase();
+      return stage === "open" || stage === "planned" || stage === "published";
+    }).length;
+
+    // Count tenders in final evaluation (stage is "Evaluation")
+    const evalCount = tenders.filter((t: any) => {
+      const stage = String(t.stage || t.status || "").toLowerCase();
+      return stage === "evaluation";
+    }).length;
+
+    // Calculate average bids per tender
+    const totalBids = tenders.reduce((sum: number, t: any) => {
+      return sum + (Array.isArray(t.bids) ? t.bids.length : t.responses || 0);
+    }, 0);
+
+    const avgBids = tenders.length > 0 ? totalBids / tenders.length : 0;
+
+    return {
+      success: true,
+      data: {
+        openCount,
+        evalCount,
+        avgBids,
+      },
+    };
+  } catch (error) {
+    console.error("[v0] Error fetching tender stats:", error);
+    return {
+      success: false,
+      error: "Failed to fetch tender stats",
+      data: null,
+    };
   }
 }

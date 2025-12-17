@@ -6,11 +6,8 @@
   "/(app)/reports/page": "app/(app)/reports/page.js",
   "/(app)/requisitions/page": "app/(app)/requisitions/page.js",
   "/(app)/supplier-dashboard/page": "app/(app)/supplier-dashboard/page.js",
-  "/(app)/suppliers/[id]/edit/page": "app/(app)/suppliers/[id]/edit/page.js",
   "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
   "/(app)/tenders/page": "app/(app)/tenders/page.js",
-  "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
-  "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js",
   "/page": "app/page.js"
