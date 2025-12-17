@@ -1,651 +1,122 @@
-[00:00:11.887] Server  LOG      ✓ Ready in 11.4s
-[00:00:23.586] Server  LOG      ○ Compiling / ...
-[00:00:34.259] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:34.259] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:00:34.905] Browser LOG     === USER DEBUG INFO ===
-[00:00:34.905] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T09:33:13.559Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2025-12-14T22:48:19.374Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T09:33:13.559Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-14T22:48:19.403Z","username":null,"web3Wallets":[]}
-[00:00:34.905] Browser LOG     Public metadata: {"role":"super_admin"}
-[00:00:34.905] Browser LOG     Unsafe metadata: {}
-[00:00:34.905] Browser LOG     Raw role: super_admin
-[00:00:34.905] Browser LOG     Normalized role: superadmin
-[00:00:34.905] Browser LOG     Is loaded: true
-[00:00:34.905] Browser LOG     ====================
-[00:00:34.905] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:34.905] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:34.905] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765963993682}
-[00:00:42.649] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765964001374}
-[00:00:45.110] Server  ERROR    ⨯ ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-
-
-./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-ssr] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-
-[00:00:45.258] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:45.258] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-ssr] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:46.161] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:46.161] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-ssr] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:46.161] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:46.161] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-ssr] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:46.864] Server  ERROR    ⨯ ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-
-
-./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-ssr] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-
-[00:00:47.219] Browser ERROR   uncaughtError: Error: ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-
-[00:00:47.378] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:47.378] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-ssr] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:47.486] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-client] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:00:47.486] Browser ERROR   ./app/(app)/tenders/page.tsx:8:1
-Export getTenderStats doesn't exist in target module
-   6 | import { Badge } from "@/components/ui/badge";
-   7 | import { FileText, Plus } from "lucide-react";
->  8 | import {
-     | ^^^^^^^^
->  9 |   getTenders,
-     | ^^^^^^^^^^^^^
-> 10 |   awardTender,
-     | ^^^^^^^^^^^^^
-> 11 |   requestRevisedBids,
-     | ^^^^^^^^^^^^^
-> 12 |   getTenderStats,
-     | ^^^^^^^^^^^^^
-> 13 | } from "@/lib/actions/tender-actions";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  14 | import { CreateTenderForm } from "@/components/create-tender-form";
-  15 | import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
-  16 | import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-
-The export getTenderStats was not found in module [project]/lib/actions/tender-actions.ts [app-ssr] (ecmascript).
-Did you mean to import getTenders?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./app/(app)/tenders/page.tsx [Client Component Browser]
-    ./app/(app)/tenders/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/(app)/tenders/page.tsx [Client Component SSR]
-    ./app/(app)/tenders/page.tsx [Server Component]
-[00:15:36.212] Server  LOG      ✓ Compiled in 309ms
-[00:15:48.383] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:15:48.383] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:15:48.383] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:15:48.383] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/tenders","route":"/tenders"}
-[00:15:48.383] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765964906607}
-[00:15:48.383] Browser LOG     === USER DEBUG INFO ===
-[00:15:48.383] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T09:48:26.703Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2025-12-14T22:48:19.374Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T09:48:26.703Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-14T22:48:19.403Z","username":null,"web3Wallets":[]}
-[00:15:48.383] Browser LOG     Public metadata: {"role":"super_admin"}
-[00:15:48.383] Browser LOG     Unsafe metadata: {}
-[00:15:48.383] Browser LOG     Raw role: super_admin
-[00:15:48.383] Browser LOG     Normalized role: superadmin
-[00:15:48.383] Browser LOG     Is loaded: true
-[00:15:48.383] Browser LOG     ====================
-[00:16:22.693] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765964941457}
-[00:16:35.245] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765964953990}
-[00:16:36.053] Server  LOG     getSupplierById: {}
-[00:16:48.662] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/invoices color: rgb(120, 120, 120) color: inherit {"dp":"/invoices","o":"http://localhost:3000/invoices","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765964967435}
-[00:16:59.835] Server  LOG      ○ Compiling /reports ...
-[00:17:01.904] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/reports color: rgb(120, 120, 120) color: inherit {"dp":"/reports","o":"http://localhost:3000/reports","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765964980664}
-[00:17:30.565] Browser LOG     Current User Role: superadmin
-[00:17:30.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:17:30.565] Browser LOG     Current User Role: superadmin
-[00:17:30.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:17:30.565] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965009315}
-[00:17:32.927] Browser LOG     Current User Role: superadmin
-[00:17:32.927] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:17:34.197] Browser LOG     Current User Role: superadmin
-[00:17:34.197] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:18:25.603] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:18:26.347] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:18:26.347] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:18:27.460] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:18:27.460] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/supplier-dashboard","route":"/supplier-dashboard"}
-[00:18:27.460] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965066153}
-[00:18:27.460] Browser LOG     === USER DEBUG INFO ===
-[00:18:27.460] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-15T17:57:06.369Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T09:51:06.185Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_36tMTDK0EI1XIMebfUbpmhAPZXt","identificationId":"idn_36tMTAKAl3VwmR1SrJJG980DidU","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:06:53.311Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_36tMU4WXLuD1DMfghGBvRii0uk4","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNnRNVTQ5cmxBTEVaTTBpMHFONUx6dElqTk0ifQ","lastName":null,"lastSignInAt":"2025-12-15T17:57:06.395Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T09:51:06.185Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36tMT98lorUyk1iRNMDPAaIkUif","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-15T18:00:05.873Z","username":null,"web3Wallets":[]}
-[00:18:27.460] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true}
-[00:18:27.460] Browser LOG     Unsafe metadata: {}
-[00:18:27.460] Browser LOG     Raw role: supplier
-[00:18:27.460] Browser LOG     Normalized role: supplier
-[00:18:27.460] Browser LOG     Is loaded: true
-[00:18:27.460] Browser LOG     ====================
-[00:18:27.460] Browser LOG     User is onboarded or already on onboarding page
-[00:18:27.775] Server  LOG     getSupplierById: {}
-[00:18:40.119] Browser LOG     User is onboarded or already on onboarding page
-[00:18:40.119] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965078880}
-[00:18:42.018] Browser LOG     User is onboarded or already on onboarding page
-[00:18:42.018] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965080785}
-[00:18:43.208] Browser LOG     User is onboarded or already on onboarding page
-[00:18:43.208] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965081980}
-[00:18:45.001] Browser LOG     User is onboarded or already on onboarding page
-[00:18:45.001] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965083758}
-[00:18:46.348] Browser LOG     User is onboarded or already on onboarding page
-[00:18:46.348] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965085105}
-[00:18:46.934] Server  LOG     getSupplierById: {}
-[00:18:58.056] Browser LOG     User is onboarded or already on onboarding page
-[00:18:58.056] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/invoices color: rgb(120, 120, 120) color: inherit {"dp":"/invoices","o":"http://localhost:3000/invoices","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965096821}
-[00:19:48.113] Browser LOG     User is onboarded or already on onboarding page
-[00:19:48.113] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965146880}
-[00:19:48.802] Server  LOG     getSupplierById: {}
-[00:20:06.699] Browser LOG     User is onboarded or already on onboarding page
-[00:20:06.699] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965165473}
-[00:20:08.348] Browser LOG     User is onboarded or already on onboarding page
-[00:20:08.348] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965167110}
-[00:20:09.594] Browser LOG     User is onboarded or already on onboarding page
-[00:20:09.595] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965168339}
-[00:20:10.365] Server  LOG     getSupplierById: {}
-[00:20:10.436] Browser LOG     User is onboarded or already on onboarding page
-[00:20:10.436] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/invoices color: rgb(120, 120, 120) color: inherit {"dp":"/invoices","o":"http://localhost:3000/invoices","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965169205}
-[00:20:35.314] Browser LOG     User is onboarded or already on onboarding page
-[00:20:35.314] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965194081}
-[00:20:37.383] Server  LOG     getSupplierById: {}
-[00:20:45.744] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765965204513}
-[00:35:42.188] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966100928}
-[00:35:50.225] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/approvals color: rgb(120, 120, 120) color: inherit {"dp":"/approvals","o":"http://localhost:3000/approvals","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966108995}
-[00:35:52.396] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966111165}
-[00:35:56.710] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966115443}
-[00:36:01.975] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966120726}
-[00:36:02.440] Server  LOG     getSupplierById: {}
-[00:36:02.592] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966121358}
-[00:36:04.897] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966123647}
-[00:36:05.880] Server  LOG     getSupplierById: {}
-[00:36:07.872] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/invoices color: rgb(120, 120, 120) color: inherit {"dp":"/invoices","o":"http://localhost:3000/invoices","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966126640}
-[00:36:10.788] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/reports color: rgb(120, 120, 120) color: inherit {"dp":"/reports","o":"http://localhost:3000/reports","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966129553}
-[00:37:52.987] Browser LOG     Current User Role: superadmin
-[00:37:52.987] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:37:52.987] Browser LOG     Current User Role: superadmin
-[00:37:52.987] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:37:52.987] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966231735}
-[00:37:55.205] Browser LOG     Current User Role: superadmin
-[00:37:55.205] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:37:55.537] Browser LOG     Current User Role: superadmin
-[00:37:55.538] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:37:55.538] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/reports color: rgb(120, 120, 120) color: inherit {"dp":"/reports","o":"http://localhost:3000/reports","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966234306}
-[00:37:58.549] Browser LOG     Current User Role: superadmin
-[00:37:58.549] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:37:58.549] Browser LOG     Current User Role: superadmin
-[00:37:58.549] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:37:58.549] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966237304}
-[00:38:00.842] Browser LOG     Current User Role: superadmin
-[00:38:00.843] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:38:01.199] Browser LOG     Current User Role: superadmin
-[00:38:01.199] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:38:14.958] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966253724}
-[00:49:11.529] Browser LOG     Current User Role: superadmin
-[00:49:11.529] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:49:11.529] Browser LOG     Current User Role: superadmin
-[00:49:11.529] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:49:11.529] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765966910286}
-[00:49:13.092] Browser LOG     Current User Role: superadmin
-[00:49:13.093] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:49:14.328] Browser LOG     Current User Role: superadmin
-[00:49:14.328] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
-[00:51:52.852] Browser LOG     User is onboarded or already on onboarding page
-[00:51:52.852] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765967071613}
-[00:51:58.004] Browser LOG     User is onboarded or already on onboarding page
-[00:51:58.004] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/purchase-orders color: rgb(120, 120, 120) color: inherit {"dp":"/purchase-orders","o":"http://localhost:3000/purchase-orders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765967076773}
-[00:52:00.571] Browser LOG     User is onboarded or already on onboarding page
-[00:52:00.571] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/suppliers color: rgb(120, 120, 120) color: inherit {"dp":"/suppliers","o":"http://localhost:3000/suppliers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765967079315}
-[00:52:01.059] Server  LOG     getSupplierById: {}
-[00:52:12.078] Browser LOG     User is onboarded or already on onboarding page
-[00:52:12.078] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/invoices color: rgb(120, 120, 120) color: inherit {"dp":"/invoices","o":"http://localhost:3000/invoices","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765967090850}
-[00:52:19.891] Browser LOG     User is onboarded or already on onboarding page
-[00:52:19.891] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765967098664}
-[00:52:20.381] Server  LOG     getSupplierById: {}
-[00:52:38.215] Server  LOG     Current User Role: "admin"
-[00:55:35.290] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:55:35.699] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:55:35.699] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:55:36.143] Browser LOG     === USER DEBUG INFO ===
-[00:55:36.143] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-15T17:57:06.369Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T10:28:14.831Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_36tMTDK0EI1XIMebfUbpmhAPZXt","identificationId":"idn_36tMTAKAl3VwmR1SrJJG980DidU","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:06:53.311Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_36tMU4WXLuD1DMfghGBvRii0uk4","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNnRNVTQ5cmxBTEVaTTBpMHFONUx6dElqTk0ifQ","lastName":null,"lastSignInAt":"2025-12-15T17:57:06.395Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T10:28:14.831Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36tMT98lorUyk1iRNMDPAaIkUif","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-15T18:00:05.873Z","username":null,"web3Wallets":[]}
-[00:55:36.143] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true}
-[00:55:36.143] Browser LOG     Unsafe metadata: {}
-[00:55:36.143] Browser LOG     Raw role: supplier
-[00:55:36.143] Browser LOG     Normalized role: supplier
-[00:55:36.143] Browser LOG     Is loaded: true
-[00:55:36.143] Browser LOG     ====================
-[00:55:36.143] Browser LOG     User is onboarded or already on onboarding page
-[00:55:36.143] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:55:36.143] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/supplier-dashboard","route":"/supplier-dashboard"}
-[00:55:36.143] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765967294915}
-[00:55:37.083] Server  LOG     getSupplierById: {}
+[00:00:02.048] Server  LOG      ✓ Ready in 1615ms
+[00:00:45.521] Server  LOG      ○ Compiling / ...
+[00:00:54.939] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:54.939] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:57.890] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:57.890] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:57.890] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765976617081}
+[00:00:58.478] Browser LOG     === USER DEBUG INFO ===
+[00:00:58.478] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T13:03:37.635Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2025-12-14T22:48:19.374Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T13:03:37.635Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-14T22:48:19.403Z","username":null,"web3Wallets":[]}
+[00:00:58.478] Browser LOG     Public metadata: {"role":"super_admin"}
+[00:00:58.478] Browser LOG     Unsafe metadata: {}
+[00:00:58.478] Browser LOG     Raw role: super_admin
+[00:00:58.478] Browser LOG     Normalized role: superadmin
+[00:00:58.478] Browser LOG     Is loaded: true
+[00:00:58.478] Browser LOG     ====================
+[00:01:25.961] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:31.624] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:01:31.624] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:01:37.388] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:37.388] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/supplier-dashboard","route":"/supplier-dashboard"}
+[00:01:37.388] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765976656567}
+[00:01:37.388] Browser LOG     === USER DEBUG INFO ===
+[00:01:37.388] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-15T17:57:06.369Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T13:04:16.556Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_36tMTDK0EI1XIMebfUbpmhAPZXt","identificationId":"idn_36tMTAKAl3VwmR1SrJJG980DidU","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:06:53.311Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_36tMU4WXLuD1DMfghGBvRii0uk4","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNnRNVTQ5cmxBTEVaTTBpMHFONUx6dElqTk0ifQ","lastName":null,"lastSignInAt":"2025-12-15T17:57:06.395Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T13:04:16.556Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36tMT98lorUyk1iRNMDPAaIkUif","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-15T18:00:05.873Z","username":null,"web3Wallets":[]}
+[00:01:37.388] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true}
+[00:01:37.388] Browser LOG     Unsafe metadata: {}
+[00:01:37.388] Browser LOG     Raw role: supplier
+[00:01:37.388] Browser LOG     Normalized role: supplier
+[00:01:37.388] Browser LOG     Is loaded: true
+[00:01:37.388] Browser LOG     ====================
+[00:01:37.388] Browser LOG     User is onboarded or already on onboarding page
+[00:01:41.013] Server  LOG     getSupplierById: {}
+[00:01:41.385] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:42.416] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:01:42.416] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:01:44.514] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:44.514] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/supplier-dashboard","route":"/supplier-dashboard"}
+[00:01:44.514] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765976663691}
+[00:01:44.514] Browser LOG     === USER DEBUG INFO ===
+[00:01:44.514] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-15T17:57:06.369Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T13:04:23.657Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_36tMTDK0EI1XIMebfUbpmhAPZXt","identificationId":"idn_36tMTAKAl3VwmR1SrJJG980DidU","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:06:53.311Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_36tMU4WXLuD1DMfghGBvRii0uk4","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNnRNVTQ5cmxBTEVaTTBpMHFONUx6dElqTk0ifQ","lastName":null,"lastSignInAt":"2025-12-15T17:57:06.395Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T13:04:23.657Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36tMT98lorUyk1iRNMDPAaIkUif","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-15T18:00:05.873Z","username":null,"web3Wallets":[]}
+[00:01:44.514] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true}
+[00:01:44.514] Browser LOG     Unsafe metadata: {}
+[00:01:44.514] Browser LOG     Raw role: supplier
+[00:01:44.514] Browser LOG     Normalized role: supplier
+[00:01:44.514] Browser LOG     Is loaded: true
+[00:01:44.514] Browser LOG     ====================
+[00:01:44.514] Browser LOG     User is onboarded or already on onboarding page
+[00:01:51.381] Server  LOG     getSupplierById: {}
+[00:02:02.237] Browser LOG     User is onboarded or already on onboarding page
+[00:02:02.237] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765976681431}
+[00:02:04.316] Browser LOG     User is onboarded or already on onboarding page
+[00:02:04.316] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765976683516}
+[00:02:06.091] Server  LOG     getSupplierById: {}
+[00:22:44.530] Server  LOG      ✓ Compiled in 172ms
+[00:24:45.936] Server  LOG      ✓ Compiled in 131ms
+[01:00:08.651] Server  LOG        Reload env: .env.local
+[01:01:24.043] Server  LOG        Reload env: .env.local
+[01:02:29.669] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:02:29.669] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:02:30.132] Browser LOG     === USER DEBUG INFO ===
+[01:02:30.133] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T14:05:09.227Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2025-12-14T22:48:19.374Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T14:05:09.227Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-14T22:48:19.403Z","username":null,"web3Wallets":[]}
+[01:02:30.133] Browser LOG     Public metadata: {"role":"super_admin"}
+[01:02:30.133] Browser LOG     Unsafe metadata: {}
+[01:02:30.133] Browser LOG     Raw role: super_admin
+[01:02:30.133] Browser LOG     Normalized role: superadmin
+[01:02:30.133] Browser LOG     Is loaded: true
+[01:02:30.133] Browser LOG     ====================
+[01:02:30.133] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:02:30.133] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[01:02:30.133] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765980309318}
+[01:04:42.837] Browser LOG     Current User Role: superadmin
+[01:04:42.837] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:04:42.837] Browser LOG     Current User Role: superadmin
+[01:04:42.837] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:04:42.837] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765980442018}
+[01:04:45.358] Browser LOG     Current User Role: superadmin
+[01:04:45.358] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:04:46.681] Browser LOG     Current User Role: superadmin
+[01:04:46.681] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:04:55.883] Browser LOG     Current User Role: superadmin
+[01:04:55.883] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:04:57.467] Browser LOG     Delete invitation: inv_36yUVs6gUGWmUbtWphxcrkekqzJ
+[01:04:57.467] Browser LOG     Current User Role: superadmin
+[01:04:57.467] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:04:57.467] Browser LOG     Current User Role: superadmin
+[01:04:57.467] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:04:59.006] Browser LOG     Current User Role: superadmin
+[01:04:59.006] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:00.949] Browser LOG     Current User Role: superadmin
+[01:05:00.949] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:25.202] Browser LOG     Current User Role: superadmin
+[01:05:25.202] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:26.846] Browser LOG     Current User Role: superadmin
+[01:05:26.846] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:28.979] Server  LOG     Revoked existing invitation for: "cherrybah9666@gmail.com"
+[01:05:29.295] Server  LOG     Clerk invitation created successfully: {}
+[01:05:30.252] Server  LOG     ✅ Invitation email sent to cherrybah9666@gmail.com
+[01:05:30.565] Browser LOG     Current User Role: superadmin
+[01:05:30.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:30.565] Browser LOG     Current User Role: superadmin
+[01:05:30.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:30.565] Browser LOG     Current User Role: superadmin
+[01:05:30.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:32.176] Browser LOG     Current User Role: superadmin
+[01:05:32.176] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:05:32.176] Browser LOG     Current User Role: superadmin
+[01:05:32.176] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[01:08:49.745] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:08:50.432] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:08:50.432] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:08:50.880] Browser LOG     === USER DEBUG INFO ===
+[01:08:50.880] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-15T17:57:06.369Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T14:11:30.007Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_36tMTDK0EI1XIMebfUbpmhAPZXt","identificationId":"idn_36tMTAKAl3VwmR1SrJJG980DidU","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2025-12-15T18:06:53.311Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_36tMU4WXLuD1DMfghGBvRii0uk4","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNnRNVTQ5cmxBTEVaTTBpMHFONUx6dElqTk0ifQ","lastName":null,"lastSignInAt":"2025-12-15T17:57:06.395Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_36tMT98lorUyk1iRNMDPAaIkUif","linkedTo":[{"id":"idn_36tMTAKAl3VwmR1SrJJG980DidU","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2025-12-17T14:11:30.007Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36tMT98lorUyk1iRNMDPAaIkUif","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2025-12-15T18:00:05.873Z","username":null,"web3Wallets":[]}
+[01:08:50.880] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"approved","role":"supplier","supplierId":"SUP-5010","supplier_approved":true}
+[01:08:50.880] Browser LOG     Unsafe metadata: {}
+[01:08:50.880] Browser LOG     Raw role: supplier
+[01:08:50.880] Browser LOG     Normalized role: supplier
+[01:08:50.880] Browser LOG     Is loaded: true
+[01:08:50.880] Browser LOG     ====================
+[01:08:50.880] Browser LOG     User is onboarded or already on onboarding page
+[01:08:50.880] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:08:50.880] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/supplier-dashboard","route":"/supplier-dashboard"}
+[01:08:50.880] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/supplier-dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/supplier-dashboard","o":"http://localhost:3000/supplier-dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765980690079}
+[01:08:51.876] Server  LOG     getSupplierById: {}

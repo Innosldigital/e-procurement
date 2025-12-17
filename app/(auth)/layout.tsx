@@ -1,12 +1,15 @@
 "use client";
 
+import type React from "react";
+
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const reversed =
-    (pathname || "").includes("sign-out") || (pathname || "").includes("signout");
+    (pathname || "").includes("sign-out") ||
+    (pathname || "").includes("signout");
 
   return (
     <div className="grid min-h-screen grid-cols-1 md:grid-cols-2">
@@ -15,15 +18,13 @@ export default function layout({ children }: { children: React.ReactNode }) {
           <div className="hidden bg-gray-100 dark:bg-gray-800 md:block">
             <div className="relative w-full h-full">
               <Image
-                src="/images/startupslbg.webp"
+                src="/public/Innosl-Procurement.png"
                 alt="Login background"
                 fill
                 sizes="(max-width: 768px) 100vw, 1280px"
                 className="object-cover"
                 priority
                 quality={85}
-                placeholder="blur"
-                blurDataURL="/images/startupslbg-blur.webp"
               />
             </div>
           </div>
