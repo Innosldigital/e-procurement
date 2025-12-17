@@ -867,15 +867,59 @@ export async function updateUser(
   }
 }
 
+// export async function deleteUser(
+//   id: string
+// ): Promise<{ success: boolean; error?: string }> {
+//   try {
+//     const client = await clerkClient();
+//     await client.users.deleteUser(id);
+//     revalidatePath("/admin/users");
+//     return { success: true };
+//   } catch (error: any) {
+//     return { success: false, error: error?.message || "Failed to delete user" };
+//   }
+// }
+
+// Update your existing deleteUser function to handle suppliers
 export async function deleteUser(
   id: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    // Check if it's a supplier (MongoDB ID format)
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      // It's a MongoDB ObjectId - delete from Supplier collection
+      await dbConnect();
+      const supplier = await Supplier.findByIdAndDelete(id);
+
+      if (!supplier) {
+        return { success: false, error: "Supplier not found" };
+      }
+
+      // If supplier has a Clerk user ID, also delete from Clerk
+      if (
+        supplier.ownerUserId &&
+        !supplier.ownerUserId.startsWith("invitation_")
+      ) {
+        try {
+          const client = await clerkClient();
+          await client.users.deleteUser(supplier.ownerUserId);
+        } catch (clerkError) {
+          console.warn("Failed to delete Clerk user for supplier:", clerkError);
+        }
+      }
+
+      revalidatePath("/admin/users");
+      revalidatePath("/suppliers");
+      return { success: true };
+    }
+
+    // Regular Clerk user deletion
     const client = await clerkClient();
     await client.users.deleteUser(id);
     revalidatePath("/admin/users");
     return { success: true };
   } catch (error: any) {
+    console.error("Error deleting user:", error);
     return { success: false, error: error?.message || "Failed to delete user" };
   }
 }
@@ -927,6 +971,30 @@ export async function getCurrentUserName(): Promise<
     return {
       success: false,
       error: error?.message || "Failed to fetch current user name",
+    };
+  }
+}
+
+// Add this to your user-actions.ts file
+
+export async function deleteInvitation(
+  invitationId: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const client = await clerkClient();
+
+    // Remove the invitation_ prefix if it exists
+    const cleanId = invitationId.replace("invitation_", "");
+
+    await client.invitations.revokeInvitation(cleanId);
+    revalidatePath("/admin/users");
+
+    return { success: true };
+  } catch (error: any) {
+    console.error("Error deleting invitation:", error);
+    return {
+      success: false,
+      error: error?.message || "Failed to delete invitation",
     };
   }
 }

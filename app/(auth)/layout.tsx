@@ -5,7 +5,7 @@ import type React from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const reversed =
     (pathname || "").includes("sign-out") ||
@@ -18,7 +18,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
           <div className="hidden bg-gray-100 dark:bg-gray-800 md:block">
             <div className="relative w-full h-full">
               <Image
-                src="/public/Innosl-Procurement.png"
+                src="/Innosl-Procurement.webp"
                 alt="Login background"
                 fill
                 sizes="(max-width: 768px) 100vw, 1280px"
@@ -40,15 +40,13 @@ export default function layout({ children }: { children: React.ReactNode }) {
           <div className="hidden bg-gray-100 dark:bg-gray-800 md:block">
             <div className="relative w-full h-full">
               <Image
-                src="/images/startupslbg.webp"
+                src="/Innosl-Procurement.webp"
                 alt="Login background"
                 fill
                 sizes="(max-width: 768px) 100vw, 1280px"
                 className="object-cover"
                 priority
                 quality={85}
-                placeholder="blur"
-                blurDataURL="/images/startupslbg-blur.webp"
               />
             </div>
           </div>

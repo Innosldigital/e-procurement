@@ -1141,8 +1141,13 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 
-import { deleteUser, getUsers } from "@/lib/actions/user-actions";
+import {
+  deleteUser,
+  getUsers,
+  deleteInvitation,
+} from "@/lib/actions/user-actions";
 import { getSupplierOnboardingByUserId } from "@/lib/actions/supplier-actions";
+
 import {
   approveSupplierOnboarding,
   rejectSupplierOnboarding,
@@ -1165,6 +1170,7 @@ import AddUser from "./components/AddUser";
 import EditUser from "./components/EditUser";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "@/components/ui/use-toast";
 
 type UploadObject = {
   name?: string;
@@ -1398,30 +1404,90 @@ export default function UsersTable() {
     setSubmited(!submited);
   };
 
-  const confirmDelete = async () => {
-    if (userToDelete) {
-      try {
-        setIsSubmiting(true);
+  // const confirmDelete = async () => {
+  //   if (userToDelete) {
+  //     try {
+  //       setIsSubmiting(true);
 
-        // Handle invitation deletion differently
-        if (isInvitation(userToDelete)) {
-          // Extract invitation ID from the prefixed ID
-          const invitationId = userToDelete.replace("invitation_", "");
-          // You'll need to add a deleteInvitation action
-          // await deleteInvitation(invitationId);
-          console.log("Delete invitation:", invitationId);
-        } else {
-          await deleteUser(userToDelete);
+  //       // Handle invitation deletion differently
+  //       if (isInvitation(userToDelete)) {
+  //         // Extract invitation ID from the prefixed ID
+  //         const invitationId = userToDelete.replace("invitation_", "");
+  //         // You'll need to add a deleteInvitation action
+  //         // await deleteInvitation(invitationId);
+  //         console.log("Delete invitation:", invitationId);
+  //       } else {
+  //         await deleteUser(userToDelete);
+  //       }
+
+  //       setUserToDelete(null);
+  //       setDeleteDialogOpen(false);
+  //       setIsSubmiting(false);
+  //       setSubmited(!submited);
+  //     } catch (error) {
+  //       console.error("Error deleting user:", error);
+  //       setIsSubmiting(false);
+  //     }
+  //   }
+  // };
+  const confirmDelete = async () => {
+    if (!userToDelete) return;
+
+    try {
+      setIsSubmiting(true);
+
+      // Handle invitation deletion
+      if (isInvitation(userToDelete)) {
+        const invitationId = userToDelete.replace("invitation_", "");
+        const result = await deleteInvitation(invitationId);
+
+        if (!result.success) {
+          toast({
+            title: "Error",
+            description: result.error || "Failed to revoke invitation",
+            variant: "destructive",
+          });
+          setIsSubmiting(false);
+          return;
         }
 
-        setUserToDelete(null);
-        setDeleteDialogOpen(false);
-        setIsSubmiting(false);
-        setSubmited(!submited);
-      } catch (error) {
-        console.error("Error deleting user:", error);
-        setIsSubmiting(false);
+        toast({
+          title: "Success",
+          description: "Invitation revoked successfully",
+        });
+      } else {
+        // Handle regular user or supplier deletion
+        const result = await deleteUser(userToDelete);
+
+        if (!result.success) {
+          toast({
+            title: "Error",
+            description: result.error || "Failed to delete user",
+            variant: "destructive",
+          });
+          setIsSubmiting(false);
+          return;
+        }
+
+        toast({
+          title: "Success",
+          description: "User deleted successfully",
+        });
       }
+
+      setUserToDelete(null);
+      setDeleteDialogOpen(false);
+      setIsSubmiting(false);
+      setSubmited(!submited);
+      router.refresh();
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred",
+        variant: "destructive",
+      });
+      setIsSubmiting(false);
     }
   };
 
