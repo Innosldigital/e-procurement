@@ -52,6 +52,7 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
     setIsSubmitting(true);
 
     try {
+      // Upload files first
       async function uploadFilesWithEdgeStore(list: FileList | null) {
         if (!list || list.length === 0) return [];
         const uploads: Array<{
@@ -60,6 +61,7 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
           type: string;
           url: string;
         }> = [];
+
         for (const file of Array.from(list).filter(
           (f) =>
             f.type === "application/pdf" ||
@@ -67,26 +69,40 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
               .toLowerCase()
               .endsWith(".pdf")
         )) {
-          const res = await edgestore.publicFiles.upload({
-            file,
-          });
-          uploads.push({
-            url: res.url,
-            size: file.size,
-            type: file.type,
-            name: file.name,
-          });
+          try {
+            const res = await edgestore.publicFiles.upload({
+              file,
+            });
+            uploads.push({
+              name: file.name,
+              size: file.size,
+              type: file.type,
+              url: res.url,
+            });
+          } catch (err) {
+            console.error("Error uploading file:", file.name, err);
+          }
         }
         return uploads;
       }
 
+      console.log("Uploading files...");
       const tenderUploads = await uploadFilesWithEdgeStore(tenderFiles);
+      console.log("Files uploaded:", tenderUploads);
 
-      const result = await createTender({
-        ...formData,
+      // Prepare the data object
+      const tenderData = {
+        title: formData.title,
+        type: formData.type,
+        category: formData.category,
+        businessUnit: formData.businessUnit,
+        region: formData.region,
+        sourcingObjective: formData.sourcingObjective,
         estimatedValue: formData.estimatedValue
           ? parseFloat(formData.estimatedValue)
           : 0,
+        contractTerm: formData.contractTerm,
+        sourcingType: formData.sourcingType,
         invitedSuppliers: formData.invitedSuppliers
           ? parseInt(formData.invitedSuppliers)
           : 0,
@@ -94,9 +110,16 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
           ? new Date(formData.closeDate)
           : undefined,
         tenderDocuments: tenderUploads,
-      });
+      };
+
+      console.log("Submitting tender data:", tenderData);
+
+      const result = await createTender(tenderData);
+
+      console.log("Create tender result:", result);
 
       if (result.success) {
+        alert("Tender created successfully!");
         router.refresh();
         onClose();
       } else {
@@ -104,7 +127,10 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
       }
     } catch (error) {
       console.error("Error creating tender:", error);
-      alert("Failed to create tender");
+      alert(
+        "Failed to create tender: " +
+          (error instanceof Error ? error.message : "Unknown error")
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -186,10 +212,10 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Marketing & Strategy">
+                    <SelectItem value="Catering/Consumables">
                       Catering/Consumables
                     </SelectItem>
-                    <SelectItem value="Facilities & Office">
+                    <SelectItem value="Facilities & Venue">
                       Facilities & Venue
                     </SelectItem>
                     <SelectItem value="Logistics">Logistics</SelectItem>
@@ -214,6 +240,15 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                   placeholder="e.g., Global Marketing"
                   value={formData.businessUnit}
                   onChange={(e) => handleChange("businessUnit", e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="region">Region</Label>
+                <Input
+                  id="region"
+                  placeholder="e.g., EMEA"
+                  value={formData.region}
+                  onChange={(e) => handleChange("region", e.target.value)}
                 />
               </div>
             </div>

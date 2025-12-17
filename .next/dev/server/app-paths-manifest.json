@@ -1,6 +1,6 @@
 {
-  "/(app)/admin/page": "app/(app)/admin/page.js",
   "/(app)/supplier-dashboard/page": "app/(app)/supplier-dashboard/page.js",
+  "/(app)/tenders/page": "app/(app)/tenders/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
 }

@@ -108,6 +108,141 @@ export async function requestRevisedBids(id: string) {
   }
 }
 
+// export async function createTender(data: {
+//   title: string;
+//   type: string;
+//   category?: string;
+//   businessUnit?: string;
+//   region?: string;
+//   sourcingObjective?: string;
+//   estimatedValue?: number;
+//   contractTerm?: string;
+//   sourcingType?: string;
+//   invitedSuppliers?: number;
+//   closeDate?: Date;
+//   tenderDocuments?: {
+//     name: string;
+//     size: number;
+//     type: string;
+//     url: string;
+//   }[];
+// }) {
+//   try {
+//     const { userId } = await auth();
+
+//     if (!userId) {
+//       return { success: false, error: "Unauthorized" };
+//     }
+
+//     await dbConnect();
+
+//     // Generate tender ID
+//     const count = await Tender.countDocuments();
+//     const tenderId = `RFP-${(count + 2300).toString()}`;
+
+//     const tender = await Tender.create({
+//       tenderId,
+//       title: data.title,
+//       type: data.type,
+//       category: data.category,
+//       businessUnit: data.businessUnit,
+//       region: data.region,
+//       sourcingObjective: data.sourcingObjective,
+//       estimatedValue: data.estimatedValue,
+//       contractTerm: data.contractTerm,
+//       sourcingType: data.sourcingType,
+//       invitedSuppliers: data.invitedSuppliers,
+//       closeDate: data.closeDate,
+//       tenderDocuments: Array.isArray(data.tenderDocuments)
+//         ? data.tenderDocuments.map((d) => ({
+//             name: d.name,
+//             size: d.size,
+//             type: d.type,
+//             url: d.url,
+//           }))
+//         : [],
+//       stage: "Planned",
+//       responses: 0,
+//       owner: userId,
+//       keyDates: {
+//         published: new Date(),
+//       },
+//       timeline: [
+//         {
+//           event: "Tender created",
+//           date: new Date().toISOString(),
+//           owner: userId,
+//         },
+//       ],
+//     });
+
+//     const suppliers = await Supplier.find({ approved: true })
+//       .select(["ownerUserId", "name", "onboarding.email"])
+//       .lean();
+
+//     const apiKey = process.env.RESEND_API_KEY;
+//     const resend = apiKey ? new Resend(apiKey) : null;
+
+//     await Promise.all(
+//       (suppliers || []).map(async (s: any) => {
+//         const userId = String(s.ownerUserId || "");
+//         if (userId) {
+//           await createNotification({
+//             userId,
+//             type: "tender_published",
+//             title: "New tender published",
+//             message: `${tender.title} (${tender.tenderId}) has been published`,
+//             actionUrl: `/tenders/${tender._id}`,
+//             priority: "medium",
+//             metadata: {
+//               tenderId: tender.tenderId,
+//               category: tender.category,
+//               region: tender.region,
+//             },
+//           });
+//         }
+//         const to = String(s?.onboarding?.email || "");
+//         if (to && resend) {
+//           try {
+//             await resend.emails.send({
+//               from: "no-reply@eprocurement.local",
+//               to,
+//               subject: `New Tender: ${tender.title}`,
+//               html:
+//                 `<div style="font-family:Arial,sans-serif;font-size:14px;color:#222">` +
+//                 `<p>Hello ${s.name || "Supplier"},</p>` +
+//                 `<p>A new tender has been published:</p>` +
+//                 `<p><strong>${tender.title}</strong> (${tender.tenderId})</p>` +
+//                 `<p>Category: ${tender.category || ""} · Region: ${
+//                   tender.region || ""
+//                 }</p>` +
+//                 `<p>Close date: ${
+//                   tender.closeDate
+//                     ? new Date(tender.closeDate).toLocaleDateString()
+//                     : "TBD"
+//                 }</p>` +
+//                 `<p><a href="${
+//                   process.env.NEXT_PUBLIC_APP_URL || ""
+//                 }/tenders">View tenders</a></p>` +
+//                 `</div>`,
+//             });
+//           } catch {}
+//         }
+//       })
+//     );
+
+//     revalidatePath("/tenders");
+//     revalidatePath("/");
+
+//     return {
+//       success: true,
+//       data: JSON.parse(JSON.stringify(tender)),
+//     };
+//   } catch (error) {
+//     console.error("[v0] Error creating tender:", error);
+//     return { success: false, error: "Failed to create tender" };
+//   }
+// }
 export async function createTender(data: {
   title: string;
   type: string;
@@ -140,33 +275,40 @@ export async function createTender(data: {
     const count = await Tender.countDocuments();
     const tenderId = `RFP-${(count + 2300).toString()}`;
 
-    const tender = await Tender.create({
+    // Ensure tenderDocuments is properly formatted
+    const tenderDocuments = Array.isArray(data.tenderDocuments)
+      ? data.tenderDocuments.map((doc) => ({
+          name: String(doc.name || ""),
+          size: Number(doc.size || 0),
+          type: String(doc.type || ""),
+          url: String(doc.url || ""),
+        }))
+      : [];
+
+    // Create tender object with all fields explicitly set
+    const tenderData = {
       tenderId,
       title: data.title,
       type: data.type,
-      category: data.category,
-      businessUnit: data.businessUnit,
-      region: data.region,
-      sourcingObjective: data.sourcingObjective,
-      estimatedValue: data.estimatedValue,
-      contractTerm: data.contractTerm,
-      sourcingType: data.sourcingType,
-      invitedSuppliers: data.invitedSuppliers,
+      category: data.category || "",
+      businessUnit: data.businessUnit || "",
+      region: data.region || "",
+      sourcingObjective: data.sourcingObjective || "",
+      estimatedValue: data.estimatedValue || 0,
+      contractTerm: data.contractTerm || "",
+      sourcingType: data.sourcingType || "",
+      invitedSuppliers: data.invitedSuppliers || 0,
       closeDate: data.closeDate,
-      tenderDocuments: Array.isArray(data.tenderDocuments)
-        ? data.tenderDocuments.map((d) => ({
-            name: d.name,
-            size: d.size,
-            type: d.type,
-            url: d.url,
-          }))
-        : [],
+      publishedDate: new Date(),
+      tenderDocuments: tenderDocuments,
       stage: "Planned",
+      status: "draft",
       responses: 0,
       owner: userId,
       keyDates: {
         published: new Date(),
       },
+      bids: [],
       timeline: [
         {
           event: "Tender created",
@@ -174,8 +316,18 @@ export async function createTender(data: {
           owner: userId,
         },
       ],
-    });
+    };
 
+    console.log(
+      "[v0] Creating tender with data:",
+      JSON.stringify(tenderData, null, 2)
+    );
+
+    const tender = await Tender.create(tenderData);
+
+    console.log("[v0] Tender created successfully:", tender._id);
+
+    // Send notifications to suppliers
     const suppliers = await Supplier.find({ approved: true })
       .select(["ownerUserId", "name", "onboarding.email"])
       .lean();
@@ -226,7 +378,9 @@ export async function createTender(data: {
                 }/tenders">View tenders</a></p>` +
                 `</div>`,
             });
-          } catch {}
+          } catch (err) {
+            console.error("[v0] Error sending email:", err);
+          }
         }
       })
     );
@@ -240,7 +394,10 @@ export async function createTender(data: {
     };
   } catch (error) {
     console.error("[v0] Error creating tender:", error);
-    return { success: false, error: "Failed to create tender" };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to create tender",
+    };
   }
 }
 
