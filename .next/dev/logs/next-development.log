@@ -3889,3 +3889,93 @@
 [01:03:00.695] Browser LOG     Unread count from server: 0
 [01:03:00.695] Browser LOG     Final state - Total: 0 Unread: 0
 [01:03:00.695] Browser LOG     ===================================
+[01:03:26.741] Server  LOG     === getNotifications SERVER ===
+[01:03:26.742] Server  LOG     Authenticated userId: "user_36tMU4WXLuD1DMfghGBvRii0uk4"
+[01:03:26.919] Server  LOG     Found 2 notifications for userId: user_36tMU4WXLuD1DMfghGBvRii0uk4
+[01:03:26.920] Server  LOG       1. tender_published - New Tender Published (read: false)
+[01:03:26.921] Server  LOG       2. supplier_update - Your supplier account has been approved (read: false)
+[01:03:26.923] Server  LOG     ================================
+[01:03:27.657] Browser LOG     Auto-refreshing notifications...
+[01:03:27.657] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[01:03:27.657] Browser LOG     Current user ID: undefined
+[01:03:27.657] Browser LOG     Current user email: undefined
+[01:03:27.657] Browser LOG     Timestamp: 2025-12-18T13:31:50.466Z
+[01:03:27.657] Browser LOG     Notification result: {"data":[{"__v":0,"_id":"6943cb2bcf8f5e318242a696","actionUrl":"/tenders","createdAt":"2025-12-18T09:36:43.295Z","message":"test (RFP-2307) has been published. Category: Logistics","metadata":{"category":"Logistics","closeDate":"2025-12-20T00:00:00.000Z","estimatedValue":1000,"region":"sljlsjlfs","tenderId":"RFP-2307","tenderTitle":"test"},"priority":"medium","read":false,"title":"New Tender Published","type":"tender_published","updatedAt":"2025-12-18T09:36:43.295Z","userId":"user_36tMU4WXLuD1DMfghGBvRii0uk4"},{"__v":0,"_id":"69404ca658db218d56ec7bdc","actionUrl":"/suppliers","createdAt":"2025-12-15T18:00:06.258Z","message":"You now have full access to the system.","priority":"medium","read":false,"title":"Your supplier account has been approved","type":"supplier_update","updatedAt":"2025-12-15T18:00:06.258Z","userId":"user_36tMU4WXLuD1DMfghGBvRii0uk4"}],"success":true}
+[01:03:27.657] Browser LOG     Unread count result: {"count":2,"success":true}
+[01:03:27.657] Browser LOG     Found 2 notifications:
+[01:03:27.657] Browser LOG       1. Type: tender_published
+[01:03:27.657] Browser LOG          Title: New Tender Published
+[01:03:27.657] Browser LOG          For userId: user_36tMU4WXLuD1DMfghGBvRii0uk4
+[01:03:27.657] Browser LOG          Read: false
+[01:03:27.657] Browser LOG          Created: 2025-12-18T09:36:43.295Z
+[01:03:27.657] Browser LOG       2. Type: supplier_update
+[01:03:27.657] Browser LOG          Title: Your supplier account has been approved
+[01:03:27.657] Browser LOG          For userId: user_36tMU4WXLuD1DMfghGBvRii0uk4
+[01:03:27.657] Browser LOG          Read: false
+[01:03:27.657] Browser LOG          Created: 2025-12-15T18:00:06.258Z
+[01:03:27.657] Browser LOG     Tender notifications: 1
+[01:03:27.657] Browser LOG     Unread count from server: 2
+[01:03:27.657] Browser LOG     Final state - Total: 0 Unread: 0
+[01:03:27.657] Browser LOG     ===================================
+[01:03:29.732] Server  LOG     === getNotifications SERVER ===
+[01:03:29.733] Server  LOG     Authenticated userId: "user_36XaiV2rWEPP5QOKDz3Sj09pxsE"
+[01:03:29.917] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[01:03:29.917] Server  LOG     ================================
+[01:03:30.656] Browser LOG     Auto-refreshing notifications...
+[01:03:30.656] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[01:03:30.656] Browser LOG     Current user ID: undefined
+[01:03:30.656] Browser LOG     Current user email: undefined
+[01:03:30.656] Browser LOG     Timestamp: 2025-12-18T13:31:53.436Z
+[01:03:30.656] Browser LOG     Notification result: {"data":[],"success":true}
+[01:03:30.656] Browser LOG     Unread count result: {"count":0,"success":true}
+[01:03:30.656] Browser LOG     Found 0 notifications:
+[01:03:30.656] Browser WARN    ⚠️ No notifications found for this user!
+[01:03:30.656] Browser LOG     Tender notifications: 0
+[01:03:30.656] Browser LOG     Unread count from server: 0
+[01:03:30.656] Browser LOG     Final state - Total: 0 Unread: 0
+[01:03:30.656] Browser LOG     ===================================
+[01:04:26.705] Server  LOG     === getNotifications SERVER ===
+[01:04:26.706] Server  LOG     Authenticated userId: "user_36XaiV2rWEPP5QOKDz3Sj09pxsE"
+[01:04:26.728] Server  LOG     === getNotifications SERVER ===
+[01:04:26.728] Server  LOG     Authenticated userId: "user_36tMU4WXLuD1DMfghGBvRii0uk4"
+[01:04:26.836] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[01:04:26.837] Server  LOG     ================================
+[01:04:26.885] Server  LOG     Found 2 notifications for userId: user_36tMU4WXLuD1DMfghGBvRii0uk4
+[01:04:26.886] Server  LOG       1. tender_published - New Tender Published (read: false)
+[01:04:26.886] Server  LOG       2. supplier_update - Your supplier account has been approved (read: false)
+[01:04:26.886] Server  LOG     ================================
+[01:04:27.662] Browser LOG     Auto-refreshing notifications...
+[01:04:27.662] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[01:04:27.662] Browser LOG     Current user ID: undefined
+[01:04:27.662] Browser LOG     Current user email: undefined
+[01:04:27.662] Browser LOG     Timestamp: 2025-12-18T13:32:50.432Z
+[01:04:27.662] Browser LOG     Notification result: {"data":[],"success":true}
+[01:04:27.662] Browser LOG     Unread count result: {"count":0,"success":true}
+[01:04:27.662] Browser LOG     Found 0 notifications:
+[01:04:27.662] Browser WARN    ⚠️ No notifications found for this user!
+[01:04:27.662] Browser LOG     Tender notifications: 0
+[01:04:27.662] Browser LOG     Unread count from server: 0
+[01:04:27.662] Browser LOG     Final state - Total: 0 Unread: 0
+[01:04:27.662] Browser LOG     ===================================
+[01:04:27.662] Browser LOG     Auto-refreshing notifications...
+[01:04:27.662] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[01:04:27.662] Browser LOG     Current user ID: undefined
+[01:04:27.662] Browser LOG     Current user email: undefined
+[01:04:27.662] Browser LOG     Timestamp: 2025-12-18T13:32:50.435Z
+[01:04:27.662] Browser LOG     Notification result: {"data":[{"__v":0,"_id":"6943cb2bcf8f5e318242a696","actionUrl":"/tenders","createdAt":"2025-12-18T09:36:43.295Z","message":"test (RFP-2307) has been published. Category: Logistics","metadata":{"category":"Logistics","closeDate":"2025-12-20T00:00:00.000Z","estimatedValue":1000,"region":"sljlsjlfs","tenderId":"RFP-2307","tenderTitle":"test"},"priority":"medium","read":false,"title":"New Tender Published","type":"tender_published","updatedAt":"2025-12-18T09:36:43.295Z","userId":"user_36tMU4WXLuD1DMfghGBvRii0uk4"},{"__v":0,"_id":"69404ca658db218d56ec7bdc","actionUrl":"/suppliers","createdAt":"2025-12-15T18:00:06.258Z","message":"You now have full access to the system.","priority":"medium","read":false,"title":"Your supplier account has been approved","type":"supplier_update","updatedAt":"2025-12-15T18:00:06.258Z","userId":"user_36tMU4WXLuD1DMfghGBvRii0uk4"}],"success":true}
+[01:04:27.662] Browser LOG     Unread count result: {"count":2,"success":true}
+[01:04:27.662] Browser LOG     Found 2 notifications:
+[01:04:27.662] Browser LOG       1. Type: tender_published
+[01:04:27.662] Browser LOG          Title: New Tender Published
+[01:04:27.662] Browser LOG          For userId: user_36tMU4WXLuD1DMfghGBvRii0uk4
+[01:04:27.662] Browser LOG          Read: false
+[01:04:27.662] Browser LOG          Created: 2025-12-18T09:36:43.295Z
+[01:04:27.662] Browser LOG       2. Type: supplier_update
+[01:04:27.662] Browser LOG          Title: Your supplier account has been approved
+[01:04:27.662] Browser LOG          For userId: user_36tMU4WXLuD1DMfghGBvRii0uk4
+[01:04:27.662] Browser LOG          Read: false
+[01:04:27.662] Browser LOG          Created: 2025-12-15T18:00:06.258Z
+[01:04:27.662] Browser LOG     Tender notifications: 1
+[01:04:27.663] Browser LOG     Unread count from server: 2
+[01:04:27.663] Browser LOG     Final state - Total: 0 Unread: 0
+[01:04:27.663] Browser LOG     ===================================

@@ -628,7 +628,7 @@ export default function OnboardingContent() {
                   </div>
                 </div>
 
-                {/* Documents Section */}
+                {/* Documents Section most be unique */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
                     <Upload className="h-5 w-5 text-primary" />
