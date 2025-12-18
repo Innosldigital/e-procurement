@@ -6,11 +6,31 @@ import {
   CheckCircle,
   Lock,
   Scale,
+  Users,
+  ClipboardCheck,
+  XCircle,
 } from "lucide-react";
 
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-slate-50">
+      {/* Header */}
+      {/* <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur shadow-sm">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+              <Shield className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-base sm:text-lg font-semibold text-slate-900">
+              Innovation SL Procurement
+            </span>
+          </div>
+          <button className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
+            Back to Home
+          </button>
+        </div>
+      </header> */}
+
       {/* Main Content */}
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12 lg:py-16">
         {/* Page Header */}
@@ -23,7 +43,7 @@ export default function TermsPage() {
             Terms and Conditions
           </h1>
           <p className="text-base sm:text-lg text-slate-600">
-            Procurement Terms for Innovation SL Platform
+            Procurement Terms for Inno SL Platform
           </p>
           <p className="mt-2 text-sm text-slate-500">
             Last updated:{" "}
@@ -44,7 +64,7 @@ export default function TermsPage() {
                 Important Notice
               </h3>
               <p className="text-sm leading-relaxed text-slate-700">
-                By submitting a quotation through the Innovation SL Procurement
+                By submitting a quotation through the Inno SL Procurement
                 platform, you agree to be bound by these Terms and Conditions.
                 Please read them carefully before proceeding.
               </p>
@@ -78,25 +98,30 @@ export default function TermsPage() {
           <section className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
             <div className="flex items-start gap-4">
               <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-green-100">
-                <CheckCircle className="h-6 w-6 text-green-600" />
+                <Users className="h-6 w-6 text-green-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <h2 className="mb-3 text-xl sm:text-2xl font-bold text-slate-900">
                   2. Eligibility of Bidders
                 </h2>
                 <p className="mb-4 text-sm sm:text-base leading-relaxed text-slate-600">
-                  Bidders must be legally registered business entities in Sierra
-                  Leone. At the time of submission, you may be required to
-                  provide:
+                  Business must be legally registered entities in Sierra Leone.
+                  At the time of submission bidders may be required to provide:
                 </p>
-                <ul className="ml-5 space-y-2 text-sm sm:text-base text-slate-600 list-disc">
+                <ul className="ml-5 mb-4 space-y-2 text-sm sm:text-base text-slate-600 list-disc">
                   <li>Valid Business Registration Certificate</li>
                   <li>Valid Tax Clearance Certificate (NRA)</li>
-                  <li>
-                    Proof of experience in the relevant category (Catering,
-                    Logistics, etc.)
-                  </li>
                 </ul>
+                <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4">
+                  <h4 className="mb-2 font-semibold text-slate-900 text-sm sm:text-base">
+                    Additional Local Context Provision
+                  </h4>
+                  <p className="text-sm leading-relaxed text-slate-700">
+                    Innovation SL may, at its discretion, allow participation of
+                    informal or semi-formal suppliers where appropriate, subject
+                    to verification and conditional approval.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -112,21 +137,21 @@ export default function TermsPage() {
                   3. Submission of Quotations Format
                 </h2>
                 <p className="mb-4 text-sm sm:text-base leading-relaxed text-slate-600">
-                  All bids must be submitted through the official procurement
-                  system. Hard copy or email submissions will not be considered
-                  unless explicitly stated.
+                  All bids must be submitted through the official Inno SL
+                  Procurement System. Hard copy or email submission will not be
+                  considered unless explicitly stated.
                 </p>
                 <div className="space-y-3">
-                  <div>
+                  <div className="rounded-lg bg-slate-50 p-3">
                     <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
                       Deadline
                     </h4>
                     <p className="text-sm sm:text-base text-slate-600">
-                      Late submissions will be automatically disqualified by the
+                      Late submission will be automatically disqualified by the
                       system.
                     </p>
                   </div>
-                  <div>
+                  <div className="rounded-lg bg-slate-50 p-3">
                     <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
                       Accuracy
                     </h4>
@@ -144,8 +169,8 @@ export default function TermsPage() {
           {/* Section 4 */}
           <section className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-green-100">
-                <CheckCircle className="h-6 w-6 text-green-600" />
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-100">
+                <ClipboardCheck className="h-6 w-6 text-indigo-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <h2 className="mb-3 text-xl sm:text-2xl font-bold text-slate-900">
@@ -155,30 +180,46 @@ export default function TermsPage() {
                   Innovation SL will evaluate bids based on a combination of:
                 </p>
                 <div className="space-y-3">
-                  <div>
-                    <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
-                      Technical Capacity
-                    </h4>
-                    <p className="text-sm sm:text-base text-slate-600">
-                      Ability to meet the specific requirements of the
-                      Dare2Aspire program.
-                    </p>
+                  <div className="flex gap-3 rounded-lg bg-slate-50 p-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-100">
+                      <CheckCircle className="h-4 w-4 text-indigo-600" />
+                    </div>
+                    <div>
+                      <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
+                        Technical Capacity
+                      </h4>
+                      <p className="text-sm sm:text-base text-slate-600">
+                        Ability to meet the specific requirements of the
+                        procurement.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
-                      Financial Value
-                    </h4>
-                    <p className="text-sm sm:text-base text-slate-600">
-                      Cost effectiveness and competitive pricing.
-                    </p>
+                  <div className="flex gap-3 rounded-lg bg-slate-50 p-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-100">
+                      <CheckCircle className="h-4 w-4 text-indigo-600" />
+                    </div>
+                    <div>
+                      <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
+                        Financial Value
+                      </h4>
+                      <p className="text-sm sm:text-base text-slate-600">
+                        Cost effectiveness and competitive pricing.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
-                      Delivery Timeliness
-                    </h4>
-                    <p className="text-sm sm:text-base text-slate-600">
-                      Ability to provide services within the program's schedule.
-                    </p>
+                  <div className="flex gap-3 rounded-lg bg-slate-50 p-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-100">
+                      <CheckCircle className="h-4 w-4 text-indigo-600" />
+                    </div>
+                    <div>
+                      <h4 className="mb-1 font-semibold text-slate-900 text-sm sm:text-base">
+                        Delivery Timeliness
+                      </h4>
+                      <p className="text-sm sm:text-base text-slate-600">
+                        Ability to provide goods or services within the required
+                        schedule.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -186,16 +227,16 @@ export default function TermsPage() {
           </section>
 
           {/* Section 5 - Warning */}
-          <section className="rounded-xl border border-red-200 bg-red-50 p-6 sm:p-8 shadow-sm">
+          <section className="rounded-xl border-2 border-red-300 bg-red-50 p-6 sm:p-8 shadow-sm">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-red-100">
-                <AlertCircle className="h-6 w-6 text-red-600" />
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-red-200">
+                <AlertCircle className="h-6 w-6 text-red-700" />
               </div>
               <div className="flex-1 min-w-0">
                 <h2 className="mb-3 text-xl sm:text-2xl font-bold text-slate-900">
                   5. Ethical Conduct & Anti-Corruption
                 </h2>
-                <p className="font-medium text-sm sm:text-base leading-relaxed text-slate-900">
+                <p className="font-semibold text-sm sm:text-base leading-relaxed text-red-900">
                   Any attempt by a bidder to influence the evaluation process or
                   offer inducements to Innovation SL staff will result in
                   immediate disqualification and a ban from future procurement
@@ -215,11 +256,14 @@ export default function TermsPage() {
                 <h2 className="mb-3 text-xl sm:text-2xl font-bold text-slate-900">
                   6. Award of Contract
                 </h2>
+                <p className="mb-3 text-sm sm:text-base leading-relaxed text-slate-600">
+                  Successful bidders will be notified via the procurement system
+                  or official email.
+                </p>
                 <p className="text-sm sm:text-base leading-relaxed text-slate-600">
-                  The successful bidders will be notified via the procurement
-                  system or official email. A formal Service Level Agreement
-                  (SLA) or Purchase Order (PO) will be issued to the winner,
-                  detailing the final scope of work and payment terms.
+                  A formal Service Level Agreement (SLA) or Purchase Order (PO)
+                  will be issued, detailing the final scope of work and payment
+                  terms.
                 </p>
               </div>
             </div>
@@ -237,9 +281,9 @@ export default function TermsPage() {
                 </h2>
                 <p className="text-sm sm:text-base leading-relaxed text-slate-600">
                   All information provided by Innovation SL in the procurement
-                  portal (e.g., participant numbers, internal schedules) must be
-                  treated as confidential and used solely for the purpose of
-                  preparing the bid.
+                  portal (including internal schedules and participant
+                  information) must be treated as confidential and used solely
+                  for the purpose of preparing the bid.
                 </p>
               </div>
             </div>
@@ -248,8 +292,8 @@ export default function TermsPage() {
           {/* Section 8 */}
           <section className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-amber-100">
-                <AlertCircle className="h-6 w-6 text-amber-600" />
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-orange-100">
+                <XCircle className="h-6 w-6 text-orange-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <h2 className="mb-3 text-xl sm:text-2xl font-bold text-slate-900">
@@ -257,53 +301,59 @@ export default function TermsPage() {
                 </h2>
                 <p className="text-sm sm:text-base leading-relaxed text-slate-600">
                   Innovation SL reserves the right to cancel the procurement
-                  process at any time without incurring any liability to the
+                  process at any time without incurring any liability to
                   bidders.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Portal Terms */}
-          <section className="rounded-xl border border-blue-200 bg-blue-50 p-6 sm:p-8 shadow-sm">
-            <h2 className="mb-2 text-xl sm:text-2xl font-bold text-slate-900">
-              Website/Portal Terms of Use
-            </h2>
-            <p className="mb-6 text-sm sm:text-base text-slate-600">
-              For the digital procurement system
-            </p>
-
-            <div className="space-y-5">
-              <div>
-                <h3 className="mb-2 text-base sm:text-lg font-semibold text-slate-900">
-                  Account Responsibility
-                </h3>
-                <p className="text-sm sm:text-base leading-relaxed text-slate-600">
-                  Bidders are responsible for maintaining the confidentiality of
-                  their login credentials.
-                </p>
+          {/* Section 9 - Portal Terms */}
+          <section className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 sm:p-8 shadow-sm">
+            <div className="mb-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-blue-100">
+                  <Shield className="h-6 w-6 text-blue-600" />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  9. Website / Portal Terms of Use
+                </h2>
               </div>
 
-              <div>
-                <h3 className="mb-2 text-base sm:text-lg font-semibold text-slate-900">
-                  System Availability
-                </h3>
-                <p className="text-sm sm:text-base leading-relaxed text-slate-600">
-                  While we strive for 100% uptime, Innovation SL is not liable
-                  for technical failures or internet connectivity issues on the
-                  bidder's end during the submission window.
-                </p>
-              </div>
+              <div className="space-y-5">
+                <div className="rounded-lg border border-blue-200 bg-white p-4">
+                  <h3 className="mb-2 text-base sm:text-lg font-semibold text-slate-900">
+                    Account Responsibility
+                  </h3>
+                  <p className="text-sm sm:text-base leading-relaxed text-slate-600">
+                    Bidders are responsible for maintaining the confidentiality
+                    of their login credentials.
+                  </p>
+                </div>
 
-              <div>
-                <h3 className="mb-2 text-base sm:text-lg font-semibold text-slate-900">
-                  Data Privacy
-                </h3>
-                <p className="text-sm sm:text-base leading-relaxed text-slate-600">
-                  By using this portal, you consent to Innovation SL storing and
-                  processing your business data for the purpose of this
-                  procurement exercise.
-                </p>
+                <div className="rounded-lg border border-blue-200 bg-white p-4">
+                  <h3 className="mb-2 text-base sm:text-lg font-semibold text-slate-900">
+                    System Availability
+                  </h3>
+                  <p className="text-sm sm:text-base leading-relaxed text-slate-600">
+                    While Innovation SL strives for system reliability, it shall
+                    not be liable for technical failures, power outages, or
+                    internet connectivity issues on the bidder's end during the
+                    submission period.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-blue-200 bg-white p-4">
+                  <h3 className="mb-2 text-base sm:text-lg font-semibold text-slate-900">
+                    Data Privacy
+                  </h3>
+                  <p className="text-sm sm:text-base leading-relaxed text-slate-600">
+                    By using the procurement portal, users consent to Innovation
+                    SL storing and processing their business data for
+                    procurement, audit, and reporting purposes in accordance
+                    with applicable laws of Sierra Leone.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -328,6 +378,36 @@ export default function TermsPage() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      {/* <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
+                <Shield className="h-4 w-4 text-white" />
+              </div>
+              <span className="font-semibold text-slate-900">
+                Innovation SL
+              </span>
+            </div>
+            <p className="text-center text-sm text-slate-600">
+              © {new Date().getFullYear()} Innovation SL. All rights reserved.
+            </p>
+            <div className="flex gap-6 text-sm">
+              <button className="text-slate-600 transition-colors hover:text-slate-900">
+                Terms
+              </button>
+              <button className="text-slate-600 transition-colors hover:text-slate-900">
+                Privacy
+              </button>
+              <button className="text-slate-600 transition-colors hover:text-slate-900">
+                Support
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer> */}
     </div>
   );
 }

@@ -48,12 +48,20 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
     closeDate: "",
   });
 
+  const handleChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Show invited suppliers field only for Competitive RFP or Competitive RFQ
+  const showInvitedSuppliersField =
+    formData.sourcingType === "Competitive RFP" ||
+    formData.sourcingType === "Competitive RFQ";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Upload files first
       async function uploadFilesWithEdgeStore(list: FileList | null) {
         if (!list || list.length === 0) return [];
         const uploads: Array<{
@@ -87,11 +95,8 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
         return uploads;
       }
 
-      console.log("Uploading files...");
       const tenderUploads = await uploadFilesWithEdgeStore(tenderFiles);
-      console.log("Files uploaded:", tenderUploads);
 
-      // Prepare the data object
       const tenderData = {
         title: formData.title,
         type: formData.type,
@@ -104,8 +109,8 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
           : 0,
         contractTerm: formData.contractTerm,
         sourcingType: formData.sourcingType,
-        invitedSuppliers: formData.invitedSuppliers
-          ? parseInt(formData.invitedSuppliers)
+        invitedSuppliers: showInvitedSuppliersField
+          ? parseInt(formData.invitedSuppliers) || 0
           : 0,
         closeDate: formData.closeDate
           ? new Date(formData.closeDate)
@@ -113,14 +118,9 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
         tenderDocuments: tenderUploads,
       };
 
-      console.log("Submitting tender data:", tenderData);
-
       const result = await createTender(tenderData);
 
-      console.log("Create tender result:", result);
-
       if (result.success) {
-        // alert("Tender created successfully!");
         toast.success("Tender created successfully!");
         router.refresh();
         onClose();
@@ -129,17 +129,13 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
       }
     } catch (error) {
       console.error("Error creating tender:", error);
-      alert(
+      toast.error(
         "Failed to create tender: " +
           (error instanceof Error ? error.message : "Unknown error")
       );
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -221,8 +217,8 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                       Facilities & Venue
                     </SelectItem>
                     <SelectItem value="Logistics">Logistics</SelectItem>
-                    <SelectItem value="Professional Services">
-                      Professional Services
+                    <SelectItem value="Merchandise & Stationery">
+                      Merchandise & Stationery
                     </SelectItem>
                   </SelectContent>
                 </Select>
@@ -242,15 +238,6 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                   placeholder="e.g., Global Marketing"
                   value={formData.businessUnit}
                   onChange={(e) => handleChange("businessUnit", e.target.value)}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="region">Region</Label>
-                <Input
-                  id="region"
-                  placeholder="e.g., EMEA"
-                  value={formData.region}
-                  onChange={(e) => handleChange("region", e.target.value)}
                 />
               </div>
             </div>
@@ -283,16 +270,6 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                   }
                 />
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="contractTerm">Contract term</Label>
-                <Input
-                  id="contractTerm"
-                  placeholder="e.g., 3-year term"
-                  value={formData.contractTerm}
-                  onChange={(e) => handleChange("contractTerm", e.target.value)}
-                />
-              </div>
             </div>
           </div>
 
@@ -312,10 +289,10 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Competitive RFP">
-                      Competitive RFP - 5 invited suppliers
+                      Competitive RFP
                     </SelectItem>
                     <SelectItem value="Competitive RFQ">
-                      Competitive RFQ - 3 invited suppliers
+                      Competitive RFQ
                     </SelectItem>
                     <SelectItem value="Open">Open tender</SelectItem>
                     <SelectItem value="Negotiated">
@@ -325,20 +302,27 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                 </Select>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="invitedSuppliers">
-                  Number of invited suppliers
-                </Label>
-                <Input
-                  id="invitedSuppliers"
-                  type="number"
-                  placeholder="5"
-                  value={formData.invitedSuppliers}
-                  onChange={(e) =>
-                    handleChange("invitedSuppliers", e.target.value)
-                  }
-                />
-              </div>
+              {/* Only show when Competitive RFP or RFQ is selected */}
+              {showInvitedSuppliersField && (
+                <div className="space-y-2">
+                  <Label htmlFor="invitedSuppliers">
+                    Number of invited suppliers *
+                  </Label>
+                  <Input
+                    id="invitedSuppliers"
+                    type="number"
+                    placeholder={
+                      formData.sourcingType === "Competitive RFP" ? "5" : "3"
+                    }
+                    min="1"
+                    value={formData.invitedSuppliers}
+                    onChange={(e) =>
+                      handleChange("invitedSuppliers", e.target.value)
+                    }
+                    required
+                  />
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">

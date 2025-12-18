@@ -423,13 +423,10 @@ export default function OnboardingContent() {
                       <Label>Product / Service Categories *</Label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-lg border border-border bg-muted/30">
                         {[
-                          "Catering & Consumables",
-                          "Merchandise & Stationeres",
-                          "Facilitators",
-                          "Venue",
-                          "Cleaning",
-                          "​Logistics",
-                          "​Facilities​",
+                          "Catering/Consumables",
+                          "Logistics",
+                          "​Merchandise & Stationery",
+                          "Facilities (Venue)",
                         ].map((cat) => (
                           <div
                             key={cat}
@@ -649,7 +646,7 @@ export default function OnboardingContent() {
                         id: "businessReg",
                       },
                       {
-                        label: "Tax Clearance Certificate",
+                        label: "Tax Clearance Certificate (NRA)",
                         state: taxClearanceFiles,
                         setter: setTaxClearanceFiles,
                         id: "taxClearance",

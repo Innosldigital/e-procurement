@@ -1,5 +1,7 @@
 {
+  "/(app)/admin/page": "app/(app)/admin/page.js",
   "/(app)/supplier-dashboard/page": "app/(app)/supplier-dashboard/page.js",
+  "/(app)/tenders/page": "app/(app)/tenders/page.js",
   "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
   "/(onboard)/onboarding/terms/page": "app/(onboard)/onboarding/terms/page.js",
   "/_not-found/page": "app/_not-found/page.js",

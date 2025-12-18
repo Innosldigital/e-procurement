@@ -845,7 +845,7 @@ export default function TendersPage() {
                           Estimated contract value
                         </div>
                         <div className="font-medium">
-                          ${selectedTender.estimatedValue.toLocaleString()}
+                          Nle {selectedTender.estimatedValue.toLocaleString()}
                         </div>
                       </div>
                     )}
@@ -997,7 +997,7 @@ export default function TendersPage() {
                                 {bid.supplier}
                               </td>
                               <td className="p-3 text-right">
-                                ${bid.totalPrice?.toLocaleString()}
+                                Nle {bid.totalPrice?.toLocaleString()}
                               </td>
                               {selectedTender.bids.some(
                                 (b: any) => b.score
