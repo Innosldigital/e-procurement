@@ -881,48 +881,48 @@ export async function updateUser(
 // }
 
 // Update your existing deleteUser function to handle suppliers
-export async function deleteUser(
-  id: string
-): Promise<{ success: boolean; error?: string }> {
-  try {
-    // Check if it's a supplier (MongoDB ID format)
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
-      // It's a MongoDB ObjectId - delete from Supplier collection
-      await dbConnect();
-      const supplier = await Supplier.findByIdAndDelete(id);
+// export async function deleteUser(
+//   id: string
+// ): Promise<{ success: boolean; error?: string }> {
+//   try {
+//     // Check if it's a supplier (MongoDB ID format)
+//     if (id.match(/^[0-9a-fA-F]{24}$/)) {
+//       // It's a MongoDB ObjectId - delete from Supplier collection
+//       await dbConnect();
+//       const supplier = await Supplier.findByIdAndDelete(id);
 
-      if (!supplier) {
-        return { success: false, error: "Supplier not found" };
-      }
+//       if (!supplier) {
+//         return { success: false, error: "Supplier not found" };
+//       }
 
-      // If supplier has a Clerk user ID, also delete from Clerk
-      if (
-        supplier.ownerUserId &&
-        !supplier.ownerUserId.startsWith("invitation_")
-      ) {
-        try {
-          const client = await clerkClient();
-          await client.users.deleteUser(supplier.ownerUserId);
-        } catch (clerkError) {
-          console.warn("Failed to delete Clerk user for supplier:", clerkError);
-        }
-      }
+//       // If supplier has a Clerk user ID, also delete from Clerk
+//       if (
+//         supplier.ownerUserId &&
+//         !supplier.ownerUserId.startsWith("invitation_")
+//       ) {
+//         try {
+//           const client = await clerkClient();
+//           await client.users.deleteUser(supplier.ownerUserId);
+//         } catch (clerkError) {
+//           console.warn("Failed to delete Clerk user for supplier:", clerkError);
+//         }
+//       }
 
-      revalidatePath("/admin/users");
-      revalidatePath("/suppliers");
-      return { success: true };
-    }
+//       revalidatePath("/admin/users");
+//       revalidatePath("/suppliers");
+//       return { success: true };
+//     }
 
-    // Regular Clerk user deletion
-    const client = await clerkClient();
-    await client.users.deleteUser(id);
-    revalidatePath("/admin/users");
-    return { success: true };
-  } catch (error: any) {
-    console.error("Error deleting user:", error);
-    return { success: false, error: error?.message || "Failed to delete user" };
-  }
-}
+//     // Regular Clerk user deletion
+//     const client = await clerkClient();
+//     await client.users.deleteUser(id);
+//     revalidatePath("/admin/users");
+//     return { success: true };
+//   } catch (error: any) {
+//     console.error("Error deleting user:", error);
+//     return { success: false, error: error?.message || "Failed to delete user" };
+//   }
+// }
 
 export async function getCurrentUserRole(): Promise<string> {
   try {
@@ -995,6 +995,68 @@ export async function deleteInvitation(
     return {
       success: false,
       error: error?.message || "Failed to delete invitation",
+    };
+  }
+}
+
+// Update your deleteUser function in user-actions.ts with this improved version
+
+export async function deleteUser(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    // First, check if this is a supplier by looking in MongoDB
+    await dbConnect();
+
+    // Try to find supplier by ownerUserId (Clerk ID) or by MongoDB _id
+    const supplierByUserId = await Supplier.findOne({ ownerUserId: id }).lean();
+    const supplierById = id.match(/^[0-9a-fA-F]{24}$/)
+      ? await Supplier.findById(id).lean()
+      : null;
+
+    const supplier = supplierByUserId || supplierById;
+
+    if (supplier) {
+      // It's a supplier - delete from both MongoDB and Clerk
+      console.log("Deleting supplier:", (supplier as any).name);
+
+      // Delete from MongoDB
+      if (supplierByUserId) {
+        await Supplier.findOneAndDelete({ ownerUserId: id });
+      } else if (supplierById) {
+        await Supplier.findByIdAndDelete(id);
+      }
+
+      // Delete from Clerk if they have a Clerk account
+      const clerkUserId = (supplier as any).ownerUserId || id;
+      if (clerkUserId && !clerkUserId.startsWith("invitation_")) {
+        try {
+          const client = await clerkClient();
+          await client.users.deleteUser(clerkUserId);
+          console.log("Deleted Clerk user:", clerkUserId);
+        } catch (clerkError: any) {
+          console.warn("Failed to delete Clerk user:", clerkError.message);
+          // Don't fail the whole operation if Clerk deletion fails
+        }
+      }
+
+      revalidatePath("/admin/users");
+      revalidatePath("/suppliers");
+      return { success: true };
+    }
+
+    // Not a supplier - regular Clerk user deletion
+    const client = await clerkClient();
+    await client.users.deleteUser(id);
+    console.log("Deleted regular Clerk user:", id);
+
+    revalidatePath("/admin/users");
+    return { success: true };
+  } catch (error: any) {
+    console.error("Error deleting user:", error);
+    return {
+      success: false,
+      error: error?.message || "Failed to delete user",
     };
   }
 }

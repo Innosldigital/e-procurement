@@ -17,6 +17,7 @@ import { X } from "lucide-react";
 import { createTender } from "@/lib/actions/tender-actions";
 import { useUser } from "@clerk/nextjs";
 import { useEdgeStore } from "@/lib/edgestore";
+import { toast } from "sonner";
 
 interface CreateTenderFormProps {
   onClose: () => void;
@@ -119,11 +120,12 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
       console.log("Create tender result:", result);
 
       if (result.success) {
-        alert("Tender created successfully!");
+        // alert("Tender created successfully!");
+        toast.success("Tender created successfully!");
         router.refresh();
         onClose();
       } else {
-        alert(result.error || "Failed to create tender");
+        toast.error(result.error || "Failed to create tender");
       }
     } catch (error) {
       console.error("Error creating tender:", error);

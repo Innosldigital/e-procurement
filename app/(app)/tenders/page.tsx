@@ -534,6 +534,7 @@ export default function TendersPage() {
   const [showBidForm, setShowBidForm] = useState(false);
   const { user } = useUser();
   const [canCreateTender, setCanCreateTender] = useState(false);
+  const [isSupplier, setIsSupplier] = useState(false);
   const [stats, setStats] = useState<{
     openCount: number;
     evalCount: number;
@@ -610,6 +611,7 @@ export default function TendersPage() {
     const rawRole = String(md.role || "");
     const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
     setCanCreateTender(["admin", "company", "superadmin"].includes(normalized));
+    setIsSupplier(normalized === "supplier");
   }, [user]);
 
   const handleSubmitBid = () => {
@@ -795,23 +797,26 @@ export default function TendersPage() {
                 </div>
               </div>
               <div className="p-6 space-y-6 max-h-[600px] overflow-y-auto">
-                {(selectedTender.type === "RFQ" ||
-                  selectedTender.type === "RFP") && (
-                  <div className="bg-accent/30 border border-border rounded-lg p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-sm font-medium mb-1">
-                          Supplier Bidding
-                        </h3>
-                        <p className="text-xs text-muted-foreground">
-                          Submit your bid for this {selectedTender.type} before
-                          the closing date
-                        </p>
+                {isSupplier &&
+                  (selectedTender.type === "RFQ" ||
+                    selectedTender.type === "RFP") &&
+                  selectedTender.stage !== "Awarded" &&
+                  selectedTender.stage !== "Closed" && (
+                    <div className="bg-accent/30 border border-border rounded-lg p-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="text-sm font-medium mb-1">
+                            Supplier Bidding
+                          </h3>
+                          <p className="text-xs text-muted-foreground">
+                            Submit your bid for this {selectedTender.type}{" "}
+                            before the closing date
+                          </p>
+                        </div>
+                        <Button onClick={handleSubmitBid}>Submit Bid</Button>
                       </div>
-                      <Button onClick={handleSubmitBid}>Submit Bid</Button>
                     </div>
-                  </div>
-                )}
+                  )}
 
                 <div className="flex gap-4 text-xs">
                   {selectedTender.businessUnit && (
@@ -1068,45 +1073,49 @@ export default function TendersPage() {
                   </div>
                 )}
 
-                <div className="border-t border-border pt-4">
-                  <h3 className="text-sm font-medium mb-2">Next actions</h3>
-                  <p className="text-xs text-muted-foreground mb-4">
-                    Manage this tender and coordinate with suppliers.
-                  </p>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setShowScorecard(true)}
-                    >
-                      View full scorecard
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={async () => {
-                        await requestRevisedBids(selectedTender._id);
-                        await handleRefresh();
-                      }}
-                    >
-                      Request revised bids
-                    </Button>
-                    {selectedTender.evaluationSummary?.recommendedSupplier && (
+                {!isSupplier && (
+                  <div className="border-t border-border pt-4">
+                    <h3 className="text-sm font-medium mb-2">Next actions</h3>
+                    <p className="text-xs text-muted-foreground mb-4">
+                      Manage this tender and coordinate with suppliers.
+                    </p>
+                    <div className="flex gap-2">
                       <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowScorecard(true)}
+                      >
+                        View full scorecard
+                      </Button>
+                      <Button
+                        variant="outline"
                         size="sm"
                         onClick={async () => {
-                          await awardTender(
-                            selectedTender._id,
-                            selectedTender.evaluationSummary.recommendedSupplier
-                          );
+                          await requestRevisedBids(selectedTender._id);
                           await handleRefresh();
                         }}
                       >
-                        Award tender
+                        Request revised bids
                       </Button>
-                    )}
+                      {selectedTender.evaluationSummary
+                        ?.recommendedSupplier && (
+                        <Button
+                          size="sm"
+                          onClick={async () => {
+                            await awardTender(
+                              selectedTender._id,
+                              selectedTender.evaluationSummary
+                                .recommendedSupplier
+                            );
+                            await handleRefresh();
+                          }}
+                        >
+                          Award tender
+                        </Button>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           )}
@@ -1118,10 +1127,7 @@ export default function TendersPage() {
             Branch: <span className="text-primary">Global HQ</span>
           </span>
           <span>
-            Last updated:{" "}
-            <span className="font-medium">
-              {new Date().toLocaleTimeString()}
-            </span>
+            Total tenders: <span className="font-medium">{tenders.length}</span>
           </span>
         </div>
       </footer>

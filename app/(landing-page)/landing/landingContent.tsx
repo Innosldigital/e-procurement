@@ -11,8 +11,12 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-              <Shield className="h-5 w-5 text-primary-foreground" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg">
+              <img
+                src="/apple-icon.png"
+                alt="Inno-SL Procurement"
+                className="w-8 h-8"
+              />
             </div>
             <span className="text-lg font-semibold tracking-tight text-foreground">
               Inno-SL Procurement
@@ -90,10 +94,11 @@ export default function LandingPage() {
             <div className="relative lg:order-last">
               <div className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop"
-                  alt="Procurement Documents"
-                  width={800}
-                  height={600}
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop"
+                  alt="Digital procurement dashboard showing tenders, bids, and analytics"
+                  width={1200}
+                  height={800}
+                  priority
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -171,6 +176,7 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* === FEATURES SECTION === */}
       <section
         id="features"
         className="border-b border-border/40 bg-muted/30 py-24 lg:py-32"
@@ -235,6 +241,7 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* === WORKFLOW SECTION === */}
       <section
         id="workflow"
         className="border-b border-border/40 py-24 lg:py-32"
@@ -324,6 +331,7 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* === TRUST SECTION === */}
       <section
         id="trust"
         className="border-b border-border/40 bg-muted/30 py-24 lg:py-32"
@@ -411,6 +419,7 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* === FINAL CTA === */}
       <section className="relative overflow-hidden bg-primary py-24 text-primary-foreground lg:py-32">
         <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
           <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight lg:text-5xl">
@@ -441,13 +450,18 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* === FOOTER === */}
       <footer className="border-t border-border bg-background">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
           <div className="grid gap-8 md:grid-cols-4">
             <div>
               <div className="mb-4 flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                  <Shield className="h-4 w-4 text-primary-foreground" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg">
+                  <img
+                    src="/apple-icon.png"
+                    alt="Inno-SL Procurement"
+                    className="w-8 h-8"
+                  />
                 </div>
                 <span className="font-semibold text-foreground">
                   Innovation SL

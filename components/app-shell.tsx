@@ -9,7 +9,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  if (pathname.startsWith("/onboarding") || pathname === "/_not-found") {
+  if (
+    pathname.startsWith("/onboarding") ||
+    pathname === "/_not-found" ||
+    pathname.startsWith("/landing") ||
+    pathname.startsWith("/sign-in") ||
+    pathname.startsWith("/sign-up")
+  ) {
     return <div className="min-h-screen">{children}</div>;
   }
 

@@ -269,11 +269,19 @@ export async function createTender(data: {
       return { success: false, error: "Unauthorized" };
     }
 
+    // 🔍 ADD DIAGNOSTIC LOGGING HERE
+    console.log("=== ENVIRONMENT CHECK ===");
+    console.log("RESEND_API_KEY exists:", !!process.env.RESEND_API_KEY);
+    console.log("RESEND_API_KEY length:", process.env.RESEND_API_KEY?.length);
+    console.log("NEXT_PUBLIC_APP_URL:", process.env.NEXT_PUBLIC_APP_URL);
+    console.log("RESEND_FROM_EMAIL:", process.env.RESEND_FROM_EMAIL);
+    console.log("========================");
+
     await dbConnect();
 
     // Generate tender ID
     const count = await Tender.countDocuments();
-    const tenderId = `RFP-${(count + 2300).toString()}`;
+    const tenderId = `${data.type}-${(count + 2300).toString()}`;
 
     // Ensure tenderDocuments is properly formatted
     const tenderDocuments = Array.isArray(data.tenderDocuments)
@@ -301,8 +309,8 @@ export async function createTender(data: {
       closeDate: data.closeDate,
       publishedDate: new Date(),
       tenderDocuments: tenderDocuments,
-      stage: "Planned",
-      status: "draft",
+      stage: "Open", // Changed from "Planned" to "Open" so suppliers can bid immediately
+      status: "published", // Changed from "draft" to "published"
       responses: 0,
       owner: userId,
       keyDates: {
@@ -311,7 +319,7 @@ export async function createTender(data: {
       bids: [],
       timeline: [
         {
-          event: "Tender created",
+          event: "Tender created and published",
           date: new Date().toISOString(),
           owner: userId,
         },
@@ -319,70 +327,274 @@ export async function createTender(data: {
     };
 
     console.log(
-      "[v0] Creating tender with data:",
+      "[createTender] Creating tender with data:",
       JSON.stringify(tenderData, null, 2)
     );
 
     const tender = await Tender.create(tenderData);
 
-    console.log("[v0] Tender created successfully:", tender._id);
+    console.log("[createTender] Tender created successfully:", tender._id);
 
-    // Send notifications to suppliers
+    // Fetch all approved suppliers
     const suppliers = await Supplier.find({ approved: true })
-      .select(["ownerUserId", "name", "onboarding.email"])
+      .select(["ownerUserId", "name", "onboarding.email", "category", "region"])
       .lean();
 
+    // 🔍 ADD THIS LOGGING
+    console.log("=== SUPPLIERS CHECK ===");
+    console.log(`Total approved suppliers found: ${suppliers.length}`);
+    suppliers.forEach((s: any, idx: number) => {
+      console.log(`Supplier ${idx + 1}:`, {
+        name: s.name,
+        hasUserId: !!s.ownerUserId,
+        userId: s.ownerUserId,
+        hasEmail: !!s?.onboarding?.email,
+        email: s?.onboarding?.email,
+      });
+    });
+    console.log("========================");
+
+    console.log(`[createTender] Found ${suppliers.length} approved suppliers`);
+
+    // Initialize Resend if API key exists
     const apiKey = process.env.RESEND_API_KEY;
     const resend = apiKey ? new Resend(apiKey) : null;
 
-    await Promise.all(
-      (suppliers || []).map(async (s: any) => {
-        const userId = String(s.ownerUserId || "");
-        if (userId) {
-          await createNotification({
-            userId,
+    if (!resend) {
+      console.warn(
+        "[createTender] ⚠️ RESEND_API_KEY not found - emails will not be sent"
+      );
+    }
+
+    // Send notifications and emails to all approved suppliers
+    // const notificationPromises = suppliers.map(async (s: any) => {
+    //   try {
+    //     const supplierUserId = String(s.ownerUserId || "");
+    //     const supplierEmail = String(s?.onboarding?.email || "");
+    //     const supplierName = String(s.name || "Supplier");
+
+    //     // Create in-app notification
+    //     if (supplierUserId) {
+    //       console.log(
+    //         `[createTender] Creating notification for user: ${supplierUserId}`
+    //       );
+
+    //       await createNotification({
+    //         userId: supplierUserId,
+    //         type: "tender_published",
+    //         title: "New Tender Published",
+    //         message: `${tender.title} (${
+    //           tender.tenderId
+    //         }) has been published. Category: ${tender.category || "General"}`,
+    //         actionUrl: `/tenders`,
+    //         priority: "medium",
+    //         metadata: {
+    //           tenderId: tender.tenderId,
+    //           tenderTitle: tender.title,
+    //           category: tender.category,
+    //           region: tender.region,
+    //           closeDate: tender.closeDate,
+    //           estimatedValue: tender.estimatedValue,
+    //         },
+    //       });
+
+    //       console.log(
+    //         `[createTender] ✅ Notification created for ${supplierName}`
+    //       );
+    //     }
+
+    //     // Send email notification
+    //     if (supplierEmail && resend) {
+    //       console.log(`[createTender] Sending email to: ${supplierEmail}`);
+
+    //       const emailResult = await resend.emails.send({
+    //         from:
+    //           process.env.RESEND_FROM_EMAIL ||
+    //           "InnoSL Procurement <no-reply@eprocurement.local>",
+    //         to: supplierEmail,
+    //         subject: `New Tender Published: ${tender.title}`,
+    //         html: `
+    //           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
+    //             <div style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    //               <h2 style="color: #1f2937; margin-top: 0;">New Tender Opportunity</h2>
+
+    //               <p style="color: #4b5563; font-size: 16px;">Hello ${supplierName},</p>
+
+    //               <p style="color: #4b5563; font-size: 16px;">
+    //                 A new tender has been published that may be of interest to you:
+    //               </p>
+
+    //               <div style="background-color: #f3f4f6; padding: 20px; border-radius: 6px; margin: 20px 0;">
+    //                 <h3 style="color: #1f2937; margin-top: 0; font-size: 18px;">
+    //                   ${tender.title}
+    //                 </h3>
+    //                 <p style="color: #6b7280; margin: 5px 0;">
+    //                   <strong>Tender ID:</strong> ${tender.tenderId}
+    //                 </p>
+    //                 <p style="color: #6b7280; margin: 5px 0;">
+    //                   <strong>Type:</strong> ${tender.type}
+    //                 </p>
+    //                 ${
+    //                   tender.category
+    //                     ? `<p style="color: #6b7280; margin: 5px 0;">
+    //                   <strong>Category:</strong> ${tender.category}
+    //                 </p>`
+    //                     : ""
+    //                 }
+    //                 ${
+    //                   tender.region
+    //                     ? `<p style="color: #6b7280; margin: 5px 0;">
+    //                   <strong>Region:</strong> ${tender.region}
+    //                 </p>`
+    //                     : ""
+    //                 }
+    //                 ${
+    //                   tender.estimatedValue
+    //                     ? `<p style="color: #6b7280; margin: 5px 0;">
+    //                   <strong>Estimated Value:</strong> $${tender.estimatedValue.toLocaleString()}
+    //                 </p>`
+    //                     : ""
+    //                 }
+    //                 ${
+    //                   tender.closeDate
+    //                     ? `<p style="color: #dc2626; margin: 5px 0; font-weight: bold;">
+    //                   <strong>Close Date:</strong> ${new Date(
+    //                     tender.closeDate
+    //                   ).toLocaleDateString("en-US", {
+    //                     weekday: "long",
+    //                     year: "numeric",
+    //                     month: "long",
+    //                     day: "numeric",
+    //                   })}
+    //                 </p>`
+    //                     : ""
+    //                 }
+    //               </div>
+
+    //               ${
+    //                 tender.sourcingObjective
+    //                   ? `<div style="margin: 20px 0;">
+    //                 <h4 style="color: #1f2937; font-size: 14px; margin-bottom: 8px;">Sourcing Objective:</h4>
+    //                 <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">
+    //                   ${tender.sourcingObjective}
+    //                 </p>
+    //               </div>`
+    //                   : ""
+    //               }
+
+    //               <div style="margin-top: 30px; text-align: center;">
+    //                 <a href="${process.env.NEXT_PUBLIC_APP_URL || ""}/tenders"
+    //                    style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">
+    //                   View Tender & Submit Bid
+    //                 </a>
+    //               </div>
+
+    //               <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+    //                 <p style="color: #9ca3af; font-size: 12px; margin: 0;">
+    //                   This is an automated notification from InnoSL Procurement System.
+    //                   Please log in to your account to submit your bid and view full tender details.
+    //                 </p>
+    //               </div>
+    //             </div>
+    //           </div>
+    //         `,
+    //       });
+
+    //       console.log(
+    //         `[createTender] ✅ Email sent to ${supplierName}:`,
+    //         emailResult.data?.id
+    //       );
+    //     }
+    //   } catch (error) {
+    //     console.error(
+    //       `[createTender] ❌ Error notifying supplier ${s.name}:`,
+    //       error
+    //     );
+    //     // Continue with other suppliers even if one fails
+    //   }
+    // });
+
+    // Wait for all notifications to be sent
+    // await Promise.allSettled(notificationPromises);
+    // In tender-actions.ts, replace the notification creation section:
+
+    const notificationPromises = suppliers.map(async (s: any) => {
+      try {
+        const supplierUserId = String(s.ownerUserId || "");
+        const supplierEmail = String(s?.onboarding?.email || "");
+        const supplierName = String(s.name || "Supplier");
+
+        // Create in-app notification
+        if (supplierUserId) {
+          console.log(
+            `[createTender] 🔔 Creating notification for: ${supplierName} (${supplierUserId})`
+          );
+
+          const notifResult = await createNotification({
+            userId: supplierUserId,
             type: "tender_published",
-            title: "New tender published",
-            message: `${tender.title} (${tender.tenderId}) has been published`,
-            actionUrl: `/tenders/${tender._id}`,
+            title: "New Tender Published",
+            message: `${tender.title} (${
+              tender.tenderId
+            }) has been published. Category: ${tender.category || "General"}`,
+            actionUrl: `/tenders`,
             priority: "medium",
             metadata: {
               tenderId: tender.tenderId,
+              tenderTitle: tender.title,
               category: tender.category,
               region: tender.region,
+              closeDate: tender.closeDate,
+              estimatedValue: tender.estimatedValue,
             },
           });
-        }
-        const to = String(s?.onboarding?.email || "");
-        if (to && resend) {
-          try {
-            await resend.emails.send({
-              from: "no-reply@eprocurement.local",
-              to,
-              subject: `New Tender: ${tender.title}`,
-              html:
-                `<div style="font-family:Arial,sans-serif;font-size:14px;color:#222">` +
-                `<p>Hello ${s.name || "Supplier"},</p>` +
-                `<p>A new tender has been published:</p>` +
-                `<p><strong>${tender.title}</strong> (${tender.tenderId})</p>` +
-                `<p>Category: ${tender.category || ""} · Region: ${
-                  tender.region || ""
-                }</p>` +
-                `<p>Close date: ${
-                  tender.closeDate
-                    ? new Date(tender.closeDate).toLocaleDateString()
-                    : "TBD"
-                }</p>` +
-                `<p><a href="${
-                  process.env.NEXT_PUBLIC_APP_URL || ""
-                }/tenders">View tenders</a></p>` +
-                `</div>`,
-            });
-          } catch (err) {
-            console.error("[v0] Error sending email:", err);
+
+          // CHECK THE RESULT
+          if (notifResult.success) {
+            console.log(
+              `[createTender] ✅ Notification created for ${supplierName}:`,
+              notifResult.data?._id
+            );
+          } else {
+            console.error(
+              `[createTender] ❌ Notification FAILED for ${supplierName}:`,
+              notifResult.error
+            );
           }
+        } else {
+          console.warn(`[createTender] ⚠️ No userId for ${supplierName}`);
         }
-      })
+
+        // Send email notification
+        if (supplierEmail && resend) {
+          console.log(`[createTender] 📧 Sending email to: ${supplierEmail}`);
+
+          const emailResult = await resend.emails.send({
+            from:
+              process.env.RESEND_FROM_EMAIL ||
+              "InnoSL Procurement <onboarding@innoslprocurement.com>",
+            to: supplierEmail,
+            subject: `New Tender Published: ${tender.title}`,
+            html: `...`, // your existing HTML
+          });
+
+          console.log(
+            `[createTender] ✅ Email sent to ${supplierName}:`,
+            emailResult.data?.id
+          );
+        }
+      } catch (error) {
+        console.error(
+          `[createTender] ❌ Error notifying supplier ${s.name}:`,
+          error
+        );
+      }
+    });
+
+    await Promise.allSettled(notificationPromises);
+
+    console.log(
+      `[createTender] ✅ Notifications sent to ${suppliers.length} suppliers`
     );
 
     revalidatePath("/tenders");
@@ -391,9 +603,10 @@ export async function createTender(data: {
     return {
       success: true,
       data: JSON.parse(JSON.stringify(tender)),
+      message: `Tender created successfully. ${suppliers.length} suppliers notified.`,
     };
   } catch (error) {
-    console.error("[v0] Error creating tender:", error);
+    console.error("[createTender] ❌ Error creating tender:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Failed to create tender",
