@@ -203,19 +203,6 @@ export default function OnboardingContent() {
 
       setLoading("vendor");
 
-      async function uploadFiles(list: FileList | null, folder: string) {
-        if (!list || list.length === 0) return [];
-        const fd = new FormData();
-        Array.from(list).forEach((f) => fd.append("files", f));
-        fd.append("folder", folder);
-        const resp = await fetch("/api/upload", { method: "POST", body: fd });
-        if (!resp.ok) {
-          throw new Error(`Upload failed: ${resp.statusText}`);
-        }
-        const json = await resp.json();
-        return json && json.success ? json.data : [];
-      }
-
       async function uploadFilesWithEdgeStore(list: FileList | null) {
         if (!list || list.length === 0) return [];
 
@@ -264,35 +251,6 @@ export default function OnboardingContent() {
         businessDurationFiles
       );
 
-      // const businessRegistrationCertificateUploads = await uploadFiles(
-      //   businessRegCertFiles,
-      //   "onboarding/business_registration"
-      // );
-      // const taxClearanceCertificateUploads = await uploadFiles(
-      //   taxClearanceFiles,
-      //   "onboarding/tax_clearance"
-      // );
-      // const gstVatRegistrationCertificateUploads = await uploadFiles(
-      //   gstVatFiles,
-      //   "onboarding/gst_vat"
-      // );
-      // const businessLicenseUploads = await uploadFiles(
-      //   businessLicenseFiles,
-      //   "onboarding/business_license"
-      // );
-      // const nassitCertificateUploads = await uploadFiles(
-      //   nassitFiles,
-      //   "onboarding/nassit"
-      // );
-      // const sectorSpecificCertificateUploads = await uploadFiles(
-      //   sectorCertFiles,
-      //   "onboarding/sector_specific"
-      // );
-      // const businessDurationDocuments = await uploadFiles(
-      //   businessDurationFiles,
-      //   "onboarding/business_duration"
-      // );
-
       const registrationCertificateUploads = [
         ...businessRegistrationCertificateUploads,
         ...taxClearanceCertificateUploads,
@@ -336,6 +294,16 @@ export default function OnboardingContent() {
 
       if (res && res.success) {
         console.log("Success! Supplier created:", res.data);
+
+        // Log email status
+        if (res.emailStatus) {
+          console.log("Email notifications:", {
+            supplierEmailSent: res.emailStatus.supplierEmailSent,
+            adminEmailsSent: res.emailStatus.adminEmailsSent,
+            adminEmailsFailed: res.emailStatus.adminEmailsFailed,
+          });
+        }
+
         // Change to success state
         setLoading("success");
 
@@ -347,7 +315,7 @@ export default function OnboardingContent() {
           } else {
             router.push("/onboarding");
           }
-        }, 1000);
+        }, 2000); // Increased to 2 seconds to show success message
       } else {
         setLoading(null);
         const errorMsg =
