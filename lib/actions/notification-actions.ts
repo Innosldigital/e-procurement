@@ -5,41 +5,15 @@ import dbConnect from "@/lib/mongodb";
 import { Notification } from "../models/Notification";
 import { revalidatePath } from "next/cache";
 
-// export async function getNotifications(limit = 20) {
-//   try {
-//     const { userId } = await auth();
-//     if (!userId) {
-//       throw new Error("Unauthorized");
-//     }
-
-//     await dbConnect();
-
-//     const notifications = await Notification.find({ userId })
-//       .sort({ createdAt: -1 })
-//       .limit(limit)
-//       .lean();
-
-//     return {
-//       success: true,
-//       data: JSON.parse(JSON.stringify(notifications)),
-//     };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       error: error.message,
-//     };
-//   }
-// }
-
 export async function getNotifications(limit = 20) {
   try {
     const { userId } = await auth();
 
-    console.log("=== getNotifications SERVER ===");
-    console.log("Authenticated userId:", userId);
+    // console.log("=== getNotifications SERVER ===");
+    // console.log("Authenticated userId:", userId);
 
     if (!userId) {
-      console.error("No userId - unauthorized");
+      // console.error("No userId - unauthorized");
       throw new Error("Unauthorized");
     }
 
@@ -59,14 +33,14 @@ export async function getNotifications(limit = 20) {
       console.log(`  ${i + 1}. ${n.type} - ${n.title} (read: ${n.read})`);
     });
 
-    console.log("================================");
+    // console.log("================================");
 
     return {
       success: true,
       data: JSON.parse(JSON.stringify(notifications)),
     };
   } catch (error: any) {
-    console.error("getNotifications error:", error);
+    // console.error("getNotifications error:", error);
     return {
       success: false,
       error: error.message,
