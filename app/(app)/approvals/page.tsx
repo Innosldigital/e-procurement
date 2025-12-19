@@ -34,7 +34,7 @@ export default async function ApprovalsPage(props: any) {
     const md = (user?.publicMetadata || {}) as any;
     const rawRole = String(md.role || "");
     const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
-    allowed = ["admin", "company", "superadmin"].includes(normalized);
+    allowed = ["admin", "superadmin"].includes(normalized);
   }
 
   if (!allowed) {
@@ -194,11 +194,11 @@ export default async function ApprovalsPage(props: any) {
                       approvals.slice(0, 10).map((item: any) => (
                         <Link
                           key={String(item._id)}
-                          href={`/approvals?id=${String(item._id)}`}
+                          href={`/approvals?id=Nle{String(item._id)}`}
                           className="block"
                         >
                           <div
-                            className={`p-3 rounded-lg cursor-pointer border transition-colors ${
+                            className={`p-3 rounded-lg cursor-pointer border transition-colors Nle{
                               String(selected?._id) === String(item._id)
                                 ? "bg-accent/50 border-border"
                                 : "hover:bg-accent border-transparent hover:border-border"
@@ -223,7 +223,7 @@ export default async function ApprovalsPage(props: any) {
                                 </span>
                               </div>
                               <span className="font-medium">
-                                ${fmtAmount(item.amount)}
+                                Nle{fmtAmount(item.amount)}
                               </span>
                             </div>
                           </div>
@@ -273,7 +273,7 @@ export default async function ApprovalsPage(props: any) {
                               Total amount
                             </span>
                             <div className="font-medium">
-                              ${selected ? fmtAmount(selected.amount) : "-"}
+                              Nle{selected ? fmtAmount(selected.amount) : "-"}
                             </div>
                           </div>
                           <div>
@@ -368,8 +368,8 @@ export default async function ApprovalsPage(props: any) {
                               <td className="p-2">Digital ads package (Q2)</td>
                               <td className="text-right p-2">1</td>
                               <td className="text-right p-2">Package</td>
-                              <td className="text-right p-2">$32,000</td>
-                              <td className="text-right p-2">$32,000</td>
+                              <td className="text-right p-2">Nle32,000</td>
+                              <td className="text-right p-2">Nle32,000</td>
                             </tr>
                             <tr className="border-t">
                               <td className="p-2">
@@ -377,15 +377,15 @@ export default async function ApprovalsPage(props: any) {
                               </td>
                               <td className="text-right p-2">1</td>
                               <td className="text-right p-2">Event</td>
-                              <td className="text-right p-2">$24,000</td>
-                              <td className="text-right p-2">$24,000</td>
+                              <td className="text-right p-2">Nle24,000</td>
+                              <td className="text-right p-2">Nle24,000</td>
                             </tr>
                             <tr className="border-t">
                               <td className="p-2">Creative agency support</td>
                               <td className="text-right p-2">40</td>
                               <td className="text-right p-2">Hours</td>
-                              <td className="text-right p-2">$170</td>
-                              <td className="text-right p-2">$6,800</td>
+                              <td className="text-right p-2">Nle170</td>
+                              <td className="text-right p-2">Nle6,800</td>
                             </tr>
                           </tbody>
                         </table>
