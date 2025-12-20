@@ -181,40 +181,99 @@ export default function ReportsPage() {
               try {
                 const { jsPDF } = await import("jspdf");
                 const html2canvas = (await import("html2canvas")).default;
+
                 const canvas = await html2canvas(node, {
                   scale: 2,
                   useCORS: true,
+                  logging: false,
+                  backgroundColor: "#ffffff",
                   windowWidth: node.scrollWidth,
+                  onclone: (clonedDoc) => {
+                    // Hide all buttons in the clone (e.g. Export, Settings)
+                    const buttons = clonedDoc.querySelectorAll("button");
+                    buttons.forEach((btn) => (btn.style.display = "none"));
+
+                    // Add a professional header to the cloned node
+                    const container = clonedDoc.querySelector(".p-8");
+                    if (container) {
+                      const headerDiv = clonedDoc.createElement("div");
+                      headerDiv.style.marginBottom = "24px";
+                      headerDiv.style.borderBottom = "2px solid #e5e7eb";
+                      headerDiv.style.paddingBottom = "16px";
+                      headerDiv.style.display = "flex";
+                      headerDiv.style.justifyContent = "space-between";
+                      headerDiv.style.alignItems = "flex-end";
+
+                      headerDiv.innerHTML = `
+                        <div>
+                          <h1 style="font-size: 24px; font-weight: 700; color: #111827; line-height: 1.2;">Innovation-SL Procurement</h1>
+                          <p style="font-size: 14px; color: #6b7280; margin-top: 4px;">Procurement Intelligence Report</p>
+                        </div>
+                        <div style="text-align: right;">
+                          <p style="font-size: 12px; color: #9ca3af; font-weight: 500;">GENERATED ON</p>
+                          <p style="font-size: 14px; color: #374151;">${new Date().toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}</p>
+                        </div>
+                      `;
+                      container.prepend(headerDiv);
+                    }
+                  },
                 });
+
                 const imgData = canvas.toDataURL("image/png");
-                const pdf = new jsPDF({ unit: "pt", format: "a4" });
-                const pageWidth = pdf.internal.pageSize.getWidth();
-                const pageHeight = pdf.internal.pageSize.getHeight();
-                const imgWidth = pageWidth;
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                let heightLeft = imgHeight;
-                let position = 0;
-                pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-                position = -pageHeight;
+                const pdf = new jsPDF({
+                  orientation: "portrait",
+                  unit: "pt",
+                  format: "a4",
+                });
+
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const margin = 30;
+                const contentWidth = pdfWidth - margin * 2;
+                const contentHeight =
+                  (canvas.height * contentWidth) / canvas.width;
+                const printableHeight = pdfHeight - margin * 2;
+
+                let heightLeft = contentHeight;
+                let position = margin;
+
+                pdf.addImage(
+                  imgData,
+                  "PNG",
+                  margin,
+                  position,
+                  contentWidth,
+                  contentHeight
+                );
+                heightLeft -= printableHeight;
+
                 while (heightLeft > 0) {
+                  position -= printableHeight;
                   pdf.addPage();
                   pdf.addImage(
                     imgData,
                     "PNG",
-                    0,
+                    margin,
                     position,
-                    imgWidth,
-                    imgHeight
+                    contentWidth,
+                    contentHeight
                   );
-                  heightLeft -= pageHeight;
-                  position -= pageHeight;
+                  heightLeft -= printableHeight;
                 }
-                const name = `report-${new Date()
+
+                const name = `InnoslProcura_Report_${new Date()
                   .toISOString()
                   .slice(0, 10)}.pdf`;
                 pdf.save(name);
               } catch (e) {
+                console.error("PDF generation failed:", e);
               } finally {
                 setPdfLoading(false);
               }
