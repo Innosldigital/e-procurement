@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import dbConnect from "@/lib/mongodb";
 import { PurchaseOrder } from "../models/PurchaseOrder";
@@ -292,6 +293,11 @@ export async function createPurchaseOrder(data: {
   lineItems: Array<{ description: string; qty: number; unitPrice: number }>;
 }) {
   try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+
     await dbConnect();
 
     const count = await PurchaseOrder.countDocuments();
@@ -335,7 +341,7 @@ export async function createPurchaseOrder(data: {
       requester: data.requester,
       department: data.department,
       linkedRequisition: data.linkedRequisition,
-      currency: data.currency || "USD",
+      currency: data.currency || "NLE",
       purpose: data.purpose,
       paymentTerms: data.paymentTerms,
       keyDates: {

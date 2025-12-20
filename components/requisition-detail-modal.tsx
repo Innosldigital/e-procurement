@@ -76,11 +76,9 @@ export function RequisitionDetailModal({
   };
 
   const fmtAmount = (n: number) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    `Nle ${new Intl.NumberFormat("en-US", {
       minimumFractionDigits: 2,
-    }).format(n);
+    }).format(n)}`;
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">

@@ -289,7 +289,7 @@ export default function PurchaseOrdersPage() {
                       </div>
                       <div className="flex items-center justify-between text-sm">
                         <span className="font-medium text-gray-900">
-                          ${fmtAmount(po.total)}
+                          {po.currency || "NLE"} {fmtAmount(po.total)}
                         </span>
                         <span className="text-gray-500">
                           {fmtDate(po.keyDates?.requestedDelivery)}

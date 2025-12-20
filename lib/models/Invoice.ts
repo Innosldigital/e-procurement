@@ -16,7 +16,7 @@ const InvoiceSchema = new Schema(
     invoiceDate: { type: Date },
     amount: { type: Number, required: true },
     entity: { type: String },
-    currency: { type: String, default: "USD" },
+    currency: { type: String, default: "NLE" },
     matching: {
       status: String,
       poMatch: String,

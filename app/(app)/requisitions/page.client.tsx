@@ -372,7 +372,7 @@ export function CreateRequisitionForm({
             <div className="flex justify-between items-center pt-6 border-t font-semibold text-lg">
               <span>Total Amount:</span>
               <span>
-                $
+                Nle{" "}
                 {totalAmount.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                 })}

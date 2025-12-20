@@ -170,7 +170,7 @@ export async function updateRequisition(id: string, updates: any) {
           title: "Requisition Approved",
           message: `Your requisition ${
             req.requisitionId ?? ""
-          } has been approved for $${(req.amount ?? 0).toLocaleString()}`,
+          } has been approved for Nle${(req.amount ?? 0).toLocaleString()}`,
           actionUrl: `/requisitions/${req._id}`,
           priority: "medium",
           metadata: {

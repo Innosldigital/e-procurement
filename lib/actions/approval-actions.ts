@@ -1,10 +1,78 @@
 "use server";
 
+import mongoose from "mongoose";
 import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs/server";
 import dbConnect from "@/lib/mongodb";
 import { createNotification } from "../actions/notification-actions";
 import { Approval } from "../models/Approval";
+import { Requisition } from "../models/Requisition";
+import { PurchaseOrder } from "../models/PurchaseOrder";
+import { sendEmail } from "./admin-approval-actions";
+
+async function getRequesterInfo(approval: any) {
+  try {
+    let userId = "";
+    if (approval.type === "Requisition") {
+      let req: any = null;
+      if (mongoose.Types.ObjectId.isValid(approval.itemId)) {
+        req = await Requisition.findById(approval.itemId).lean();
+      }
+      // If not found or invalid ID, try by requisitionId
+      if (!req) {
+        req = await Requisition.findOne({
+          requisitionId: approval.itemId,
+        }).lean();
+      }
+      if (req) userId = req.createdBy || "";
+    } else if (approval.type === "Purchase Order") {
+      let po: any = null;
+      // Try finding by _id
+      if (mongoose.Types.ObjectId.isValid(approval.itemId)) {
+        po = await PurchaseOrder.findById(approval.itemId).lean();
+      }
+      if (!po) {
+        po = await PurchaseOrder.findOne({ poNumber: approval.itemId }).lean();
+      }
+
+      if (po) {
+        // Try to find linked requisition to get createdBy
+        if (po.linkedRequisition) {
+          let req: any = null;
+          // Try finding by _id (linkedRequisition might be ID or String ID)
+          if (mongoose.Types.ObjectId.isValid(po.linkedRequisition)) {
+            req = await Requisition.findById(po.linkedRequisition).lean();
+          }
+          if (!req) {
+            req = await Requisition.findOne({
+              requisitionId: po.linkedRequisition,
+            }).lean();
+          }
+          if (req) userId = req.createdBy || "";
+        }
+        // Fallback: if PO has a requester field that happens to be a userId (unlikely but possible)
+        if (!userId && po.requester && !po.requester.includes(" ")) {
+          // Heuristic: if no spaces, might be an ID?
+          // userId = po.requester;
+        }
+      }
+    }
+
+    if (!userId) return null;
+
+    const client: any = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const email = user.emailAddresses[0]?.emailAddress;
+    const name =
+      `${user.firstName || ""} ${user.lastName || ""}`.trim() || "User";
+
+    return { userId, email, name };
+  } catch (e) {
+    console.error("Error getting requester info:", e);
+    return null;
+  }
+}
 
 export async function getApprovals() {
   try {
@@ -108,11 +176,15 @@ export async function approveRequest(id: string, comments?: string) {
     };
     const resourceType = ap.type ? ap.type.toLowerCase() : "request";
 
+    // Get requester info
+    const requester = await getRequesterInfo(ap);
+    const targetUserId = requester?.userId || "REQUESTER_USER_ID";
+
     await createNotification({
-      userId: "REQUESTER_USER_ID",
+      userId: targetUserId,
       type: "approval_pending",
       title: `${resourceType} Approved`,
-      message: `Your ${resourceType} ${ap.itemId ?? ""} for $${(
+      message: `Your ${resourceType} ${ap.itemId ?? ""} for Nle${(
         ap.amount ?? 0
       ).toLocaleString()} has been approved`,
       actionUrl: `/${resourceType}s/${ap.itemId ?? ""}`,
@@ -123,6 +195,23 @@ export async function approveRequest(id: string, comments?: string) {
         amount: ap.amount ?? 0,
       },
     });
+
+    // Send email
+    if (requester?.email) {
+      await sendEmail(
+        requester.email,
+        `${resourceType} Approved`,
+        `<p>Your ${resourceType} <strong>${
+          ap.itemId ?? ""
+        }</strong> for <strong>Nle${(
+          ap.amount ?? 0
+        ).toLocaleString()}</strong> has been approved.</p>`,
+        `${process.env.NEXT_PUBLIC_APP_URL || ""}/${resourceType}s/${
+          ap.itemId ?? ""
+        }`,
+        "View Details"
+      );
+    }
 
     revalidatePath("/approvals");
 
@@ -289,6 +378,47 @@ export async function bulkApprove(ids: string[], comments?: string) {
         { _id: { $in: ids } },
         { $push: { comments: { author: userId, text: comments, date: now } } }
       );
+    }
+
+    // Send notifications and emails for each approved item
+    const approvals = await Approval.find({ _id: { $in: ids } }).lean();
+    for (const approval of approvals) {
+      const ap = approval as any;
+      const resourceType = ap.type ? ap.type.toLowerCase() : "request";
+      const requester = await getRequesterInfo(ap);
+      const targetUserId = requester?.userId || "REQUESTER_USER_ID";
+
+      await createNotification({
+        userId: targetUserId,
+        type: "approval_pending",
+        title: `${resourceType} Approved`,
+        message: `Your ${resourceType} ${ap.itemId ?? ""} for Nle${(
+          ap.amount ?? 0
+        ).toLocaleString()} has been approved`,
+        actionUrl: `/${resourceType}s/${ap.itemId ?? ""}`,
+        priority: "medium",
+        metadata: {
+          approvalId: ap._id,
+          itemId: ap.itemId ?? "",
+          amount: ap.amount ?? 0,
+        },
+      });
+
+      if (requester?.email) {
+        await sendEmail(
+          requester.email,
+          `${resourceType} Approved`,
+          `<p>Your ${resourceType} <strong>${
+            ap.itemId ?? ""
+          }</strong> for <strong>Nle${(
+            ap.amount ?? 0
+          ).toLocaleString()}</strong> has been approved.</p>`,
+          `${process.env.NEXT_PUBLIC_APP_URL || ""}/${resourceType}s/${
+            ap.itemId ?? ""
+          }`,
+          "View Details"
+        );
+      }
     }
 
     revalidatePath("/approvals");

@@ -24,7 +24,7 @@ const PurchaseOrderSchema = new Schema(
     requester: { type: String },
     department: { type: String },
     linkedRequisition: { type: String },
-    currency: { type: String, default: "USD" },
+    currency: { type: String, default: "NLE" },
     purpose: { type: String },
     paymentTerms: { type: String },
     keyDates: {
