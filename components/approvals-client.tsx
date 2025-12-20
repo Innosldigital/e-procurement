@@ -260,7 +260,7 @@ export default function ApprovalsClient({
                         Total amount
                       </span>
                       <div className="font-medium">
-                        ${selected ? fmtAmount(selected.amount) : "-"}
+                        Nle{selected ? fmtAmount(selected.amount) : "-"}
                       </div>
                     </div>
                     <div>
@@ -268,7 +268,11 @@ export default function ApprovalsClient({
                         Budget impact
                       </span>
                       <div className="font-medium">
-                        Remaining after approval: $210,000
+                        {selected?.decisionContext?.budgetImpact
+                          ? `Remaining: Nle${fmtAmount(
+                              selected.decisionContext.budgetImpact
+                            )}`
+                          : "No budget data"}
                       </div>
                     </div>
                   </div>
@@ -301,23 +305,27 @@ export default function ApprovalsClient({
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">Category</span>
-                    <span>Marketing & events</span>
+                    <span>{selected?.decisionContext?.category || "-"}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">Needed by</span>
-                    <span>2025-04-01</span>
+                    <span>{fmtDate(selected?.decisionContext?.neededBy)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">
                       Supplier preference
                     </span>
-                    <span>Existing panel suppliers only</span>
+                    <span>
+                      {selected?.decisionContext?.supplierPreference || "-"}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">
                       Approval route
                     </span>
-                    <span>You → Finance → Marketing Director</span>
+                    <span>
+                      {selected?.decisionContext?.approvalRoute || "-"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -338,42 +346,84 @@ export default function ApprovalsClient({
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-t">
-                        <td className="p-2">Digital ads package (Q2)</td>
-                        <td className="text-right p-2">1</td>
-                        <td className="text-right p-2">Package</td>
-                        <td className="text-right p-2">$32,000</td>
-                        <td className="text-right p-2">$32,000</td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="p-2">
-                          Event sponsorship - Singapore summit
-                        </td>
-                        <td className="text-right p-2">1</td>
-                        <td className="text-right p-2">Event</td>
-                        <td className="text-right p-2">$24,000</td>
-                        <td className="text-right p-2">$24,000</td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="p-2">Creative agency support</td>
-                        <td className="text-right p-2">40</td>
-                        <td className="text-right p-2">Hours</td>
-                        <td className="text-right p-2">$170</td>
-                        <td className="text-right p-2">$6,800</td>
-                      </tr>
+                      {selected?.summary?.items?.map((item: any, i: number) => (
+                        <tr key={i} className="border-t">
+                          <td className="p-2">{item.description}</td>
+                          <td className="text-right p-2">{item.qty}</td>
+                          <td className="text-right p-2">{item.unit}</td>
+                          <td className="text-right p-2">
+                            Nle{fmtAmount(item.unitCost)}
+                          </td>
+                          <td className="text-right p-2">
+                            Nle{fmtAmount(item.total)}
+                          </td>
+                        </tr>
+                      ))}
+                      {!selected?.summary?.items?.length && (
+                        <tr className="border-t">
+                          <td
+                            colSpan={5}
+                            className="p-2 text-center text-muted-foreground"
+                          >
+                            No items
+                          </td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
               </div>
 
               <div className="pt-4 border-t">
-                <h3 className="text-sm font-medium mb-2">Comments & notes</h3>
-                <div className="bg-muted/30 p-3 rounded-lg text-xs">
-                  <p className="italic text-muted-foreground">
-                    "Budget aligned with Q2 regional plan. Please confirm final
-                    media split before issuing PO." - David Kim, 2025-03-13
-                  </p>
+                <h3 className="text-sm font-medium mb-3">Timeline</h3>
+                <div className="space-y-2 text-xs">
+                  {selected?.timeline?.map((event: any, i: number) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <div
+                        className={`w-1.5 h-1.5 rounded-full mt-1.5 ${
+                          event.event === "Waiting for your decision"
+                            ? "bg-warning"
+                            : "bg-primary"
+                        }`}
+                      ></div>
+                      <div>
+                        <div className="font-medium">{event.event}</div>
+                        <div className="text-muted-foreground">
+                          {fmtDate(event.timestamp)} • {event.actor}{" "}
+                          {event.details ? `• ${event.details}` : ""}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {!selected?.timeline?.length && (
+                    <div className="text-muted-foreground">
+                      No timeline events
+                    </div>
+                  )}
                 </div>
+              </div>
+
+              <div className="pt-4 border-t">
+                <h3 className="text-sm font-medium mb-2">Comments & notes</h3>
+                {selected?.comments?.length > 0 ? (
+                  <div className="space-y-2">
+                    {selected.comments.map((comment: any, i: number) => (
+                      <div
+                        key={i}
+                        className="bg-muted/30 p-3 rounded-lg text-xs"
+                      >
+                        <p className="italic text-muted-foreground">
+                          "{comment.text}" - {comment.author},{" "}
+                          {fmtDate(comment.date)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-xs text-muted-foreground">
+                    No comments
+                  </div>
+                )}
               </div>
 
               <div className="pt-4 border-t">
