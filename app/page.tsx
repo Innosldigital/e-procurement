@@ -310,9 +310,6 @@ export default async function DashboardPage() {
                   <span className="w-3 h-3 rounded-full bg-primary"></span>
                   Actual spend
                 </span>
-                {/* <span className="text-sm font-semibold">
-                  {`NLel{f$tNLe(spendVsBudget.actual / 1_000_000)}M`}
-                </span> */}
                 <span className="text-sm font-semibold">
                   {fmtNLeCompact(spendVsBudget.actual)}
                 </span>
@@ -322,9 +319,6 @@ export default async function DashboardPage() {
                   <span className="w-3 h-3 rounded-full bg-muted"></span>
                   Budget
                 </span>
-                {/* <span className="text-sm font-semibold">
-                  {`NLe lfm$NLe(spendVsBudget.budget / 1_000_000)}M`}
-                </span> */}
                 <span className="text-sm font-semibold">
                   {fmtNLeCompact(spendVsBudget.budget)}
                 </span>
@@ -334,15 +328,11 @@ export default async function DashboardPage() {
                   <span className="w-3 h-3 rounded-full bg-success"></span>
                   Savings
                 </span>
-                {/* <span className="text-sm font-semibold">
-                  {`NLe{fmtNLeCompact(spendVsBudget.savings)}`}
-                </span> */}
                 <span className="text-sm font-semibold">
                   {fmtNLeCompact(spendVsBudget.savings)}
                 </span>
               </div>
               <div className="pt-4 border-t">
-       
                 <p className="text-xs text-muted-foreground">
                   Top branch: {spendVsBudget.topBranch || "-"}
                 </p>
@@ -356,9 +346,9 @@ export default async function DashboardPage() {
 
         {/* Alerts */}
         <Card>
-          <CardHeader>
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div>
+          <CardHeader className="pb-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
                 <CardTitle className="text-base">
                   Alerts & notifications
                 </CardTitle>
@@ -366,12 +356,14 @@ export default async function DashboardPage() {
                   Items requiring your attention.
                 </CardDescription>
               </div>
+
               <span className="text-sm text-muted-foreground sm:shrink-0">
                 {notifications.filter((n) => !n.read).length} open
               </span>
             </div>
           </CardHeader>
-          <CardContent>
+
+          <CardContent className="pt-2">
             <div className="space-y-4">
               {notifications.length === 0 ? (
                 <div className="text-sm text-muted-foreground">
@@ -379,38 +371,31 @@ export default async function DashboardPage() {
                 </div>
               ) : (
                 notifications.slice(0, 3).map((n) => (
-                  <div
-                    key={String(n._id)}
-                    className="flex items-start justify-between"
-                  >
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
+                  <div key={String(n._id)} className="flex items-start gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <StatusBadge status={labelFromType(n.type)} />
                       </div>
-                      <p className="text-sm font-medium">{n.title}</p>
-                      <p className="text-xs text-muted-foreground">
+
+                      <p className="text-sm font-medium break-words">
+                        {n.title}
+                      </p>
+
+                      <p className="text-xs text-muted-foreground break-words">
                         {n.message}
                       </p>
                     </div>
                   </div>
                 ))
               )}
-              <div className="pt-2 flex flex-col gap-2 sm:flex-row">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 bg-transparent"
-                >
-                  Create requisition
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 bg-transparent"
-                >
-                  Create tender
-                </Button>
-                <Button size="sm" className="flex-1">
+
+              {/* ACTION BUTTONS */}
+              <div className="pt-2 flex flex-col gap-2 sm:grid sm:grid-cols-3">
+                <div className="w-full sm:col-span-2">
+                  <DashboardClient />
+                </div>
+
+                <Button size="sm" className="w-full">
                   View all alerts
                 </Button>
               </div>
