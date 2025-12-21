@@ -312,7 +312,7 @@ export default function OnboardingContent() {
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Products & Services</h3>
                   <Separator />
-                  <div className="space-y-4">
+                  {/* <div className="space-y-4">
                     <div className="space-y-3">
                       <Label>Product / Service Categories *</Label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-lg border border-border bg-muted/30">
@@ -386,6 +386,114 @@ export default function OnboardingContent() {
                       <Label>Lead Time *</Label>
                       <RadioGroup value={leadTime} onValueChange={setLeadTime}>
                         <div className="space-y-2 p-4 rounded-lg border border-border bg-muted/30">
+                          {[
+                            "1 day",
+                            "2 days",
+                            "3 days",
+                            "4 days",
+                            "1 week",
+                            "2 weeks",
+                            "1 month",
+                          ].map((opt) => (
+                            <div
+                              key={opt}
+                              className="flex items-center space-x-2"
+                            >
+                              <RadioGroupItem
+                                value={opt}
+                                id={`leadtime-${opt}`}
+                              />
+                              <Label
+                                htmlFor={`leadtime-${opt}`}
+                                className="text-sm font-normal cursor-pointer"
+                              >
+                                {opt}
+                              </Label>
+                            </div>
+                          ))}
+                        </div>
+                      </RadioGroup>
+                    </div>
+                  </div> */}
+                  <div className="space-y-4">
+                    {/* Product / Service Categories */}
+                    <div className="space-y-3">
+                      <Label>Product / Service Categories *</Label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg border border-border bg-muted/30">
+                        {[
+                          "Catering/Consumables",
+                          "Logistics",
+                          "​Merchandise & Stationery",
+                          "Facilities (Venue)",
+                        ].map((cat) => (
+                          <div
+                            key={cat}
+                            className="flex items-center space-x-2"
+                          >
+                            <Checkbox
+                              id={`cat-${cat}`}
+                              checked={productCategories.includes(cat)}
+                              onCheckedChange={(checked) => {
+                                setProductCategories((prev) =>
+                                  checked
+                                    ? [...prev, cat]
+                                    : prev.filter((c) => c !== cat)
+                                );
+                              }}
+                            />
+                            <Label
+                              htmlFor={`cat-${cat}`}
+                              className="text-sm font-normal cursor-pointer"
+                            >
+                              {cat}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Areas You Can Supply */}
+                    <div className="space-y-3">
+                      <Label>Areas You Can Supply *</Label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg border border-border bg-muted/30">
+                        {[
+                          "Western Area Urban",
+                          "Western Area Rural",
+                          "Eastern Province",
+                          "Southern Province",
+                          "Northern Province",
+                        ].map((area) => (
+                          <div
+                            key={area}
+                            className="flex items-center space-x-2"
+                          >
+                            <Checkbox
+                              id={`area-${area}`}
+                              checked={supplyAreas.includes(area)}
+                              onCheckedChange={(checked) => {
+                                setSupplyAreas((prev) =>
+                                  checked
+                                    ? [...prev, area]
+                                    : prev.filter((a) => a !== area)
+                                );
+                              }}
+                            />
+                            <Label
+                              htmlFor={`area-${area}`}
+                              className="text-sm font-normal cursor-pointer"
+                            >
+                              {area}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Lead Time */}
+                    <div className="space-y-3">
+                      <Label>Lead Time *</Label>
+                      <RadioGroup value={leadTime} onValueChange={setLeadTime}>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 p-3 sm:p-4 rounded-lg border border-border bg-muted/30">
                           {[
                             "1 day",
                             "2 days",
