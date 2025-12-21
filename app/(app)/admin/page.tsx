@@ -1715,6 +1715,86 @@ export default function UsersTable() {
                   </TableBody>
                 </Table>
               </div>
+              {/* ---------------- MOBILE USERS LIST ---------------- */}
+              <div className="md:hidden space-y-4">
+                {!loading &&
+                  currentUsers.map((user) => (
+                    <Card key={user.id} className="border shadow-sm">
+                      <CardContent className="p-4 space-y-3">
+                        <div className="flex items-center gap-3">
+                          <Avatar className="w-10 h-10">
+                            <AvatarImage
+                              src={user.photo || "/placeholder.svg"}
+                              alt={`${user.firstName} ${user.lastName}`}
+                            />
+                            <AvatarFallback>
+                              {user.firstName?.[0]}
+                              {user.lastName?.[0]}
+                            </AvatarFallback>
+                          </Avatar>
+
+                          <div className="flex-1 min-w-0">
+                            <p className="font-semibold truncate">
+                              {user.firstName} {user.lastName}
+                            </p>
+                            <p className="text-xs text-muted-foreground truncate">
+                              {user.email}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          {getStatusBadge(user)}
+
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="icon">
+                                <MoreHorizontal className="w-4 h-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+                              {canViewDetails(user) && (
+                                <>
+                                  <DropdownMenuItem
+                                    onClick={() => handleViewDetails(user)}
+                                  >
+                                    <Pencil className="w-4 h-4 mr-2" />
+                                    View Details
+                                  </DropdownMenuItem>
+                                  <DropdownMenuSeparator />
+                                </>
+                              )}
+
+                              {!isInvitation(user.id) && (
+                                <>
+                                  <DropdownMenuItem
+                                    onClick={() => handleEdit(user)}
+                                  >
+                                    <Pencil className="w-4 h-4 mr-2" />
+                                    Edit
+                                  </DropdownMenuItem>
+                                  <DropdownMenuSeparator />
+                                </>
+                              )}
+
+                              <DropdownMenuItem
+                                onClick={() => handleDelete(user.id)}
+                                className="text-destructive"
+                              >
+                                <Trash2 className="w-4 h-4 mr-2" />
+                                {isInvitation(user.id)
+                                  ? "Revoke Invitation"
+                                  : "Delete"}
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+              </div>
             </CardContent>
           </Card>
         </div>
