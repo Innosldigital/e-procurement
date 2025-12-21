@@ -258,12 +258,12 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="estimatedValue">
-                  Estimated contract value ($)
+                  Estimated contract value (Le)
                 </Label>
                 <Input
                   id="estimatedValue"
                   type="number"
-                  placeholder="450000"
+                  placeholder="450,000"
                   value={formData.estimatedValue}
                   onChange={(e) =>
                     handleChange("estimatedValue", e.target.value)
