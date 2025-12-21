@@ -12,6 +12,7 @@ import {
   getPurchaseOrders,
   getSpendMTD,
   getSpendVsBudgetThisQuarter,
+  getBudgetUtilizationFY,
 } from "@/lib/actions/purchase-order-actions";
 import {
   getApprovals,
@@ -97,6 +98,7 @@ export default async function DashboardPage() {
     notificationsPublicResult,
     pendingApprovalsResult,
     spendVsBudgetResult,
+    budgetUtilizationFYResult,
   ] = await Promise.all([
     getRequisitions(),
     getPurchaseOrders(),
@@ -107,6 +109,12 @@ export default async function DashboardPage() {
     getNotificationsPublic(10),
     getPendingApprovalsCount(),
     getSpendVsBudgetThisQuarter(),
+    (async () => {
+      const now = new Date();
+      const fyYear = now.getFullYear() - 1;
+      const res = await getBudgetUtilizationFY(fyYear);
+      return res;
+    })(),
   ]);
 
   const requisitions = (
@@ -148,6 +156,12 @@ export default async function DashboardPage() {
         savings: 420000,
         topBranch: "EMEA",
         topCategory: "IT & software",
+      };
+  const budgetUtilizationFY = budgetUtilizationFYResult.success
+    ? (budgetUtilizationFYResult as any).data
+    : {
+        year: new Date().getFullYear() - 1,
+        utilizationPct: 68,
       };
   // Standard NLe formatter
   const fmtNLe = (amount: number) =>
@@ -328,12 +342,7 @@ export default async function DashboardPage() {
                 </span>
               </div>
               <div className="pt-4 border-t">
-                {/* <p className="text-xs text-muted-foreground">
-                  {`Top branch: Nle{spendVsBudget.topBranch || "-"}`}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {`Category: Nle{spendVsBudget.topCategory || "-"}`}
-                </p> */}
+       
                 <p className="text-xs text-muted-foreground">
                   Top branch: {spendVsBudget.topBranch || "-"}
                 </p>
@@ -523,11 +532,13 @@ export default async function DashboardPage() {
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted-foreground">
         <span>
-          Branch: <span className="text-primary">Global HQ</span>
+          Branch: <span className="text-primary">Inno-SL HQ</span>
         </span>
         <span>
-          FY24 Budget Utilization:{" "}
-          <span className="text-success">68% used</span>
+          FY{budgetUtilizationFY.year} Budget Utilization:{" "}
+          <span className="text-success">
+            {Math.round(budgetUtilizationFY.utilizationPct)}% used
+          </span>
         </span>
       </div>
     </div>

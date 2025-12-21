@@ -100,6 +100,41 @@ export async function getSpendVsBudgetThisQuarter() {
   }
 }
 
+export async function getBudgetUtilizationFY(year?: number) {
+  try {
+    await dbConnect();
+    const now = new Date();
+    const fyYear = year ?? now.getFullYear() - 1;
+    const start = new Date(fyYear, 0, 1);
+    const end = new Date(fyYear + 1, 0, 1);
+    const actualAgg = await PurchaseOrder.aggregate([
+      { $match: { "keyDates.issued": { $gte: start, $lt: end } } },
+      { $group: { _id: null, sum: { $sum: "$total" } } },
+    ]);
+    const budgetAgg = await Requisition.aggregate([
+      { $match: { date: { $gte: start, $lt: end } } },
+      { $group: { _id: null, sum: { $sum: "$amount" } } },
+    ]);
+    const actual = actualAgg?.[0]?.sum || 0;
+    const budget = budgetAgg?.[0]?.sum || 0;
+    const utilizationPct = budget > 0 ? (actual / budget) * 100 : 0;
+    return {
+      success: true,
+      data: {
+        year: fyYear,
+        utilizationPct,
+        actual,
+        budget,
+        start,
+        end,
+      },
+    };
+  } catch (error) {
+    console.error("[v0] Error computing FY budget utilization:", error);
+    return { success: false, error: "Failed to compute FY budget utilization" };
+  }
+}
+
 export async function getCycleTimes() {
   try {
     await dbConnect();
