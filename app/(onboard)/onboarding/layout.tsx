@@ -42,7 +42,7 @@ export default function OnboardingLayout({
         </div>
       </header>
       <main className="relative z-10 min-h-[calc(100vh-64px)] sm:min-h-[calc(100vh-80px)]">
-        <div className="mx-auto w-full max-w-3xl sm:max-w-4xl lg:max-w-5xl px-3 sm:px-4 lg:px-8 py-4 sm:py-8">
+        <div className="mx-auto w-full max-w-3xl sm:max-w-4xl lg:max-w-5xl px-2 sm:px-4 lg:px-8 py-4 sm:py-8">
           {children}
         </div>
       </main>
