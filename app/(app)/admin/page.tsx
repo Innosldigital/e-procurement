@@ -1571,7 +1571,7 @@ export default function UsersTable() {
   return (
     <>
       {/* ---------------- PAGE HEADER ---------------- */}
-      <div className="p-4 space-y-6 ">
+      <div className="px-4 py-4 sm:px-6 lg:px-8 space-y-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-3xl font-bold tracking-tight">Users</h2>
@@ -1715,93 +1715,96 @@ export default function UsersTable() {
                   </TableBody>
                 </Table>
               </div>
-              {/* ---------------- MOBILE USERS LIST ---------------- */}
-              <div className="md:hidden space-y-4">
-                {!loading &&
-                  currentUsers.map((user) => (
-                    <Card key={user.id} className="border shadow-sm">
-                      <CardContent className="p-4 space-y-3">
-                        <div className="flex items-center gap-3">
-                          <Avatar className="w-10 h-10">
-                            <AvatarImage
-                              src={user.photo || "/placeholder.svg"}
-                              alt={`${user.firstName} ${user.lastName}`}
-                            />
-                            <AvatarFallback>
-                              {user.firstName?.[0]}
-                              {user.lastName?.[0]}
-                            </AvatarFallback>
-                          </Avatar>
-
-                          <div className="flex-1 min-w-0">
-                            <p className="font-semibold truncate">
-                              {user.firstName} {user.lastName}
-                            </p>
-                            <p className="text-xs text-muted-foreground truncate">
-                              {user.email}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          {getStatusBadge(user)}
-
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="icon">
-                                <MoreHorizontal className="w-4 h-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
-                              {canViewDetails(user) && (
-                                <>
-                                  <DropdownMenuItem
-                                    onClick={() => handleViewDetails(user)}
-                                  >
-                                    <Pencil className="w-4 h-4 mr-2" />
-                                    View Details
-                                  </DropdownMenuItem>
-                                  <DropdownMenuSeparator />
-                                </>
-                              )}
-
-                              {!isInvitation(user.id) && (
-                                <>
-                                  <DropdownMenuItem
-                                    onClick={() => handleEdit(user)}
-                                  >
-                                    <Pencil className="w-4 h-4 mr-2" />
-                                    Edit
-                                  </DropdownMenuItem>
-                                  <DropdownMenuSeparator />
-                                </>
-                              )}
-
-                              <DropdownMenuItem
-                                onClick={() => handleDelete(user.id)}
-                                className="text-destructive"
-                              >
-                                <Trash2 className="w-4 h-4 mr-2" />
-                                {isInvitation(user.id)
-                                  ? "Revoke Invitation"
-                                  : "Delete"}
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-              </div>
             </CardContent>
           </Card>
         </div>
 
+        <div className="md:hidden space-y-4">
+          {/* ---------------- MOBILE USERS LIST ---------------- */}
+          <div className="md:hidden space-y-4">
+            {!loading &&
+              currentUsers.map((user) => (
+                <Card key={user.id} className="border shadow-sm">
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="w-10 h-10">
+                        <AvatarImage
+                          src={user.photo || "/placeholder.svg"}
+                          alt={`${user.firstName} ${user.lastName}`}
+                        />
+                        <AvatarFallback>
+                          {user.firstName?.[0]}
+                          {user.lastName?.[0]}
+                        </AvatarFallback>
+                      </Avatar>
+
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold truncate">
+                          {user.firstName} {user.lastName}
+                        </p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {user.email}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      {getStatusBadge(user)}
+
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon">
+                            <MoreHorizontal className="w-4 h-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+                          {canViewDetails(user) && (
+                            <>
+                              <DropdownMenuItem
+                                onClick={() => handleViewDetails(user)}
+                              >
+                                <Pencil className="w-4 h-4 mr-2" />
+                                View Details
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                            </>
+                          )}
+
+                          {!isInvitation(user.id) && (
+                            <>
+                              <DropdownMenuItem
+                                onClick={() => handleEdit(user)}
+                              >
+                                <Pencil className="w-4 h-4 mr-2" />
+                                Edit
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                            </>
+                          )}
+
+                          <DropdownMenuItem
+                            onClick={() => handleDelete(user.id)}
+                            className="text-destructive"
+                          >
+                            <Trash2 className="w-4 h-4 mr-2" />
+                            {isInvitation(user.id)
+                              ? "Revoke Invitation"
+                              : "Delete"}
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+        </div>
+
         {/* ---------------- PAGINATION SECTION ---------------- */}
         {!loading && filteredUsers.length > 0 && (
-          <div className="flex flex-cols items-start justify-between gap-4 pt-4 lg:flex-row lg:items-center">
+          <div className="flex flex-col items-start justify-between gap-4 pt-4 lg:flex-row lg:items-center">
             <div className="flex items-center space-x-2">
               <p className="text-sm text-muted-foreground">
                 Showing {startIndex + 1} to{" "}
