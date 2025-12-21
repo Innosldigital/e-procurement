@@ -497,7 +497,7 @@ export default function ReportsPage() {
               ) : (
                 <div className="space-y-2">
                   <div className="text-sm">
-                    Total: NLe {fmtAmount(customTotal)}
+                    Total: Nle {fmtAmount(customTotal)}
                   </div>
                   <div className="space-y-2">
                     {customItems.map((it, idx) => (
@@ -507,7 +507,7 @@ export default function ReportsPage() {
                       >
                         <span className="text-sm">{it.label}</span>
                         <span className="text-sm font-medium">
-                          NLe {fmtAmount(it.amount)}
+                          Nle {fmtAmount(it.amount)}
                         </span>
                       </div>
                     ))}
@@ -571,7 +571,7 @@ export default function ReportsPage() {
                 Total addressable spend
               </div>
               <div className="text-2xl font-semibold mb-1">
-                NLe {fmtAmount(totalSpend)}
+                Nle {fmtAmount(totalSpend)}
               </div>
               <div className="text-xs text-success">Data-driven</div>
               <div className="text-xs text-muted-foreground mt-1">
@@ -583,7 +583,7 @@ export default function ReportsPage() {
                 Realized savings
               </div>
               <div className="text-2xl font-semibold mb-1">
-                NLe {fmtNLeCompact(savingsThisQ)}
+                Nle {fmtNLeCompact(savingsThisQ)}
               </div>
               <div className="text-xs text-success">
                 {`${(budgetThisQ > 0

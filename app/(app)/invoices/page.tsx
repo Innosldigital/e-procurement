@@ -45,7 +45,7 @@ export default function InvoicesPage() {
     dueDate: "",
     poNumber: "",
     entity: "",
-    currency: "USD",
+    currency: "NLE",
   });
   const [holdOpen, setHoldOpen] = useState(false);
   const [holdReason, setHoldReason] = useState("");
@@ -721,7 +721,7 @@ export default function InvoicesPage() {
                   invoiceNumber: String(form.invoiceNumber),
                   supplier: String(form.supplier),
                   amount: Number(form.amount),
-                  currency: form.currency || "USD",
+                  currency: form.currency || "NLE",
                 };
                 if (form.poNumber) payload.poNumber = String(form.poNumber);
                 if (form.entity) payload.entity = String(form.entity);

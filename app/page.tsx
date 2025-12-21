@@ -149,18 +149,23 @@ export default async function DashboardPage() {
         topBranch: "EMEA",
         topCategory: "IT & software",
       };
-  const fmtNLe = (n: number) =>
-    new Intl.NumberFormat("en-US", {
+  // Standard NLe formatter
+  const fmtNLe = (amount: number) =>
+    new Intl.NumberFormat("en-SL", {
+      style: "currency",
+      currency: "SLE",
       minimumFractionDigits: 0,
-      maximumFractionDigits: 1,
-    }).format(n);
-  const fmtNLeCompact = (n: number) =>
-    n >= 1_000_000
-      ? `Nle {fmtNLe(n / 1_000_000)}M`
-      : `Nle {new Intl.NumberFormat("en-US", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        }).format(Math.round(n / 1_000))}K`;
+    }).format(amount);
+
+  // Compact NLe formatter (K / M)
+  const fmtNLeCompact = (amount: number) =>
+    new Intl.NumberFormat("en-SL", {
+      style: "currency",
+      currency: "SLE",
+      notation: "compact",
+      compactDisplay: "short",
+      minimumFractionDigits: 1,
+    }).format(amount);
 
   // Get recent requisitions (last 5)
   const fmtDate = (d?: string | Date | null) => {
@@ -224,7 +229,7 @@ export default async function DashboardPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription className="text-xs">
-              Pending approvals
+              Pending Approvals
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -257,7 +262,7 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">
-              Nle{(totalSpendMTD / 1000000).toFixed(1)}M
+              {fmtNLeCompact(totalSpendMTD)}
             </div>
           </CardContent>
         </Card>
@@ -291,8 +296,11 @@ export default async function DashboardPage() {
                   <span className="w-3 h-3 rounded-full bg-primary"></span>
                   Actual spend
                 </span>
+                {/* <span className="text-sm font-semibold">
+                  {`NLel{f$tNLe(spendVsBudget.actual / 1_000_000)}M`}
+                </span> */}
                 <span className="text-sm font-semibold">
-                  {`NLe {fmtNLe(spendVsBudget.actual / 1_000_000)}M`}
+                  {fmtNLeCompact(spendVsBudget.actual)}
                 </span>
               </div>
               <div className="flex items-center justify-between">
@@ -300,8 +308,11 @@ export default async function DashboardPage() {
                   <span className="w-3 h-3 rounded-full bg-muted"></span>
                   Budget
                 </span>
+                {/* <span className="text-sm font-semibold">
+                  {`NLe lfm$NLe(spendVsBudget.budget / 1_000_000)}M`}
+                </span> */}
                 <span className="text-sm font-semibold">
-                  {`NLe {fmtNLe(spendVsBudget.budget / 1_000_000)}M`}
+                  {fmtNLeCompact(spendVsBudget.budget)}
                 </span>
               </div>
               <div className="flex items-center justify-between">
@@ -309,16 +320,25 @@ export default async function DashboardPage() {
                   <span className="w-3 h-3 rounded-full bg-success"></span>
                   Savings
                 </span>
-                <span className="text-sm font-semibold">
+                {/* <span className="text-sm font-semibold">
                   {`NLe{fmtNLeCompact(spendVsBudget.savings)}`}
+                </span> */}
+                <span className="text-sm font-semibold">
+                  {fmtNLeCompact(spendVsBudget.savings)}
                 </span>
               </div>
               <div className="pt-4 border-t">
-                <p className="text-xs text-muted-foreground">
+                {/* <p className="text-xs text-muted-foreground">
                   {`Top branch: Nle{spendVsBudget.topBranch || "-"}`}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   {`Category: Nle{spendVsBudget.topCategory || "-"}`}
+                </p> */}
+                <p className="text-xs text-muted-foreground">
+                  Top branch: {spendVsBudget.topBranch || "-"}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Category: {spendVsBudget.topCategory || "-"}
                 </p>
               </div>
             </div>
@@ -490,7 +510,7 @@ export default async function DashboardPage() {
                     <div className="flex items-center gap-3">
                       <StatusBadge status={po.status} />
                       <span className="text-sm font-medium w-20 text-right">
-                        Nle{fmtAmount(po.total)}
+                        {fmtNLe(po.total)}
                       </span>
                     </div>
                   </div>
