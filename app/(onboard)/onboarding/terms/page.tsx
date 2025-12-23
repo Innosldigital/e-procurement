@@ -478,7 +478,7 @@ export default function TermsPage() {
         {/* Contact CTA */}
         <div className="mt-12 overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-blue-50 to-indigo-50 shadow-xl">
           <div className="p-8 text-center sm:p-10">
-            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg">
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-lg shadow-lg">
               <img
                 src="/apple-icon.png"
                 alt="Inno-SL Procurement"
