@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   Shield,
   FileText,
@@ -478,7 +479,11 @@ export default function TermsPage() {
         <div className="mt-12 overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-blue-50 to-indigo-50 shadow-xl">
           <div className="p-8 text-center sm:p-10">
             <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg">
-              <Shield className="h-8 w-8 text-white" />
+              <img
+                src="/apple-icon.png"
+                alt="Inno-SL Procurement"
+                className="h-8 w-8 text-white"
+              />
             </div>
             <h3 className="mb-3 text-2xl font-bold text-slate-900">
               Need Assistance?
@@ -488,12 +493,18 @@ export default function TermsPage() {
               Terms and Conditions or the procurement process.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <button className="inline-flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105">
-                Contact Support Team
-              </button>
-              <button className="inline-flex h-12 items-center justify-center rounded-xl border-2 border-slate-300 bg-white px-8 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:shadow">
-                Return to Portal
-              </button>
+              <Link
+                href="/onboarding/support"
+                className="inline-flex h-12 items-center justify-center rounded-xl border-2 border-slate-300 bg-white px-8 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:shadow"
+              >
+                Contact Support
+              </Link>
+              <Link
+                href="/onboarding"
+                className="inline-flex h-12 items-center justify-center rounded-xl border-2 border-slate-300 bg-white px-8 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:shadow"
+              >
+                Return to Onboarding
+              </Link>
             </div>
           </div>
         </div>
