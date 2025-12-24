@@ -30,7 +30,7 @@ export default function TermsPage() {
             Terms & Conditions
           </h1>
           <p className="mx-auto max-w-2xl text-base sm:text-lg text-slate-600">
-            Official procurement terms for the Inno SL Platform
+            Official procurement terms for the Inno-SL Procurement platform.
           </p>
           <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-500">
             <div className="h-1 w-1 rounded-full bg-slate-400"></div>
