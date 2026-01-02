@@ -170,7 +170,7 @@ export function AddUser({ onSubmitComplete, currentUserRole }: AddUserProps) {
         >
           <SheetHeader className="px-4 pt-4 pb-3 space-y-2 sm:px-6 sm:pt-6 sm:pb-4 sm:space-y-3 border-b">
             <div className="flex items-start gap-3 sm:items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <Avatar className="w-10 h-10 sm:w-11 sm:h-11 ring-2 ring-offset-2 ring-primary/10">
                   <AvatarImage
                     src={user?.imageUrl || "/placeholder.svg"}
@@ -321,7 +321,7 @@ export function AddUser({ onSubmitComplete, currentUserRole }: AddUserProps) {
 
                 <div className="pt-2 pb-1">
                   <p className="text-xs text-muted-foreground flex items-start gap-1.5">
-                    <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground mt-1.5 flex-shrink-0"></span>
+                    <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground mt-1.5 shrink-0"></span>
                     <span>
                       All fields marked with{" "}
                       <span className="text-destructive font-medium">*</span>{" "}
