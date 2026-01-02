@@ -263,6 +263,133 @@ export async function getUsers(): Promise<{ users: UserSummary[] }> {
   return { users: uniqueUsers };
 }
 
+// export async function createUser(
+//   firstName: string,
+//   lastName: string,
+//   email: string,
+//   role: string
+// ): Promise<{ success: boolean; error?: string; invitationUrl?: string }> {
+//   try {
+//     const permissionCheck = await canAssignRole(role);
+//     if (!permissionCheck.allowed) {
+//       return { success: false, error: permissionCheck.error };
+//     }
+
+//     const client = await clerkClient();
+//     const mdRole = normalizeRole(role);
+
+//     const autoOnboardedRoles = ["superadmin", "admin"];
+//     const needsApprovalRoles = [
+//       "financialcontroller",
+//       "financialaccountant",
+//       "procurementofficer",
+//       "projectlead",
+//       "supplier",
+//     ];
+
+//     const meta = {
+//       role: mdRole,
+//       onboarded: autoOnboardedRoles.includes(mdRole),
+//       onboardingStatus: autoOnboardedRoles.includes(mdRole)
+//         ? "approved"
+//         : needsApprovalRoles.includes(mdRole)
+//         ? "pending_admin_approval"
+//         : "pending",
+//     };
+
+//     try {
+//       // Check if user already exists
+//       const existingUsers = await client.users.getUserList({
+//         emailAddress: [email],
+//       });
+//       if (existingUsers.data.length > 0) {
+//         return {
+//           success: false,
+//           error: "A user with this email already exists",
+//         };
+//       }
+
+//       // Check if invitation already exists
+//       const pendingInvitations = await client.invitations.getInvitationList({
+//         status: "pending",
+//       });
+
+//       const existingInvitation = pendingInvitations.data.find(
+//         (inv: any) => inv.emailAddress.toLowerCase() === email.toLowerCase()
+//       );
+
+//       if (existingInvitation) {
+//         await client.invitations.revokeInvitation(existingInvitation.id);
+//         console.log("Revoked existing invitation for:", email);
+//       }
+
+//       const baseUrl =
+//         process.env.NEXT_PUBLIC_APP_URL ||
+//         (process.env.VERCEL_URL
+//           ? `https://${process.env.VERCEL_URL}`
+//           : "http://localhost:3000");
+
+//       const invitation = await client.invitations.createInvitation({
+//         emailAddress: email,
+//         publicMetadata: meta,
+//         redirectUrl: `${baseUrl}/sign-up`,
+//         notify: false, // We send our own email via Resend
+//       });
+
+//       console.log("Clerk invitation created successfully:", {
+//         id: invitation.id,
+//         email: invitation.emailAddress,
+//         url: invitation.url,
+//       });
+
+//       const invitationUrl =
+//         invitation.url || `${baseUrl}/sign-up?__clerk_ticket=${invitation.id}`;
+
+//       const emailResult = await sendInvitationEmail(
+//         email,
+//         firstName,
+//         lastName,
+//         invitationUrl,
+//         role
+//       );
+
+//       if (!emailResult.success) {
+//         console.warn(
+//           "Failed to send invitation email, but invitation was created:",
+//           emailResult.error
+//         );
+//         return {
+//           success: true,
+//           error: `User invited but email delivery failed: ${emailResult.error}. Please share the invitation link manually.`,
+//           invitationUrl: invitationUrl,
+//         };
+//       }
+
+//       revalidatePath("/admin/users");
+
+//       return {
+//         success: true,
+//         invitationUrl: invitationUrl,
+//       };
+//     } catch (error: any) {
+//       console.error("❌ Error creating invitation:", error);
+//       console.error("Error details:", JSON.stringify(error.errors, null, 2));
+
+//       const errorMsg =
+//         error?.errors?.[0]?.longMessage ||
+//         error?.errors?.[0]?.message ||
+//         error?.message ||
+//         "Failed to create invitation";
+//       return {
+//         success: false,
+//         error: errorMsg,
+//       };
+//     }
+//   } catch (error: any) {
+//     console.error("❌ createUser outer error:", error);
+//     return { success: false, error: error?.message || "Failed to create user" };
+//   }
+// }
 export async function createUser(
   firstName: string,
   lastName: string,
@@ -320,49 +447,68 @@ export async function createUser(
 
       if (existingInvitation) {
         await client.invitations.revokeInvitation(existingInvitation.id);
-        console.log("Revoked existing invitation for:", email);
+        console.log("✓ Revoked existing invitation for:", email);
       }
 
+      // FIXED: Use the correct app URL
       const baseUrl =
-        process.env.NEXT_PUBLIC_APP_URL ||
-        (process.env.VERCEL_URL
-          ? `https://${process.env.VERCEL_URL}`
-          : "http://localhost:3000");
+        process.env.NEXT_PUBLIC_APP_URL || "https://www.innoslprocurement.com";
 
+      console.log(
+        "🔗 Creating invitation with redirect URL:",
+        `${baseUrl}/sign-up`
+      );
+
+      // Check if we have RESEND_API_KEY to decide notify flag
+      const hasResendConfigured = !!process.env.RESEND_API_KEY;
+
+      // Create invitation with correct redirect URL
       const invitation = await client.invitations.createInvitation({
         emailAddress: email,
         publicMetadata: meta,
-        redirectUrl: `${baseUrl}/sign-up`,
-        notify: false, // We send our own email via Resend
+        redirectUrl: `${baseUrl}/sign-up`, // This is what gets sent in the email
+        notify: !hasResendConfigured, // Let Clerk send email if Resend not configured
       });
 
-      console.log("Clerk invitation created successfully:", {
+      console.log("✓ Clerk invitation created:", {
         id: invitation.id,
         email: invitation.emailAddress,
         url: invitation.url,
+        redirectUrl: `${baseUrl}/sign-up`,
       });
 
+      // The invitation URL that Clerk generates (fallback to manual construction if missing)
       const invitationUrl =
         invitation.url || `${baseUrl}/sign-up?__clerk_ticket=${invitation.id}`;
 
-      const emailResult = await sendInvitationEmail(
-        email,
-        firstName,
-        lastName,
-        invitationUrl,
-        role
-      );
+      console.log("📧 Invitation URL:", invitationUrl);
 
-      if (!emailResult.success) {
-        console.warn(
-          "Failed to send invitation email, but invitation was created:",
-          emailResult.error
+      // Try to send custom email via Resend if configured
+      if (hasResendConfigured) {
+        const emailResult = await sendInvitationEmail(
+          email,
+          firstName,
+          lastName,
+          invitationUrl, // Use Clerk's generated URL, not our custom one
+          role
         );
-        return {
-          success: true,
-          error: `User invited but email delivery failed: ${emailResult.error}. Please share the invitation link manually.`,
-          invitationUrl: invitationUrl,
-        };
+
+        if (!emailResult.success) {
+          console.warn(
+            "⚠️ Custom email failed, but Clerk invitation created:",
+            emailResult.error
+          );
+
+          return {
+            success: true,
+            error: `Invitation created but email delivery failed. Please share this link with the user.`,
+            invitationUrl: invitationUrl,
+          };
+        }
+
+        console.log("✅ Custom invitation email sent successfully to", email);
+      } else {
+        console.log("✅ Clerk will send invitation email to", email);
       }
 
       revalidatePath("/admin/users");
@@ -373,7 +519,11 @@ export async function createUser(
       };
     } catch (error: any) {
       console.error("❌ Error creating invitation:", error);
-      console.error("Error details:", JSON.stringify(error.errors, null, 2));
+      console.error("Error details:", {
+        message: error?.message,
+        errors: error?.errors,
+        status: error?.status,
+      });
 
       const errorMsg =
         error?.errors?.[0]?.longMessage ||
