@@ -1,185 +1,328 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+// import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+// import { NextResponse } from "next/server";
+
+// const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
+// const isOnboardingRoute = createRouteMatcher(["/onboarding(.*)"]);
+// const isApiRoute = createRouteMatcher(["/(api|trpc)(.*)"]);
+// export default clerkMiddleware(async (auth, request) => {
+//   if (!isPublicRoute(request)) {
+//     const path = request.nextUrl.pathname;
+//     const isUsersApi = path.startsWith("/api/users");
+
+//     if (!isUsersApi) {
+//       await auth.protect();
+//     }
+
+//     const { sessionClaims } = await auth();
+//     // const claims: any = sessionClaims || {};
+//     // const md: any = claims.metadata || {};
+//     const claims: any = sessionClaims || {};
+//     const md: any = claims.publicMetadata || {};
+
+//     const email: string = String(
+//       typeof claims.email === "string"
+//         ? claims.email
+//         : Array.isArray(claims.email_addresses) &&
+//           claims.email_addresses.length > 0
+//         ? claims.email_addresses[0]?.email_address
+//         : ""
+//     ).toLowerCase();
+
+//     const rawRole = md.role || "";
+//     const normalizedRole = String(rawRole)
+//       .toLowerCase()
+//       .replace(/[\s_-]/g, "");
+//     const onboarded = md?.onboarded === true;
+//     const supplierApproved = md?.supplier_approved === true;
+
+//     const isSuperAdmin =
+//       normalizedRole === "superadmin" || email === "keitamorie@gmail.com";
+//     const isAdmin = normalizedRole === "admin";
+//     const isSupplier = normalizedRole === "supplier";
+
+//     if (
+//       (isSuperAdmin || isAdmin) &&
+//       request.nextUrl.pathname.startsWith("/onboarding")
+//     ) {
+//       return NextResponse.redirect(new URL("/", request.url));
+//     }
+
+//     // Super admins and admins get full access - no onboarding required
+//     if (isSuperAdmin || isAdmin) {
+//       return NextResponse.next();
+//     }
+
+//     // Handle suppliers
+//     // if (isSupplier) {
+//     //   // Approved suppliers — restrict access
+//     //   if (onboarded && supplierApproved) {
+//     //     const p = request.nextUrl.pathname;
+
+//     //     const allowedSupplierPaths = [
+//     //       "/supplier-dashboard",
+//     //       "/tenders",
+//     //       "/purchase-orders",
+//     //       "/suppliers",
+//     //       "/invoices",
+//     //     ];
+
+//     //     // Redirect root "/" to suppliers
+//     //     if (p === "/") {
+//     //       return NextResponse.redirect(
+//     //         new URL("/supplier-dashboard", request.url)
+//     //       );
+//     //     }
+
+//     //     const isAllowed =
+//     //       allowedSupplierPaths.some((path) => p.startsWith(path)) ||
+//     //       isApiRoute(request);
+
+//     //     if (!isAllowed) {
+//     //       return NextResponse.redirect(new URL("/not-authorized", request.url));
+//     //     }
+
+//     //     return NextResponse.next();
+//     //   }
+
+//     //   // Not onboarded - redirect to onboarding
+//     //   if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
+//     //     return NextResponse.redirect(new URL("/onboarding", request.url));
+//     //   }
+
+//     //   // Onboarded but not approved - restrict to approval pages
+//     //   if (onboarded && !supplierApproved) {
+//     //     const p = request.nextUrl.pathname;
+//     //     const allowedPaths = [
+//     //       "/onboarding/pending-approval",
+//     //       "/onboarding/support",
+//     //       "/onboarding",
+//     //     ];
+//     //     const isAllowed =
+//     //       allowedPaths.some((allowed) => p.startsWith(allowed)) ||
+//     //       p.startsWith("/onboarding/supplier/") ||
+//     //       isApiRoute(request);
+
+//     //     if (!isAllowed) {
+//     //       return NextResponse.redirect(
+//     //         new URL("/onboarding/pending-approval", request.url)
+//     //       );
+//     //     }
+//     //   }
+
+//     //   return NextResponse.next();
+//     // }
+//     // Handle suppliers
+//     if (isSupplier) {
+//       const p = request.nextUrl.pathname;
+
+//       // 🚫 Approved suppliers must never access onboarding
+//       if (onboarded && supplierApproved && isOnboardingRoute(request)) {
+//         return NextResponse.redirect(
+//           new URL("/supplier-dashboard", request.url)
+//         );
+//       }
+
+//       // ✅ Approved suppliers — restricted access
+//       if (onboarded && supplierApproved) {
+//         const allowedSupplierPaths = [
+//           "/supplier-dashboard",
+//           "/tenders",
+//           "/purchase-orders",
+//           "/suppliers",
+//           "/invoices",
+//         ];
+
+//         // Redirect root "/" to dashboard
+//         if (p === "/") {
+//           return NextResponse.redirect(
+//             new URL("/supplier-dashboard", request.url)
+//           );
+//         }
+
+//         const isAllowed =
+//           allowedSupplierPaths.some((path) => p.startsWith(path)) ||
+//           isApiRoute(request);
+
+//         if (!isAllowed) {
+//           return NextResponse.redirect(new URL("/not-authorized", request.url));
+//         }
+
+//         return NextResponse.next();
+//       }
+
+//       // ❗ Not onboarded → force onboarding
+//       if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
+//         return NextResponse.redirect(new URL("/onboarding", request.url));
+//       }
+
+//       // ⏳ Onboarded but not approved
+//       if (onboarded && !supplierApproved) {
+//         const allowedPaths = [
+//           "/onboarding",
+//           "/onboarding/pending-approval",
+//           "/onboarding/support",
+//         ];
+
+//         const isAllowed =
+//           allowedPaths.some((allowed) => p.startsWith(allowed)) ||
+//           p.startsWith("/onboarding/supplier/") ||
+//           isApiRoute(request);
+
+//         if (!isAllowed) {
+//           return NextResponse.redirect(
+//             new URL("/onboarding/pending-approval", request.url)
+//           );
+//         }
+//       }
+
+//       return NextResponse.next();
+//     }
+
+//     // For other roles: check onboarding status
+//     if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
+//       return NextResponse.redirect(new URL("/onboarding", request.url));
+//     }
+//   }
+
+//   return NextResponse.next();
+// });
+
+// export const config = {
+//   matcher: [
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+//     "/(api|trpc)(.*)",
+//   ],
+// };
+
+import {
+  clerkMiddleware,
+  createRouteMatcher,
+  clerkClient,
+} from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+// Route matchers
 const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
 const isOnboardingRoute = createRouteMatcher(["/onboarding(.*)"]);
 const isApiRoute = createRouteMatcher(["/(api|trpc)(.*)"]);
+
 export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
-    const path = request.nextUrl.pathname;
-    const isUsersApi = path.startsWith("/api/users");
+  // Allow public routes
+  if (isPublicRoute(request)) {
+    return NextResponse.next();
+  }
 
-    if (!isUsersApi) {
-      await auth.protect();
+  const { userId } = await auth();
+
+  // Not logged in → go to sign-in
+  if (!userId) {
+    return NextResponse.redirect(new URL("/sign-in", request.url));
+  }
+
+  const client = await clerkClient();
+  const user = await client.users.getUser(userId);
+  const md: any = user.publicMetadata || {};
+
+  // Normalize role
+  const rawRole = md.role || "";
+  const normalizedRole = String(rawRole)
+    .toLowerCase()
+    .replace(/[\s_-]/g, "");
+
+  const onboarded = md.onboarded === true;
+  const supplierApproved = md.supplier_approved === true;
+
+  const email = user.emailAddresses?.[0]?.emailAddress?.toLowerCase() || "";
+
+  const isSuperAdmin =
+    normalizedRole === "superadmin" || email === "keitamorie@gmail.com";
+  const isAdmin = normalizedRole === "admin";
+  const isSupplier = normalizedRole === "supplier";
+
+  const pathname = request.nextUrl.pathname;
+
+  // 🚀 SUPERADMIN & ADMIN — FULL ACCESS, NO ONBOARDING
+  if (isSuperAdmin || isAdmin) {
+    // Hard-block onboarding access
+    if (pathname.startsWith("/onboarding")) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
 
-    const { sessionClaims } = await auth();
-    // const claims: any = sessionClaims || {};
-    // const md: any = claims.metadata || {};
-    const claims: any = sessionClaims || {};
-    const md: any = claims.publicMetadata || {};
+    return NextResponse.next();
+  }
 
-    const email: string = String(
-      typeof claims.email === "string"
-        ? claims.email
-        : Array.isArray(claims.email_addresses) &&
-          claims.email_addresses.length > 0
-        ? claims.email_addresses[0]?.email_address
-        : ""
-    ).toLowerCase();
-
-    const rawRole = md.role || "";
-    const normalizedRole = String(rawRole)
-      .toLowerCase()
-      .replace(/[\s_-]/g, "");
-    const onboarded = md?.onboarded === true;
-    const supplierApproved = md?.supplier_approved === true;
-
-    const isSuperAdmin =
-      normalizedRole === "superadmin" || email === "keitamorie@gmail.com";
-    const isAdmin = normalizedRole === "admin";
-    const isSupplier = normalizedRole === "supplier";
-
-    // Super admins and admins get full access - no onboarding required
-    if (isSuperAdmin || isAdmin) {
-      return NextResponse.next();
+  // 🏭 SUPPLIER FLOW
+  if (isSupplier) {
+    // Approved suppliers must never see onboarding
+    if (onboarded && supplierApproved && isOnboardingRoute(request)) {
+      return NextResponse.redirect(new URL("/supplier-dashboard", request.url));
     }
 
-    // Handle suppliers
-    // if (isSupplier) {
-    //   // Approved suppliers — restrict access
-    //   if (onboarded && supplierApproved) {
-    //     const p = request.nextUrl.pathname;
+    // Approved suppliers — restricted access
+    if (onboarded && supplierApproved) {
+      const allowedSupplierPaths = [
+        "/supplier-dashboard",
+        "/tenders",
+        "/purchase-orders",
+        "/suppliers",
+        "/invoices",
+      ];
 
-    //     const allowedSupplierPaths = [
-    //       "/supplier-dashboard",
-    //       "/tenders",
-    //       "/purchase-orders",
-    //       "/suppliers",
-    //       "/invoices",
-    //     ];
-
-    //     // Redirect root "/" to suppliers
-    //     if (p === "/") {
-    //       return NextResponse.redirect(
-    //         new URL("/supplier-dashboard", request.url)
-    //       );
-    //     }
-
-    //     const isAllowed =
-    //       allowedSupplierPaths.some((path) => p.startsWith(path)) ||
-    //       isApiRoute(request);
-
-    //     if (!isAllowed) {
-    //       return NextResponse.redirect(new URL("/not-authorized", request.url));
-    //     }
-
-    //     return NextResponse.next();
-    //   }
-
-    //   // Not onboarded - redirect to onboarding
-    //   if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
-    //     return NextResponse.redirect(new URL("/onboarding", request.url));
-    //   }
-
-    //   // Onboarded but not approved - restrict to approval pages
-    //   if (onboarded && !supplierApproved) {
-    //     const p = request.nextUrl.pathname;
-    //     const allowedPaths = [
-    //       "/onboarding/pending-approval",
-    //       "/onboarding/support",
-    //       "/onboarding",
-    //     ];
-    //     const isAllowed =
-    //       allowedPaths.some((allowed) => p.startsWith(allowed)) ||
-    //       p.startsWith("/onboarding/supplier/") ||
-    //       isApiRoute(request);
-
-    //     if (!isAllowed) {
-    //       return NextResponse.redirect(
-    //         new URL("/onboarding/pending-approval", request.url)
-    //       );
-    //     }
-    //   }
-
-    //   return NextResponse.next();
-    // }
-    // Handle suppliers
-    if (isSupplier) {
-      const p = request.nextUrl.pathname;
-
-      // 🚫 Approved suppliers must never access onboarding
-      if (onboarded && supplierApproved && isOnboardingRoute(request)) {
+      // Redirect root "/" to supplier dashboard
+      if (pathname === "/") {
         return NextResponse.redirect(
           new URL("/supplier-dashboard", request.url)
         );
       }
 
-      // ✅ Approved suppliers — restricted access
-      if (onboarded && supplierApproved) {
-        const allowedSupplierPaths = [
-          "/supplier-dashboard",
-          "/tenders",
-          "/purchase-orders",
-          "/suppliers",
-          "/invoices",
-        ];
+      const isAllowed =
+        allowedSupplierPaths.some((path) => pathname.startsWith(path)) ||
+        isApiRoute(request);
 
-        // Redirect root "/" to dashboard
-        if (p === "/") {
-          return NextResponse.redirect(
-            new URL("/supplier-dashboard", request.url)
-          );
-        }
-
-        const isAllowed =
-          allowedSupplierPaths.some((path) => p.startsWith(path)) ||
-          isApiRoute(request);
-
-        if (!isAllowed) {
-          return NextResponse.redirect(new URL("/not-authorized", request.url));
-        }
-
-        return NextResponse.next();
-      }
-
-      // ❗ Not onboarded → force onboarding
-      if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
-        return NextResponse.redirect(new URL("/onboarding", request.url));
-      }
-
-      // ⏳ Onboarded but not approved
-      if (onboarded && !supplierApproved) {
-        const allowedPaths = [
-          "/onboarding",
-          "/onboarding/pending-approval",
-          "/onboarding/support",
-        ];
-
-        const isAllowed =
-          allowedPaths.some((allowed) => p.startsWith(allowed)) ||
-          p.startsWith("/onboarding/supplier/") ||
-          isApiRoute(request);
-
-        if (!isAllowed) {
-          return NextResponse.redirect(
-            new URL("/onboarding/pending-approval", request.url)
-          );
-        }
+      if (!isAllowed) {
+        return NextResponse.redirect(new URL("/not-authorized", request.url));
       }
 
       return NextResponse.next();
     }
 
-    // For other roles: check onboarding status
+    // ❗ Supplier not onboarded → force onboarding
     if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }
+
+    // ⏳ Onboarded but not approved
+    if (onboarded && !supplierApproved) {
+      const allowedPaths = [
+        "/onboarding",
+        "/onboarding/pending-approval",
+        "/onboarding/support",
+      ];
+
+      const isAllowed =
+        allowedPaths.some((path) => pathname.startsWith(path)) ||
+        pathname.startsWith("/onboarding/supplier/") ||
+        isApiRoute(request);
+
+      if (!isAllowed) {
+        return NextResponse.redirect(
+          new URL("/onboarding/pending-approval", request.url)
+        );
+      }
+    }
+
+    return NextResponse.next();
+  }
+
+  // 👤 ALL OTHER ROLES — REQUIRE ONBOARDING
+  if (!onboarded && !isOnboardingRoute(request) && !isApiRoute(request)) {
+    return NextResponse.redirect(new URL("/onboarding", request.url));
   }
 
   return NextResponse.next();
 });
 
+// Matcher config (do NOT change)
 export const config = {
   matcher: [
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
