@@ -242,14 +242,19 @@ export default function RequisitionsTable({ items }: RequisitionsTableProps) {
   const router = useRouter();
   const [editingRequisition, setEditingRequisition] = useState<any>(null);
 
+  const isAdmin = user?.publicMetadata?.role === "admin";
   const currentUserId = user?.id;
 
   // Check if user can edit a requisition (must be creator and status is pending)
+  // const canEdit = (requisition: RequisitionSummary) => {
+  //   return (
+  //     requisition.createdBy === currentUserId &&
+  //     requisition.status === "Pending approval"
+  //   );
+  // };
+
   const canEdit = (requisition: RequisitionSummary) => {
-    return (
-      requisition.createdBy === currentUserId &&
-      requisition.status === "Pending approval"
-    );
+    return isAdmin && requisition.status === "Pending approval";
   };
 
   const getStatusColor = (status: string) => {

@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import dbConnect from "@/lib/mongodb";
 import { Requisition } from "../models/Requisition";
 // import { uploadFileToCloudinary } from '@/lib/cloudinary'
@@ -219,24 +219,26 @@ export async function updateRequisition(
       return { success: false, error: "Unauthorized" };
     }
 
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const role = user.publicMetadata?.role;
+
+    if (role !== "admin") {
+      return {
+        success: false,
+        error: "Forbidden: Admins only",
+      };
+    }
+
     await dbConnect();
 
-    // Find the requisition
     const requisition = await Requisition.findOne({ requisitionId });
 
     if (!requisition) {
       return { success: false, error: "Requisition not found" };
     }
 
-    // Check if user is the creator
-    if (requisition.createdBy !== userId) {
-      return {
-        success: false,
-        error: "You can only edit your own requisitions",
-      };
-    }
-
-    // Check if status allows editing (only pending requisitions can be edited)
+    // (Optional) Status guard
     if (requisition.status !== "Pending approval") {
       return {
         success: false,
@@ -244,26 +246,35 @@ export async function updateRequisition(
       };
     }
 
-    // Parse line items
+    // Parse line items safely
     const lineItemsStr = formData.get("lineItems");
     let lineItems: any[] = [];
+
     if (lineItemsStr) {
       try {
         lineItems = JSON.parse(lineItemsStr as string);
-      } catch (e) {
+      } catch {
         return { success: false, error: "Invalid line items format" };
       }
     }
 
-    // Update the requisition
+    // ✅ Controlled updates only
     requisition.requester = formData.get("requester") as string;
     requisition.branch = formData.get("branch") as string;
     requisition.category = formData.get("category") as string;
-    requisition.priority = formData.get("priority") as string;
-    requisition.neededBy = new Date(formData.get("neededBy") as string);
-    requisition.description = formData.get("description") as string;
+    requisition.neededBy = formData.get("neededBy")
+      ? new Date(formData.get("neededBy") as string)
+      : undefined;
     requisition.lineItems = lineItems;
     requisition.updatedAt = new Date();
+
+    // 🧾 Audit trail
+    requisition.timeline.push({
+      event: "Requisition edited",
+      timestamp: new Date(),
+      actor: userId,
+      details: "Edited by admin",
+    });
 
     await requisition.save();
 
@@ -272,7 +283,7 @@ export async function updateRequisition(
 
     return { success: true };
   } catch (error: any) {
-    console.error("Error updating requisition:", error);
+    console.error("[updateRequisition] Error:", error);
     return {
       success: false,
       error: error?.message || "Failed to update requisition",
