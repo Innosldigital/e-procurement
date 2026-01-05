@@ -135,7 +135,84 @@ export async function createRequisition(formData: FormData) {
   }
 }
 
-export async function updateRequisition(id: string, updates: any) {
+// export async function updateRequisition(id: string, updates: any) {
+//   try {
+//     const { userId } = await auth();
+//     if (!userId) {
+//       return { success: false, error: "Unauthorized" };
+//     }
+
+//     await dbConnect();
+
+//     const oldRequisition = await Requisition.findById(id).lean();
+
+//     const requisition = await Requisition.findByIdAndUpdate(id, updates, {
+//       new: true,
+//     }).lean();
+
+//     if (!requisition) {
+//       return { success: false, error: "Requisition not found" };
+//     }
+
+//     const oldReq = oldRequisition as { status?: string } | null;
+//     const req = requisition as {
+//       _id: string;
+//       createdBy?: string;
+//       requisitionId?: string;
+//       amount?: number;
+//       status?: string;
+//     };
+//     if (oldReq && oldReq.status !== req.status) {
+//       if (req.status === "approved") {
+//         await createNotification({
+//           userId: req.createdBy || "REQUESTER_USER_ID",
+//           type: "requisition_approved",
+//           title: "Requisition Approved",
+//           message: `Your requisition ${
+//             req.requisitionId ?? ""
+//           } has been approved for Nle${(req.amount ?? 0).toLocaleString()}`,
+//           actionUrl: `/requisitions/${req._id}`,
+//           priority: "medium",
+//           metadata: {
+//             requisitionId: req.requisitionId ?? "",
+//             amount: req.amount ?? 0,
+//           },
+//         });
+//       } else if (req.status === "rejected") {
+//         await createNotification({
+//           userId: req.createdBy || "REQUESTER_USER_ID",
+//           type: "requisition_rejected",
+//           title: "Requisition Rejected",
+//           message: `Your requisition ${
+//             req.requisitionId ?? ""
+//           } has been rejected. Please review and resubmit.`,
+//           actionUrl: `/requisitions/${req._id}`,
+//           priority: "high",
+//           metadata: {
+//             requisitionId: req.requisitionId ?? "",
+//             amount: req.amount ?? 0,
+//           },
+//         });
+//       }
+//     }
+
+//     revalidatePath("/requisitions");
+//     revalidatePath(`/requisitions/${id}`);
+
+//     return {
+//       success: true,
+//       data: JSON.parse(JSON.stringify(requisition)),
+//     };
+//   } catch (error) {
+//     console.error("[v0] Error updating requisition:", error);
+//     return { success: false, error: "Failed to update requisition" };
+//   }
+// }
+
+export async function updateRequisition(
+  requisitionId: string,
+  formData: FormData
+): Promise<{ success: boolean; error?: string }> {
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -144,68 +221,62 @@ export async function updateRequisition(id: string, updates: any) {
 
     await dbConnect();
 
-    const oldRequisition = await Requisition.findById(id).lean();
-
-    const requisition = await Requisition.findByIdAndUpdate(id, updates, {
-      new: true,
-    }).lean();
+    // Find the requisition
+    const requisition = await Requisition.findOne({ requisitionId });
 
     if (!requisition) {
       return { success: false, error: "Requisition not found" };
     }
 
-    const oldReq = oldRequisition as { status?: string } | null;
-    const req = requisition as {
-      _id: string;
-      createdBy?: string;
-      requisitionId?: string;
-      amount?: number;
-      status?: string;
-    };
-    if (oldReq && oldReq.status !== req.status) {
-      if (req.status === "approved") {
-        await createNotification({
-          userId: req.createdBy || "REQUESTER_USER_ID",
-          type: "requisition_approved",
-          title: "Requisition Approved",
-          message: `Your requisition ${
-            req.requisitionId ?? ""
-          } has been approved for Nle${(req.amount ?? 0).toLocaleString()}`,
-          actionUrl: `/requisitions/${req._id}`,
-          priority: "medium",
-          metadata: {
-            requisitionId: req.requisitionId ?? "",
-            amount: req.amount ?? 0,
-          },
-        });
-      } else if (req.status === "rejected") {
-        await createNotification({
-          userId: req.createdBy || "REQUESTER_USER_ID",
-          type: "requisition_rejected",
-          title: "Requisition Rejected",
-          message: `Your requisition ${
-            req.requisitionId ?? ""
-          } has been rejected. Please review and resubmit.`,
-          actionUrl: `/requisitions/${req._id}`,
-          priority: "high",
-          metadata: {
-            requisitionId: req.requisitionId ?? "",
-            amount: req.amount ?? 0,
-          },
-        });
+    // Check if user is the creator
+    if (requisition.createdBy !== userId) {
+      return {
+        success: false,
+        error: "You can only edit your own requisitions",
+      };
+    }
+
+    // Check if status allows editing (only pending requisitions can be edited)
+    if (requisition.status !== "Pending approval") {
+      return {
+        success: false,
+        error: "Only pending requisitions can be edited",
+      };
+    }
+
+    // Parse line items
+    const lineItemsStr = formData.get("lineItems");
+    let lineItems: any[] = [];
+    if (lineItemsStr) {
+      try {
+        lineItems = JSON.parse(lineItemsStr as string);
+      } catch (e) {
+        return { success: false, error: "Invalid line items format" };
       }
     }
 
-    revalidatePath("/requisitions");
-    revalidatePath(`/requisitions/${id}`);
+    // Update the requisition
+    requisition.requester = formData.get("requester") as string;
+    requisition.branch = formData.get("branch") as string;
+    requisition.category = formData.get("category") as string;
+    requisition.priority = formData.get("priority") as string;
+    requisition.neededBy = new Date(formData.get("neededBy") as string);
+    requisition.description = formData.get("description") as string;
+    requisition.lineItems = lineItems;
+    requisition.updatedAt = new Date();
 
+    await requisition.save();
+
+    revalidatePath("/requisitions");
+    revalidatePath(`/requisitions/${requisitionId}`);
+
+    return { success: true };
+  } catch (error: any) {
+    console.error("Error updating requisition:", error);
     return {
-      success: true,
-      data: JSON.parse(JSON.stringify(requisition)),
+      success: false,
+      error: error?.message || "Failed to update requisition",
     };
-  } catch (error) {
-    console.error("[v0] Error updating requisition:", error);
-    return { success: false, error: "Failed to update requisition" };
   }
 }
 

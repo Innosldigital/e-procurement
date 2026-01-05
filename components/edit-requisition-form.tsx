@@ -13,11 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { createRequisition } from "@/lib/actions/requisition-actions";
+import { updateRequisition } from "@/lib/actions/requisition-actions";
 import { useRouter } from "next/navigation";
-import { getCurrentUserName } from "@/lib/actions/user-actions";
+import { useToast } from "@/hooks/use-toast";
 
-interface CreateRequisitionFormProps {
+interface EditRequisitionFormProps {
+  requisition: any;
   onClose: () => void;
 }
 
@@ -28,32 +29,48 @@ interface LineItem {
   unit: string;
 }
 
-export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
+export function EditRequisitionForm({
+  requisition,
+  onClose,
+}: EditRequisitionFormProps) {
   const router = useRouter();
+  const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
-  const [lineItems, setLineItems] = useState<LineItem[]>([
-    {
-      id: "1",
-      description: "",
-      quantity: 1,
-      unit: "Unit",
-    },
-  ]);
+  const [lineItems, setLineItems] = useState<LineItem[]>([]);
   const [requesterName, setRequesterName] = useState("");
+  const [branch, setBranch] = useState("");
+  const [category, setCategory] = useState("");
+  const [priority, setPriority] = useState("");
+  const [neededBy, setNeededBy] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
-    let mounted = true;
-    const load = async () => {
-      const res = await getCurrentUserName();
-      if (mounted && res && (res as any).success) {
-        setRequesterName((res as any).name || "");
-      }
-    };
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    if (requisition) {
+      setRequesterName(requisition.requester || "");
+      setBranch(requisition.branch || "");
+      setCategory(requisition.category || "");
+      setPriority(requisition.priority || "medium");
+      setNeededBy(
+        requisition.neededBy
+          ? new Date(requisition.neededBy).toISOString().split("T")[0]
+          : ""
+      );
+      setDescription(requisition.description || "");
+
+      // Parse line items
+      const items = requisition.lineItems || [];
+      setLineItems(
+        items.length > 0
+          ? items.map((item: any, index: number) => ({
+              id: item.id || index.toString(),
+              description: item.description || "",
+              quantity: item.quantity || 1,
+              unit: item.unit || "Unit",
+            }))
+          : [{ id: "1", description: "", quantity: 1, unit: "Unit" }]
+      );
+    }
+  }, [requisition]);
 
   const addLineItem = () => {
     const newItem: LineItem = {
@@ -82,17 +99,15 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
     );
   };
 
-  const totalAmount = 0;
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
-    // Generate requisition ID
-    const requisitionId = `REQ-${Date.now().toString().slice(-4)}`;
-    formData.set("requisitionId", requisitionId);
-    formData.set("amount", totalAmount.toString());
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.set("requisitionId", requisition.requisitionId);
+    formData.set("requester", requesterName);
+    formData.set("branch", branch);
+    formData.set("category", category);
+    formData.set("priority", priority);
+    formData.set("neededBy", neededBy);
+    formData.set("description", description);
     formData.set(
       "lineItems",
       JSON.stringify(
@@ -103,16 +118,26 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
         }))
       )
     );
-    formData.set("status", "Pending approval");
 
     startTransition(async () => {
-      const result = await createRequisition(formData);
+      const result = await updateRequisition(
+        requisition.requisitionId,
+        formData
+      );
 
       if (result.success) {
+        toast({
+          title: "Success",
+          description: "Requisition updated successfully",
+        });
         router.refresh();
         onClose();
       } else {
-        alert(result.error || "Failed to create requisition");
+        toast({
+          title: "Error",
+          description: result.error || "Failed to update requisition",
+          variant: "destructive",
+        });
       }
     });
   };
@@ -123,10 +148,10 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
         <div className="flex items-center justify-between p-4 md:p-6 border-b">
           <div>
             <h2 className="text-lg md:text-xl font-semibold">
-              Create Requisition
+              Edit Requisition
             </h2>
             <p className="text-xs md:text-sm text-muted-foreground mt-1">
-              Submit a new purchase requisition for approval
+              Update requisition details
             </p>
           </div>
           <Button variant="ghost" size="icon" onClick={onClose}>
@@ -134,7 +159,7 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
           </Button>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto">
           <div className="p-4 md:p-6 space-y-6">
             <div className="space-y-4">
               <h3 className="font-semibold text-sm">Basic Information</h3>
@@ -143,7 +168,6 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                   <Label htmlFor="requester">Requester Name *</Label>
                   <Input
                     id="requester"
-                    name="requester"
                     required
                     placeholder="Enter requester name"
                     value={requesterName}
@@ -153,7 +177,7 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
 
                 <div className="space-y-2">
                   <Label htmlFor="branch">Branch *</Label>
-                  <Select name="branch" required>
+                  <Select value={branch} onValueChange={setBranch} required>
                     <SelectTrigger>
                       <SelectValue placeholder="Select branch" />
                     </SelectTrigger>
@@ -165,7 +189,7 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
 
                 <div className="space-y-2">
                   <Label htmlFor="category">Category *</Label>
-                  <Select name="category" required>
+                  <Select value={category} onValueChange={setCategory} required>
                     <SelectTrigger>
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
@@ -184,7 +208,7 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
 
                 <div className="space-y-2">
                   <Label htmlFor="priority">Priority *</Label>
-                  <Select name="priority" defaultValue="medium" required>
+                  <Select value={priority} onValueChange={setPriority} required>
                     <SelectTrigger>
                       <SelectValue placeholder="Select priority" />
                     </SelectTrigger>
@@ -199,7 +223,13 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
 
                 <div className="space-y-2">
                   <Label htmlFor="neededBy">Needed By Date *</Label>
-                  <Input id="neededBy" name="neededBy" type="date" required />
+                  <Input
+                    id="neededBy"
+                    type="date"
+                    required
+                    value={neededBy}
+                    onChange={(e) => setNeededBy(e.target.value)}
+                  />
                 </div>
               </div>
 
@@ -207,9 +237,10 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                 <Label htmlFor="description">Description</Label>
                 <Textarea
                   id="description"
-                  name="description"
                   placeholder="Provide additional context or justification for this requisition"
                   rows={3}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
             </div>
@@ -229,7 +260,7 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
               </div>
 
               <div className="space-y-3">
-                {lineItems.map((item, index) => (
+                {lineItems.map((item) => (
                   <div
                     key={item.id}
                     className="flex flex-col md:flex-row gap-3 items-start p-3 md:p-4 border rounded-lg"
@@ -295,11 +326,11 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Create Requisition"}
+            <Button onClick={handleSubmit} disabled={isPending}>
+              {isPending ? "Updating..." : "Update Requisition"}
             </Button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
