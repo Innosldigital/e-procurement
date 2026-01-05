@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
 const isOnboardingRoute = createRouteMatcher(["/onboarding(.*)"]);
 const isApiRoute = createRouteMatcher(["/(api|trpc)(.*)"]);
-
 export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
     const path = request.nextUrl.pathname;
@@ -15,8 +14,10 @@ export default clerkMiddleware(async (auth, request) => {
     }
 
     const { sessionClaims } = await auth();
+    // const claims: any = sessionClaims || {};
+    // const md: any = claims.metadata || {};
     const claims: any = sessionClaims || {};
-    const md: any = claims.metadata || {};
+    const md: any = claims.publicMetadata || {};
 
     const email: string = String(
       typeof claims.email === "string"
