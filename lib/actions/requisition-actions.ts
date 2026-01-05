@@ -30,7 +30,33 @@ export async function getRequisitions() {
   }
 }
 
-export async function getRequisitionById(id: string) {
+// export async function getRequisitionById(id: string) {
+//   try {
+//     const { userId } = await auth();
+//     if (!userId) {
+//       return { success: false, error: "Unauthorized" };
+//     }
+
+//     await dbConnect();
+//     const requisition = await Requisition.findById(id).lean();
+
+//     if (!requisition) {
+//       return { success: false, error: "Requisition not found" };
+//     }
+
+//     return {
+//       success: true,
+//       data: JSON.parse(JSON.stringify(requisition)),
+//     };
+//   } catch (error) {
+//     console.error("[v0] Error fetching requisition:", error);
+//     return { success: false, error: "Failed to fetch requisition" };
+//   }
+// }
+
+// Update this in your lib/actions/requisition-actions.ts
+
+export async function getRequisitionById(requisitionId: string) {
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -38,7 +64,9 @@ export async function getRequisitionById(id: string) {
     }
 
     await dbConnect();
-    const requisition = await Requisition.findById(id).lean();
+
+    // Find by requisitionId (not MongoDB _id)
+    const requisition = await Requisition.findOne({ requisitionId }).lean();
 
     if (!requisition) {
       return { success: false, error: "Requisition not found" };
@@ -49,7 +77,7 @@ export async function getRequisitionById(id: string) {
       data: JSON.parse(JSON.stringify(requisition)),
     };
   } catch (error) {
-    console.error("[v0] Error fetching requisition:", error);
+    console.error("[getRequisitionById] Error:", error);
     return { success: false, error: "Failed to fetch requisition" };
   }
 }

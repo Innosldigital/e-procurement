@@ -1,6 +1,8 @@
 import { initEdgeStore } from "@edgestore/server";
 import { createEdgeStoreNextHandler } from "@edgestore/server/adapters/next/app";
 
+export const runtime = "nodejs";
+
 const es = initEdgeStore.create();
 
 /**
