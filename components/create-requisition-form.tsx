@@ -170,18 +170,13 @@ export function CreateRequisitionForm({ onClose }: CreateRequisitionFormProps) {
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Marketing & events">
-                        Marketing & events
-                      </SelectItem>
-                      <SelectItem value="IT & Software">
-                        IT & Software
-                      </SelectItem>
-                      <SelectItem value="Facilities & Office">
-                        Facilities & Office
+                      <SelectItem value="Facility">Facility</SelectItem>
+                      <SelectItem value="Catering services">
+                        Catering services
                       </SelectItem>
                       <SelectItem value="Logistics">Logistics</SelectItem>
-                      <SelectItem value="Professional Services">
-                        Professional Services
+                      <SelectItem value="Merchandise and Stationery">
+                        Merchandise and Stationery
                       </SelectItem>
                     </SelectContent>
                   </Select>
