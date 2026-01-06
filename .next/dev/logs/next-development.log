@@ -25,3 +25,124 @@ API Error: The Request HTTP Origin header must be equal to or a subdomain of the
 [00:44:50.144] Server  LOG      ✓ Compiled in 161ms
 [00:45:56.119] Server  LOG      ✓ Compiled in 151ms
 [00:57:08.458] Server  LOG      ✓ Compiled in 152ms
+[02:03:25.704] Server  ERROR    ⨯ ./lib/actions/approval-actions.ts:588:1
+Module not found: Can't resolve './permission-actions'
+  586 | import { Requisition } from "../models/Requisition";
+  587 | import { PurchaseOrder } from "../models/PurchaseOrder";
+> 588 | import { canApprove } from "./permission-actions"; // Added import for canApprove
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  589 |
+  590 | type ApprovalTableRow = {
+  591 |   _id: string;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./lib/actions/approval-actions.ts [Client Component Browser]
+    ./components/header.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/actions/approval-actions.ts [Client Component SSR]
+    ./components/header.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[02:03:25.711] Server  ERROR    ⨯ ./lib/actions/approval-actions.ts:588:1
+Module not found: Can't resolve './permission-actions'
+  586 | import { Requisition } from "../models/Requisition";
+  587 | import { PurchaseOrder } from "../models/PurchaseOrder";
+> 588 | import { canApprove } from "./permission-actions"; // Added import for canApprove
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  589 |
+  590 | type ApprovalTableRow = {
+  591 |   _id: string;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./lib/actions/approval-actions.ts [Client Component Browser]
+    ./components/header.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/actions/approval-actions.ts [Client Component SSR]
+    ./components/header.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[02:04:58.417] Server  ERROR    ⨯ ./lib/actions/approval-actions.ts:588:1
+Module not found: Can't resolve './permission-actions'
+  586 | import { Requisition } from "../models/Requisition";
+  587 | import { PurchaseOrder } from "../models/PurchaseOrder";
+> 588 | import { canApprove } from "./permission-actions"; // Added import for canApprove
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  589 |
+  590 | type ApprovalTableRow = {
+  591 |   _id: string;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./lib/actions/approval-actions.ts [Client Component Browser]
+    ./components/header.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/actions/approval-actions.ts [Client Component SSR]
+    ./components/header.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[02:04:58.421] Server  ERROR    ⨯ ./lib/actions/approval-actions.ts:588:1
+Module not found: Can't resolve './permission-actions'
+  586 | import { Requisition } from "../models/Requisition";
+  587 | import { PurchaseOrder } from "../models/PurchaseOrder";
+> 588 | import { canApprove } from "./permission-actions"; // Added import for canApprove
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  589 |
+  590 | type ApprovalTableRow = {
+  591 |   _id: string;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./lib/actions/approval-actions.ts [Client Component Browser]
+    ./components/header.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/actions/approval-actions.ts [Client Component SSR]
+    ./components/header.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[02:22:44.802] Server  LOG      ✓ Compiled in 276ms
