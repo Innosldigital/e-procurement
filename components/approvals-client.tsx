@@ -305,7 +305,6 @@ export default function ApprovalsClient({
       {/* Approvals Table */}
       <div className="rounded-lg border bg-card mb-6">
         <div className="p-4 border-b">
-          <h3 className="font-semibold text-lg">Pending Approvals</h3>
           <p className="text-sm text-muted-foreground">
             Review and action items requiring approval
           </p>
