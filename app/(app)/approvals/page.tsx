@@ -1,8 +1,8 @@
 // import { Button } from "@/components/ui/button";
-// import { getApprovals } from "@/lib/actions/approval-actions";
-// import { bulkApprove } from "@/lib/actions/approval-actions";
-// import { getRequisitions } from "@/lib/actions/requisition-actions";
-// import { getPurchaseOrders } from "@/lib/actions/purchase-order-actions";
+// import {
+//   getApprovalsWithDetails,
+//   bulkApprove,
+// } from "@/lib/actions/approval-actions";
 // import ApprovalsClient from "@/components/approvals-client";
 // import { Suspense } from "react";
 // import Link from "next/link";
@@ -22,7 +22,7 @@
 //       const md = (user?.publicMetadata || {}) as any;
 //       const rawRole = String(md.role || "");
 //       const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
-//       allowed = ["admin", "superadmin"].includes(normalized);
+//       allowed = ["admin", "superadmin", "projectlead"].includes(normalized);
 //     } catch (error) {
 //       console.error("Error checking user role:", error);
 //       allowed = false;
@@ -33,38 +33,41 @@
 //     return (
 //       <div className="flex min-h-screen flex-col">
 //         <main className="p-4 md:p-6">
-//           <div className="text-sm text-muted-foreground">
-//             You don't have permission to view approvals.
+//           <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center">
+//             <h2 className="text-lg font-semibold text-destructive mb-2">
+//               Access Denied
+//             </h2>
+//             <p className="text-sm text-muted-foreground">
+//               Only Admin, Superadmin, and Project Lead can access the approvals
+//               page.
+//             </p>
 //           </div>
 //         </main>
 //       </div>
 //     );
 //   }
 
-//   // Fetch approvals with error handling
+//   // Fetch all data from backend
 //   let approvals: any[] = [];
-//   try {
-//     const result = await getApprovals();
-//     approvals = result.success ? result.data || [] : [];
-//   } catch (error) {
-//     console.error("Error fetching approvals:", error);
-//     approvals = [];
-//   }
-
-//   // Fetch requisitions and purchase orders with error handling
 //   let requisitions: any[] = [];
 //   let purchaseOrders: any[] = [];
 
 //   try {
-//     const [reqResult, poResult] = await Promise.all([
-//       getRequisitions().catch(() => ({ success: false, data: [] })),
-//       getPurchaseOrders().catch(() => ({ success: false, data: [] })),
-//     ]);
-
-//     requisitions = reqResult && reqResult.success ? reqResult.data || [] : [];
-//     purchaseOrders = poResult && poResult.success ? poResult.data || [] : [];
+//     const result = await getApprovalsWithDetails();
+//     if (result.success && result.data) {
+//       approvals = Array.isArray(result.data)
+//         ? result.data
+//         : result.data?.approvals || [];
+//       requisitions = Array.isArray(result.data)
+//         ? result.data
+//         : result.data?.requisitions || [];
+//       purchaseOrders = Array.isArray(result.data)
+//         ? result.data
+//         : result.data?.purchaseOrders || [];
+//     }
 //   } catch (error) {
-//     console.error("Error fetching related data:", error);
+//     console.error("Error fetching approvals data:", error);
+//     approvals = [];
 //     requisitions = [];
 //     purchaseOrders = [];
 //   }
@@ -254,7 +257,7 @@ export default async function ApprovalsPage() {
               asChild
               variant="outline"
               size="sm"
-              className="flex-1 md:flex-none"
+              className="flex-1 md:flex-none bg-transparent"
             >
               <Link href="/admin?section=approval-workflows">
                 Approval rules
