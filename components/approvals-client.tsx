@@ -573,6 +573,104 @@ export default function ApprovalsClient({
           </DialogContent>
         </Dialog>
       </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mt-6">
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base">Requisitions</CardTitle>
+              <span className="text-xs text-muted-foreground">
+                {requisitions?.length || 0} total
+              </span>
+            </div>
+            <CardDescription className="text-xs">
+              Recent requisitions awaiting action
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="divide-y rounded-lg border">
+              {(requisitions || []).slice(0, 10).map((r: any) => (
+                <div
+                  key={String(r._id)}
+                  className="p-3 flex items-center justify-between"
+                >
+                  <div className="min-w-0">
+                    <div className="font-medium text-sm truncate">
+                      {r.requisitionId}
+                    </div>
+                    <div className="text-xs text-muted-foreground truncate">
+                      {r.requester} •{" "}
+                      {r.date
+                        ? new Date(r.date).toISOString().slice(0, 10)
+                        : ""}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-semibold">
+                      Nle{fmtAmount(Number(r.amount || 0))}
+                    </span>
+                    <StatusBadge status={r.status} />
+                  </div>
+                </div>
+              ))}
+              {(requisitions || []).length === 0 && (
+                <div className="p-6 text-center text-sm text-muted-foreground">
+                  No requisitions found.
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base">Purchase Orders</CardTitle>
+              <span className="text-xs text-muted-foreground">
+                {purchaseOrders?.length || 0} total
+              </span>
+            </div>
+            <CardDescription className="text-xs">
+              Recent POs and fulfillment status
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="divide-y rounded-lg border">
+              {(purchaseOrders || []).slice(0, 10).map((po: any) => (
+                <div
+                  key={String(po._id)}
+                  className="p-3 flex items-center justify-between"
+                >
+                  <div className="min-w-0">
+                    <div className="font-medium text-sm truncate">
+                      {po.poNumber}
+                    </div>
+                    <div className="text-xs text-muted-foreground truncate">
+                      {po.supplier} •{" "}
+                      {po.keyDates?.requestedDelivery
+                        ? new Date(po.keyDates.requestedDelivery)
+                            .toISOString()
+                            .slice(0, 10)
+                        : ""}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-semibold">
+                      {po.currency || "NLE"} {fmtAmount(Number(po.total || 0))}
+                    </span>
+                    <StatusBadge status={po.status} />
+                  </div>
+                </div>
+              ))}
+              {(purchaseOrders || []).length === 0 && (
+                <div className="p-6 text-center text-sm text-muted-foreground">
+                  No purchase orders found.
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
