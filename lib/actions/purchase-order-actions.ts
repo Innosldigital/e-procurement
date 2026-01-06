@@ -8,21 +8,49 @@ import { Requisition } from "../models/Requisition";
 import { Supplier } from "../models/Supplier";
 import { Invoice } from "../models/Invoice";
 
+// export async function getPurchaseOrders() {
+//   try {
+//     await dbConnect();
+//     const orders = await PurchaseOrder.find({})
+//       .sort({ createdAt: -1 })
+//       .limit(50)
+//       .lean();
+
+//     return {
+//       success: true,
+//       data: JSON.parse(JSON.stringify(orders)),
+//     };
+//   } catch (error) {
+//     console.error("[v0] Error fetching purchase orders:", error);
+//     return { success: false, error: "Failed to fetch purchase orders" };
+//   }
+// }
+
 export async function getPurchaseOrders() {
   try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized", data: [] };
+    }
+
     await dbConnect();
-    const orders = await PurchaseOrder.find({})
+
+    const purchaseOrders = await PurchaseOrder.find({})
       .sort({ createdAt: -1 })
       .limit(50)
       .lean();
 
     return {
       success: true,
-      data: JSON.parse(JSON.stringify(orders)),
+      data: JSON.parse(JSON.stringify(purchaseOrders || [])),
     };
   } catch (error) {
-    console.error("[v0] Error fetching purchase orders:", error);
-    return { success: false, error: "Failed to fetch purchase orders" };
+    console.error("Error fetching purchase orders:", error);
+    return {
+      success: false,
+      error: "Failed to fetch purchase orders",
+      data: [],
+    };
   }
 }
 
