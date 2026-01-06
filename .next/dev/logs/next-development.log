@@ -18,3 +18,5 @@ API Error: The Request HTTP Origin header must be equal to or a subdomain of the
 [00:00:15.024] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
 [00:00:15.024] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/sign-in","route":"/sign-in"}
 [00:00:15.024] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/sign-in color: rgb(120, 120, 120) color: inherit {"dp":"/sign-in","o":"http://localhost:3000/sign-in","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1767701700210}
+[00:15:19.485] Server  LOG      ✓ Compiled in 172ms
+[00:15:44.472] Server  LOG      ✓ Compiled in 331ms

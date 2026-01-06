@@ -11,6 +11,33 @@
 // import { PurchaseOrder } from "../models/PurchaseOrder";
 // import { sendEmail } from "./admin-approval-actions";
 
+// // Helper to check if user has approval permissions
+// async function canApprove(
+//   userId: string
+// ): Promise<{ allowed: boolean; role?: string; error?: string }> {
+//   try {
+//     const client = await clerkClient();
+//     const user = await client.users.getUser(userId);
+//     const md = (user?.publicMetadata || {}) as any;
+//     const rawRole = String(md.role || "");
+//     const normalizedRole = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+
+//     const allowedRoles = ["admin", "superadmin", "projectlead"];
+
+//     if (allowedRoles.includes(normalizedRole)) {
+//       return { allowed: true, role: normalizedRole };
+//     }
+
+//     return {
+//       allowed: false,
+//       error: "Only Admin, Superadmin, and Project Lead can approve requests",
+//     };
+//   } catch (error) {
+//     console.error("Error checking approval permission:", error);
+//     return { allowed: false, error: "Failed to verify permissions" };
+//   }
+// }
+
 // async function getRequesterInfo(approval: any) {
 //   try {
 //     let userId = "";
@@ -19,7 +46,6 @@
 //       if (mongoose.Types.ObjectId.isValid(approval.itemId)) {
 //         req = await Requisition.findById(approval.itemId).lean();
 //       }
-//       // If not found or invalid ID, try by requisitionId
 //       if (!req) {
 //         req = await Requisition.findOne({
 //           requisitionId: approval.itemId,
@@ -28,7 +54,6 @@
 //       if (req) userId = req.createdBy || "";
 //     } else if (approval.type === "Purchase Order") {
 //       let po: any = null;
-//       // Try finding by _id
 //       if (mongoose.Types.ObjectId.isValid(approval.itemId)) {
 //         po = await PurchaseOrder.findById(approval.itemId).lean();
 //       }
@@ -37,10 +62,8 @@
 //       }
 
 //       if (po) {
-//         // Try to find linked requisition to get createdBy
 //         if (po.linkedRequisition) {
 //           let req: any = null;
-//           // Try finding by _id (linkedRequisition might be ID or String ID)
 //           if (mongoose.Types.ObjectId.isValid(po.linkedRequisition)) {
 //             req = await Requisition.findById(po.linkedRequisition).lean();
 //           }
@@ -51,17 +74,12 @@
 //           }
 //           if (req) userId = req.createdBy || "";
 //         }
-//         // Fallback: if PO has a requester field that happens to be a userId (unlikely but possible)
-//         if (!userId && po.requester && !po.requester.includes(" ")) {
-//           // Heuristic: if no spaces, might be an ID?
-//           // userId = po.requester;
-//         }
 //       }
 //     }
 
 //     if (!userId) return null;
 
-//     const client: any = await clerkClient();
+//     const client = await clerkClient();
 //     const user = await client.users.getUser(userId);
 //     const email = user.emailAddresses[0]?.emailAddress;
 //     const name =
@@ -74,8 +92,58 @@
 //   }
 // }
 
+// // Get all approvals with related requisitions and purchase orders
+// export async function getApprovalsWithDetails() {
+//   try {
+//     const { userId } = await auth();
+//     if (!userId) {
+//       return { success: false, error: "Unauthorized", data: [] };
+//     }
+
+//     // Check if user has approval permissions
+//     const permissionCheck = await canApprove(userId);
+//     if (!permissionCheck.allowed) {
+//       return { success: false, error: permissionCheck.error, data: [] };
+//     }
+
+//     await dbConnect();
+
+//     // Fetch all data in parallel
+//     const [approvals, requisitions, purchaseOrders] = await Promise.all([
+//       Approval.find({}).sort({ createdAt: -1 }).limit(50).lean(),
+//       Requisition.find({}).sort({ createdAt: -1 }).lean(),
+//       PurchaseOrder.find({}).sort({ createdAt: -1 }).lean(),
+//     ]);
+
+//     return {
+//       success: true,
+//       data: {
+//         approvals: JSON.parse(JSON.stringify(approvals || [])),
+//         requisitions: JSON.parse(JSON.stringify(requisitions || [])),
+//         purchaseOrders: JSON.parse(JSON.stringify(purchaseOrders || [])),
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Error fetching approvals with details:", error);
+//     return {
+//       success: false,
+//       error: "Failed to fetch approvals",
+//       data: {
+//         approvals: [],
+//         requisitions: [],
+//         purchaseOrders: [],
+//       },
+//     };
+//   }
+// }
+
 // export async function getApprovals() {
 //   try {
+//     const { userId } = await auth();
+//     if (!userId) {
+//       return { success: false, error: "Unauthorized", data: [] };
+//     }
+
 //     await dbConnect();
 //     const approvals = await Approval.find({})
 //       .sort({ createdAt: -1 })
@@ -84,11 +152,11 @@
 
 //     return {
 //       success: true,
-//       data: JSON.parse(JSON.stringify(approvals)),
+//       data: JSON.parse(JSON.stringify(approvals || [])),
 //     };
 //   } catch (error) {
-//     console.error("[v0] Error fetching approvals:", error);
-//     return { success: false, error: "Failed to fetch approvals" };
+//     console.error("Error fetching approvals:", error);
+//     return { success: false, error: "Failed to fetch approvals", data: [] };
 //   }
 // }
 
@@ -114,6 +182,11 @@
 
 // export async function getApprovalById(id: string) {
 //   try {
+//     const { userId } = await auth();
+//     if (!userId) {
+//       return { success: false, error: "Unauthorized" };
+//     }
+
 //     await dbConnect();
 //     const approval = await Approval.findById(id).lean();
 
@@ -138,9 +211,15 @@
 //       return { success: false, error: "Unauthorized" };
 //     }
 
+//     // Check approval permission
+//     const permissionCheck = await canApprove(userId);
+//     if (!permissionCheck.allowed) {
+//       return { success: false, error: permissionCheck.error };
+//     }
+
 //     await dbConnect();
 
-//     const updated = await Approval.findByIdAndUpdate(
+//     const approval = await Approval.findByIdAndUpdate(
 //       id,
 //       {
 //         status: "approved",
@@ -149,41 +228,43 @@
 //       },
 //       { new: true }
 //     );
-//     let approval = updated?.toObject();
-//     if (comments && updated) {
-//       approval = await Approval.findByIdAndUpdate(
-//         id,
-//         {
-//           $push: {
-//             comments: { author: userId, text: comments, date: new Date() },
-//           },
-//         },
-//         { new: true }
-//       ).lean();
-//     } else {
-//       approval = approval as any;
-//     }
 
 //     if (!approval) {
 //       return { success: false, error: "Approval not found" };
 //     }
 
-//     const ap = approval as {
-//       _id: string;
-//       type?: string;
-//       itemId?: string;
-//       amount?: number;
-//     };
+//     // Add comment if provided
+//     if (comments) {
+//       await Approval.findByIdAndUpdate(id, {
+//         $push: {
+//           comments: { author: userId, text: comments, date: new Date() },
+//         },
+//       });
+//     }
+
+//     // Add timeline event
+//     await Approval.findByIdAndUpdate(id, {
+//       $push: {
+//         timeline: {
+//           event: "Approved",
+//           timestamp: new Date(),
+//           actor: userId,
+//           details: comments || "Request approved",
+//         },
+//       },
+//     });
+
+//     const ap = approval as any;
 //     const resourceType = ap.type ? ap.type.toLowerCase() : "request";
 
-//     // Get requester info
+//     // Get requester info and send notification
 //     const requester = await getRequesterInfo(ap);
 //     const targetUserId = requester?.userId || "REQUESTER_USER_ID";
 
 //     await createNotification({
 //       userId: targetUserId,
 //       type: "approval_pending",
-//       title: `${resourceType} Approved`,
+//       title: `${ap.type} Approved`,
 //       message: `Your ${resourceType} ${ap.itemId ?? ""} for Nle${(
 //         ap.amount ?? 0
 //       ).toLocaleString()} has been approved`,
@@ -200,7 +281,7 @@
 //     if (requester?.email) {
 //       await sendEmail(
 //         requester.email,
-//         `${resourceType} Approved`,
+//         `${ap.type} Approved`,
 //         `<p>Your ${resourceType} <strong>${
 //           ap.itemId ?? ""
 //         }</strong> for <strong>Nle${(
@@ -220,7 +301,7 @@
 //       data: JSON.parse(JSON.stringify(approval)),
 //     };
 //   } catch (error) {
-//     console.error("[v0] Error approving request:", error);
+//     console.error("Error approving request:", error);
 //     return { success: false, error: "Failed to approve request" };
 //   }
 // }
@@ -232,22 +313,33 @@
 //       return { success: false, error: "Unauthorized" };
 //     }
 
+//     // Check approval permission
+//     const permissionCheck = await canApprove(userId);
+//     if (!permissionCheck.allowed) {
+//       return { success: false, error: permissionCheck.error };
+//     }
+
+//     if (!comments || !comments.trim()) {
+//       return { success: false, error: "Rejection reason is required" };
+//     }
+
 //     await dbConnect();
 
-//     const updated = await Approval.findByIdAndUpdate(
+//     const approval = await Approval.findByIdAndUpdate(
 //       id,
 //       {
 //         status: "rejected",
 //         rejectedAt: new Date(),
 //         rejectedBy: userId,
-//       },
-//       { new: true }
-//     );
-//     const approval = await Approval.findByIdAndUpdate(
-//       id,
-//       {
+//         reason: comments,
 //         $push: {
 //           comments: { author: userId, text: comments, date: new Date() },
+//           timeline: {
+//             event: "Rejected",
+//             timestamp: new Date(),
+//             actor: userId,
+//             details: comments,
+//           },
 //         },
 //       },
 //       { new: true }
@@ -257,30 +349,43 @@
 //       return { success: false, error: "Approval not found" };
 //     }
 
-//     {
-//       const ap = approval as {
-//         _id: string;
-//         type?: string;
-//         itemId?: string;
-//         amount?: number;
-//       };
-//       const resourceType = ap.type ? ap.type.toLowerCase() : "request";
-//       await createNotification({
-//         userId: "REQUESTER_USER_ID",
-//         type: "approval_pending",
-//         title: `${ap.type ?? "Request"} Rejected`,
-//         message: `Your ${resourceType} ${
+//     const ap = approval as any;
+//     const resourceType = ap.type ? ap.type.toLowerCase() : "request";
+
+//     // Get requester info and send notification
+//     const requester = await getRequesterInfo(ap);
+//     const targetUserId = requester?.userId || "REQUESTER_USER_ID";
+
+//     await createNotification({
+//       userId: targetUserId,
+//       type: "approval_pending",
+//       title: `${ap.type} Rejected`,
+//       message: `Your ${resourceType} ${
+//         ap.itemId ?? ""
+//       } has been rejected. ${comments}`,
+//       actionUrl: `/${resourceType}s/${ap.itemId ?? ""}`,
+//       priority: "high",
+//       metadata: {
+//         approvalId: ap._id,
+//         itemId: ap.itemId ?? "",
+//         amount: ap.amount ?? 0,
+//         rejectionReason: comments,
+//       },
+//     });
+
+//     // Send email
+//     if (requester?.email) {
+//       await sendEmail(
+//         requester.email,
+//         `${ap.type} Rejected`,
+//         `<p>Your ${resourceType} <strong>${
 //           ap.itemId ?? ""
-//         } has been rejected. ${comments}`,
-//         actionUrl: `/${resourceType}s/${ap.itemId ?? ""}`,
-//         priority: "high",
-//         metadata: {
-//           approvalId: ap._id,
-//           itemId: ap.itemId ?? "",
-//           amount: ap.amount ?? 0,
-//           rejectionReason: comments,
-//         },
-//       });
+//         }</strong> has been rejected.</p><p><strong>Reason:</strong> ${comments}</p>`,
+//         `${process.env.NEXT_PUBLIC_APP_URL || ""}/${resourceType}s/${
+//           ap.itemId ?? ""
+//         }`,
+//         "View Details"
+//       );
 //     }
 
 //     revalidatePath("/approvals");
@@ -290,7 +395,7 @@
 //       data: JSON.parse(JSON.stringify(approval)),
 //     };
 //   } catch (error) {
-//     console.error("[v0] Error rejecting request:", error);
+//     console.error("Error rejecting request:", error);
 //     return { success: false, error: "Failed to reject request" };
 //   }
 // }
@@ -302,21 +407,31 @@
 //       return { success: false, error: "Unauthorized" };
 //     }
 
+//     // Check approval permission
+//     const permissionCheck = await canApprove(userId);
+//     if (!permissionCheck.allowed) {
+//       return { success: false, error: permissionCheck.error };
+//     }
+
+//     if (!comments || !comments.trim()) {
+//       return { success: false, error: "Change details are required" };
+//     }
+
 //     await dbConnect();
 
-//     const updated = await Approval.findByIdAndUpdate(
+//     const approval = await Approval.findByIdAndUpdate(
 //       id,
 //       {
 //         status: "changes_requested",
 //         requestedBy: userId,
-//       },
-//       { new: true }
-//     );
-//     const approval = await Approval.findByIdAndUpdate(
-//       id,
-//       {
 //         $push: {
 //           comments: { author: userId, text: comments, date: new Date() },
+//           timeline: {
+//             event: "Changes Requested",
+//             timestamp: new Date(),
+//             actor: userId,
+//             details: comments,
+//           },
 //         },
 //       },
 //       { new: true }
@@ -326,24 +441,42 @@
 //       return { success: false, error: "Approval not found" };
 //     }
 
-//     {
-//       const ap = approval as { _id: string; type?: string; itemId?: string };
-//       const resourceType = ap.type ? ap.type.toLowerCase() : "request";
-//       await createNotification({
-//         userId: "REQUESTER_USER_ID",
-//         type: "approval_pending",
-//         title: "Changes Requested",
-//         message: `Changes requested for ${resourceType} ${
+//     const ap = approval as any;
+//     const resourceType = ap.type ? ap.type.toLowerCase() : "request";
+
+//     // Get requester info and send notification
+//     const requester = await getRequesterInfo(ap);
+//     const targetUserId = requester?.userId || "REQUESTER_USER_ID";
+
+//     await createNotification({
+//       userId: targetUserId,
+//       type: "approval_pending",
+//       title: "Changes Requested",
+//       message: `Changes requested for ${resourceType} ${
+//         ap.itemId ?? ""
+//       }. ${comments}`,
+//       actionUrl: `/${resourceType}s/${ap.itemId ?? ""}`,
+//       priority: "medium",
+//       metadata: {
+//         approvalId: ap._id,
+//         itemId: ap.itemId ?? "",
+//         changeComments: comments,
+//       },
+//     });
+
+//     // Send email
+//     if (requester?.email) {
+//       await sendEmail(
+//         requester.email,
+//         "Changes Requested",
+//         `<p>Changes have been requested for your ${resourceType} <strong>${
 //           ap.itemId ?? ""
-//         }. ${comments}`,
-//         actionUrl: `/${resourceType}s/${ap.itemId ?? ""}`,
-//         priority: "medium",
-//         metadata: {
-//           approvalId: ap._id,
-//           itemId: ap.itemId ?? "",
-//           changeComments: comments,
-//         },
-//       });
+//         }</strong>.</p><p><strong>Details:</strong> ${comments}</p>`,
+//         `${process.env.NEXT_PUBLIC_APP_URL || ""}/${resourceType}s/${
+//           ap.itemId ?? ""
+//         }`,
+//         "View Details"
+//       );
 //     }
 
 //     revalidatePath("/approvals");
@@ -353,7 +486,7 @@
 //       data: JSON.parse(JSON.stringify(approval)),
 //     };
 //   } catch (error) {
-//     console.error("[v0] Error requesting changes:", error);
+//     console.error("Error requesting changes:", error);
 //     return { success: false, error: "Failed to request changes" };
 //   }
 // }
@@ -365,12 +498,28 @@
 //       return { success: false, error: "Unauthorized" };
 //     }
 
+//     // Check approval permission
+//     const permissionCheck = await canApprove(userId);
+//     if (!permissionCheck.allowed) {
+//       return { success: false, error: permissionCheck.error };
+//     }
+
 //     await dbConnect();
 
 //     const now = new Date();
 //     await Approval.updateMany(
 //       { _id: { $in: ids } },
-//       { $set: { status: "approved", approvedAt: now, approvedBy: userId } }
+//       {
+//         $set: { status: "approved", approvedAt: now, approvedBy: userId },
+//         $push: {
+//           timeline: {
+//             event: "Bulk Approved",
+//             timestamp: now,
+//             actor: userId,
+//             details: comments || "Bulk approval",
+//           },
+//         },
+//       }
 //     );
 
 //     if (comments) {
@@ -391,7 +540,7 @@
 //       await createNotification({
 //         userId: targetUserId,
 //         type: "approval_pending",
-//         title: `${resourceType} Approved`,
+//         title: `${ap.type} Approved`,
 //         message: `Your ${resourceType} ${ap.itemId ?? ""} for Nle${(
 //           ap.amount ?? 0
 //         ).toLocaleString()} has been approved`,
@@ -407,7 +556,7 @@
 //       if (requester?.email) {
 //         await sendEmail(
 //           requester.email,
-//           `${resourceType} Approved`,
+//           `${ap.type} Approved`,
 //           `<p>Your ${resourceType} <strong>${
 //             ap.itemId ?? ""
 //           }</strong> for <strong>Nle${(
@@ -425,7 +574,7 @@
 
 //     return { success: true, count: ids.length };
 //   } catch (error) {
-//     console.error("[v0] Error bulk approving:", error);
+//     console.error("Error bulk approving:", error);
 //     return { success: false, error: "Failed to bulk approve" };
 //   }
 // }
