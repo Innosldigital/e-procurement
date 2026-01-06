@@ -2284,3 +2284,101 @@ API Error: The Request HTTP Origin header must be equal to or a subdomain of the
     at async #U (https://clerk.innoslprocurement.com/npm/@clerk/clerk-js@5/dist/clerk.browser.js:5:71707)
     at async e5.load (https://clerk.innoslprocurement.com/npm/@clerk/clerk-js@5/dist/clerk.browser.js:5:33306)
     at async _IsomorphicClerk.loadClerkJS (http://localhost:3000/_next/static/chunks/node_modules_%40clerk_clerk-react_dist_6fd342e9._.js:3233:17)
+[01:26:49.223] Server  ERROR    ⨯ ./app/(app)/approvals/page.tsx:148:1
+Module not found: Can't resolve './approval-detail-modal'
+  146 |   AlertCircle,
+  147 | } from "lucide-react";
+> 148 | import { ApprovalDetailModal } from "./approval-detail-modal";
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  149 | import { useRouter } from "next/navigation";
+  150 |
+  151 | type Approval = {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/approvals/page.tsx [Client Component Browser]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/approvals/page.tsx [Client Component SSR]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:26:49.225] Server  ERROR    ⨯ ./app/(app)/approvals/page.tsx:148:1
+Module not found: Can't resolve './approval-detail-modal'
+  146 |   AlertCircle,
+  147 | } from "lucide-react";
+> 148 | import { ApprovalDetailModal } from "./approval-detail-modal";
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  149 | import { useRouter } from "next/navigation";
+  150 |
+  151 | type Approval = {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/approvals/page.tsx [Client Component Browser]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/approvals/page.tsx [Client Component SSR]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:26:49.227] Server  ERROR    ⨯ ./app/(app)/approvals/page.tsx:148:1
+Module not found: Can't resolve './approval-detail-modal'
+  146 |   AlertCircle,
+  147 | } from "lucide-react";
+> 148 | import { ApprovalDetailModal } from "./approval-detail-modal";
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  149 | import { useRouter } from "next/navigation";
+  150 |
+  151 | type Approval = {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/approvals/page.tsx [Client Component Browser]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/approvals/page.tsx [Client Component SSR]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:26:49.230] Server  ERROR    ⨯ ./app/(app)/approvals/page.tsx:148:1
+Module not found: Can't resolve './approval-detail-modal'
+  146 |   AlertCircle,
+  147 | } from "lucide-react";
+> 148 | import { ApprovalDetailModal } from "./approval-detail-modal";
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  149 | import { useRouter } from "next/navigation";
+  150 |
+  151 | type Approval = {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/(app)/approvals/page.tsx [Client Component Browser]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(app)/approvals/page.tsx [Client Component SSR]
+    ./app/(app)/approvals/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:29:06.275] Server  LOG      ✓ Compiled in 135ms
+[01:29:18.199] Server  LOG      ✓ Compiled in 245ms
