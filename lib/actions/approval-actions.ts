@@ -592,6 +592,16 @@ import { Requisition } from "../models/Requisition";
 import { PurchaseOrder } from "../models/PurchaseOrder";
 import { sendEmail } from "./admin-approval-actions";
 
+type ApprovalTableRow = {
+  _id: string;
+  type: "Approval" | "Requisition" | "Purchase Order";
+  itemId: string;
+  requester: string;
+  status: string;
+  amount: number;
+  createdAt: string | Date;
+};
+
 // Helper to check if user has approval permissions
 async function canApprove(
   userId: string
@@ -681,7 +691,6 @@ export async function getApprovalsWithDetails() {
       return { success: false, error: "Unauthorized", data: [] };
     }
 
-    // Check if user has approval permissions
     const permissionCheck = await canApprove(userId);
     if (!permissionCheck.allowed) {
       return { success: false, error: permissionCheck.error, data: [] };
@@ -689,31 +698,60 @@ export async function getApprovalsWithDetails() {
 
     await dbConnect();
 
-    // Fetch all data in parallel
     const [approvals, requisitions, purchaseOrders] = await Promise.all([
       Approval.find({}).sort({ createdAt: -1 }).limit(50).lean(),
       Requisition.find({}).sort({ createdAt: -1 }).lean(),
       PurchaseOrder.find({}).sort({ createdAt: -1 }).lean(),
     ]);
 
+    // ✅ SAFETY
+    const safeApprovals = Array.isArray(approvals) ? approvals : [];
+    const safeReqs = Array.isArray(requisitions) ? requisitions : [];
+    const safePOs = Array.isArray(purchaseOrders) ? purchaseOrders : [];
+
+    // ✅ MAP TO TABLE ROWS
+    const approvalRows: ApprovalTableRow[] = safeApprovals.map((a: any) => ({
+      _id: String(a._id),
+      type: a.type || "Approval",
+      itemId: a.itemId,
+      requester: a.requester || "N/A",
+      status: a.status,
+      amount: Number(a.amount || 0),
+      createdAt: a.createdAt,
+    }));
+
+    const requisitionRows: ApprovalTableRow[] = safeReqs.map((r: any) => ({
+      _id: String(r._id),
+      type: "Requisition",
+      itemId: r.requisitionId,
+      requester: r.requester || r.createdBy || "N/A",
+      status: r.status,
+      amount: Number(r.amount || 0),
+      createdAt: r.createdAt,
+    }));
+
+    const purchaseOrderRows: ApprovalTableRow[] = safePOs.map((po: any) => ({
+      _id: String(po._id),
+      type: "Purchase Order",
+      itemId: po.poNumber,
+      requester: po.supplier || "N/A",
+      status: po.status,
+      amount: Number(po.total || 0),
+      createdAt: po.createdAt || po.keyDates?.requestedDelivery || new Date(),
+    }));
+
+    const allRows = [...approvalRows, ...requisitionRows, ...purchaseOrderRows];
+
     return {
       success: true,
-      data: {
-        approvals: JSON.parse(JSON.stringify(approvals || [])),
-        requisitions: JSON.parse(JSON.stringify(requisitions || [])),
-        purchaseOrders: JSON.parse(JSON.stringify(purchaseOrders || [])),
-      },
+      data: allRows,
     };
   } catch (error) {
     console.error("Error fetching approvals with details:", error);
     return {
       success: false,
       error: "Failed to fetch approvals",
-      data: {
-        approvals: [],
-        requisitions: [],
-        purchaseOrders: [],
-      },
+      data: [],
     };
   }
 }

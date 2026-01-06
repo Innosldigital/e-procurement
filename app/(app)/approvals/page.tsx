@@ -214,13 +214,13 @@ export default async function ApprovalsPage() {
     if (result.success && result.data) {
       approvals = Array.isArray(result.data)
         ? result.data
-        : result.data?.approvals || [];
+        : (result.data as any)?.approvals || [];
       requisitions = Array.isArray(result.data)
         ? result.data
-        : result.data?.requisitions || [];
+        : (result.data as any)?.requisitions || [];
       purchaseOrders = Array.isArray(result.data)
         ? result.data
-        : result.data?.purchaseOrders || [];
+        : (result.data as any)?.purchaseOrders || [];
     }
   } catch (error) {
     console.error("Error fetching approvals data:", error);
