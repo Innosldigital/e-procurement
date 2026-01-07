@@ -663,9 +663,11 @@ export function RequisitionDetailModal({
       : "N/A";
 
   const fmtAmount = (n: number) =>
-    `Nle ${new Intl.NumberFormat("en-US", {
+    new Intl.NumberFormat("en-SL", {
+      style: "currency",
+      currency: "SLE",
       minimumFractionDigits: 2,
-    }).format(n)}`;
+    }).format(n);
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
