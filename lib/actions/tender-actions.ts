@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs/server";
 import dbConnect from "@/lib/mongodb";
 import { Tender } from "../models/Tender";
 import { Supplier } from "../models/Supplier";
@@ -784,6 +785,126 @@ export async function getTenderStats() {
       success: false,
       error: "Failed to fetch tender stats",
       data: null,
+    };
+  }
+}
+
+// Add this function to your lib/actions/tender-actions.ts file
+
+export async function updateTender(
+  id: string,
+  data: {
+    title?: string;
+    type?: string;
+    category?: string;
+    businessUnit?: string;
+    region?: string;
+    sourcingObjective?: string;
+    estimatedValue?: number;
+    contractTerm?: string;
+    sourcingType?: string;
+    invitedSuppliers?: number;
+    closeDate?: Date;
+    tenderDocuments?: {
+      name: string;
+      size: number;
+      type: string;
+      url: string;
+    }[];
+  }
+) {
+  try {
+    const { userId } = await auth();
+
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+
+    await dbConnect();
+
+    // First, get the tender to check ownership
+    const existingTender = await Tender.findById(id).lean();
+
+    if (!existingTender) {
+      return { success: false, error: "Tender not found" };
+    }
+
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const rawRole = String(((user.publicMetadata as any) || {}).role || "");
+    const normalizedRole = rawRole.toLowerCase().replace(/[\s_-]+/g, "");
+    const allowedRoles = ["admin", "superadmin", "projectlead", "procurementofficer"];
+    const isOwner = String(((existingTender as any)?.owner) || "") === userId;
+    if (!isOwner && !allowedRoles.includes(normalizedRole)) {
+      return {
+        success: false,
+        error: "You do not have permission to edit this tender",
+      };
+    }
+
+    // Prepare update data
+    const updateData: any = {};
+
+    if (data.title !== undefined) updateData.title = data.title;
+    if (data.type !== undefined) updateData.type = data.type;
+    if (data.category !== undefined) updateData.category = data.category;
+    if (data.businessUnit !== undefined)
+      updateData.businessUnit = data.businessUnit;
+    if (data.region !== undefined) updateData.region = data.region;
+    if (data.sourcingObjective !== undefined)
+      updateData.sourcingObjective = data.sourcingObjective;
+    if (data.estimatedValue !== undefined)
+      updateData.estimatedValue = data.estimatedValue;
+    if (data.contractTerm !== undefined)
+      updateData.contractTerm = data.contractTerm;
+    if (data.sourcingType !== undefined)
+      updateData.sourcingType = data.sourcingType;
+    if (data.invitedSuppliers !== undefined)
+      updateData.invitedSuppliers = data.invitedSuppliers;
+    if (data.closeDate !== undefined) updateData.closeDate = data.closeDate;
+
+    if (data.tenderDocuments !== undefined) {
+      updateData.tenderDocuments = Array.isArray(data.tenderDocuments)
+        ? data.tenderDocuments.map((doc) => ({
+            name: String(doc.name || ""),
+            size: Number(doc.size || 0),
+            type: String(doc.type || ""),
+            url: String(doc.url || ""),
+          }))
+        : [];
+    }
+
+    // Add timeline entry
+    updateData.$push = {
+      timeline: {
+        event: "Tender updated",
+        date: new Date().toISOString(),
+        owner: userId,
+      },
+    };
+
+    const updatedTender = await Tender.findByIdAndUpdate(id, updateData, {
+      new: true,
+    }).lean();
+
+    if (!updatedTender) {
+      return { success: false, error: "Failed to update tender" };
+    }
+
+    console.log(`[updateTender] ✅ Tender ${id} updated successfully`);
+
+    revalidatePath("/tenders");
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(updatedTender)),
+      message: "Tender updated successfully",
+    };
+  } catch (error) {
+    console.error("[updateTender] ❌ Error updating tender:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to update tender",
     };
   }
 }

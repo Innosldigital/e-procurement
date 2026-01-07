@@ -1,4 +1,5 @@
 // "use client";
+
 // import { useState, useEffect, useCallback } from "react";
 // import { useUser } from "@clerk/nextjs";
 // import { StatusBadge } from "@/components/status-badge";
@@ -16,7 +17,7 @@
 // import { TemplatesRulesModal } from "@/components/templates-rules-modal";
 // import { SubmitBidForm } from "@/components/submit-bid-form";
 
-// export default function TendersPage() {
+// function TendersPage() {
 //   const [tenders, setTenders] = useState<any[]>([]);
 //   const [selectedTender, setSelectedTender] = useState<any>(null);
 //   const [loading, setLoading] = useState(true);
@@ -26,8 +27,11 @@
 //   const [showTemplatesRules, setShowTemplatesRules] = useState(false);
 //   const [showBidForm, setShowBidForm] = useState(false);
 //   const { user } = useUser();
+
 //   const [canCreateTender, setCanCreateTender] = useState(false);
 //   const [isSupplier, setIsSupplier] = useState(false);
+//   const [isAdminOrSuperAdmin, setIsAdminOrSuperAdmin] = useState(false);
+
 //   const [stats, setStats] = useState<{
 //     openCount: number;
 //     evalCount: number;
@@ -43,7 +47,6 @@
 //         if (result.success && result.data) {
 //           setTenders(result.data);
 
-//           // If we have a selected tender, update it with fresh data
 //           if (selectedTender) {
 //             const updatedSelected = result.data.find(
 //               (t: any) => t._id === selectedTender._id
@@ -98,13 +101,17 @@
 //     loadStats();
 //   }, [loadStats]);
 
-//   // Check user permissions
+//   // Check user permissions and role
 //   useEffect(() => {
-//     const md = (user?.publicMetadata || {}) as any;
+//     if (!user) return;
+
+//     const md = (user.publicMetadata || {}) as any;
 //     const rawRole = String(md.role || "");
 //     const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+
 //     setCanCreateTender(["admin", "company", "superadmin"].includes(normalized));
 //     setIsSupplier(normalized === "supplier");
+//     setIsAdminOrSuperAdmin(["admin", "superadmin"].includes(normalized));
 //   }, [user]);
 
 //   const handleSubmitBid = () => {
@@ -113,20 +120,18 @@
 
 //   const handleCloseCreateForm = async () => {
 //     setShowCreate(false);
-//     // Refresh data after creating tender
 //     await handleRefresh();
 //   };
 
 //   const handleCloseBidForm = async () => {
 //     setShowBidForm(false);
-//     // Refresh data after submitting bid
 //     await handleRefresh();
 //   };
 
 //   return (
-//     <div className="p-6">
+//     <div className="p-4 sm:p-6 min-h-screen">
 //       <div className="max-w-[1600px] mx-auto">
-//         <div className="flex items-center justify-between mb-6">
+//         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
 //           <div>
 //             <h1 className="text-2xl font-semibold text-foreground mb-2">
 //               Tenders
@@ -136,7 +141,7 @@
 //               organization.
 //             </p>
 //           </div>
-//           <div className="flex gap-2">
+//           <div className="flex flex-wrap gap-2">
 //             <Button
 //               variant="outline"
 //               size="sm"
@@ -148,14 +153,19 @@
 //               />
 //               Refresh
 //             </Button>
-//             <Button
-//               variant="outline"
-//               size="sm"
-//               onClick={() => setShowTemplatesRules(true)}
-//             >
-//               <FileText className="w-4 h-4 mr-2" />
-//               Templates & rules
-//             </Button>
+
+//             {/* Only admin & superadmin see Templates & rules */}
+//             {isAdminOrSuperAdmin && (
+//               <Button
+//                 variant="outline"
+//                 size="sm"
+//                 onClick={() => setShowTemplatesRules(true)}
+//               >
+//                 <FileText className="w-4 h-4 mr-2" />
+//                 Templates & rules
+//               </Button>
+//             )}
+
 //             {canCreateTender && (
 //               <Button size="sm" onClick={() => setShowCreate(true)}>
 //                 <Plus className="w-4 h-4 mr-2" />
@@ -164,8 +174,9 @@
 //             )}
 //           </div>
 //         </div>
+
 //         <div className="bg-card border border-border rounded-lg p-4 mb-6">
-//           <div className="flex flex-wrap gap-6 text-sm">
+//           <div className="flex flex-wrap gap-4 sm:gap-6 text-sm">
 //             <div>
 //               <span className="text-muted-foreground">View:</span>{" "}
 //               <span className="font-medium">Active & in evaluation</span>
@@ -183,7 +194,7 @@
 //               <span className="font-medium">InnoSL HQ</span>
 //             </div>
 //           </div>
-//           <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+//           <div className="flex flex-wrap gap-4 mt-3 text-xs text-muted-foreground">
 //             <span>{stats ? stats.openCount : "-"} open tenders</span>
 //             <span>{stats ? stats.evalCount : "-"} in final evaluation</span>
 //             <span>
@@ -192,9 +203,12 @@
 //             </span>
 //           </div>
 //         </div>
-//         <div className="grid grid-cols-5 gap-6">
-//           <div className="col-span-2 bg-card border border-border rounded-lg">
-//             <div className="border-b border-border p-4 flex items-center justify-between">
+
+//         {/* Responsive layout */}
+//         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
+//           {/* Tender List */}
+//           <div className="md:col-span-2 bg-card border border-border rounded-lg order-1">
+//             <div className="border-b border-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
 //               <div>
 //                 <h2 className="font-medium">Sourcing pipeline</h2>
 //                 <p className="text-xs text-muted-foreground mt-1">
@@ -205,7 +219,7 @@
 //                 {tenders.length} tender{tenders.length !== 1 ? "s" : ""}
 //               </span>
 //             </div>
-//             <div className="divide-y divide-border max-h-[600px] overflow-y-auto">
+//             <div className="divide-y divide-border max-h-[50vh] md:max-h-[600px] overflow-y-auto">
 //               {loading ? (
 //                 <div className="p-8 text-center text-muted-foreground text-sm">
 //                   Loading tenders...
@@ -232,21 +246,21 @@
 //                     }`}
 //                   >
 //                     <div className="flex items-start justify-between mb-2">
-//                       <div className="flex-1">
-//                         <div className="font-medium text-sm mb-1">
+//                       <div className="flex-1 min-w-0">
+//                         <div className="font-medium text-sm mb-1 truncate">
 //                           {tender.tenderId}
 //                         </div>
-//                         <div className="text-xs text-muted-foreground mb-2">
+//                         <div className="text-xs text-muted-foreground mb-2 line-clamp-2">
 //                           {tender.title}
 //                         </div>
-//                         <div className="flex gap-2">
+//                         <div className="flex flex-wrap gap-2">
 //                           <Badge variant="outline" className="text-xs">
 //                             {tender.type}
 //                           </Badge>
 //                           <StatusBadge status={tender.stage || tender.status} />
 //                         </div>
 //                       </div>
-//                       <div className="text-right text-xs text-muted-foreground">
+//                       <div className="text-right text-xs text-muted-foreground ml-4">
 //                         <div>{tender.bids?.length || 0} responses</div>
 //                       </div>
 //                     </div>
@@ -264,14 +278,16 @@
 //               questions.
 //             </div>
 //           </div>
+
+//           {/* Tender Details */}
 //           {selectedTender && (
-//             <div className="col-span-3 bg-card border border-border rounded-lg">
-//               <div className="border-b border-border p-4 flex items-center justify-between">
-//                 <div>
-//                   <h2 className="font-medium">
+//             <div className="md:col-span-3 bg-card border border-border rounded-lg order-2">
+//               <div className="border-b border-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+//                 <div className="flex-1 min-w-0">
+//                   <h2 className="font-medium truncate">
 //                     {selectedTender.tenderId} · {selectedTender.title}
 //                   </h2>
-//                   <div className="flex gap-4 text-xs text-muted-foreground mt-1">
+//                   <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mt-1">
 //                     <span>Owner: {selectedTender.owner}</span>
 //                     {selectedTender.category && (
 //                       <span>Category: {selectedTender.category}</span>
@@ -289,14 +305,16 @@
 //                   </div>
 //                 </div>
 //               </div>
-//               <div className="p-6 space-y-6 max-h-[600px] overflow-y-auto">
+
+//               <div className="p-4 sm:p-6 space-y-6 max-h-[50vh] md:max-h-[600px] overflow-y-auto">
+//                 {/* Supplier bidding card */}
 //                 {isSupplier &&
 //                   (selectedTender.type === "RFQ" ||
 //                     selectedTender.type === "RFP") &&
 //                   selectedTender.stage !== "Awarded" &&
 //                   selectedTender.stage !== "Closed" && (
 //                     <div className="bg-accent/30 border border-border rounded-lg p-4">
-//                       <div className="flex items-center justify-between">
+//                       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 //                         <div>
 //                           <h3 className="text-sm font-medium mb-1">
 //                             Supplier Bidding
@@ -311,7 +329,8 @@
 //                     </div>
 //                   )}
 
-//                 <div className="flex gap-4 text-xs">
+//                 {/* Rest of the details — unchanged from your original */}
+//                 <div className="flex flex-wrap gap-4 text-xs">
 //                   {selectedTender.businessUnit && (
 //                     <span>Business unit: {selectedTender.businessUnit}</span>
 //                   )}
@@ -319,11 +338,12 @@
 //                     <span>Region: {selectedTender.region}</span>
 //                   )}
 //                 </div>
+
 //                 <div>
 //                   <h3 className="text-sm font-medium mb-3">
 //                     Overview & key details
 //                   </h3>
-//                   <div className="grid grid-cols-2 gap-4 text-sm">
+//                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
 //                     {selectedTender.sourcingObjective && (
 //                       <div>
 //                         <div className="text-muted-foreground text-xs mb-1">
@@ -365,8 +385,8 @@
 //                         )}
 //                         {selectedTender.closeDate && (
 //                           <>
-//                             {" · "}
-//                             Close:{" "}
+//                             {" "}
+//                             · Close:{" "}
 //                             {new Date(
 //                               selectedTender.closeDate
 //                             ).toLocaleDateString()}
@@ -565,14 +585,13 @@
 //                     </p>
 //                   </div>
 //                 )}
-
 //                 {!isSupplier && (
 //                   <div className="border-t border-border pt-4">
 //                     <h3 className="text-sm font-medium mb-2">Next actions</h3>
 //                     <p className="text-xs text-muted-foreground mb-4">
 //                       Manage this tender and coordinate with suppliers.
 //                     </p>
-//                     <div className="flex gap-2">
+//                     <div className="flex flex-wrap gap-2">
 //                       <Button
 //                         variant="outline"
 //                         size="sm"
@@ -614,8 +633,9 @@
 //           )}
 //         </div>
 //       </div>
-//       <footer className="border-t border-border p-4 flex items-center justify-between text-xs text-muted-foreground mt-6">
-//         <div className="flex gap-6">
+
+//       <footer className="border-t border-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-muted-foreground mt-6 gap-3">
+//         <div className="flex flex-wrap gap-6">
 //           <span>
 //             Branch: <span className="text-primary">Global HQ</span>
 //           </span>
@@ -624,6 +644,8 @@
 //           </span>
 //         </div>
 //       </footer>
+
+//       {/* Modals */}
 //       {showCreate && <CreateTenderForm onClose={handleCloseCreateForm} />}
 //       {showScorecard && selectedTender && (
 //         <TenderScorecardModal
@@ -641,6 +663,8 @@
 //   );
 // }
 
+// export default TendersPage;
+
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -648,7 +672,7 @@ import { useUser } from "@clerk/nextjs";
 import { StatusBadge } from "@/components/status-badge";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Plus, RefreshCw } from "lucide-react";
+import { FileText, Plus, RefreshCw, Edit } from "lucide-react";
 import {
   getTenders,
   awardTender,
@@ -656,6 +680,7 @@ import {
   getTenderStats,
 } from "@/lib/actions/tender-actions";
 import { CreateTenderForm } from "@/components/create-tender-form";
+import { EditTenderForm } from "@/components/edit-tender-form";
 import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
 import { TemplatesRulesModal } from "@/components/templates-rules-modal";
 import { SubmitBidForm } from "@/components/submit-bid-form";
@@ -666,6 +691,7 @@ function TendersPage() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [showScorecard, setShowScorecard] = useState(false);
   const [showTemplatesRules, setShowTemplatesRules] = useState(false);
   const [showBidForm, setShowBidForm] = useState(false);
@@ -681,7 +707,9 @@ function TendersPage() {
     avgBids: number;
   } | null>(null);
 
-  // Memoized function to load tenders
+  // Check if current user is the owner of the selected tender
+  const isOwner = selectedTender && user && selectedTender.owner === user.id;
+
   const loadTenders = useCallback(
     async (showLoader = true) => {
       if (showLoader) setLoading(true);
@@ -712,7 +740,6 @@ function TendersPage() {
     [selectedTender]
   );
 
-  // Memoized function to load stats
   const loadStats = useCallback(async () => {
     try {
       const result = await getTenderStats();
@@ -727,24 +754,20 @@ function TendersPage() {
     }
   }, []);
 
-  // Manual refresh function
   const handleRefresh = async () => {
     setRefreshing(true);
     await Promise.all([loadTenders(false), loadStats()]);
     setRefreshing(false);
   };
 
-  // Initial load
   useEffect(() => {
     loadTenders();
   }, []);
 
-  // Load stats
   useEffect(() => {
     loadStats();
   }, [loadStats]);
 
-  // Check user permissions and role
   useEffect(() => {
     if (!user) return;
 
@@ -763,6 +786,11 @@ function TendersPage() {
 
   const handleCloseCreateForm = async () => {
     setShowCreate(false);
+    await handleRefresh();
+  };
+
+  const handleCloseEditForm = async () => {
+    setShowEdit(false);
     await handleRefresh();
   };
 
@@ -797,7 +825,6 @@ function TendersPage() {
               Refresh
             </Button>
 
-            {/* Only admin & superadmin see Templates & rules */}
             {isAdminOrSuperAdmin && (
               <Button
                 variant="outline"
@@ -847,7 +874,6 @@ function TendersPage() {
           </div>
         </div>
 
-        {/* Responsive layout */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
           {/* Tender List */}
           <div className="md:col-span-2 bg-card border border-border rounded-lg order-1">
@@ -937,14 +963,27 @@ function TendersPage() {
                     )}
                   </div>
                 </div>
-                <div className="text-right">
-                  <StatusBadge
-                    status={selectedTender.stage || selectedTender.status}
-                  />
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {selectedTender.stage === "Evaluation"
-                      ? "In evaluation"
-                      : "Active"}
+                <div className="flex items-center gap-2">
+                  {/* Edit button - only show to owner */}
+                  {isOwner && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowEdit(true)}
+                    >
+                      <Edit className="w-4 h-4 mr-2" />
+                      Edit
+                    </Button>
+                  )}
+                  <div className="text-right">
+                    <StatusBadge
+                      status={selectedTender.stage || selectedTender.status}
+                    />
+                    <div className="text-xs text-muted-foreground mt-1">
+                      {selectedTender.stage === "Evaluation"
+                        ? "In evaluation"
+                        : "Active"}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -972,7 +1011,7 @@ function TendersPage() {
                     </div>
                   )}
 
-                {/* Rest of the details — unchanged from your original */}
+                {/* Rest of the tender details - keeping all your existing code */}
                 <div className="flex flex-wrap gap-4 text-xs">
                   {selectedTender.businessUnit && (
                     <span>Business unit: {selectedTender.businessUnit}</span>
@@ -1290,6 +1329,9 @@ function TendersPage() {
 
       {/* Modals */}
       {showCreate && <CreateTenderForm onClose={handleCloseCreateForm} />}
+      {showEdit && selectedTender && (
+        <EditTenderForm tender={selectedTender} onClose={handleCloseEditForm} />
+      )}
       {showScorecard && selectedTender && (
         <TenderScorecardModal
           tender={selectedTender}
