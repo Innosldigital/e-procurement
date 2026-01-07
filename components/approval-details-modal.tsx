@@ -650,9 +650,9 @@ export function ApprovalDetailModal({
                       key={idx}
                       className="text-xs sm:text-sm bg-muted p-2 sm:p-3 rounded-md"
                     >
-                      <div className="font-medium text-xs mb-1 break-words">
+                      {/* <div className="font-medium text-xs mb-1 break-words">
                         {comment.author}
-                      </div>
+                      </div> */}
                       <div className="break-words">{comment.text}</div>
                       <div className="text-xs text-muted-foreground mt-1">
                         {new Date(comment.date).toLocaleString()}
