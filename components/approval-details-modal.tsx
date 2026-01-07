@@ -377,7 +377,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { CheckCircle2, XCircle, AlertCircle, Loader2 } from "lucide-react";
-// ✅ FIXED: Only import the functions that exist
 import {
   approveRequest,
   rejectRequest,
@@ -406,16 +405,17 @@ interface ItemDetails {
   comments?: Comment[];
 }
 
+// ✅ CRITICAL: This interface MUST include itemType
 interface ApprovalDetailModalProps {
   approvalId: string;
-  itemType: string;
+  itemType: string; // ← THIS MUST BE HERE
   onClose: () => void;
   onActionComplete?: () => void;
 }
 
 export function ApprovalDetailModal({
   approvalId,
-  itemType,
+  itemType, // ← AND THIS MUST BE DESTRUCTURED HERE
   onClose,
   onActionComplete,
 }: ApprovalDetailModalProps) {
@@ -431,10 +431,15 @@ export function ApprovalDetailModal({
   useEffect(() => {
     async function loadDetails() {
       try {
+        console.log("Loading details for:", { approvalId, itemType });
         const result = await getItemDetails(approvalId, itemType);
+        console.log("Result:", result);
+
         if (result.success && result.data) {
+          console.log("Setting item details:", result.data);
           setItemDetails(result.data);
         } else {
+          console.error("Failed to load details:", result.error);
           toast({
             title: "Error",
             description: result.error || "Failed to load details",
@@ -442,6 +447,7 @@ export function ApprovalDetailModal({
           });
         }
       } catch (error) {
+        console.error("Exception loading details:", error);
         toast({
           title: "Error",
           description: "Failed to load details",
