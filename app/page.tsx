@@ -145,7 +145,7 @@ export default async function DashboardPage() {
       );
   const pendingApprovals = Array.isArray(pendingApprovalsItems)
     ? pendingApprovalsItems.length
-    : ((pendingApprovalsResult as any)?.count ?? 0);
+    : (pendingApprovalsResult as any)?.count ?? 0;
   const pendingRequisitions = requisitions.filter(
     (r) => r.status === "Pending approval" || r.status === "In review"
   ).length;
