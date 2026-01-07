@@ -949,221 +949,112 @@ function TendersPage() {
           </div>
 
           {/* Tender Details */}
-          {selectedTender && (
-            <div className="md:col-span-3 bg-card border border-border rounded-lg order-2">
-              <div className="border-b border-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <h2 className="font-medium truncate">
-                    {selectedTender.tenderId} · {selectedTender.title}
-                  </h2>
-                  <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mt-1">
-                    <span>Owner: {selectedTender.owner}</span>
-                    {selectedTender.category && (
-                      <span>Category: {selectedTender.category}</span>
-                    )}
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  {/* Edit button - only show to owner */}
-                  {isOwner && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setShowEdit(true)}
-                    >
-                      <Edit className="w-4 h-4 mr-2" />
-                      Edit
-                    </Button>
+          <div className="md:col-span-3 bg-card border border-border rounded-lg order-2">
+            {/* Header */}
+            <div className="border-b border-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex-1 min-w-0">
+                <h2 className="font-medium truncate text-sm sm:text-base">
+                  {selectedTender.tenderId} · {selectedTender.title}
+                </h2>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mt-1">
+                  <span>Owner: {selectedTender.owner}</span>
+                  {selectedTender.category && (
+                    <span>Category: {selectedTender.category}</span>
                   )}
-                  <div className="text-right">
-                    <StatusBadge
-                      status={selectedTender.stage || selectedTender.status}
-                    />
-                    <div className="text-xs text-muted-foreground mt-1">
-                      {selectedTender.stage === "Evaluation"
-                        ? "In evaluation"
-                        : "Active"}
-                    </div>
-                  </div>
                 </div>
               </div>
 
-              <div className="p-4 sm:p-6 space-y-6 max-h-[50vh] md:max-h-[600px] overflow-y-auto">
-                {/* Supplier bidding card */}
-                {isSupplier &&
-                  (selectedTender.type === "RFQ" ||
-                    selectedTender.type === "RFP") &&
-                  selectedTender.stage !== "Awarded" &&
-                  selectedTender.stage !== "Closed" && (
-                    <div className="bg-accent/30 border border-border rounded-lg p-4">
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div>
-                          <h3 className="text-sm font-medium mb-1">
-                            Supplier Bidding
-                          </h3>
-                          <p className="text-xs text-muted-foreground">
-                            Submit your bid for this {selectedTender.type}{" "}
-                            before the closing date
-                          </p>
-                        </div>
-                        <Button onClick={handleSubmitBid}>Submit Bid</Button>
-                      </div>
-                    </div>
-                  )}
+              <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+                {isOwner && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowEdit(true)}
+                  >
+                    <Edit className="w-4 h-4 mr-2" />
+                    Edit
+                  </Button>
+                )}
 
-                {/* Rest of the tender details - keeping all your existing code */}
-                <div className="flex flex-wrap gap-4 text-xs">
-                  {selectedTender.businessUnit && (
-                    <span>Business unit: {selectedTender.businessUnit}</span>
-                  )}
-                  {selectedTender.region && (
-                    <span>Region: {selectedTender.region}</span>
-                  )}
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-medium mb-3">
-                    Overview & key details
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                    {selectedTender.sourcingObjective && (
-                      <div>
-                        <div className="text-muted-foreground text-xs mb-1">
-                          Sourcing objective
-                        </div>
-                        <div>{selectedTender.sourcingObjective}</div>
-                      </div>
-                    )}
-                    {selectedTender.estimatedValue && (
-                      <div>
-                        <div className="text-muted-foreground text-xs mb-1">
-                          Estimated contract value
-                        </div>
-                        <div className="font-medium">
-                          Nle {selectedTender.estimatedValue.toLocaleString()}
-                        </div>
-                      </div>
-                    )}
-                    {selectedTender.sourcingType && (
-                      <div>
-                        <div className="text-muted-foreground text-xs mb-1">
-                          Sourcing type
-                        </div>
-                        <div>{selectedTender.sourcingType}</div>
-                      </div>
-                    )}
-                    <div>
-                      <div className="text-muted-foreground text-xs mb-1">
-                        Key dates
-                      </div>
-                      <div>
-                        {selectedTender.publishedDate && (
-                          <>
-                            Published:{" "}
-                            {new Date(
-                              selectedTender.publishedDate
-                            ).toLocaleDateString()}
-                          </>
-                        )}
-                        {selectedTender.closeDate && (
-                          <>
-                            {" "}
-                            · Close:{" "}
-                            {new Date(
-                              selectedTender.closeDate
-                            ).toLocaleDateString()}
-                          </>
-                        )}
-                      </div>
-                    </div>
+                <div className="text-right">
+                  <StatusBadge
+                    status={selectedTender.stage || selectedTender.status}
+                  />
+                  <div className="text-xs text-muted-foreground mt-1">
+                    {selectedTender.stage === "Evaluation"
+                      ? "In evaluation"
+                      : "Active"}
                   </div>
                 </div>
+              </div>
+            </div>
 
-                {selectedTender.tenderDocuments &&
-                  selectedTender.tenderDocuments.length > 0 && (
+            {/* Content */}
+            <div className="p-4 sm:p-6 space-y-6 max-h-[60vh] sm:max-h-[70vh] md:max-h-[600px] overflow-y-auto">
+              {/* Supplier bidding card */}
+              {isSupplier &&
+                (selectedTender.type === "RFQ" ||
+                  selectedTender.type === "RFP") &&
+                selectedTender.stage !== "Awarded" &&
+                selectedTender.stage !== "Closed" && (
+                  <div className="bg-accent/30 border border-border rounded-lg p-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div>
+                        <h3 className="text-sm font-medium mb-1">
+                          Supplier Bidding
+                        </h3>
+                        <p className="text-xs text-muted-foreground">
+                          Submit your bid for this {selectedTender.type} before
+                          the closing date
+                        </p>
+                      </div>
+                      <Button
+                        onClick={handleSubmitBid}
+                        className="w-full sm:w-auto"
+                      >
+                        Submit Bid
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
+              {/* Overview */}
+              <div>
+                <h3 className="text-sm font-medium mb-3">
+                  Overview & key details
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                  {selectedTender.sourcingObjective && (
                     <div>
-                      <h3 className="text-sm font-medium mb-3">
-                        Tender Documents
-                      </h3>
-                      <div className="space-y-2">
-                        {selectedTender.tenderDocuments.map(
-                          (doc: any, i: number) => (
-                            <a
-                              key={i}
-                              href={doc.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 text-xs text-primary hover:underline"
-                            >
-                              <FileText className="w-4 h-4" />
-                              {doc.name} ({(doc.size / 1024).toFixed(1)} KB)
-                            </a>
-                          )
-                        )}
+                      <div className="text-muted-foreground text-xs mb-1">
+                        Sourcing objective
+                      </div>
+                      <div>{selectedTender.sourcingObjective}</div>
+                    </div>
+                  )}
+                  {selectedTender.estimatedValue && (
+                    <div>
+                      <div className="text-muted-foreground text-xs mb-1">
+                        Estimated contract value
+                      </div>
+                      <div className="font-medium">
+                        Nle {selectedTender.estimatedValue.toLocaleString()}
                       </div>
                     </div>
                   )}
+                </div>
+              </div>
 
-                {String(
-                  selectedTender.stage || selectedTender.status
-                ).toLowerCase() === "evaluation" &&
-                  selectedTender.evaluationSummary && (
-                    <div>
-                      <h3 className="text-sm font-medium mb-3">
-                        Evaluation summary
-                      </h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        {selectedTender.evaluationSummary
-                          .recommendedSupplier && (
-                          <div>
-                            <div className="text-muted-foreground text-xs mb-1">
-                              Recommended supplier
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className="font-medium">
-                                {
-                                  selectedTender.evaluationSummary
-                                    .recommendedSupplier
-                                }
-                              </span>
-                              {selectedTender.evaluationSummary.score && (
-                                <Badge className="bg-success/20 text-success-foreground">
-                                  Score:{" "}
-                                  {selectedTender.evaluationSummary.score} / 100
-                                </Badge>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                        <div>
-                          <div className="text-muted-foreground text-xs mb-1">
-                            Total evaluated bids
-                          </div>
-                          <div className="font-medium">
-                            {selectedTender.bids?.length || 0} bids
-                            {selectedTender.evaluationSummary.disqualified ? (
-                              <>
-                                {" "}
-                                ·{" "}
-                                {
-                                  selectedTender.evaluationSummary.disqualified
-                                }{" "}
-                                disqualified
-                              </>
-                            ) : null}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+              {/* Bids table – responsive scroll */}
+              {selectedTender.bids && selectedTender.bids.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-medium mb-3">
+                    Bids & scoring comparison
+                  </h3>
 
-                {selectedTender.bids && selectedTender.bids.length > 0 && (
-                  <div>
-                    <h3 className="text-sm font-medium mb-3">
-                      Bids & scoring comparison
-                    </h3>
-                    <div className="border border-border rounded-lg overflow-hidden">
-                      <table className="w-full text-xs">
+                  <div className="border border-border rounded-lg overflow-hidden">
+                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                      <table className="min-w-[700px] w-full text-xs whitespace-nowrap">
                         <thead className="bg-muted/50">
                           <tr>
                             <th className="text-left p-3 font-medium">
@@ -1185,6 +1076,7 @@ function TendersPage() {
                             </th>
                           </tr>
                         </thead>
+
                         <tbody className="divide-y divide-border">
                           {selectedTender.bids.map((bid: any, i: number) => (
                             <tr key={i}>
@@ -1218,7 +1110,7 @@ function TendersPage() {
                                   {bid.compliance || "Pending"}
                                 </span>
                               </td>
-                              <td className="p-3 text-muted-foreground">
+                              <td className="p-3 text-muted-foreground max-w-[240px] truncate">
                                 {bid.highlights || "-"}
                               </td>
                             </tr>
@@ -1227,92 +1119,10 @@ function TendersPage() {
                       </table>
                     </div>
                   </div>
-                )}
-
-                {selectedTender.timeline &&
-                  selectedTender.timeline.length > 0 && (
-                    <div>
-                      <h3 className="text-sm font-medium mb-2">
-                        Timeline & governance
-                      </h3>
-                      <div className="space-y-3">
-                        {selectedTender.timeline.map(
-                          (activity: any, i: number) => (
-                            <div key={i} className="flex gap-3">
-                              <div className="w-2 h-2 rounded-full bg-primary mt-1.5" />
-                              <div className="flex-1">
-                                <div className="text-sm font-medium">
-                                  {activity.event}
-                                </div>
-                                <div className="text-xs text-muted-foreground">
-                                  {activity.date &&
-                                    new Date(activity.date).toLocaleString()}
-                                  {activity.owner && ` · ${activity.owner}`}
-                                </div>
-                              </div>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                {selectedTender.notes && (
-                  <div>
-                    <h3 className="text-sm font-medium mb-2">
-                      Notes & attachments
-                    </h3>
-                    <p className="text-xs text-muted-foreground">
-                      {selectedTender.notes}
-                    </p>
-                  </div>
-                )}
-                {!isSupplier && (
-                  <div className="border-t border-border pt-4">
-                    <h3 className="text-sm font-medium mb-2">Next actions</h3>
-                    <p className="text-xs text-muted-foreground mb-4">
-                      Manage this tender and coordinate with suppliers.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setShowScorecard(true)}
-                      >
-                        View full scorecard
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={async () => {
-                          await requestRevisedBids(selectedTender._id);
-                          await handleRefresh();
-                        }}
-                      >
-                        Request revised bids
-                      </Button>
-                      {selectedTender.evaluationSummary
-                        ?.recommendedSupplier && (
-                        <Button
-                          size="sm"
-                          onClick={async () => {
-                            await awardTender(
-                              selectedTender._id,
-                              selectedTender.evaluationSummary
-                                .recommendedSupplier
-                            );
-                            await handleRefresh();
-                          }}
-                        >
-                          Award tender
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
 
