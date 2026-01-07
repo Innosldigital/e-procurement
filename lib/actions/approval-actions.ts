@@ -157,6 +157,28 @@ export async function getPendingApprovalsCount() {
   }
 }
 
+export async function getPendingApprovals() {
+  try {
+    await dbConnect();
+    const statuses = [
+      "Awaiting your approval",
+      "Pending review",
+      "Parallel approval",
+      "SLA breached",
+    ];
+    const items = await Approval.find({ status: { $in: statuses } })
+      .sort({ createdAt: -1 })
+      .lean();
+    return { success: true, data: JSON.parse(JSON.stringify(items)) };
+  } catch (error) {
+    return {
+      success: false,
+      error: "Failed to fetch pending approvals",
+      data: [],
+    };
+  }
+}
+
 // ✅ RESTORED: getApprovalById function
 export async function getApprovalById(id: string) {
   try {

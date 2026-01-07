@@ -17,6 +17,7 @@ import {
 import {
   getApprovals,
   getPendingApprovalsCount,
+  getPendingApprovals,
 } from "@/lib/actions/approval-actions";
 import { getInvoices } from "@/lib/actions/invoice-actions";
 import {
@@ -97,6 +98,7 @@ export default async function DashboardPage() {
     notificationsResult,
     notificationsPublicResult,
     pendingApprovalsResult,
+    pendingApprovalsListResult,
     spendVsBudgetResult,
     budgetUtilizationFYResult,
   ] = await Promise.all([
@@ -108,6 +110,7 @@ export default async function DashboardPage() {
     getNotifications(10),
     getNotificationsPublic(10),
     getPendingApprovalsCount(),
+    getPendingApprovals(),
     getSpendVsBudgetThisQuarter(),
     (async () => {
       const now = new Date();
@@ -130,8 +133,8 @@ export default async function DashboardPage() {
     invoicesResult.success ? invoicesResult.data : []
   ) as InvoiceSummary[];
 
-  const pendingApprovals = pendingApprovalsResult.success
-    ? (pendingApprovalsResult as any).count
+  const pendingApprovalsItems = pendingApprovalsListResult.success
+    ? (pendingApprovalsListResult as any).data
     : approvals.filter((a) =>
         [
           "Awaiting your approval",
@@ -139,7 +142,10 @@ export default async function DashboardPage() {
           "Parallel approval",
           "SLA breached",
         ].includes(a.status)
-      ).length;
+      );
+  const pendingApprovals = Array.isArray(pendingApprovalsItems)
+    ? pendingApprovalsItems.length
+    : ((pendingApprovalsResult as any)?.count ?? 0);
   const pendingRequisitions = requisitions.filter(
     (r) => r.status === "Pending approval" || r.status === "In review"
   ).length;
