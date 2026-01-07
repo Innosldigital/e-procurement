@@ -179,7 +179,7 @@ export async function getPendingApprovals() {
   }
 }
 
-// ✅ RESTORED: getApprovalById function
+// RESTORED: getApprovalById function
 export async function getApprovalById(id: string) {
   try {
     const { userId } = await auth();
