@@ -808,8 +808,8 @@ function TendersPage() {
               Tenders
             </h1>
             <p className="text-sm text-muted-foreground">
-              Plan, publish, and evaluate sourcing events across your
-              organization.
+              Plan, publish, and evaluate sourcing events across Innovation SL
+              E-Procurement Portal.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
