@@ -949,147 +949,274 @@ function TendersPage() {
           </div>
 
           {/* Tender Details */}
-          <div className="md:col-span-3 bg-card border border-border rounded-lg order-2">
-            {/* Header */}
-            <div className="border-b border-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <div className="flex-1 min-w-0">
-                <h2 className="font-medium truncate text-sm sm:text-base">
-                  {selectedTender.tenderId} · {selectedTender.title}
-                </h2>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mt-1">
-                  <span>Owner: {selectedTender.owner}</span>
-                  {selectedTender.category && (
-                    <span>Category: {selectedTender.category}</span>
-                  )}
+          {selectedTender && (
+            <div className="md:col-span-3 bg-card border border-border rounded-lg order-2">
+              <div className="border-b border-border p-3 sm:p-4 flex flex-col gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-medium text-base sm:text-lg truncate">
+                      {selectedTender.tenderId} · {selectedTender.title}
+                    </h2>
+                    <div className="flex flex-wrap gap-2 sm:gap-4 text-xs text-muted-foreground mt-1">
+                      <span>Owner: {selectedTender.owner}</span>
+                      {selectedTender.category && (
+                        <span>Category: {selectedTender.category}</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 sm:gap-1">
+                    <StatusBadge
+                      status={selectedTender.stage || selectedTender.status}
+                    />
+                    <div className="text-xs text-muted-foreground">
+                      {selectedTender.stage === "Evaluation"
+                        ? "In evaluation"
+                        : "Active"}
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+                {/* Edit button row */}
                 {isOwner && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowEdit(true)}
-                  >
-                    <Edit className="w-4 h-4 mr-2" />
-                    Edit
-                  </Button>
-                )}
-
-                <div className="text-right">
-                  <StatusBadge
-                    status={selectedTender.stage || selectedTender.status}
-                  />
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {selectedTender.stage === "Evaluation"
-                      ? "In evaluation"
-                      : "Active"}
+                  <div className="flex justify-end">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowEdit(true)}
+                      className="w-full sm:w-auto"
+                    >
+                      <Edit className="w-4 h-4 mr-2" />
+                      Edit Tender
+                    </Button>
                   </div>
-                </div>
+                )}
               </div>
-            </div>
 
-            {/* Content */}
-            <div className="p-4 sm:p-6 space-y-6 max-h-[60vh] sm:max-h-[70vh] md:max-h-[600px] overflow-y-auto">
-              {/* Supplier bidding card */}
-              {isSupplier &&
-                (selectedTender.type === "RFQ" ||
-                  selectedTender.type === "RFP") &&
-                selectedTender.stage !== "Awarded" &&
-                selectedTender.stage !== "Closed" && (
-                  <div className="bg-accent/30 border border-border rounded-lg p-4">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                      <div>
-                        <h3 className="text-sm font-medium mb-1">
-                          Supplier Bidding
-                        </h3>
-                        <p className="text-xs text-muted-foreground">
-                          Submit your bid for this {selectedTender.type} before
-                          the closing date
-                        </p>
-                      </div>
-                      <Button
-                        onClick={handleSubmitBid}
-                        className="w-full sm:w-auto"
-                      >
-                        Submit Bid
-                      </Button>
-                    </div>
-                  </div>
-                )}
-
-              {/* Overview */}
-              <div>
-                <h3 className="text-sm font-medium mb-3">
-                  Overview & key details
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                  {selectedTender.sourcingObjective && (
-                    <div>
-                      <div className="text-muted-foreground text-xs mb-1">
-                        Sourcing objective
-                      </div>
-                      <div>{selectedTender.sourcingObjective}</div>
-                    </div>
-                  )}
-                  {selectedTender.estimatedValue && (
-                    <div>
-                      <div className="text-muted-foreground text-xs mb-1">
-                        Estimated contract value
-                      </div>
-                      <div className="font-medium">
-                        Nle {selectedTender.estimatedValue.toLocaleString()}
+              <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 max-h-[50vh] md:max-h-[600px] overflow-y-auto">
+                {/* Supplier bidding card */}
+                {isSupplier &&
+                  (selectedTender.type === "RFQ" ||
+                    selectedTender.type === "RFP") &&
+                  selectedTender.stage !== "Awarded" &&
+                  selectedTender.stage !== "Closed" && (
+                    <div className="bg-accent/30 border border-border rounded-lg p-3 sm:p-4">
+                      <div className="flex flex-col gap-3">
+                        <div>
+                          <h3 className="text-sm font-medium mb-1">
+                            Supplier Bidding
+                          </h3>
+                          <p className="text-xs text-muted-foreground">
+                            Submit your bid for this {selectedTender.type}{" "}
+                            before the closing date
+                          </p>
+                        </div>
+                        <Button
+                          onClick={handleSubmitBid}
+                          className="w-full sm:w-auto sm:self-end"
+                        >
+                          Submit Bid
+                        </Button>
                       </div>
                     </div>
                   )}
-                </div>
-              </div>
 
-              {/* Bids table – responsive scroll */}
-              {selectedTender.bids && selectedTender.bids.length > 0 && (
+                {/* Business info */}
+                <div className="flex flex-wrap gap-3 sm:gap-4 text-xs">
+                  {selectedTender.businessUnit && (
+                    <span className="break-words">
+                      Business unit: {selectedTender.businessUnit}
+                    </span>
+                  )}
+                  {selectedTender.region && (
+                    <span className="break-words">
+                      Region: {selectedTender.region}
+                    </span>
+                  )}
+                </div>
+
+                {/* Overview */}
                 <div>
                   <h3 className="text-sm font-medium mb-3">
-                    Bids & scoring comparison
+                    Overview & key details
                   </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
+                    {selectedTender.sourcingObjective && (
+                      <div className="break-words">
+                        <div className="text-muted-foreground text-xs mb-1">
+                          Sourcing objective
+                        </div>
+                        <div>{selectedTender.sourcingObjective}</div>
+                      </div>
+                    )}
+                    {selectedTender.estimatedValue && (
+                      <div>
+                        <div className="text-muted-foreground text-xs mb-1">
+                          Estimated contract value
+                        </div>
+                        <div className="font-medium">
+                          Nle {selectedTender.estimatedValue.toLocaleString()}
+                        </div>
+                      </div>
+                    )}
+                    {selectedTender.sourcingType && (
+                      <div>
+                        <div className="text-muted-foreground text-xs mb-1">
+                          Sourcing type
+                        </div>
+                        <div>{selectedTender.sourcingType}</div>
+                      </div>
+                    )}
+                    <div>
+                      <div className="text-muted-foreground text-xs mb-1">
+                        Key dates
+                      </div>
+                      <div className="text-xs sm:text-sm break-words">
+                        {selectedTender.publishedDate && (
+                          <>
+                            Published:{" "}
+                            {new Date(
+                              selectedTender.publishedDate
+                            ).toLocaleDateString()}
+                          </>
+                        )}
+                        {selectedTender.closeDate && (
+                          <>
+                            {" "}
+                            · Close:{" "}
+                            {new Date(
+                              selectedTender.closeDate
+                            ).toLocaleDateString()}
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                  <div className="border border-border rounded-lg overflow-hidden">
-                    <div className="overflow-x-auto -mx-4 sm:mx-0">
-                      <table className="min-w-[700px] w-full text-xs whitespace-nowrap">
+                {/* Documents */}
+                {selectedTender.tenderDocuments &&
+                  selectedTender.tenderDocuments.length > 0 && (
+                    <div>
+                      <h3 className="text-sm font-medium mb-3">
+                        Tender Documents
+                      </h3>
+                      <div className="space-y-2">
+                        {selectedTender.tenderDocuments.map(
+                          (doc: any, i: number) => (
+                            <a
+                              key={i}
+                              href={doc.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 text-xs text-primary hover:underline break-all"
+                            >
+                              <FileText className="w-4 h-4 shrink-0" />
+                              <span className="break-words">
+                                {doc.name} ({(doc.size / 1024).toFixed(1)} KB)
+                              </span>
+                            </a>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                {/* Evaluation summary */}
+                {String(
+                  selectedTender.stage || selectedTender.status
+                ).toLowerCase() === "evaluation" &&
+                  selectedTender.evaluationSummary && (
+                    <div>
+                      <h3 className="text-sm font-medium mb-3">
+                        Evaluation summary
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        {selectedTender.evaluationSummary
+                          .recommendedSupplier && (
+                          <div>
+                            <div className="text-muted-foreground text-xs mb-1">
+                              Recommended supplier
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="font-medium break-words">
+                                {
+                                  selectedTender.evaluationSummary
+                                    .recommendedSupplier
+                                }
+                              </span>
+                              {selectedTender.evaluationSummary.score && (
+                                <Badge className="bg-success/20 text-success-foreground shrink-0">
+                                  Score:{" "}
+                                  {selectedTender.evaluationSummary.score} / 100
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                        <div>
+                          <div className="text-muted-foreground text-xs mb-1">
+                            Total evaluated bids
+                          </div>
+                          <div className="font-medium text-sm">
+                            {selectedTender.bids?.length || 0} bids
+                            {selectedTender.evaluationSummary.disqualified ? (
+                              <>
+                                {" "}
+                                ·{" "}
+                                {
+                                  selectedTender.evaluationSummary.disqualified
+                                }{" "}
+                                disqualified
+                              </>
+                            ) : null}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                {/* Bids table */}
+                {selectedTender.bids && selectedTender.bids.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-medium mb-3">
+                      Bids & scoring comparison
+                    </h3>
+                    <div className="border border-border rounded-lg overflow-x-auto">
+                      <table className="w-full text-xs min-w-[600px]">
                         <thead className="bg-muted/50">
                           <tr>
-                            <th className="text-left p-3 font-medium">
+                            <th className="text-left p-2 sm:p-3 font-medium whitespace-nowrap">
                               Supplier
                             </th>
-                            <th className="text-right p-3 font-medium">
+                            <th className="text-right p-2 sm:p-3 font-medium whitespace-nowrap">
                               Total price
                             </th>
                             {selectedTender.bids.some((b: any) => b.score) && (
-                              <th className="text-center p-3 font-medium">
+                              <th className="text-center p-2 sm:p-3 font-medium whitespace-nowrap">
                                 Score
                               </th>
                             )}
-                            <th className="text-center p-3 font-medium">
+                            <th className="text-center p-2 sm:p-3 font-medium whitespace-nowrap">
                               Compliance
                             </th>
-                            <th className="text-left p-3 font-medium">
+                            <th className="text-left p-2 sm:p-3 font-medium whitespace-nowrap">
                               Highlights
                             </th>
                           </tr>
                         </thead>
-
                         <tbody className="divide-y divide-border">
                           {selectedTender.bids.map((bid: any, i: number) => (
                             <tr key={i}>
-                              <td className="p-3 font-medium">
+                              <td className="p-2 sm:p-3 font-medium">
                                 {bid.supplier}
                               </td>
-                              <td className="p-3 text-right">
+                              <td className="p-2 sm:p-3 text-right whitespace-nowrap">
                                 Nle {bid.totalPrice?.toLocaleString()}
                               </td>
                               {selectedTender.bids.some(
                                 (b: any) => b.score
                               ) && (
-                                <td className="p-3 text-center">
+                                <td className="p-2 sm:p-3 text-center">
                                   {bid.score ? (
                                     <Badge
                                       className={
@@ -1105,12 +1232,12 @@ function TendersPage() {
                                   )}
                                 </td>
                               )}
-                              <td className="p-3 text-center">
+                              <td className="p-2 sm:p-3 text-center">
                                 <span className={i === 0 ? "text-success" : ""}>
                                   {bid.compliance || "Pending"}
                                 </span>
                               </td>
-                              <td className="p-3 text-muted-foreground max-w-[240px] truncate">
+                              <td className="p-2 sm:p-3 text-muted-foreground max-w-[200px] truncate">
                                 {bid.highlights || "-"}
                               </td>
                             </tr>
@@ -1118,11 +1245,103 @@ function TendersPage() {
                         </tbody>
                       </table>
                     </div>
+                    <div className="text-xs text-muted-foreground mt-2 sm:hidden">
+                      Scroll horizontally to view all columns
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+
+                {/* Timeline */}
+                {selectedTender.timeline &&
+                  selectedTender.timeline.length > 0 && (
+                    <div>
+                      <h3 className="text-sm font-medium mb-2">
+                        Timeline & governance
+                      </h3>
+                      <div className="space-y-3">
+                        {selectedTender.timeline.map(
+                          (activity: any, i: number) => (
+                            <div key={i} className="flex gap-2 sm:gap-3">
+                              <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
+                              <div className="flex-1 min-w-0">
+                                <div className="text-sm font-medium break-words">
+                                  {activity.event}
+                                </div>
+                                <div className="text-xs text-muted-foreground break-words">
+                                  {activity.date &&
+                                    new Date(activity.date).toLocaleString()}
+                                  {activity.owner && ` · ${activity.owner}`}
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                {/* Notes */}
+                {selectedTender.notes && (
+                  <div>
+                    <h3 className="text-sm font-medium mb-2">
+                      Notes & attachments
+                    </h3>
+                    <p className="text-xs text-muted-foreground break-words">
+                      {selectedTender.notes}
+                    </p>
+                  </div>
+                )}
+
+                {/* Next actions */}
+                {!isSupplier && (
+                  <div className="border-t border-border pt-4">
+                    <h3 className="text-sm font-medium mb-2">Next actions</h3>
+                    <p className="text-xs text-muted-foreground mb-4">
+                      Manage this tender and coordinate with suppliers.
+                    </p>
+                    <div className="flex flex-col sm:flex-row flex-wrap gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowScorecard(true)}
+                        className="w-full sm:w-auto"
+                      >
+                        View full scorecard
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={async () => {
+                          await requestRevisedBids(selectedTender._id);
+                          await handleRefresh();
+                        }}
+                        className="w-full sm:w-auto"
+                      >
+                        Request revised bids
+                      </Button>
+                      {selectedTender.evaluationSummary
+                        ?.recommendedSupplier && (
+                        <Button
+                          size="sm"
+                          onClick={async () => {
+                            await awardTender(
+                              selectedTender._id,
+                              selectedTender.evaluationSummary
+                                .recommendedSupplier
+                            );
+                            await handleRefresh();
+                          }}
+                          className="w-full sm:w-auto"
+                        >
+                          Award tender
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
