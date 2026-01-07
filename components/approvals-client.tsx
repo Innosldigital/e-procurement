@@ -99,6 +99,16 @@ export default function ApprovalsClient({
     return `Nle ${amount.toLocaleString()}`;
   };
 
+  const pendingApprovalsCount = safeApprovals.filter((a) => {
+    const s = String(a?.status || "").toLowerCase();
+    return (
+      s.includes("awaiting") ||
+      s.includes("pending review") ||
+      s.includes("parallel approval") ||
+      s.includes("sla breached")
+    );
+  }).length;
+
   const handleViewDetails = (id: string, type: string) => {
     setSelectedApprovalId(id);
     setSelectedType(type);
@@ -183,8 +193,8 @@ export default function ApprovalsClient({
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="rounded-lg border bg-card p-4">
-          <div className="text-sm text-muted-foreground">Total Approvals</div>
-          <div className="text-2xl font-bold mt-1">{safeApprovals.length}</div>
+          <div className="text-sm text-muted-foreground">Pending Approvals</div>
+          <div className="text-2xl font-bold mt-1">{pendingApprovalsCount}</div>
         </div>
         <div className="rounded-lg border bg-card p-4">
           <div className="text-sm text-muted-foreground">Requisitions</div>

@@ -833,8 +833,13 @@ export async function updateTender(
     const user = await client.users.getUser(userId);
     const rawRole = String(((user.publicMetadata as any) || {}).role || "");
     const normalizedRole = rawRole.toLowerCase().replace(/[\s_-]+/g, "");
-    const allowedRoles = ["admin", "superadmin", "projectlead", "procurementofficer"];
-    const isOwner = String(((existingTender as any)?.owner) || "") === userId;
+    const allowedRoles = [
+      "admin",
+      "superadmin",
+      "projectlead",
+      "procurementofficer",
+    ];
+    const isOwner = String((existingTender as any)?.owner || "") === userId;
     if (!isOwner && !allowedRoles.includes(normalizedRole)) {
       return {
         success: false,
