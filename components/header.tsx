@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Settings, Menu } from "lucide-react";
+import { Search, Settings, Menu, X } from "lucide-react";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,7 @@ export function Header({ onMenuClick }: HeaderProps) {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [roleLabel, setRoleLabel] = useState<string>("");
   const [isSupplier, setIsSupplier] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -223,7 +224,13 @@ export function Header({ onMenuClick }: HeaderProps) {
             </div>
           </div>
 
-          <Button variant="ghost" size="icon" className="md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setMobileSearchOpen(true)}
+            aria-label="Open search"
+          >
             <Search className="w-4 h-4" />
           </Button>
 
@@ -265,6 +272,76 @@ export function Header({ onMenuClick }: HeaderProps) {
         isOpen={settingsOpen}
         onClose={() => setSettingsOpen(false)}
       />
+
+      {mobileSearchOpen && (
+        <div className="fixed inset-0 z-40">
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => {
+              setMobileSearchOpen(false);
+              setShowResults(false);
+            }}
+          />
+          <div className="absolute top-0 left-0 right-0 bg-background border-b">
+            <div className="p-3 flex items-center gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search requisitions, POs, suppliers..."
+                  className="pl-9"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  autoFocus
+                />
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => {
+                  setMobileSearchOpen(false);
+                  setShowResults(false);
+                  setQuery("");
+                }}
+                aria-label="Close search"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="px-3 pb-3">
+              <div className="text-xs text-muted-foreground">
+                {loadingSearch
+                  ? "Searching..."
+                  : searchError
+                  ? searchError
+                  : results.length === 0
+                  ? "No matches"
+                  : `${results.length} result(s)`}
+              </div>
+              {results.length > 0 && (
+                <div className="mt-2 max-h-[60vh] overflow-y-auto divide-y rounded-md border bg-popover">
+                  {results.map((r, i) => (
+                    <button
+                      key={r.type + r.id + i}
+                      className="w-full text-left p-3 hover:bg-accent"
+                      onClick={() => {
+                        setShowResults(false);
+                        setMobileSearchOpen(false);
+                        setQuery("");
+                        router.push(r.href);
+                      }}
+                    >
+                      <div className="text-sm font-medium">
+                        {r.type}: {r.title}
+                      </div>
+                      <div className="text-xs text-muted-foreground">{r.sub}</div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
