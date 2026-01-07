@@ -796,10 +796,6 @@ export function RequisitionDetailModal({
 
         {/* Footer */}
         <div className="border-t px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between bg-muted/30">
-          <p className="text-xs text-muted-foreground truncate">
-            {requisition &&
-              `ID: ${requisition._id} • ${fmtDateShort(requisition.createdAt)}`}
-          </p>
           <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <Button
               variant="outline"
