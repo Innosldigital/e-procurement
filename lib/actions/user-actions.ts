@@ -722,6 +722,39 @@ export async function getCurrentUserName(): Promise<
   }
 }
 
+export async function getUserNamesByIds(
+  ids: string[]
+): Promise<{ success: boolean; data?: Record<string, string>; error?: string }> {
+  try {
+    const unique = Array.from(new Set((ids || []).filter(Boolean)));
+    if (unique.length === 0) return { success: true, data: {} };
+
+    const client = await clerkClient();
+    const entries = await Promise.all(
+      unique.map(async (id) => {
+        try {
+          const u = await client.users.getUser(id);
+          const name = `${String(u.firstName || "").trim()} ${String(
+            u.lastName || ""
+          ).trim()}`.trim() ||
+            String(u.emailAddresses?.[0]?.emailAddress || "");
+          return [id, name] as const;
+        } catch {
+          return [id, id] as const;
+        }
+      })
+    );
+
+    const map = Object.fromEntries(entries);
+    return { success: true, data: map };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error?.message || "Failed to fetch user names",
+    };
+  }
+}
+
 // Add this to your user-actions.ts file
 
 export async function deleteInvitation(

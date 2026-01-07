@@ -684,6 +684,7 @@ import { EditTenderForm } from "@/components/edit-tender-form";
 import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
 import { TemplatesRulesModal } from "@/components/templates-rules-modal";
 import { SubmitBidForm } from "@/components/submit-bid-form";
+import { getUserNamesByIds } from "@/lib/actions/user-actions";
 
 function TendersPage() {
   const [tenders, setTenders] = useState<any[]>([]);
@@ -706,6 +707,7 @@ function TendersPage() {
     evalCount: number;
     avgBids: number;
   } | null>(null);
+  const [ownerNames, setOwnerNames] = useState<Record<string, string>>({});
 
   // Check if current user is the owner of the selected tender
   const isOwner = selectedTender && user && selectedTender.owner === user.id;
@@ -767,6 +769,23 @@ function TendersPage() {
   useEffect(() => {
     loadStats();
   }, [loadStats]);
+
+  useEffect(() => {
+    const fetchOwnerNames = async () => {
+      try {
+        const ids = [
+          String(selectedTender?.owner || ""),
+          ...((selectedTender?.timeline || [])
+            .map((a: any) => String(a?.owner || ""))
+            .filter(Boolean) as string[]),
+        ].filter(Boolean);
+        if (ids.length === 0) return;
+        const res = await getUserNamesByIds(ids);
+        if (res.success && res.data) setOwnerNames(res.data);
+      } catch {}
+    };
+    fetchOwnerNames();
+  }, [selectedTender]);
 
   useEffect(() => {
     if (!user) return;
@@ -958,7 +977,7 @@ function TendersPage() {
                       {selectedTender.tenderId} · {selectedTender.title}
                     </h2>
                     <div className="flex flex-wrap gap-2 sm:gap-4 text-xs text-muted-foreground mt-1">
-                      <span>Owner: {selectedTender.owner}</span>
+                      {/* <span>Owner: {selectedTender.owner}</span> */}
                       {selectedTender.category && (
                         <span>Category: {selectedTender.category}</span>
                       )}
@@ -1270,7 +1289,8 @@ function TendersPage() {
                                 <div className="text-xs text-muted-foreground break-words">
                                   {activity.date &&
                                     new Date(activity.date).toLocaleString()}
-                                  {activity.owner && ` · ${activity.owner}`}
+                                  {activity.owner &&
+                                    ` · ${ownerNames[String(activity.owner)] || String(activity.owner)}`}
                                 </div>
                               </div>
                             </div>
