@@ -544,14 +544,11 @@ import {
   User,
   Building2,
   Tag,
-  AlertCircle,
   Clock,
   Package,
   FileText,
-  Download,
   MapPin,
   Hash,
-  CheckCircle2,
   XCircle,
   Loader2,
 } from "lucide-react";
@@ -612,7 +609,7 @@ function InfoCard({
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-xs text-muted-foreground">{label}</p>
-        <p className="text-sm font-medium break-words">{value}</p>
+        <p className="text-sm font-medium wrap-break-words">{value}</p>
       </div>
     </div>
   );
@@ -760,8 +757,8 @@ export function RequisitionDetailModal({
                       <Package className="h-4 w-4" /> Line Items
                     </h3>
                   </div>
-                  <div className="overflow-x-auto -mx-4 sm:mx-0">
-                    <table className="w-full text-xs sm:text-sm">
+                  <div className="relative -mx-4 sm:mx-0 overflow-x-auto">
+                    <table className="min-w-[640px] w-full text-xs sm:text-sm whitespace-nowrap">
                       <thead className="bg-muted/30">
                         <tr>
                           <th className="px-3 sm:px-6 py-2 text-left">#</th>
@@ -772,11 +769,12 @@ export function RequisitionDetailModal({
                           <th className="px-3 sm:px-6 py-2 text-right">Unit</th>
                         </tr>
                       </thead>
+
                       <tbody>
                         {requisition.lineItems.map((item, i) => (
-                          <tr key={i} className="border-b">
+                          <tr key={i} className="border-b last:border-0">
                             <td className="px-3 sm:px-6 py-2">{i + 1}</td>
-                            <td className="px-3 sm:px-6 py-2">
+                            <td className="px-3 sm:px-6 py-2 max-w-[280px] truncate">
                               {item.description}
                             </td>
                             <td className="px-3 sm:px-6 py-2 text-right">
