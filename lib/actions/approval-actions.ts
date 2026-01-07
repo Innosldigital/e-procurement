@@ -5,6 +5,8 @@ import { Approval } from "../models/Approval";
 import { Requisition } from "../models/Requisition";
 import { PurchaseOrder } from "../models/PurchaseOrder";
 import { clerkClient } from "@clerk/nextjs/server";
+import { sendEmail } from "./admin-approval-actions";
+import { createNotification } from "./notification-actions";
 import { revalidatePath } from "next/cache";
 
 type ApprovalTableRow = {
@@ -15,6 +17,16 @@ type ApprovalTableRow = {
   status: string;
   amount: number;
   createdAt: string | Date;
+};
+
+type ApprovalsResponse = {
+  success: boolean;
+  error?: string;
+  data: {
+    approvals: ApprovalTableRow[];
+    requisitions: ApprovalTableRow[];
+    purchaseOrders: ApprovalTableRow[];
+  };
 };
 
 async function canApprove(
@@ -43,8 +55,134 @@ async function canApprove(
   }
 }
 
-// Add this function to your approval-actions.ts file
+async function getRequesterInfo(approval: any) {
+  try {
+    let userId = "";
+    if (approval.type === "Requisition") {
+      let req: any = null;
+      if (approval.itemId && /^[0-9a-fA-F]{24}$/.test(approval.itemId)) {
+        req = await Requisition.findById(approval.itemId).lean();
+      }
+      if (!req) {
+        req = await Requisition.findOne({
+          requisitionId: approval.itemId,
+        }).lean();
+      }
+      if (req) userId = req.createdBy || "";
+    } else if (approval.type === "Purchase Order") {
+      let po: any = null;
+      if (approval.itemId && /^[0-9a-fA-F]{24}$/.test(approval.itemId)) {
+        po = await PurchaseOrder.findById(approval.itemId).lean();
+      }
+      if (!po) {
+        po = await PurchaseOrder.findOne({ poNumber: approval.itemId }).lean();
+      }
 
+      if (po) {
+        if (po.linkedRequisition) {
+          let req: any = null;
+          if (
+            po.linkedRequisition &&
+            /^[0-9a-fA-F]{24}$/.test(po.linkedRequisition)
+          ) {
+            req = await Requisition.findById(po.linkedRequisition).lean();
+          }
+          if (!req) {
+            req = await Requisition.findOne({
+              requisitionId: po.linkedRequisition,
+            }).lean();
+          }
+          if (req) userId = req.createdBy || "";
+        }
+      }
+    }
+
+    if (!userId) return null;
+
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const email = user.emailAddresses[0]?.emailAddress;
+    const name =
+      `${user.firstName || ""} ${user.lastName || ""}`.trim() || "User";
+
+    return { userId, email, name };
+  } catch (e) {
+    console.error("Error getting requester info:", e);
+    return null;
+  }
+}
+
+// ✅ RESTORED: getApprovals function
+export async function getApprovals() {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized", data: [] };
+    }
+
+    await dbConnect();
+    const approvals = await Approval.find({})
+      .sort({ createdAt: -1 })
+      .limit(50)
+      .lean();
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(approvals || [])),
+    };
+  } catch (error) {
+    console.error("Error fetching approvals:", error);
+    return { success: false, error: "Failed to fetch approvals", data: [] };
+  }
+}
+
+// ✅ RESTORED: getPendingApprovalsCount function
+export async function getPendingApprovalsCount() {
+  try {
+    await dbConnect();
+    const statuses = [
+      "Awaiting your approval",
+      "Pending review",
+      "Parallel approval",
+      "SLA breached",
+    ];
+    const count = await Approval.countDocuments({ status: { $in: statuses } });
+    return { success: true, count };
+  } catch (error) {
+    return {
+      success: false,
+      error: "Failed to count pending approvals",
+      count: 0,
+    };
+  }
+}
+
+// ✅ RESTORED: getApprovalById function
+export async function getApprovalById(id: string) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+
+    await dbConnect();
+    const approval = await Approval.findById(id).lean();
+
+    if (!approval) {
+      return { success: false, error: "Approval not found" };
+    }
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(approval)),
+    };
+  } catch (error) {
+    console.error("Error fetching approval:", error);
+    return { success: false, error: "Failed to fetch approval" };
+  }
+}
+
+// ✅ NEW: Get details for any item type (Approval, Requisition, or Purchase Order)
 export async function getItemDetails(id: string, type: string) {
   try {
     const { userId } = await auth();
@@ -98,7 +236,7 @@ export async function getItemDetails(id: string, type: string) {
   }
 }
 
-// UPDATED: Handle approval for different item types
+// ✅ UPDATED: Handle approval for different item types
 export async function approveRequest(
   id: string,
   type: string,
@@ -174,7 +312,7 @@ export async function approveRequest(
   }
 }
 
-// UPDATED: Handle rejection for different item types
+// ✅ UPDATED: Handle rejection for different item types
 export async function rejectRequest(
   id: string,
   type: string,
@@ -245,7 +383,7 @@ export async function rejectRequest(
   }
 }
 
-// UPDATED: Handle change requests for different item types
+// ✅ UPDATED: Handle change requests for different item types
 export async function requestChanges(
   id: string,
   type: string,
@@ -336,7 +474,6 @@ export async function bulkApprove(ids: string[], comments?: string) {
       details: comments || "Bulk approval",
     };
 
-    // Update only approvals in bulk (not requisitions/POs directly)
     await Approval.updateMany(
       { _id: { $in: ids } },
       {
@@ -352,6 +489,46 @@ export async function bulkApprove(ids: string[], comments?: string) {
       );
     }
 
+    const approvals = await Approval.find({ _id: { $in: ids } }).lean();
+    for (const approval of approvals) {
+      const ap = approval as any;
+      const resourceType = ap.type ? ap.type.toLowerCase() : "request";
+      const requester = await getRequesterInfo(ap);
+      const targetUserId = requester?.userId || "REQUESTER_USER_ID";
+
+      await createNotification({
+        userId: targetUserId,
+        type: "approval_pending",
+        title: `${ap.type} Approved`,
+        message: `Your ${resourceType} ${ap.itemId ?? ""} for Nle${(
+          ap.amount ?? 0
+        ).toLocaleString()} has been approved`,
+        actionUrl: `/${resourceType}s/${ap.itemId ?? ""}`,
+        priority: "medium",
+        metadata: {
+          approvalId: ap._id,
+          itemId: ap.itemId ?? "",
+          amount: ap.amount ?? 0,
+        },
+      });
+
+      if (requester?.email) {
+        await sendEmail(
+          requester.email,
+          `${ap.type} Approved`,
+          `<p>Your ${resourceType} <strong>${
+            ap.itemId ?? ""
+          }</strong> for <strong>Nle${(
+            ap.amount ?? 0
+          ).toLocaleString()}</strong> has been approved.</p>`,
+          `${process.env.NEXT_PUBLIC_APP_URL || ""}/${resourceType}s/${
+            ap.itemId ?? ""
+          }`,
+          "View Details"
+        );
+      }
+    }
+
     revalidatePath("/approvals");
 
     return { success: true, count: ids.length };
@@ -361,7 +538,7 @@ export async function bulkApprove(ids: string[], comments?: string) {
   }
 }
 
-export async function getApprovalsWithDetails() {
+export async function getApprovalsWithDetails(): Promise<ApprovalsResponse> {
   try {
     const { userId } = await auth();
     if (!userId) {

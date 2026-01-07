@@ -377,6 +377,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { CheckCircle2, XCircle, AlertCircle, Loader2 } from "lucide-react";
+// ✅ FIXED: Only import the functions that exist
 import {
   approveRequest,
   rejectRequest,
@@ -405,10 +406,9 @@ interface ItemDetails {
   comments?: Comment[];
 }
 
-// ✅ FIXED: Added itemType to the interface
 interface ApprovalDetailModalProps {
   approvalId: string;
-  itemType: string; // This was missing in your original file
+  itemType: string;
   onClose: () => void;
   onActionComplete?: () => void;
 }
