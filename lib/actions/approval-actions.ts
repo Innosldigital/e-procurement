@@ -157,20 +157,66 @@ export async function getPendingApprovalsCount() {
   }
 }
 
+// export async function getPendingApprovals() {
+//   try {
+//     await dbConnect();
+//     const statuses = [
+//       "Awaiting your approval",
+//       "Pending review",
+//       "Parallel approval",
+//       "SLA breached",
+//     ];
+//     const items = await Approval.find({ status: { $in: statuses } })
+//       .sort({ createdAt: -1 })
+//       .lean();
+//     return { success: true, data: JSON.parse(JSON.stringify(items)) };
+//   } catch (error) {
+//     return {
+//       success: false,
+//       error: "Failed to fetch pending approvals",
+//       data: [],
+//     };
+//   }
+// }
+
+// RESTORED: getApprovalById function
+
+// Add this function to your lib/actions/approval-actions.ts file
+
 export async function getPendingApprovals() {
   try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized", data: [] };
+    }
+
     await dbConnect();
+
+    // Get all approvals with pending statuses
     const statuses = [
       "Awaiting your approval",
       "Pending review",
       "Parallel approval",
       "SLA breached",
+      "pending",
     ];
-    const items = await Approval.find({ status: { $in: statuses } })
+
+    const approvals = await Approval.find({
+      status: { $in: statuses },
+    })
       .sort({ createdAt: -1 })
       .lean();
-    return { success: true, data: JSON.parse(JSON.stringify(items)) };
+
+    console.log(
+      `[getPendingApprovals] Found ${approvals.length} pending approvals`
+    );
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(approvals || [])),
+    };
   } catch (error) {
+    console.error("Error fetching pending approvals:", error);
     return {
       success: false,
       error: "Failed to fetch pending approvals",
@@ -179,7 +225,6 @@ export async function getPendingApprovals() {
   }
 }
 
-// RESTORED: getApprovalById function
 export async function getApprovalById(id: string) {
   try {
     const { userId } = await auth();
