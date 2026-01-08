@@ -37,17 +37,21 @@ interface ApprovalsClientProps {
   approvals: ApprovalTableRow[];
   requisitions: ApprovalTableRow[];
   purchaseOrders: ApprovalTableRow[];
+  bulkApprovalAction?: (formData: FormData) => Promise<void>;
 }
 
 export default function ApprovalsClient({
   approvals = [],
   requisitions = [],
   purchaseOrders = [],
+  bulkApprovalAction,
 }: ApprovalsClientProps) {
   const [selectedApprovalId, setSelectedApprovalId] = useState<string | null>(
     null
   );
   const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [isBulkApproving, setIsBulkApproving] = useState(false);
   const router = useRouter();
 
   // Ensure all arrays are safe
@@ -120,13 +124,101 @@ export default function ApprovalsClient({
     setSelectedType(null);
   };
 
+  const handleSelectItem = (id: string) => {
+    setSelectedIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const handleSelectAll = () => {
+    const pendingItems = combinedData.filter(item => {
+      const s = String(item.status || "").toLowerCase();
+      return s.includes("awaiting") || s.includes("pending") || s.includes("review");
+    });
+    
+    if (selectedIds.size === pendingItems.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(pendingItems.map(item => item._id)));
+    }
+  };
+
+  const handleBulkApprove = async () => {
+    if (selectedIds.size === 0 || !bulkApprovalAction) return;
+    
+    setIsBulkApproving(true);
+    try {
+      const formData = new FormData();
+      formData.append("ids", JSON.stringify(Array.from(selectedIds)));
+      
+      await bulkApprovalAction(formData);
+      
+      setSelectedIds(new Set());
+      router.refresh();
+    } catch (error) {
+      console.error("Error during bulk approval:", error);
+    } finally {
+      setIsBulkApproving(false);
+    }
+  };
+
   return (
     <>
       {/* Combined Approvals Table */}
       <div className="rounded-lg border bg-card mb-6">
+        <div className="p-4 border-b flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={handleSelectAll}
+              disabled={combinedData.filter(item => {
+                const s = String(item.status || "").toLowerCase();
+                return s.includes("awaiting") || s.includes("pending") || s.includes("review");
+              }).length === 0}
+            >
+              {selectedIds.size === combinedData.filter(item => {
+                const s = String(item.status || "").toLowerCase();
+                return s.includes("awaiting") || s.includes("pending") || s.includes("review");
+              }).length ? "Deselect All" : "Select All Pending"}
+            </Button>
+            {selectedIds.size > 0 && (
+              <Button
+                size="sm"
+                onClick={handleBulkApprove}
+                disabled={isBulkApproving}
+              >
+                {isBulkApproving ? "Approving..." : `Approve Selected (${selectedIds.size})`}
+              </Button>
+            )}
+          </div>
+          <div className="text-sm text-muted-foreground">
+            {selectedIds.size} selected
+          </div>
+        </div>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-12">
+                <input
+                  type="checkbox"
+                  checked={selectedIds.size > 0 && selectedIds.size === combinedData.filter(item => {
+                    const s = String(item.status || "").toLowerCase();
+                    return s.includes("awaiting") || s.includes("pending") || s.includes("review");
+                  }).length}
+                  onChange={handleSelectAll}
+                  disabled={combinedData.filter(item => {
+                    const s = String(item.status || "").toLowerCase();
+                    return s.includes("awaiting") || s.includes("pending") || s.includes("review");
+                  }).length === 0}
+                />
+              </TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Item ID</TableHead>
               <TableHead>Requester</TableHead>
@@ -140,15 +232,26 @@ export default function ApprovalsClient({
             {combinedData.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={7}
+                  colSpan={8}
                   className="text-center py-8 text-muted-foreground"
                 >
                   No approvals found
                 </TableCell>
               </TableRow>
             ) : (
-              combinedData.map((item) => (
+              combinedData.map((item) => {
+                const s = String(item.status || "").toLowerCase();
+                const isPending = s.includes("awaiting") || s.includes("pending") || s.includes("review");
+                return (
                 <TableRow key={`${item.type}-${item._id}`}>
+                  <TableCell className="w-12">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.has(item._id)}
+                      onChange={() => handleSelectItem(item._id)}
+                      disabled={!isPending}
+                    />
+                  </TableCell>
                   <TableCell className="font-medium">{item.type}</TableCell>
                   <TableCell>{item.itemId || "N/A"}</TableCell>
                   <TableCell>{item.requester || "N/A"}</TableCell>
@@ -184,7 +287,7 @@ export default function ApprovalsClient({
                     </DropdownMenu>
                   </TableCell>
                 </TableRow>
-              ))
+              )})
             )}
           </TableBody>
         </Table>

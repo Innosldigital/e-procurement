@@ -11,6 +11,22 @@ import { clerkClient } from "@clerk/nextjs/server";
 
 export const dynamic = "force-dynamic";
 
+async function handleBulkApproval(formData: FormData) {
+  "use server";
+  try {
+    const idsStr = formData.get("ids") as string;
+    const ids = idsStr ? JSON.parse(idsStr) : [];
+    if (Array.isArray(ids) && ids.length > 0) {
+      const result = await bulkApprove(ids);
+      if (!result.success) {
+        console.error("Bulk approval failed:", result.error);
+      }
+    }
+  } catch (error) {
+    console.error("Error in bulk approve:", error);
+  }
+}
+
 export default async function ApprovalsPage() {
   const { userId } = await auth();
   let allowed = false;
@@ -66,17 +82,6 @@ export default async function ApprovalsPage() {
     purchaseOrders = [];
   }
 
-  // Calculate pending IDs with null checks
-  const pendingIds = Array.isArray(approvals)
-    ? approvals
-        .filter((a: any) => {
-          if (!a) return false;
-          const s = String(a.status || "").toLowerCase();
-          return s.includes("awaiting") || s.includes("pending review");
-        })
-        .map((a: any) => String(a._id))
-    : [];
-
   return (
     <div className="flex min-h-screen flex-col">
       <main className="p-4 md:p-6">
@@ -100,34 +105,6 @@ export default async function ApprovalsPage() {
                 Approval rules
               </Link>
             </Button>
-            <form
-              action={async (formData: FormData) => {
-                "use server";
-                try {
-                  const idsStr = formData.get("ids") as string;
-                  const ids = idsStr ? JSON.parse(idsStr) : [];
-                  if (Array.isArray(ids) && ids.length > 0) {
-                    await bulkApprove(ids);
-                  }
-                } catch (error) {
-                  console.error("Error in bulk approve:", error);
-                }
-              }}
-            >
-              <input
-                type="hidden"
-                name="ids"
-                value={JSON.stringify(pendingIds)}
-              />
-              <Button
-                size="sm"
-                className="flex-1 md:flex-none"
-                type="submit"
-                disabled={pendingIds.length === 0}
-              >
-                Bulk approve ({pendingIds.length})
-              </Button>
-            </form>
           </div>
         </div>
 
@@ -142,6 +119,7 @@ export default async function ApprovalsPage() {
             approvals={approvals}
             requisitions={requisitions}
             purchaseOrders={purchaseOrders}
+            bulkApprovalAction={handleBulkApproval}
           />
         </Suspense>
       </main>
