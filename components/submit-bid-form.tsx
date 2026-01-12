@@ -422,7 +422,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -437,7 +437,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -461,7 +460,6 @@ const BidFormSchema = z.object({
   contactEmail: z.string().email().max(160),
   contactPhone: z.string().min(6).max(40),
   totalPrice: z.string().refine((v) => Number(v) > 0),
-  deliveryTimeline: z.string().min(2).max(60),
   complianceStatement: z.string().min(10).max(2000),
   additionalNotes: z.string().max(2000).optional().or(z.literal("")),
 });
@@ -472,6 +470,8 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [technicalFiles, setTechnicalFiles] = useState<FileList | null>(null);
   const [financialFiles, setFinancialFiles] = useState<FileList | null>(null);
+  const [isPrefilling, setIsPrefilling] = useState(false);
+  const [prefillError, setPrefillError] = useState("");
   const { edgestore } = useEdgeStore();
 
   const form = useForm<BidFormValues>({
@@ -481,11 +481,50 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
       contactEmail: "",
       contactPhone: "",
       totalPrice: "",
-      deliveryTimeline: "",
       complianceStatement: "",
       additionalNotes: "",
     },
   });
+
+  useEffect(() => {
+    let active = true;
+    async function prefill() {
+      try {
+        setIsPrefilling(true);
+        setPrefillError("");
+        const resp = await fetch("/api/supplier/me", {
+          method: "GET",
+          headers: { Accept: "application/json" },
+        });
+        if (!resp.ok) throw new Error("Failed to fetch user details");
+        const json = await resp.json();
+        const d = json?.data || {};
+        const supplierName = String(d.supplierName || d.name || "").trim();
+        const contactEmail = String(d.contactEmail || d.email || "").trim();
+        const contactPhone = String(d.contactPhone || d.phone || "").trim();
+        if (!active) return;
+        if (supplierName) form.setValue("supplierName", supplierName);
+        if (contactEmail) form.setValue("contactEmail", contactEmail);
+        if (contactPhone) form.setValue("contactPhone", normalizePhone(contactPhone));
+      } catch (e: any) {
+        setPrefillError(e?.message || "Unable to load user details");
+      } finally {
+        setIsPrefilling(false);
+      }
+    }
+    prefill();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  function normalizePhone(p: string) {
+    const trimmed = String(p || "").trim();
+    if (!trimmed) return "";
+    const hasPlus = trimmed.startsWith("+");
+    const digits = trimmed.replace(/[^0-9]/g, "");
+    return hasPlus ? `+${digits}` : digits;
+  }
 
   const onSubmit = async (data: BidFormValues) => {
     setIsSubmitting(true);
@@ -523,7 +562,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
         contactEmail: data.contactEmail,
         contactPhone: data.contactPhone,
         totalPrice: data.totalPrice,
-        deliveryTimeline: data.deliveryTimeline,
         complianceStatement: data.complianceStatement,
         additionalNotes: data.additionalNotes ?? "",
         technicalProposalUploads: await uploadFilesWithEdgeStore(
@@ -563,9 +601,14 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Supplier Info */}
             <div className="space-y-4">
               <h3 className="text-sm font-medium">Supplier Information</h3>
+              {isPrefilling && (
+                <div className="text-xs text-muted-foreground">Loading your details…</div>
+              )}
+              {prefillError && (
+                <div className="text-xs text-destructive">{prefillError}</div>
+              )}
 
               <FormField
                 control={form.control}
@@ -589,7 +632,7 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                     <FormItem>
                       <FormLabel>Email *</FormLabel>
                       <FormControl>
-                        <Input type="email" {...field} />
+                      <Input type="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -603,7 +646,12 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                     <FormItem>
                       <FormLabel>Phone *</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input
+                          {...field}
+                          onBlur={(e) =>
+                            form.setValue("contactPhone", normalizePhone(e.target.value))
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -628,19 +676,7 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="deliveryTimeline"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Delivery Timeline *</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {/* Delivery Timeline field removed */}
             </div>
 
             {/* Files */}

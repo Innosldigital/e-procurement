@@ -657,7 +657,6 @@ export async function submitBid(
     contactEmail: string;
     contactPhone: string;
     totalPrice: string;
-    deliveryTimeline: string;
     technicalProposal?: string;
     complianceStatement: string;
     additionalNotes: string;

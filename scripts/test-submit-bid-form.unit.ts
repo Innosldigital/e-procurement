@@ -6,7 +6,6 @@ const BidFormSchema = z.object({
   contactEmail: z.string().email().max(160),
   contactPhone: z.string().min(6).max(40),
   totalPrice: z.string().refine((v) => Number(v) > 0),
-  deliveryTimeline: z.string().min(2).max(60),
   complianceStatement: z.string().min(10).max(2000),
   additionalNotes: z.string().max(2000).optional().or(z.literal('')),
 });
@@ -22,7 +21,6 @@ async function run() {
     contactEmail: 'bid@cloudhost.example',
     contactPhone: '+23270000000',
     totalPrice: '150000',
-    deliveryTimeline: '6 weeks',
     complianceStatement: 'We comply fully with all requirements.',
     additionalNotes: 'N/A',
   }
