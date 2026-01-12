@@ -214,7 +214,7 @@ export default async function BidsPage({
                   ) : (
                     pageRows.map((r) => (
                       <tr key={`${r.bidId}`} className="border-t">
-                        <td className="p-3">{r.bidId}</td>
+                        {/* <td className="p-3">{r.bidId}</td> */}
                         <td className="p-3">
                           <div className="font-medium">{r.tenderTitle}</div>
                           <div className="text-xs text-muted-foreground">
