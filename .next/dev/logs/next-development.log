@@ -1,1 +1,4 @@
-[00:00:02.584] Server  LOG      ✓ Ready in 1837ms
+[00:00:01.901] Server  LOG      ✓ Ready in 1413ms
+[00:16:58.894] Server  LOG      ○ Compiling /sign-in/[[...sign-in]] ...
+[00:17:01.955] Server  WARN    Image with src "/Innosl-Procurement.webp" is using quality "85" which is not configured in images.qualities [75]. Please update your config to [75, 85].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities

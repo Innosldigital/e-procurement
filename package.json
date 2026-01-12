@@ -7,7 +7,9 @@
     "dev": "next dev",
     "lint": "eslint .",
     "seed": "tsx scripts/seed.ts",
-    "start": "next start"
+    "start": "next start",
+    "test:unit": "tsx scripts/test-submit-bid-form.unit.ts",
+    "test:integration": "tsx scripts/test-submit-bid-form.integration.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "latest",

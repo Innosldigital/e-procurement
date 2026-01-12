@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
   DialogContent,
@@ -32,15 +34,36 @@ interface SubmitBidFormProps {
   onClose: () => void;
 }
 
-interface BidFormValues {
-  supplierName: string;
-  contactEmail: string;
-  contactPhone: string;
-  totalPrice: string;
-  deliveryTimeline: string;
-  complianceStatement: string;
-  additionalNotes: string;
-}
+const BidFormSchema = z.object({
+  supplierName: z
+    .string()
+    .min(2, { message: "Supplier name is required" })
+    .max(120, { message: "Supplier name is too long" }),
+  contactEmail: z
+    .string()
+    .email({ message: "Invalid email address" })
+    .max(160),
+  contactPhone: z
+    .string()
+    .min(6, { message: "Phone number is required" })
+    .max(40),
+  totalPrice: z
+    .string()
+    .refine((v) => Number(v) > 0, {
+      message: "Total price must be a positive number",
+    }),
+  deliveryTimeline: z
+    .string()
+    .min(2, { message: "Delivery timeline is required" })
+    .max(60),
+  complianceStatement: z
+    .string()
+    .min(10, { message: "Compliance statement is required" })
+    .max(2000),
+  additionalNotes: z.string().max(2000).optional().or(z.literal("")),
+});
+
+type BidFormValues = z.infer<typeof BidFormSchema>;
 
 export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,6 +72,7 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
   const { edgestore } = useEdgeStore();
 
   const form = useForm<BidFormValues>({
+    resolver: zodResolver(BidFormSchema),
     defaultValues: {
       supplierName: "",
       contactEmail: "",
@@ -58,11 +82,16 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
       complianceStatement: "",
       additionalNotes: "",
     },
+    mode: "onSubmit",
   });
 
   const onSubmit = async (data: BidFormValues) => {
     setIsSubmitting(true);
     try {
+      if (!tender || !tender._id) {
+        toast.error("Invalid tender reference");
+        return;
+      }
       // Upload files using EdgeStore
       async function uploadFilesWithEdgeStore(list: FileList | null) {
         if (!list || list.length === 0) return [];
@@ -73,17 +102,19 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
           url: string;
         }> = [];
 
-        for (const file of Array.from(list).filter(
-          (f) =>
+        const files = Array.from(list).filter((f) => {
+          const isPdf =
             f.type === "application/pdf" ||
-            String(f.name || "")
-              .toLowerCase()
-              .endsWith(".pdf")
-        )) {
+            String(f.name || "").toLowerCase().endsWith(".pdf");
+          const under10MB = f.size <= 10 * 1024 * 1024;
+          if (!isPdf) toast.error(`${f.name} is not a PDF`);
+          if (!under10MB) toast.error(`${f.name} exceeds 10MB limit`);
+          return isPdf && under10MB;
+        });
+
+        for (const file of files) {
           try {
-            const res = await edgestore.publicFiles.upload({
-              file,
-            });
+            const res = await edgestore.publicFiles.upload({ file });
             uploads.push({
               name: file.name,
               size: file.size,
@@ -92,6 +123,7 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
             });
           } catch (err) {
             console.error("Error uploading file:", file.name, err);
+            toast.error(`Error uploading ${file.name}`);
           }
         }
         return uploads;
@@ -112,14 +144,47 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
         totalPrice: data.totalPrice,
         deliveryTimeline: data.deliveryTimeline,
         complianceStatement: data.complianceStatement,
-        additionalNotes: data.additionalNotes,
+        additionalNotes: data.additionalNotes ?? "",
         technicalProposalUploads: techUploads,
         financialProposalUploads: finUploads,
       };
 
       console.log("Submitting bid:", bidData);
 
-      const res = await submitBid(String(tender._id), bidData);
+      let res: { success: boolean; error?: string; data?: any } = { success: false };
+      try {
+        res = await submitBid(String(tender._id), bidData);
+        console.log("Submission result:", res);
+      } catch (err: any) {
+        res = { success: false, error: err?.message || "Submission failed" };
+      }
+
+      if (!res || !res.success) {
+        try {
+          const origin =
+            typeof window !== "undefined"
+              ? window.location.origin
+              : process.env.NEXT_PUBLIC_APP_URL || "";
+          const apiBase =
+            process.env.NODE_ENV === "production"
+              ? origin.replace("http://", "https://")
+              : origin;
+          const apiUrl = `${apiBase}/api/bids/submit`;
+          const resp = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({ tenderId: String(tender._id), payload: bidData }),
+          });
+          if (resp.ok) {
+            res = await resp.json();
+          }
+        } catch (err) {
+          console.error("API fallback failed:", err);
+        }
+      }
 
       console.log("Submit bid result:", res);
 
@@ -165,7 +230,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
               <FormField
                 control={form.control}
                 name="supplierName"
-                rules={{ required: "Supplier name is required" }}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Supplier Name *</FormLabel>
@@ -181,13 +245,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 <FormField
                   control={form.control}
                   name="contactEmail"
-                  rules={{
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
-                    },
-                  }}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Contact Email *</FormLabel>
@@ -206,7 +263,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 <FormField
                   control={form.control}
                   name="contactPhone"
-                  rules={{ required: "Phone number is required" }}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Contact Phone *</FormLabel>
@@ -227,7 +283,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 <FormField
                   control={form.control}
                   name="totalPrice"
-                  rules={{ required: "Total price is required" }}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Total Price (per year) *</FormLabel>
@@ -235,7 +290,7 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                         <Input type="number" placeholder="50000" {...field} />
                       </FormControl>
                       <FormDescription>
-                        Enter your total annual price in USD
+                        Enter your total annual price in SLE
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -304,7 +359,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
               <FormField
                 control={form.control}
                 name="complianceStatement"
-                rules={{ required: "Compliance statement is required" }}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Compliance Statement *</FormLabel>
