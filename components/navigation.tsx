@@ -36,6 +36,7 @@ const getNavItems = (role: string) => [
   },
   { href: "/invoices", icon: Receipt, label: "Invoices" },
   { href: "/reports", icon: BarChart3, label: "Reports" },
+  { href: "/bids", icon: Package, label: "Bids" },
   { href: "/admin", icon: Settings, label: "Admin" },
 ];
 
@@ -81,7 +82,6 @@ export function Navigation({
 
   // Filter navigation items based on role
   const items = navItems.filter((n) => {
-    // If user hasn't loaded yet, show nothing or default items
     if (!isLoaded || !user) {
       return false;
     }
@@ -91,7 +91,12 @@ export function Navigation({
       return normalizedRole === "admin" || normalizedRole === "superadmin";
     }
 
-    // Suppliers can ONLY see four items
+    // 🔐 ONLY Admin & SuperAdmin can see Bids
+    if (n.href === "/bids") {
+      return normalizedRole === "admin" || normalizedRole === "superadmin";
+    }
+
+    // Suppliers can ONLY see specific items
     if (normalizedRole === "supplier") {
       const supplierAllowedPaths = [
         "/supplier-dashboard",
@@ -108,7 +113,6 @@ export function Navigation({
       return n.href !== "/supplier-dashboard";
     }
 
-    // All other roles can see everything except admin (handled above)
     return true;
   });
 
