@@ -16,7 +16,6 @@ import { CreateTenderForm } from "@/components/create-tender-form";
 import { EditTenderForm } from "@/components/edit-tender-form";
 import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
 import { TemplatesRulesModal } from "@/components/templates-rules-modal";
-import { SubmitBidForm } from "@/components/submit-bid-form";
 import { getUserNamesByIds } from "@/lib/actions/user-actions";
 
 function TendersPage() {
@@ -28,7 +27,7 @@ function TendersPage() {
   const [showEdit, setShowEdit] = useState(false);
   const [showScorecard, setShowScorecard] = useState(false);
   const [showTemplatesRules, setShowTemplatesRules] = useState(false);
-  const [showBidForm, setShowBidForm] = useState(false);
+  // Bid submission form removed
   const { user } = useUser();
 
   const [canCreateTender, setCanCreateTender] = useState(false);
@@ -132,9 +131,7 @@ function TendersPage() {
     setIsAdminOrSuperAdmin(["admin", "superadmin"].includes(normalized));
   }, [user]);
 
-  const handleSubmitBid = () => {
-    setShowBidForm(true);
-  };
+  // Bid submission form removed
 
   const handleCloseCreateForm = async () => {
     setShowCreate(false);
@@ -146,10 +143,7 @@ function TendersPage() {
     await handleRefresh();
   };
 
-  const handleCloseBidForm = async () => {
-    setShowBidForm(false);
-    await handleRefresh();
-  };
+  // Bid submission form removed
 
   return (
     <div className="p-4 sm:p-6 min-h-screen">
@@ -362,12 +356,7 @@ function TendersPage() {
                             before the closing date
                           </p>
                         </div>
-                        <Button
-                          onClick={handleSubmitBid}
-                          className="w-full sm:w-auto sm:self-end"
-                        >
-                          Submit Bid
-                        </Button>
+                        {/* Submit Bid feature temporarily unavailable */}
                       </div>
                     </div>
                   )}
@@ -726,9 +715,7 @@ function TendersPage() {
       {showTemplatesRules && (
         <TemplatesRulesModal onClose={() => setShowTemplatesRules(false)} />
       )}
-      {showBidForm && selectedTender && (
-        <SubmitBidForm tender={selectedTender} onClose={handleCloseBidForm} />
-      )}
+      {/* SubmitBidForm removed */}
     </div>
   );
 }

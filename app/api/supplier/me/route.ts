@@ -8,7 +8,10 @@ export async function GET() {
   try {
     const { userId } = await auth();
     if (!userId) {
-      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { success: false, error: "Unauthorized" },
+        { status: 401 }
+      );
     }
 
     await dbConnect();
@@ -18,20 +21,23 @@ export async function GET() {
     const user = await client.users.getUser(userId);
     const email = user.emailAddresses?.[0]?.emailAddress || "";
     const phone = user.phoneNumbers?.[0]?.phoneNumber || "";
-    const name = `${String(user.firstName || "").trim()} ${String(user.lastName || "").trim()}`.trim();
+    const name = `${String(user.firstName || "").trim()} ${String(
+      user.lastName || ""
+    ).trim()}`.trim();
 
     const data = {
       supplierName: String((supplier as any)?.name || name || ""),
-      contactEmail:
-        String((supplier as any)?.onboarding?.email || email || ""),
-      contactPhone:
-        String((supplier as any)?.onboarding?.phone || phone || ""),
+      contactEmail: String((supplier as any)?.onboarding?.email || email || ""),
+      contactPhone: String((supplier as any)?.onboarding?.phone || phone || ""),
     };
 
     return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (e: any) {
     return NextResponse.json(
-      { success: false, error: e?.message || "Failed to fetch supplier details" },
+      {
+        success: false,
+        error: e?.message || "Failed to fetch supplier details",
+      },
       { status: 500 }
     );
   }

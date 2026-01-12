@@ -14,10 +14,12 @@ import {
   BarChart3,
   Settings,
   X,
+  Gavel,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
 
+// Navigation items based on role
 const getNavItems = (role: string) => [
   { href: "/", icon: LayoutDashboard, label: "Dashboard" },
   {
@@ -36,7 +38,7 @@ const getNavItems = (role: string) => [
   },
   { href: "/invoices", icon: Receipt, label: "Invoices" },
   { href: "/reports", icon: BarChart3, label: "Reports" },
-  { href: "/bids", icon: Package, label: "Bids" },
+  { href: "/bids", icon: Gavel, label: "Bids" },
   { href: "/admin", icon: Settings, label: "Admin" },
 ];
 
