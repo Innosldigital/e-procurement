@@ -17,9 +17,11 @@ import { EditTenderForm } from "@/components/edit-tender-form";
 import { TenderScorecardModal } from "@/components/tender-scorecard-modal";
 import { TemplatesRulesModal } from "@/components/templates-rules-modal";
 import { getUserNamesByIds } from "@/lib/actions/user-actions";
+import { SubmitBidForm } from "@/components/submit-bid-form";
 
 function TendersPage() {
   const [tenders, setTenders] = useState<any[]>([]);
+  const [allTenders, setAllTenders] = useState<any[]>([]);
   const [selectedTender, setSelectedTender] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -32,6 +34,7 @@ function TendersPage() {
 
   const [canCreateTender, setCanCreateTender] = useState(false);
   const [isSupplier, setIsSupplier] = useState(false);
+  const [supplierCategories, setSupplierCategories] = useState<string[]>([]);
   const [isAdminOrSuperAdmin, setIsAdminOrSuperAdmin] = useState(false);
 
   const [stats, setStats] = useState<{
@@ -50,6 +53,7 @@ function TendersPage() {
       try {
         const result = await getTenders();
         if (result.success && result.data) {
+          setAllTenders(result.data);
           setTenders(result.data);
 
           if (selectedTender) {
@@ -130,6 +134,57 @@ function TendersPage() {
     setIsSupplier(normalized === "supplier");
     setIsAdminOrSuperAdmin(["admin", "superadmin"].includes(normalized));
   }, [user]);
+
+  useEffect(() => {
+    async function fetchSupplierCategories() {
+      if (!isSupplier) return;
+      try {
+        const resp = await fetch("/api/supplier/me", {
+          headers: { Accept: "application/json" },
+        });
+        if (!resp.ok) {
+          setSupplierCategories([]);
+          return;
+        }
+        const json = await resp.json();
+        const cats: string[] = Array.isArray(json?.data?.productCategories)
+          ? json.data.productCategories
+          : [];
+        const normalized = cats.map((c) =>
+          String(c || "")
+            .toLowerCase()
+            .trim()
+        );
+        setSupplierCategories(normalized);
+      } catch {
+        setSupplierCategories([]);
+      }
+    }
+    fetchSupplierCategories();
+  }, [isSupplier]);
+
+  useEffect(() => {
+    if (!isSupplier) {
+      setTenders(allTenders);
+      if (selectedTender === null && allTenders.length > 0) {
+        setSelectedTender(allTenders[0]);
+      }
+      return;
+    }
+    const filtered = allTenders.filter((t: any) => {
+      const cat = String(t?.category || "")
+        .toLowerCase()
+        .trim();
+      return cat && supplierCategories.includes(cat);
+    });
+    setTenders(filtered);
+    if (
+      !selectedTender ||
+      !filtered.find((x: any) => x._id === selectedTender._id)
+    ) {
+      setSelectedTender(filtered[0] || null);
+    }
+  }, [isSupplier, supplierCategories, allTenders]);
 
   // Bid submission form removed
 
@@ -715,7 +770,13 @@ function TendersPage() {
       {showTemplatesRules && (
         <TemplatesRulesModal onClose={() => setShowTemplatesRules(false)} />
       )}
-      {/* SubmitBidForm removed */}
+      {/* SubmitBidForm*/}
+      {/* {showSubmitBidForm && selectedTender && (
+        <SubmitBidForm
+          tender={selectedTender}
+          onClose={() => setShowSubmitBidForm(false)}
+        />
+      )} */}
     </div>
   );
 }

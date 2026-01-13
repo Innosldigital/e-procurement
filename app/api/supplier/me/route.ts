@@ -29,6 +29,9 @@ export async function GET() {
       supplierName: String((supplier as any)?.name || name || ""),
       contactEmail: String((supplier as any)?.onboarding?.email || email || ""),
       contactPhone: String((supplier as any)?.onboarding?.phone || phone || ""),
+      productCategories: Array.isArray((supplier as any)?.onboarding?.productCategories)
+        ? ((supplier as any)?.onboarding?.productCategories as string[])
+        : [],
     };
 
     return NextResponse.json({ success: true, data }, { status: 200 });
