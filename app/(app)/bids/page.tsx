@@ -297,6 +297,7 @@ import {
   getBidsWithDetails,
   type BidWithDetails,
 } from "@/lib/actions/tender-actions";
+import BidDetailsModal from "@/components/bid-details-modal";
 
 export const dynamic = "force-dynamic";
 
@@ -367,6 +368,7 @@ export default async function BidsPage({
   const perPage = 20;
 
   let rows: BidRow[] = [];
+  const detailMap: Record<string, BidWithDetails> = {};
   let fetchError = "";
 
   try {
@@ -374,15 +376,19 @@ export default async function BidsPage({
     const data: BidWithDetails[] =
       res.success && Array.isArray(res.data) ? res.data : [];
 
-    rows = data.map((r, idx) => ({
-      _key: `${r.tenderObjectId}:${r.supplier}:${idx}`,
-      amount: Number(r.totalPrice || 0),
-      bidder: String(r.supplier || ""),
-      submittedAt: new Date(r.createdAt || new Date()),
-      status: String(r.stage || ""),
-      tenderTitle: String(r.tenderTitle || "Untitled"),
-      tenderId: String(r.tenderId || ""),
-    }));
+    rows = data.map((r, idx) => {
+      const key = `${r.tenderObjectId}:${r.supplier}:${idx}`;
+      detailMap[key] = r;
+      return {
+        _key: key,
+        amount: Number(r.totalPrice || 0),
+        bidder: String(r.supplier || ""),
+        submittedAt: new Date(r.createdAt || new Date()),
+        status: String(r.stage || ""),
+        tenderTitle: String(r.tenderTitle || "Untitled"),
+        tenderId: String(r.tenderId || ""),
+      };
+    });
   } catch (e: any) {
     fetchError = e?.message || "Failed to load bids";
   }
@@ -403,6 +409,8 @@ export default async function BidsPage({
     (currentPage - 1) * perPage,
     currentPage * perPage
   );
+  const selectedBidId = String((searchParams?.bid as string) || "");
+  const selectedDetail = selectedBidId ? detailMap[selectedBidId] || null : null;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -475,7 +483,13 @@ export default async function BidsPage({
                         <td className="p-3">{r.status || "—"}</td>
                         <td className="p-3 text-right">
                           <Button asChild variant="ghost" size="sm">
-                            <Link href="/tenders">View tender</Link>
+                            <Link
+                              href={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}&bid=${encodeURIComponent(
+                                r._key
+                              )}`}
+                            >
+                              View Bid Details
+                            </Link>
                           </Button>
                         </td>
                       </tr>
@@ -486,6 +500,14 @@ export default async function BidsPage({
             </div>
           </div>
         </Suspense>
+        {selectedDetail && (
+          <BidDetailsModal
+            bid={{
+              ...selectedDetail,
+            } as any}
+            closeHref={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}`}
+          />
+        )}
       </main>
     </div>
   );
