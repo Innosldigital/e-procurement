@@ -41,7 +41,7 @@ export default function SupportPage() {
         <div className="flex items-center justify-between mb-4">
           <Button
             variant="outline"
-            onClick={() => router.push(onboarded ? "/" : "/onboarding")}
+            onClick={() => router.push("/onboarding/pending-approval")}
           >
             Back to onboarding
           </Button>
