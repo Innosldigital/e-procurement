@@ -43,7 +43,7 @@ export default function SupportPage() {
             variant="outline"
             onClick={() => router.push("/onboarding/pending-approval")}
           >
-            Back to onboarding
+            Back
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
