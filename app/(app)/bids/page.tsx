@@ -410,7 +410,9 @@ export default async function BidsPage({
     currentPage * perPage
   );
   const selectedBidId = String((searchParams?.bid as string) || "");
-  const selectedDetail = selectedBidId ? detailMap[selectedBidId] || null : null;
+  const selectedDetail = selectedBidId
+    ? detailMap[selectedBidId] || null
+    : null;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -502,9 +504,11 @@ export default async function BidsPage({
         </Suspense>
         {selectedDetail && (
           <BidDetailsModal
-            bid={{
-              ...selectedDetail,
-            } as any}
+            bid={
+              {
+                ...selectedDetail,
+              } as any
+            }
             closeHref={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}`}
           />
         )}

@@ -988,9 +988,14 @@ export async function getBidsWithDetails(): Promise<{
           category: String((t as any).category || ""),
           stage: String((t as any).stage || (t as any).status || ""),
           supplier: String((b as any).supplier || ""),
-          supplierId: (b as any).supplierId ? String((b as any).supplierId) : undefined,
+          supplierId: (b as any).supplierId
+            ? String((b as any).supplierId)
+            : undefined,
           totalPrice: Number((b as any).totalPrice || 0),
-          score: (b as any).score !== undefined ? Number((b as any).score) : undefined,
+          score:
+            (b as any).score !== undefined
+              ? Number((b as any).score)
+              : undefined,
           compliance: String((b as any).compliance || ""),
           highlights: String((b as any).highlights || ""),
           technicalDocCount: Array.isArray((b as any).technicalDocuments)
