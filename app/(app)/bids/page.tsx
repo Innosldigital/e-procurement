@@ -7,6 +7,7 @@
 //   getBidsWithDetails,
 //   type BidWithDetails,
 // } from "@/lib/actions/tender-actions";
+// import BidDetailsModal from "@/components/bid-details-modal";
 
 // export const dynamic = "force-dynamic";
 
@@ -23,13 +24,13 @@
 // }
 
 // type BidRow = {
-//   bidId: string;
 //   amount: number;
 //   bidder: string;
 //   submittedAt: Date;
 //   status: string;
 //   tenderTitle: string;
 //   tenderId: string;
+//   _key: string; // internal only (not shown)
 // };
 
 // export default async function BidsPage({
@@ -45,8 +46,9 @@
 //       const client = await clerkClient();
 //       const user = await client.users.getUser(userId);
 //       const md = (user?.publicMetadata || {}) as any;
-//       const rawRole = String(md.role || "");
-//       const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+//       const normalized = String(md.role || "")
+//         .toLowerCase()
+//         .replace(/[\s_-]/g, "");
 //       allowed = ["admin", "superadmin", "projectlead"].includes(normalized);
 //     } catch {
 //       allowed = false;
@@ -70,31 +72,33 @@
 //     );
 //   }
 
-//   const sortParam = String(
-//     (searchParams?.sort as string) || "time"
-//   ).toLowerCase();
-//   const orderParam = String(
-//     (searchParams?.order as string) || "desc"
-//   ).toLowerCase();
-//   const pageParam =
-//     parseInt(String((searchParams?.page as string) || "1"), 10) || 1;
+//   const sortParam = String(searchParams?.sort || "time").toLowerCase();
+//   const orderParam = String(searchParams?.order || "desc").toLowerCase();
+//   const pageParam = parseInt(String(searchParams?.page || "1"), 10) || 1;
 //   const perPage = 20;
 
 //   let rows: BidRow[] = [];
+//   const detailMap: Record<string, BidWithDetails> = {};
 //   let fetchError = "";
+
 //   try {
 //     const res = await getBidsWithDetails();
 //     const data: BidWithDetails[] =
 //       res.success && Array.isArray(res.data) ? res.data : [];
-//     rows = data.map((r, idx) => ({
-//       bidId: `${r.tenderObjectId}:${r.supplier}:${idx}`,
-//       amount: Number(r.totalPrice || 0),
-//       bidder: String(r.supplier || ""),
-//       submittedAt: new Date(r.createdAt || new Date()),
-//       status: String(r.stage || ""),
-//       tenderTitle: String(r.tenderTitle || "Untitled"),
-//       tenderId: String(r.tenderId || ""),
-//     }));
+
+//     rows = data.map((r, idx) => {
+//       const key = `${r.tenderObjectId}:${r.supplier}:${idx}`;
+//       detailMap[key] = r;
+//       return {
+//         _key: key,
+//         amount: Number(r.totalPrice || 0),
+//         bidder: String(r.supplier || ""),
+//         submittedAt: new Date(r.createdAt || new Date()),
+//         status: String(r.stage || ""),
+//         tenderTitle: String(r.tenderTitle || "Untitled"),
+//         tenderId: String(r.tenderId || ""),
+//       };
+//     });
 //   } catch (e: any) {
 //     fetchError = e?.message || "Failed to load bids";
 //   }
@@ -103,16 +107,24 @@
 //     if (sortParam === "amount") {
 //       return orderParam === "asc" ? a.amount - b.amount : b.amount - a.amount;
 //     }
-//     const ta = a.submittedAt.getTime();
-//     const tb = b.submittedAt.getTime();
-//     return orderParam === "asc" ? ta - tb : tb - ta;
+//     return orderParam === "asc"
+//       ? a.submittedAt.getTime() - b.submittedAt.getTime()
+//       : b.submittedAt.getTime() - a.submittedAt.getTime();
 //   });
 
 //   const total = rows.length;
 //   const totalPages = Math.max(1, Math.ceil(total / perPage));
 //   const currentPage = Math.min(Math.max(1, pageParam), totalPages);
-//   const start = (currentPage - 1) * perPage;
-//   const pageRows = rows.slice(start, start + perPage);
+//   const pageRows = rows.slice(
+//     (currentPage - 1) * perPage,
+//     currentPage * perPage
+//   );
+//   const selectedBidId = decodeURIComponent(
+//     String((searchParams?.bid as string) || "")
+//   );
+//   const selectedDetail = selectedBidId
+//     ? detailMap[selectedBidId] || null
+//     : null;
 
 //   return (
 //     <div className="flex min-h-screen flex-col">
@@ -124,79 +136,30 @@
 //               View all supplier bids with tender details and pricing.
 //             </p>
 //           </div>
-//           <div className="flex gap-2 md:gap-3">
-//             <Button
-//               asChild
-//               variant="outline"
-//               size="sm"
-//               className="flex-1 md:flex-none bg-transparent"
-//             >
-//               <Link href="/tenders">Back to Tenders</Link>
-//             </Button>
-//           </div>
+//           <Button asChild variant="outline" size="sm">
+//             <Link href="/tenders">Back to Tenders</Link>
+//           </Button>
 //         </div>
 
-//         <Suspense
-//           fallback={
-//             <div className="text-sm text-muted-foreground">Loading bids…</div>
-//           }
-//         >
+//         <Suspense fallback={<div>Loading bids…</div>}>
 //           <div className="rounded-lg border bg-card">
-//             <div className="p-3 flex items-center justify-between border-b gap-2">
-//               <div className="flex items-center gap-2 text-sm">
-//                 <span className="text-muted-foreground">Sort by</span>
-//                 <Button
-//                   asChild
-//                   size="sm"
-//                   variant={sortParam === "time" ? "default" : "outline"}
-//                 >
-//                   <Link
-//                     href={`/bids?sort=time&order=${orderParam}&page=${currentPage}`}
-//                   >
-//                     Submission time
-//                   </Link>
-//                 </Button>
-//                 <Button
-//                   asChild
-//                   size="sm"
-//                   variant={sortParam === "amount" ? "default" : "outline"}
-//                 >
-//                   <Link
-//                     href={`/bids?sort=amount&order=${orderParam}&page=${currentPage}`}
-//                   >
-//                     Amount
-//                   </Link>
-//                 </Button>
-//                 <Button asChild size="sm" variant="outline">
-//                   <Link
-//                     href={`/bids?sort=${sortParam}&order=${
-//                       orderParam === "asc" ? "desc" : "asc"
-//                     }&page=${currentPage}`}
-//                   >
-//                     {orderParam === "asc" ? "Asc" : "Desc"}
-//                   </Link>
-//                 </Button>
-//               </div>
-//               <div className="text-sm text-muted-foreground">{total} bids</div>
-//             </div>
 //             <div className="overflow-x-auto">
 //               <table className="w-full text-sm">
 //                 <thead className="bg-muted/50">
 //                   <tr>
-//                     <th className="text-left p-3 font-medium">Bid ID</th>
-//                     <th className="text-left p-3 font-medium">Tender</th>
-//                     <th className="text-left p-3 font-medium">Bidder</th>
-//                     <th className="text-right p-3 font-medium">Amount</th>
-//                     <th className="text-left p-3 font-medium">Submitted</th>
-//                     <th className="text-left p-3 font-medium">Status</th>
-//                     <th className="text-right p-3 font-medium">Actions</th>
+//                     <th className="p-3 text-left">Tender</th>
+//                     <th className="p-3 text-left">Bidder</th>
+//                     <th className="p-3 text-right">Amount</th>
+//                     <th className="p-3 text-left">Submitted</th>
+//                     <th className="p-3 text-left">Status</th>
+//                     <th className="p-3 text-right">Actions</th>
 //                   </tr>
 //                 </thead>
 //                 <tbody>
 //                   {fetchError ? (
 //                     <tr>
 //                       <td
-//                         colSpan={7}
+//                         colSpan={6}
 //                         className="text-center py-8 text-destructive"
 //                       >
 //                         {fetchError}
@@ -205,7 +168,7 @@
 //                   ) : pageRows.length === 0 ? (
 //                     <tr>
 //                       <td
-//                         colSpan={7}
+//                         colSpan={6}
 //                         className="text-center py-8 text-muted-foreground"
 //                       >
 //                         No bids found
@@ -213,8 +176,7 @@
 //                     </tr>
 //                   ) : (
 //                     pageRows.map((r) => (
-//                       <tr key={`${r.bidId}`} className="border-t">
-//                         {/* <td className="p-3">{r.bidId}</td> */}
+//                       <tr key={r._key} className="border-t">
 //                         <td className="p-3">
 //                           <div className="font-medium">{r.tenderTitle}</div>
 //                           <div className="text-xs text-muted-foreground">
@@ -235,7 +197,13 @@
 //                         <td className="p-3">{r.status || "—"}</td>
 //                         <td className="p-3 text-right">
 //                           <Button asChild variant="ghost" size="sm">
-//                             <Link href={`/tenders`}>View tender</Link>
+//                             <Link
+//                               href={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}&bid=${encodeURIComponent(
+//                                 r._key
+//                               )}`}
+//                             >
+//                               View Bid Details
+//                             </Link>
 //                           </Button>
 //                         </td>
 //                       </tr>
@@ -244,45 +212,18 @@
 //                 </tbody>
 //               </table>
 //             </div>
-//             {totalPages > 1 && (
-//               <div className="p-3 border-t flex items-center justify-between text-sm">
-//                 <div className="text-muted-foreground">
-//                   Page {currentPage} of {totalPages}
-//                 </div>
-//                 <div className="flex gap-2">
-//                   <Button
-//                     asChild
-//                     size="sm"
-//                     variant="outline"
-//                     disabled={currentPage <= 1}
-//                   >
-//                     <Link
-//                       href={`/bids?sort=${sortParam}&order=${orderParam}&page=${
-//                         currentPage - 1
-//                       }`}
-//                     >
-//                       Previous
-//                     </Link>
-//                   </Button>
-//                   <Button
-//                     asChild
-//                     size="sm"
-//                     variant="outline"
-//                     disabled={currentPage >= totalPages}
-//                   >
-//                     <Link
-//                       href={`/bids?sort=${sortParam}&order=${orderParam}&page=${
-//                         currentPage + 1
-//                       }`}
-//                     >
-//                       Next
-//                     </Link>
-//                   </Button>
-//                 </div>
-//               </div>
-//             )}
 //           </div>
 //         </Suspense>
+//         {selectedDetail && (
+//           <BidDetailsModal
+//             bid={
+//               {
+//                 ...selectedDetail,
+//               } as any
+//             }
+//             closeHref={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}`}
+//           />
+//         )}
 //       </main>
 //     </div>
 //   );
@@ -320,7 +261,7 @@ type BidRow = {
   status: string;
   tenderTitle: string;
   tenderId: string;
-  _key: string; // internal only (not shown)
+  _key: string;
 };
 
 export default async function BidsPage({
@@ -409,9 +350,11 @@ export default async function BidsPage({
     (currentPage - 1) * perPage,
     currentPage * perPage
   );
-  const selectedBidId = decodeURIComponent(
-    String((searchParams?.bid as string) || "")
-  );
+
+  // Fix: Properly decode the bid parameter
+  const selectedBidId = searchParams?.bid
+    ? decodeURIComponent(String(searchParams.bid))
+    : "";
   const selectedDetail = selectedBidId
     ? detailMap[selectedBidId] || null
     : null;
@@ -433,6 +376,45 @@ export default async function BidsPage({
 
         <Suspense fallback={<div>Loading bids…</div>}>
           <div className="rounded-lg border bg-card">
+            {/* Add sorting controls */}
+            <div className="p-3 flex items-center justify-between border-b gap-2">
+              <div className="flex items-center gap-2 text-sm flex-wrap">
+                <span className="text-muted-foreground">Sort by</span>
+                <Button
+                  asChild
+                  size="sm"
+                  variant={sortParam === "time" ? "default" : "outline"}
+                >
+                  <Link
+                    href={`/bids?sort=time&order=${orderParam}&page=${currentPage}`}
+                  >
+                    Submission time
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="sm"
+                  variant={sortParam === "amount" ? "default" : "outline"}
+                >
+                  <Link
+                    href={`/bids?sort=amount&order=${orderParam}&page=${currentPage}`}
+                  >
+                    Amount
+                  </Link>
+                </Button>
+                <Button asChild size="sm" variant="outline">
+                  <Link
+                    href={`/bids?sort=${sortParam}&order=${
+                      orderParam === "asc" ? "desc" : "asc"
+                    }&page=${currentPage}`}
+                  >
+                    {orderParam === "asc" ? "↑ Asc" : "↓ Desc"}
+                  </Link>
+                </Button>
+              </div>
+              <div className="text-sm text-muted-foreground">{total} bids</div>
+            </div>
+
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="bg-muted/50">
@@ -466,7 +448,7 @@ export default async function BidsPage({
                     </tr>
                   ) : (
                     pageRows.map((r) => (
-                      <tr key={r._key} className="border-t">
+                      <tr key={r._key} className="border-t hover:bg-muted/50">
                         <td className="p-3">
                           <div className="font-medium">{r.tenderTitle}</div>
                           <div className="text-xs text-muted-foreground">
@@ -492,7 +474,7 @@ export default async function BidsPage({
                                 r._key
                               )}`}
                             >
-                              View Bid Details
+                              View Details
                             </Link>
                           </Button>
                         </td>
@@ -502,15 +484,54 @@ export default async function BidsPage({
                 </tbody>
               </table>
             </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="p-3 border-t flex items-center justify-between text-sm">
+                <div className="text-muted-foreground">
+                  Page {currentPage} of {totalPages}
+                </div>
+                <div className="flex gap-2">
+                  {currentPage > 1 ? (
+                    <Button asChild size="sm" variant="outline">
+                      <Link
+                        href={`/bids?sort=${sortParam}&order=${orderParam}&page=${
+                          currentPage - 1
+                        }`}
+                      >
+                        Previous
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button size="sm" variant="outline" disabled>
+                      Previous
+                    </Button>
+                  )}
+                  {currentPage < totalPages ? (
+                    <Button asChild size="sm" variant="outline">
+                      <Link
+                        href={`/bids?sort=${sortParam}&order=${orderParam}&page=${
+                          currentPage + 1
+                        }`}
+                      >
+                        Next
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button size="sm" variant="outline" disabled>
+                      Next
+                    </Button>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </Suspense>
+
+        {/* Render modal when a bid is selected */}
         {selectedDetail && (
           <BidDetailsModal
-            bid={
-              {
-                ...selectedDetail,
-              } as any
-            }
+            bid={selectedDetail as any}
             closeHref={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}`}
           />
         )}
