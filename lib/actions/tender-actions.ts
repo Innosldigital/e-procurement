@@ -11,11 +11,51 @@ import { Resend } from "resend";
 
 export async function getTenders() {
   try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const md = (user?.publicMetadata || {}) as any;
+    const rawRole = String(md.role || "");
+    const role = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+
     await dbConnect();
-    const tenders = await Tender.find({})
-      .sort({ createdAt: -1 })
-      .limit(50)
-      .lean();
+
+    let tenders: any[] = [];
+
+    if (["admin", "superadmin"].includes(role)) {
+      tenders = await Tender.find({}).sort({ createdAt: -1 }).limit(50).lean();
+    } else if (role === "supplier") {
+      const supplier = await Supplier.findOne({ ownerUserId: userId })
+        .select(["onboarding.productCategories"])
+        .lean();
+      const categories: string[] = Array.isArray(
+        (supplier as any)?.onboarding?.productCategories
+      )
+        ? ((supplier as any).onboarding.productCategories as string[])
+        : [];
+      const normalized = categories
+        .map((c) => String(c || "").trim())
+        .filter(Boolean);
+
+      if (normalized.length === 0) {
+        tenders = [];
+      } else {
+        const orClauses = normalized.map((c) => {
+          const escaped = c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          return { category: { $regex: new RegExp(`^${escaped}$`, "i") } };
+        });
+        tenders = await Tender.find({ $or: orClauses })
+          .sort({ createdAt: -1 })
+          .limit(50)
+          .lean();
+      }
+    } else {
+      tenders = [];
+    }
 
     return {
       success: true,
