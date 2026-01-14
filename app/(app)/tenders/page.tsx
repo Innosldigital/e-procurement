@@ -46,6 +46,7 @@ function TendersPage() {
 
   // Check if current user is the owner of the selected tender
   const isOwner = selectedTender && user && selectedTender.owner === user.id;
+  const canViewPrices = Boolean(isOwner || isAdminOrSuperAdmin);
 
   const loadTenders = useCallback(
     async (showLoader = true) => {
@@ -599,9 +600,11 @@ function TendersPage() {
                             <th className="text-left p-2 sm:p-3 font-medium whitespace-nowrap">
                               Supplier
                             </th>
-                            <th className="text-right p-2 sm:p-3 font-medium whitespace-nowrap">
-                              Total price
-                            </th>
+                            {canViewPrices && (
+                              <th className="text-right p-2 sm:p-3 font-medium whitespace-nowrap">
+                                Total price
+                              </th>
+                            )}
                             {selectedTender.bids.some((b: any) => b.score) && (
                               <th className="text-center p-2 sm:p-3 font-medium whitespace-nowrap">
                                 Score
@@ -621,9 +624,11 @@ function TendersPage() {
                               <td className="p-2 sm:p-3 font-medium">
                                 {bid.supplier}
                               </td>
-                              <td className="p-2 sm:p-3 text-right whitespace-nowrap">
-                                Nle {bid.totalPrice?.toLocaleString()}
-                              </td>
+                              {canViewPrices && (
+                                <td className="p-2 sm:p-3 text-right whitespace-nowrap">
+                                  Nle {bid.totalPrice?.toLocaleString()}
+                                </td>
+                              )}
                               {selectedTender.bids.some(
                                 (b: any) => b.score
                               ) && (
