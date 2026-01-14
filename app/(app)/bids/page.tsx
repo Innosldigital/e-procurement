@@ -409,7 +409,9 @@ export default async function BidsPage({
     (currentPage - 1) * perPage,
     currentPage * perPage
   );
-  const selectedBidId = String((searchParams?.bid as string) || "");
+  const selectedBidId = decodeURIComponent(
+    String((searchParams?.bid as string) || "")
+  );
   const selectedDetail = selectedBidId
     ? detailMap[selectedBidId] || null
     : null;

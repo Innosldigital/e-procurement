@@ -929,6 +929,20 @@ export type BidWithDetails = {
   technicalDocCount: number;
   financialDocCount: number;
   createdAt: string | Date;
+  technicalDocuments?: Array<{
+    name: string;
+    size: number;
+    type: string;
+    url?: string;
+  }>;
+  financialDocuments?: Array<{
+    name: string;
+    size: number;
+    type: string;
+    url?: string;
+  }>;
+  contactEmail?: string;
+  contactPhone?: string;
 };
 
 export async function getBidsWithDetails(): Promise<{
@@ -977,9 +991,35 @@ export async function getBidsWithDetails(): Promise<{
       .lean();
 
     const rows: BidWithDetails[] = [];
+    const supplierCache = new Map<string, { email?: string; phone?: string }>();
     for (const t of tenders || []) {
       const bids = Array.isArray((t as any).bids) ? (t as any).bids : [];
       for (const b of bids) {
+        let contactEmail: string | undefined = undefined;
+        let contactPhone: string | undefined = undefined;
+        const sid = (b as any).supplierId ? String((b as any).supplierId) : "";
+        if (sid) {
+          const cached = supplierCache.get(sid);
+          if (cached) {
+            contactEmail = cached.email || undefined;
+            contactPhone = cached.phone || undefined;
+          } else {
+            try {
+              const sup = await Supplier.findById(sid)
+                .select(["onboarding.email", "onboarding.phone"])
+                .lean();
+              const email = (sup as any)?.onboarding?.email
+                ? String((sup as any).onboarding.email)
+                : undefined;
+              const phone = (sup as any)?.onboarding?.phone
+                ? String((sup as any).onboarding.phone)
+                : undefined;
+              supplierCache.set(sid, { email, phone });
+              contactEmail = email;
+              contactPhone = phone;
+            } catch {}
+          }
+        }
         rows.push({
           tenderObjectId: String((t as any)._id),
           tenderId: String((t as any).tenderId || ""),
@@ -1005,6 +1045,14 @@ export async function getBidsWithDetails(): Promise<{
             ? (b as any).financialDocuments.length
             : 0,
           createdAt: (t as any).updatedAt || (t as any).createdAt || new Date(),
+          technicalDocuments: Array.isArray((b as any).technicalDocuments)
+            ? (b as any).technicalDocuments
+            : [],
+          financialDocuments: Array.isArray((b as any).financialDocuments)
+            ? (b as any).financialDocuments
+            : [],
+          contactEmail,
+          contactPhone,
         });
       }
     }
