@@ -253,10 +253,12 @@ export async function submitSupplierOnboarding(data: any) {
 
     await dbConnect();
     console.log("Database connected");
+    // If supplier already exists for this user, update onboarding instead of creating a new record
+    const existing = (await Supplier.findOne({
+      ownerUserId: userId,
+    }).lean()) as any | null;
 
-    const count = await Supplier.countDocuments();
-    const supplierId = `SUP-${(count + 5000).toString()}`;
-    console.log("Generated supplierId:", supplierId);
+    // Helper to extract URLs from various input formats
 
     // Extract URLs from upload objects - Mongoose schema expects array of strings (URLs)
     function extractUrls(input: any): string[] {
@@ -334,64 +336,104 @@ export async function submitSupplierOnboarding(data: any) {
       ...sectorSpecificCertificateUploads,
     ];
 
-    const supplierData = {
-      supplierId,
-      name: data.name,
-      approved: false,
-      ownerUserId: userId,
-      category: data.category || "General",
-      region: data.region || "Global",
-      segment: data.segment || "Standard",
-      commercialTerms: {
-        paymentTerms: (
-          data.vendorPaymentTerms || "Payment for 20% upfront"
-        ).trim(),
-        diversityStatus: "",
+    const onboardingPayload = {
+      contactPerson: data.contactPerson || "",
+      phone: data.phone || "",
+      email: data.email || "",
+      goodsType: data.goodsType || "",
+      productCategories: Array.isArray(data.productCategories)
+        ? data.productCategories
+        : [],
+      supplyAreas: Array.isArray(data.supplyAreas) ? data.supplyAreas : [],
+      deliveryTimeline: data.deliveryTimeline || "",
+      priceListUploads: extractUrls(data.priceListUploads),
+      registrationCertificateUploads: registrationCertUploads,
+      businessRegistrationCertificateUploads,
+      taxClearanceCertificateUploads,
+      gstVatRegistrationCertificateUploads,
+      businessLicenseUploads,
+      nassitCertificateUploads,
+      sectorSpecificCertificateUploads,
+      businessDurationDocuments,
+      paymentMethods: Array.isArray(data.paymentMethods)
+        ? data.paymentMethods
+        : [],
+      bankDetails: {
+        bankName: data.bankDetails?.bankName || "",
+        accountName: data.bankDetails?.accountName || "",
+        accountNumber: data.bankDetails?.accountNumber || "",
+        prefersCash: Boolean(data.bankDetails?.prefersCash),
       },
-      onboarding: {
-        contactPerson: data.contactPerson || "",
-        phone: data.phone || "",
-        email: data.email || "",
-        goodsType: data.goodsType || "",
-        productCategories: Array.isArray(data.productCategories)
-          ? data.productCategories
-          : [],
-        supplyAreas: Array.isArray(data.supplyAreas) ? data.supplyAreas : [],
-        deliveryTimeline: data.deliveryTimeline || "",
-        priceListUploads: extractUrls(data.priceListUploads),
-        registrationCertificateUploads: registrationCertUploads,
-        businessRegistrationCertificateUploads,
-        taxClearanceCertificateUploads,
-        gstVatRegistrationCertificateUploads,
-        businessLicenseUploads,
-        nassitCertificateUploads,
-        sectorSpecificCertificateUploads,
-        businessDurationDocuments,
-        paymentMethods: Array.isArray(data.paymentMethods)
-          ? data.paymentMethods
-          : [],
-        bankDetails: {
-          bankName: data.bankDetails?.bankName || "",
-          accountName: data.bankDetails?.accountName || "",
-          accountNumber: data.bankDetails?.accountNumber || "",
-          prefersCash: Boolean(data.bankDetails?.prefersCash),
-        },
-        businessLeadGender: data.businessLeadGender || "",
-        inBusinessMoreThan3Years: Boolean(data.inBusinessMoreThan3Years),
-        dateOfIncorporation: data.dateOfIncorporation || "",
-        averageTurnover: data.averageTurnover || "",
-        vendorPaymentTerms: data.vendorPaymentTerms || "",
-        declarations: {
-          infoAccurate: Boolean(data.declarations?.infoAccurate),
-          agreeRules: Boolean(data.declarations?.agreeRules),
-        },
+      businessLeadGender: data.businessLeadGender || "",
+      inBusinessMoreThan3Years: Boolean(data.inBusinessMoreThan3Years),
+      dateOfIncorporation: data.dateOfIncorporation || "",
+      averageTurnover: data.averageTurnover || "",
+      vendorPaymentTerms: data.vendorPaymentTerms || "",
+      declarations: {
+        infoAccurate: Boolean(data.declarations?.infoAccurate),
+        agreeRules: Boolean(data.declarations?.agreeRules),
       },
-      performanceScore: 0,
-      riskRating: "Low",
-      totalSpend: 0,
     };
 
-    console.log("📋 Creating supplier...");
+    const commercialTermsPayload = {
+      paymentTerms: (
+        data.vendorPaymentTerms || "Payment for 20% upfront"
+      ).trim(),
+      diversityStatus: "",
+    };
+
+    if (existing) {
+      console.log(
+        "Existing supplier found for user, updating onboarding:",
+        existing._id
+      );
+      await Supplier.updateOne(
+        { _id: existing._id },
+        {
+          $set: {
+            name: data.name || existing.name,
+            commercialTerms: commercialTermsPayload,
+            onboarding: onboardingPayload,
+          },
+        }
+      );
+
+      const client = await clerkClient();
+      try {
+        await client.users.updateUser(userId, {
+          publicMetadata: {
+            role: "supplier",
+            supplierId: existing.supplierId,
+            onboardingStatus: "pending_admin_approval",
+            onboarded: true,
+          },
+        });
+        console.log("Clerk user metadata updated (existing)");
+      } catch (clerkError) {
+        console.error("❌ Clerk update failed:", clerkError);
+      }
+
+      revalidatePath("/onboarding");
+      revalidatePath("/suppliers");
+      revalidatePath(`/onboarding/supplier/${existing._id}`);
+
+      return {
+        success: true,
+        data: {
+          _id: String(existing._id),
+          id: String(existing._id),
+          supplierId: existing.supplierId,
+          name: data.name || existing.name,
+        },
+      };
+    }
+
+    // Generate a unique supplierId and create the supplier
+    const baseCount = await Supplier.countDocuments();
+    let supplierId = `SUP-${(baseCount + 5000).toString()}`;
+    console.log("Generated supplierId:", supplierId);
+
+    console.log("Creating supplier...");
     console.log("Upload counts:", {
       businessReg: businessRegistrationCertificateUploads.length,
       taxClearance: taxClearanceCertificateUploads.length,
@@ -403,8 +445,47 @@ export async function submitSupplierOnboarding(data: any) {
       totalRegistration: registrationCertUploads.length,
     });
 
-    const supplier = await Supplier.create(supplierData);
-    console.log("✅ Supplier created:", supplier._id);
+    let supplier;
+    try {
+      supplier = await Supplier.create({
+        supplierId,
+        name: data.name,
+        approved: false,
+        ownerUserId: userId,
+        category: data.category || "General",
+        region: data.region || "Global",
+        segment: data.segment || "Standard",
+        commercialTerms: commercialTermsPayload,
+        onboarding: onboardingPayload,
+        performanceScore: 0,
+        riskRating: "Low",
+        totalSpend: 0,
+      });
+    } catch (createErr: any) {
+      if (createErr && createErr.code === 11000) {
+        console.warn(
+          "Duplicate supplierId detected, regenerating and retrying..."
+        );
+        supplierId = `SUP-${Date.now()}`;
+        supplier = await Supplier.create({
+          supplierId,
+          name: data.name,
+          approved: false,
+          ownerUserId: userId,
+          category: data.category || "General",
+          region: data.region || "Global",
+          segment: data.segment || "Standard",
+          commercialTerms: commercialTermsPayload,
+          onboarding: onboardingPayload,
+          performanceScore: 0,
+          riskRating: "Low",
+          totalSpend: 0,
+        });
+      } else {
+        throw createErr;
+      }
+    }
+    console.log("Supplier created:", supplier._id);
 
     // Update Clerk user metadata
     const client = await clerkClient();
