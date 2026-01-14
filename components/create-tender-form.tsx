@@ -598,8 +598,8 @@ export function CreateTenderForm({ onClose }: CreateTenderFormProps) {
                     <SelectItem value="Catering/Consumables">
                       Catering/Consumables
                     </SelectItem>
-                    <SelectItem value="Facilities & Venue">
-                      Facilities & Venue
+                    <SelectItem value="Facilities (Venue)">
+                      Facilities (Venue)
                     </SelectItem>
                     <SelectItem value="Logistics">Logistics</SelectItem>
                     <SelectItem value="Merchandise & Stationery">
