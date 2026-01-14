@@ -71,15 +71,14 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
         setIsPrefilling(true);
         setPrefillError("");
         const resp = await fetch("/api/supplier/me", {
-          method: "GET",
           headers: { Accept: "application/json" },
         });
         if (!resp.ok) throw new Error("Failed to fetch user details");
         const json = await resp.json();
         const d = json?.data || {};
-        const supplierName = String(d.supplierName || d.name || "").trim();
-        const contactEmail = String(d.contactEmail || d.email || "").trim();
-        const contactPhone = String(d.contactPhone || d.phone || "").trim();
+        const supplierName = String(d.supplierName || "").trim();
+        const contactEmail = String(d.contactEmail || "").trim();
+        const contactPhone = String(d.contactPhone || "").trim();
         if (!active) return;
         if (supplierName) form.setValue("supplierName", supplierName);
         if (contactEmail) form.setValue("contactEmail", contactEmail);
@@ -113,17 +112,31 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
         return;
       }
 
-      async function uploadFilesWithEdgeStore(list: FileList | null) {
-        if (!list?.length) return [];
-        const uploads = [];
+      async function uploadFiles(list: FileList | null) {
+        if (!list?.length)
+          return [] as Array<{
+            name: string;
+            size: number;
+            type: string;
+            url: string;
+          }>;
+        const uploads: Array<{
+          name: string;
+          size: number;
+          type: string;
+          url: string;
+        }> = [];
         const files = Array.from(list).filter((f) => {
-          const isPdf = f.type === "application/pdf";
+          const isPdf =
+            f.type === "application/pdf" ||
+            String(f.name || "")
+              .toLowerCase()
+              .endsWith(".pdf");
           const under10MB = f.size <= 10 * 1024 * 1024;
           if (!isPdf) toast.error(`${f.name} is not a PDF`);
           if (!under10MB) toast.error(`${f.name} exceeds 10MB limit`);
           return isPdf && under10MB;
         });
-
         for (const file of files) {
           const res = await edgestore.publicFiles.upload({ file });
           uploads.push({
@@ -143,23 +156,18 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
         totalPrice: data.totalPrice,
         complianceStatement: data.complianceStatement,
         additionalNotes: data.additionalNotes ?? "",
-        technicalProposalUploads: await uploadFilesWithEdgeStore(
-          technicalFiles
-        ),
-        financialProposalUploads: await uploadFilesWithEdgeStore(
-          financialFiles
-        ),
+        technicalProposalUploads: await uploadFiles(technicalFiles),
+        financialProposalUploads: await uploadFiles(financialFiles),
       };
 
       const res = await submitBid(String(tender._id), bidData);
-
       if (res?.success) {
         toast.success("Bid submitted successfully!");
         onClose();
       } else {
         toast.error(res?.error || "Failed to submit bid");
       }
-    } catch (e) {
+    } catch {
       toast.error("Failed to submit bid");
     } finally {
       setIsSubmitting(false);
@@ -177,7 +185,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
             {tender.title}
           </DialogDescription>
         </DialogHeader>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-4">
@@ -190,7 +197,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
               {prefillError && (
                 <div className="text-xs text-destructive">{prefillError}</div>
               )}
-
               <FormField
                 control={form.control}
                 name="supplierName"
@@ -204,7 +210,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                   </FormItem>
                 )}
               />
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
@@ -219,7 +224,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                     </FormItem>
                   )}
                 />
-
                 <FormField
                   control={form.control}
                   name="contactPhone"
@@ -243,15 +247,13 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 />
               </div>
             </div>
-
-            {/* Commercial */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="totalPrice"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Total Biding Price *</FormLabel>
+                    <FormLabel>Total Price *</FormLabel>
                     <FormControl>
                       <Input type="number" {...field} />
                     </FormControl>
@@ -259,11 +261,7 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                   </FormItem>
                 )}
               />
-
-              {/* Delivery Timeline field removed */}
             </div>
-
-            {/* Files */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input
                 type="file"
@@ -278,8 +276,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 onChange={(e) => setFinancialFiles(e.target.files)}
               />
             </div>
-
-            {/* Textareas */}
             <FormField
               control={form.control}
               name="complianceStatement"
@@ -293,7 +289,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="additionalNotes"
@@ -306,8 +301,6 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
                 </FormItem>
               )}
             />
-
-            {/* Footer */}
             <DialogFooter className="flex flex-col sm:flex-row gap-2">
               <Button
                 type="button"
@@ -317,7 +310,11 @@ export function SubmitBidForm({ tender, onClose }: SubmitBidFormProps) {
               >
                 Cancel
               </Button>
-              <Button type="submit" className="w-full sm:w-auto">
+              <Button
+                type="submit"
+                className="w-full sm:w-auto"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
