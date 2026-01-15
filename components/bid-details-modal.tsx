@@ -389,7 +389,7 @@ export default function BidDetailsModal({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <div className="text-xs text-muted-foreground mb-1">Supplier</div>
-              <div className="font-medium break-words">
+              <div className="font-medium wrap-break-words">
                 {bid?.supplier || "—"}
               </div>
             </div>
@@ -450,7 +450,7 @@ export default function BidDetailsModal({
             <div className="text-xs font-semibold text-muted-foreground mb-2">
               Compliance Statement
             </div>
-            <div className="whitespace-pre-wrap break-words rounded-md bg-muted/50 p-3 text-xs sm:text-sm">
+            <div className="whitespace-pre-wrap wrap-break-words rounded-md bg-muted/50 p-3 text-xs sm:text-sm">
               {bid?.compliance || "No compliance statement provided"}
             </div>
           </div>
@@ -460,7 +460,7 @@ export default function BidDetailsModal({
             <div className="text-xs font-semibold text-muted-foreground mb-2">
               Additional Notes / Highlights
             </div>
-            <div className="whitespace-pre-wrap break-words rounded-md bg-muted/50 p-3 text-xs sm:text-sm">
+            <div className="whitespace-pre-wrap wrap-break-words rounded-md bg-muted/50 p-3 text-xs sm:text-sm">
               {bid?.highlights || "No additional notes provided"}
             </div>
           </div>
