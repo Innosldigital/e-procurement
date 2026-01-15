@@ -1,3 +1,4 @@
 {
-  "/(auth)/sign-in/[[...sign-in]]/page": "app/(auth)/sign-in/[[...sign-in]]/page.js"
+  "/(app)/bids/page": "app/(app)/bids/page.js",
+  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
 }

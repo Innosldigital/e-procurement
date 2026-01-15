@@ -218,23 +218,8 @@ export default clerkMiddleware(async (auth, request) => {
 
   const pathname = request.nextUrl.pathname;
 
-  console.log("🔍 Middleware Debug:", {
-    userId,
-    email,
-    rawRole,
-    normalizedRole,
-    isSuperAdmin,
-    isAdmin,
-    isSupplier,
-    onboarded,
-    supplierApproved,
-    pathname,
-  });
-
   // 🚀 SUPERADMIN & ADMIN — FULL ACCESS, NO ONBOARDING REQUIRED
   if (isSuperAdmin || isAdmin) {
-    console.log("✅ Superadmin/Admin detected - allowing full access");
-
     // Block them from accessing onboarding
     if (isOnboardingRoute(request)) {
       console.log("🔄 Redirecting admin/superadmin away from onboarding to /");
