@@ -283,7 +283,6 @@
 
 "use client";
 
-import { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -296,7 +295,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type BidDetails = {
-  _key?: string;
   tenderObjectId: string;
   tenderId: string;
   tenderTitle: string;
@@ -359,34 +357,18 @@ export default function BidDetailsModal({
   const router = useRouter();
   const open = !!bid;
 
-  // Debug logging
-  useEffect(() => {
-    console.log("[BidDetailsModal] Component rendered", {
-      hasBid: !!bid,
-      open,
-      bidSupplier: bid?.supplier,
-      bidKey: bid?._key,
-    });
-  }, [bid, open]);
-
   const handleOpenChange = (isOpen: boolean) => {
-    console.log("[BidDetailsModal] Dialog state change:", isOpen);
     if (!isOpen) {
       router.push(closeHref);
     }
   };
 
-  if (!bid) {
-    console.log("[BidDetailsModal] No bid provided, returning null");
-    return null;
-  }
+  if (!open) return null;
 
   // Calculate document counts from actual arrays
   const technicalDocsCount = bid?.technicalDocuments?.length || 0;
   const financialDocsCount = bid?.financialDocuments?.length || 0;
   const docsCount = technicalDocsCount + financialDocsCount;
-
-  console.log("[BidDetailsModal] Rendering modal for bid:", bid.supplier);
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>

@@ -398,15 +398,9 @@ export default async function BidsPage({
     const data: BidWithDetails[] =
       res.success && Array.isArray(res.data) ? res.data : [];
 
-    console.log(`[BidsPage] Fetched ${data.length} bids`);
-
-    rows = data.map((r) => {
-      // Use the _key that comes from the server
-      const key = r._key || `${r.tenderObjectId}:${r.supplier}`;
+    rows = data.map((r, idx) => {
+      const key = `${r.tenderObjectId}:${r.supplier}:${idx}`;
       detailMap[key] = r;
-
-      console.log(`[BidsPage] Mapped bid key: ${key}`);
-
       return {
         _key: key,
         amount: Number(r.totalPrice || 0),
@@ -418,7 +412,6 @@ export default async function BidsPage({
       };
     });
   } catch (e: any) {
-    console.error("[BidsPage] Error fetching bids:", e);
     fetchError = e?.message || "Failed to load bids";
   }
 
@@ -439,43 +432,30 @@ export default async function BidsPage({
     currentPage * perPage
   );
 
-  // Handle the bid parameter
-  const rawBidParam = searchParams?.bid;
-  let selectedBidId = "";
-
-  if (rawBidParam) {
-    selectedBidId = decodeURIComponent(String(rawBidParam));
-  }
-
+  // Fix: Properly decode the bid parameter
+  const selectedBidId = searchParams?.bid
+    ? decodeURIComponent(String(searchParams.bid))
+    : "";
   const selectedDetail = selectedBidId
     ? detailMap[selectedBidId] || null
     : null;
 
   // Debug logging
-  console.log("=== BID SELECTION DEBUG ===");
-  console.log("Raw bid param:", rawBidParam);
-  console.log("Decoded bid ID:", selectedBidId);
-  console.log("Selected detail found:", !!selectedDetail);
-  console.log("Total keys in detailMap:", Object.keys(detailMap).length);
-
-  if (selectedBidId) {
-    console.log("Looking for key:", selectedBidId);
-    console.log("Key exists in map:", selectedBidId in detailMap);
-
-    if (!selectedDetail) {
-      console.log("❌ Key not found!");
-      console.log("Available keys:");
-      Object.keys(detailMap).forEach((k, i) => {
-        if (i < 5) console.log(`  ${i + 1}. ${k}`);
-      });
-    } else {
-      console.log("✅ Bid found:", {
-        supplier: selectedDetail.supplier,
-        totalPrice: selectedDetail.totalPrice,
-      });
-    }
+  if (selectedBidId && !selectedDetail) {
+    console.log("Bid ID not found in detailMap:", selectedBidId);
+    console.log("Available keys:", Object.keys(detailMap));
   }
-  console.log("========================");
+
+  if (selectedDetail) {
+    console.log("Selected bid details:", {
+      supplier: selectedDetail.supplier,
+      totalPrice: selectedDetail.totalPrice,
+      technicalDocsCount: selectedDetail.technicalDocuments?.length || 0,
+      financialDocsCount: selectedDetail.financialDocuments?.length || 0,
+      hasContactEmail: !!selectedDetail.contactEmail,
+      hasContactPhone: !!selectedDetail.contactPhone,
+    });
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -494,6 +474,7 @@ export default async function BidsPage({
 
         <Suspense fallback={<div>Loading bids…</div>}>
           <div className="rounded-lg border bg-card">
+            {/* Add sorting controls */}
             <div className="p-3 flex items-center justify-between border-b gap-2">
               <div className="flex items-center gap-2 text-sm flex-wrap">
                 <span className="text-muted-foreground">Sort by</span>
@@ -602,6 +583,7 @@ export default async function BidsPage({
               </table>
             </div>
 
+            {/* Pagination */}
             {totalPages > 1 && (
               <div className="p-3 border-t flex items-center justify-between text-sm">
                 <div className="text-muted-foreground">
@@ -644,11 +626,13 @@ export default async function BidsPage({
           </div>
         </Suspense>
 
-        {/* Render modal - this will only show if selectedDetail exists */}
-        <BidDetailsModal
-          bid={selectedDetail}
-          closeHref={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}`}
-        />
+        {/* Render modal when a bid is selected */}
+        {selectedDetail && (
+          <BidDetailsModal
+            bid={selectedDetail as any}
+            closeHref={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}`}
+          />
+        )}
       </main>
     </div>
   );

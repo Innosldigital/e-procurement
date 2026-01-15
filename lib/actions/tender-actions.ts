@@ -906,7 +906,7 @@ export async function getBidsWithDetails(): Promise<{
         }
 
         rows.push({
-          _key: bidKey, // ✅ THIS IS CRITICAL
+          _key: bidKey,
           tenderObjectId: tenderObjId,
           tenderId: String((t as any).tenderId || ""),
           tenderTitle: String((t as any).title || "Untitled"),
