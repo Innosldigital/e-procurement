@@ -283,6 +283,7 @@
 
 "use client";
 
+import { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -295,6 +296,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type BidDetails = {
+  _key?: string;
   tenderObjectId: string;
   tenderId: string;
   tenderTitle: string;
@@ -357,18 +359,34 @@ export default function BidDetailsModal({
   const router = useRouter();
   const open = !!bid;
 
+  // Debug logging
+  useEffect(() => {
+    console.log("[BidDetailsModal] Component rendered", {
+      hasBid: !!bid,
+      open,
+      bidSupplier: bid?.supplier,
+      bidKey: bid?._key,
+    });
+  }, [bid, open]);
+
   const handleOpenChange = (isOpen: boolean) => {
+    console.log("[BidDetailsModal] Dialog state change:", isOpen);
     if (!isOpen) {
       router.push(closeHref);
     }
   };
 
-  if (!open) return null;
+  if (!bid) {
+    console.log("[BidDetailsModal] No bid provided, returning null");
+    return null;
+  }
 
   // Calculate document counts from actual arrays
   const technicalDocsCount = bid?.technicalDocuments?.length || 0;
   const financialDocsCount = bid?.financialDocuments?.length || 0;
   const docsCount = technicalDocsCount + financialDocsCount;
+
+  console.log("[BidDetailsModal] Rendering modal for bid:", bid.supplier);
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
@@ -442,7 +460,7 @@ export default function BidDetailsModal({
             <div className="text-xs text-muted-foreground mb-2 font-semibold">
               Compliance Statement
             </div>
-            <div className="whitespace-pre-wrap wrap-break-words bg-muted/50 p-3 rounded-md">
+            <div className="whitespace-pre-wrap break-words bg-muted/50 p-3 rounded-md">
               {bid?.compliance || "No compliance statement provided"}
             </div>
           </div>
@@ -452,7 +470,7 @@ export default function BidDetailsModal({
             <div className="text-xs text-muted-foreground mb-2 font-semibold">
               Additional Notes / Highlights
             </div>
-            <div className="whitespace-pre-wrap wrap-break-words bg-muted/50 p-3 rounded-md">
+            <div className="whitespace-pre-wrap break-words bg-muted/50 p-3 rounded-md">
               {bid?.highlights || "No additional notes provided"}
             </div>
           </div>

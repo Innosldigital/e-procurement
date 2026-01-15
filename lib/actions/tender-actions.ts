@@ -871,10 +871,12 @@ export async function getBidsWithDetails(): Promise<{
       for (let bidIndex = 0; bidIndex < bids.length; bidIndex++) {
         const b = bids[bidIndex];
 
-        // 🔥 FIX: Generate consistent key using tender ObjectId, supplier name, and index
-        const bidKey = `${String((t as any)._id)}:${String(
-          (b as any).supplier || ""
-        )}:${bidIndex}`;
+        // Generate consistent key
+        const tenderObjId = String((t as any)._id);
+        const supplierName = String((b as any).supplier || "");
+        const bidKey = `${tenderObjId}:${supplierName}:${bidIndex}`;
+
+        console.log(`[getBidsWithDetails] Creating bid with key: ${bidKey}`);
 
         let contactEmail: string | undefined = undefined;
         let contactPhone: string | undefined = undefined;
@@ -904,14 +906,14 @@ export async function getBidsWithDetails(): Promise<{
         }
 
         rows.push({
-          _key: bidKey, // 🔥 ADD THIS FIELD
-          tenderObjectId: String((t as any)._id),
+          _key: bidKey, // ✅ THIS IS CRITICAL
+          tenderObjectId: tenderObjId,
           tenderId: String((t as any).tenderId || ""),
           tenderTitle: String((t as any).title || "Untitled"),
           type: String((t as any).type || ""),
           category: String((t as any).category || ""),
           stage: String((t as any).stage || (t as any).status || ""),
-          supplier: String((b as any).supplier || ""),
+          supplier: supplierName,
           supplierId: (b as any).supplierId
             ? String((b as any).supplierId)
             : undefined,
@@ -941,9 +943,10 @@ export async function getBidsWithDetails(): Promise<{
       }
     }
 
+    console.log(`[getBidsWithDetails] Returning ${rows.length} bids`);
     return { success: true, data: JSON.parse(JSON.stringify(rows)) };
   } catch (error) {
-    console.error("[v0] Error fetching bids:", error);
+    console.error("[getBidsWithDetails] Error:", error);
     return { success: false, error: "Failed to fetch bids", data: [] };
   }
 }
