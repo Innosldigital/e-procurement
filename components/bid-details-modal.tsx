@@ -556,7 +556,10 @@ export default function BidDetailsModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="flex justify-end gap-2 mt-6 pt-4 border-t">
+        <div className="flex justify-between gap-2 mt-6 pt-4 border-t">
+          <Button asChild variant="outline">
+            <Link href={`/tenders/${bid?.tenderObjectId}`}>View Tender</Link>
+          </Button>
           <Button asChild variant="outline">
             <Link href={closeHref}>Close</Link>
           </Button>

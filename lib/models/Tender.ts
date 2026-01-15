@@ -131,41 +131,82 @@ const TenderSchema = new Schema(
       totalBids: Number,
       disqualified: Number,
     },
+    // bids: {
+    //   type: [
+    //     {
+    //       supplier: { type: String },
+    //       supplierId: { type: Schema.Types.ObjectId, ref: "Supplier" },
+    //       totalPrice: { type: Number },
+    //       score: { type: Number },
+    //       compliance: { type: String },
+    //       highlights: { type: String },
+    //       technicalDocuments: {
+    //         type: [
+    //           {
+    //             name: { type: String },
+    //             size: { type: Number },
+    //             type: { type: String },
+    //             url: { type: String },
+    //           },
+    //         ],
+    //         default: [],
+    //       },
+    //       financialDocuments: {
+    //         type: [
+    //           {
+    //             name: { type: String },
+    //             size: { type: Number },
+    //             type: { type: String },
+    //             url: { type: String },
+    //           },
+    //         ],
+    //         default: [],
+    //       },
+    //     },
+    //   ],
+    //   default: [],
+    // },
     bids: {
       type: [
-        {
-          supplier: { type: String },
-          supplierId: { type: Schema.Types.ObjectId, ref: "Supplier" },
-          totalPrice: { type: Number },
-          score: { type: Number },
-          compliance: { type: String },
-          highlights: { type: String },
-          technicalDocuments: {
-            type: [
-              {
-                name: { type: String },
-                size: { type: Number },
-                type: { type: String },
-                url: { type: String },
-              },
-            ],
-            default: [],
+        new Schema(
+          {
+            supplier: { type: String },
+            supplierId: { type: Schema.Types.ObjectId, ref: "Supplier" },
+            totalPrice: { type: Number },
+            score: { type: Number },
+            compliance: { type: String },
+            highlights: { type: String },
+
+            technicalDocuments: {
+              type: [
+                {
+                  name: String,
+                  size: Number,
+                  type: String,
+                  url: String,
+                },
+              ],
+              default: [],
+            },
+
+            financialDocuments: {
+              type: [
+                {
+                  name: String,
+                  size: Number,
+                  type: String,
+                  url: String,
+                },
+              ],
+              default: [],
+            },
           },
-          financialDocuments: {
-            type: [
-              {
-                name: { type: String },
-                size: { type: Number },
-                type: { type: String },
-                url: { type: String },
-              },
-            ],
-            default: [],
-          },
-        },
+          { _id: true } // 🔥 THIS LINE FIXES EVERYTHING
+        ),
       ],
       default: [],
     },
+
     timeline: {
       type: [
         {
