@@ -665,6 +665,8 @@ export async function updateTender(
 }
 
 export type BidWithDetails = {
+  _id?: string;
+  _key: string; // 🔥 ADD THIS FIELD
   tenderObjectId: string;
   tenderId: string;
   tenderTitle: string;
@@ -695,6 +697,125 @@ export type BidWithDetails = {
   contactEmail?: string;
   contactPhone?: string;
 };
+
+// export async function getBidsWithDetails(): Promise<{
+//   success: boolean;
+//   error?: string;
+//   data: BidWithDetails[];
+// }> {
+//   try {
+//     const { userId } = await auth();
+//     if (!userId) {
+//       return { success: false, error: "Unauthorized", data: [] };
+//     }
+
+//     const client = await clerkClient();
+//     const user = await client.users.getUser(userId);
+//     const md = (user?.publicMetadata || {}) as any;
+//     const rawRole = String(md.role || "");
+//     const normalizedRole = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+//     const allowedRoles = ["admin", "superadmin", "projectlead"];
+//     if (!allowedRoles.includes(normalizedRole)) {
+//       return {
+//         success: false,
+//         error: "Only Admin, Superadmin, and Project Lead can view bids",
+//         data: [],
+//       };
+//     }
+
+//     await dbConnect();
+
+//     const tenders = await Tender.find({
+//       $or: [{ bids: { $exists: true, $ne: [] } }, { responses: { $gt: 0 } }],
+//     })
+//       .select([
+//         "_id",
+//         "tenderId",
+//         "title",
+//         "type",
+//         "category",
+//         "stage",
+//         "status",
+//         "bids",
+//         "updatedAt",
+//         "createdAt",
+//       ])
+//       .sort({ updatedAt: -1 })
+//       .lean();
+
+//     const rows: BidWithDetails[] = [];
+//     const supplierCache = new Map<string, { email?: string; phone?: string }>();
+//     for (const t of tenders || []) {
+//       const bids = Array.isArray((t as any).bids) ? (t as any).bids : [];
+//       for (const b of bids) {
+//         let contactEmail: string | undefined = undefined;
+//         let contactPhone: string | undefined = undefined;
+//         const sid = (b as any).supplierId ? String((b as any).supplierId) : "";
+//         if (sid) {
+//           const cached = supplierCache.get(sid);
+//           if (cached) {
+//             contactEmail = cached.email || undefined;
+//             contactPhone = cached.phone || undefined;
+//           } else {
+//             try {
+//               const sup = await Supplier.findById(sid)
+//                 .select(["onboarding.email", "onboarding.phone"])
+//                 .lean();
+//               const email = (sup as any)?.onboarding?.email
+//                 ? String((sup as any).onboarding.email)
+//                 : undefined;
+//               const phone = (sup as any)?.onboarding?.phone
+//                 ? String((sup as any).onboarding.phone)
+//                 : undefined;
+//               supplierCache.set(sid, { email, phone });
+//               contactEmail = email;
+//               contactPhone = phone;
+//             } catch {}
+//           }
+//         }
+//         rows.push({
+//           tenderObjectId: String((t as any)._id),
+//           tenderId: String((t as any).tenderId || ""),
+//           tenderTitle: String((t as any).title || "Untitled"),
+//           type: String((t as any).type || ""),
+//           category: String((t as any).category || ""),
+//           stage: String((t as any).stage || (t as any).status || ""),
+//           supplier: String((b as any).supplier || ""),
+//           supplierId: (b as any).supplierId
+//             ? String((b as any).supplierId)
+//             : undefined,
+//           totalPrice: Number((b as any).totalPrice || 0),
+//           score:
+//             (b as any).score !== undefined
+//               ? Number((b as any).score)
+//               : undefined,
+//           compliance: String((b as any).compliance || ""),
+//           highlights: String((b as any).highlights || ""),
+//           technicalDocCount: Array.isArray((b as any).technicalDocuments)
+//             ? (b as any).technicalDocuments.length
+//             : 0,
+//           financialDocCount: Array.isArray((b as any).financialDocuments)
+//             ? (b as any).financialDocuments.length
+//             : 0,
+//           createdAt: (t as any).updatedAt || (t as any).createdAt || new Date(),
+//           technicalDocuments: Array.isArray((b as any).technicalDocuments)
+//             ? (b as any).technicalDocuments
+//             : [],
+//           financialDocuments: Array.isArray((b as any).financialDocuments)
+//             ? (b as any).financialDocuments
+//             : [],
+//           contactEmail,
+//           contactPhone,
+//         });
+//       }
+//     }
+
+//     return { success: true, data: JSON.parse(JSON.stringify(rows)) };
+//   } catch (error) {
+//     console.error("[v0] Error fetching bids:", error);
+//     return { success: false, error: "Failed to fetch bids", data: [] };
+//   }
+// }
 
 export async function getBidsWithDetails(): Promise<{
   success: boolean;
@@ -743,12 +864,22 @@ export async function getBidsWithDetails(): Promise<{
 
     const rows: BidWithDetails[] = [];
     const supplierCache = new Map<string, { email?: string; phone?: string }>();
+
     for (const t of tenders || []) {
       const bids = Array.isArray((t as any).bids) ? (t as any).bids : [];
-      for (const b of bids) {
+
+      for (let bidIndex = 0; bidIndex < bids.length; bidIndex++) {
+        const b = bids[bidIndex];
+
+        // 🔥 FIX: Generate consistent key using tender ObjectId, supplier name, and index
+        const bidKey = `${String((t as any)._id)}:${String(
+          (b as any).supplier || ""
+        )}:${bidIndex}`;
+
         let contactEmail: string | undefined = undefined;
         let contactPhone: string | undefined = undefined;
         const sid = (b as any).supplierId ? String((b as any).supplierId) : "";
+
         if (sid) {
           const cached = supplierCache.get(sid);
           if (cached) {
@@ -771,7 +902,9 @@ export async function getBidsWithDetails(): Promise<{
             } catch {}
           }
         }
+
         rows.push({
+          _key: bidKey, // 🔥 ADD THIS FIELD
           tenderObjectId: String((t as any)._id),
           tenderId: String((t as any).tenderId || ""),
           tenderTitle: String((t as any).title || "Untitled"),

@@ -397,9 +397,9 @@ export default async function BidsPage({
     const data: BidWithDetails[] =
       res.success && Array.isArray(res.data) ? res.data : [];
 
-    rows = data.map((r, idx) => {
-      const key = `${r.tenderObjectId}:${r.supplier}:${idx}`;
-      detailMap[key] = r;
+    rows = data.map((r) => {
+      const key = String((r as any)._key || "");
+      if (key) detailMap[key] = r;
       return {
         _key: key,
         amount: Number(r.totalPrice || 0),

@@ -442,7 +442,7 @@ export default function BidDetailsModal({
             <div className="text-xs text-muted-foreground mb-2 font-semibold">
               Compliance Statement
             </div>
-            <div className="whitespace-pre-wrap break-words bg-muted/50 p-3 rounded-md">
+            <div className="whitespace-pre-wrap wrap-break-words bg-muted/50 p-3 rounded-md">
               {bid?.compliance || "No compliance statement provided"}
             </div>
           </div>
@@ -452,7 +452,7 @@ export default function BidDetailsModal({
             <div className="text-xs text-muted-foreground mb-2 font-semibold">
               Additional Notes / Highlights
             </div>
-            <div className="whitespace-pre-wrap break-words bg-muted/50 p-3 rounded-md">
+            <div className="whitespace-pre-wrap wrap-break-words bg-muted/50 p-3 rounded-md">
               {bid?.highlights || "No additional notes provided"}
             </div>
           </div>
