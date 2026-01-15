@@ -30,7 +30,7 @@
 //   status: string;
 //   tenderTitle: string;
 //   tenderId: string;
-//   _key: string; // internal only (not shown)
+//   _key: string;
 // };
 
 // export default async function BidsPage({
@@ -119,9 +119,11 @@
 //     (currentPage - 1) * perPage,
 //     currentPage * perPage
 //   );
-//   const selectedBidId = decodeURIComponent(
-//     String((searchParams?.bid as string) || "")
-//   );
+
+//   // Fix: Properly decode the bid parameter
+//   const selectedBidId = searchParams?.bid
+//     ? decodeURIComponent(String(searchParams.bid))
+//     : "";
 //   const selectedDetail = selectedBidId
 //     ? detailMap[selectedBidId] || null
 //     : null;
@@ -143,6 +145,45 @@
 
 //         <Suspense fallback={<div>Loading bids…</div>}>
 //           <div className="rounded-lg border bg-card">
+//             {/* Add sorting controls */}
+//             <div className="p-3 flex items-center justify-between border-b gap-2">
+//               <div className="flex items-center gap-2 text-sm flex-wrap">
+//                 <span className="text-muted-foreground">Sort by</span>
+//                 <Button
+//                   asChild
+//                   size="sm"
+//                   variant={sortParam === "time" ? "default" : "outline"}
+//                 >
+//                   <Link
+//                     href={`/bids?sort=time&order=${orderParam}&page=${currentPage}`}
+//                   >
+//                     Submission time
+//                   </Link>
+//                 </Button>
+//                 <Button
+//                   asChild
+//                   size="sm"
+//                   variant={sortParam === "amount" ? "default" : "outline"}
+//                 >
+//                   <Link
+//                     href={`/bids?sort=amount&order=${orderParam}&page=${currentPage}`}
+//                   >
+//                     Amount
+//                   </Link>
+//                 </Button>
+//                 <Button asChild size="sm" variant="outline">
+//                   <Link
+//                     href={`/bids?sort=${sortParam}&order=${
+//                       orderParam === "asc" ? "desc" : "asc"
+//                     }&page=${currentPage}`}
+//                   >
+//                     {orderParam === "asc" ? "↑ Asc" : "↓ Desc"}
+//                   </Link>
+//                 </Button>
+//               </div>
+//               <div className="text-sm text-muted-foreground">{total} bids</div>
+//             </div>
+
 //             <div className="overflow-x-auto">
 //               <table className="w-full text-sm">
 //                 <thead className="bg-muted/50">
@@ -176,7 +217,7 @@
 //                     </tr>
 //                   ) : (
 //                     pageRows.map((r) => (
-//                       <tr key={r._key} className="border-t">
+//                       <tr key={r._key} className="border-t hover:bg-muted/50">
 //                         <td className="p-3">
 //                           <div className="font-medium">{r.tenderTitle}</div>
 //                           <div className="text-xs text-muted-foreground">
@@ -202,7 +243,7 @@
 //                                 r._key
 //                               )}`}
 //                             >
-//                               View Bid Details
+//                               View Details
 //                             </Link>
 //                           </Button>
 //                         </td>
@@ -212,15 +253,54 @@
 //                 </tbody>
 //               </table>
 //             </div>
+
+//             {/* Pagination */}
+//             {totalPages > 1 && (
+//               <div className="p-3 border-t flex items-center justify-between text-sm">
+//                 <div className="text-muted-foreground">
+//                   Page {currentPage} of {totalPages}
+//                 </div>
+//                 <div className="flex gap-2">
+//                   {currentPage > 1 ? (
+//                     <Button asChild size="sm" variant="outline">
+//                       <Link
+//                         href={`/bids?sort=${sortParam}&order=${orderParam}&page=${
+//                           currentPage - 1
+//                         }`}
+//                       >
+//                         Previous
+//                       </Link>
+//                     </Button>
+//                   ) : (
+//                     <Button size="sm" variant="outline" disabled>
+//                       Previous
+//                     </Button>
+//                   )}
+//                   {currentPage < totalPages ? (
+//                     <Button asChild size="sm" variant="outline">
+//                       <Link
+//                         href={`/bids?sort=${sortParam}&order=${orderParam}&page=${
+//                           currentPage + 1
+//                         }`}
+//                       >
+//                         Next
+//                       </Link>
+//                     </Button>
+//                   ) : (
+//                     <Button size="sm" variant="outline" disabled>
+//                       Next
+//                     </Button>
+//                   )}
+//                 </div>
+//               </div>
+//             )}
 //           </div>
 //         </Suspense>
+
+//         {/* Render modal when a bid is selected */}
 //         {selectedDetail && (
 //           <BidDetailsModal
-//             bid={
-//               {
-//                 ...selectedDetail,
-//               } as any
-//             }
+//             bid={selectedDetail as any}
 //             closeHref={`/bids?sort=${sortParam}&order=${orderParam}&page=${currentPage}`}
 //           />
 //         )}
@@ -358,6 +438,23 @@ export default async function BidsPage({
   const selectedDetail = selectedBidId
     ? detailMap[selectedBidId] || null
     : null;
+
+  // Debug logging
+  if (selectedBidId && !selectedDetail) {
+    console.log("Bid ID not found in detailMap:", selectedBidId);
+    console.log("Available keys:", Object.keys(detailMap));
+  }
+
+  if (selectedDetail) {
+    console.log("Selected bid details:", {
+      supplier: selectedDetail.supplier,
+      totalPrice: selectedDetail.totalPrice,
+      technicalDocsCount: selectedDetail.technicalDocuments?.length || 0,
+      financialDocsCount: selectedDetail.financialDocuments?.length || 0,
+      hasContactEmail: !!selectedDetail.contactEmail,
+      hasContactPhone: !!selectedDetail.contactPhone,
+    });
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
