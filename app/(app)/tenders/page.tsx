@@ -21,57 +21,65 @@ import { SubmitBidForm } from "@/components/submit-bid-form";
 
 function TendersPage() {
   const [tenders, setTenders] = useState<any[]>([]);
-  const [allTenders, setAllTenders] = useState<any[]>([]);
   const [selectedTender, setSelectedTender] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
+  const { user } = useUser();
+
+  const [canCreateTender, setCanCreateTender] = useState(false);
+  const [isSupplier, setIsSupplier] = useState(false);
+  const [isAdminOrSuperAdmin, setIsAdminOrSuperAdmin] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showScorecard, setShowScorecard] = useState(false);
   const [showTemplatesRules, setShowTemplatesRules] = useState(false);
   const [showSubmitBidForm, setShowSubmitBidForm] = useState(false);
-  const { user } = useUser();
-
-  const [canCreateTender, setCanCreateTender] = useState(false);
-  const [isSupplier, setIsSupplier] = useState(false);
-  const [supplierCategories, setSupplierCategories] = useState<string[]>([]);
-  const [isAdminOrSuperAdmin, setIsAdminOrSuperAdmin] = useState(false);
-
+  const [ownerNames, setOwnerNames] = useState<Record<string, string>>({});
+  const [refreshing, setRefreshing] = useState(false);
   const [stats, setStats] = useState<{
     openCount: number;
     evalCount: number;
     avgBids: number;
   } | null>(null);
-  const [ownerNames, setOwnerNames] = useState<Record<string, string>>({});
 
-  // Check if current user is the owner of the selected tender
-  const isOwner = selectedTender && user && selectedTender.owner === user.id;
-  const canViewPrices = Boolean(isOwner || isAdminOrSuperAdmin);
-
+  // Load tenders from server
   const loadTenders = useCallback(
     async (showLoader = true) => {
       if (showLoader) setLoading(true);
       try {
         const result = await getTenders();
+
+        console.log("🔍 [TendersPage] loadTenders result:", {
+          success: result.success,
+          count: result.data?.length || 0,
+          tenders: result.data?.map((t: any) => ({
+            id: t.tenderId,
+            category: t.category,
+          })),
+        });
+
         if (result.success && result.data) {
-          setAllTenders(result.data);
+          // Server already filtered - just use the data directly
           setTenders(result.data);
 
-          if (selectedTender) {
-            const updatedSelected = result.data.find(
+          // Set first tender as selected if none selected
+          if (!selectedTender && result.data.length > 0) {
+            setSelectedTender(result.data[0]);
+          } else if (selectedTender) {
+            // Update selected tender if it still exists
+            const updated = result.data.find(
               (t: any) => t._id === selectedTender._id
             );
-            if (updatedSelected) {
-              setSelectedTender(updatedSelected);
+            if (updated) {
+              setSelectedTender(updated);
             } else if (result.data.length > 0) {
               setSelectedTender(result.data[0]);
+            } else {
+              setSelectedTender(null);
             }
-          } else if (result.data.length > 0) {
-            setSelectedTender(result.data[0]);
           }
         }
       } catch (error) {
-        console.error("Error loading tenders:", error);
+        console.error("❌ [TendersPage] Error loading tenders:", error);
       } finally {
         if (showLoader) setLoading(false);
       }
@@ -81,24 +89,32 @@ function TendersPage() {
 
   const loadStats = useCallback(async () => {
     try {
-      const result = await getTenderStats();
-      if (result.success) {
-        setStats(result.data ?? null);
-      } else {
-        setStats(null);
+      const res = await getTenderStats();
+      if (res.success) {
+        setStats(res.data || null);
       }
-    } catch (error) {
-      console.error("Error loading stats:", error);
-      setStats(null);
-    }
+    } catch {}
   }, []);
 
-  const handleRefresh = async () => {
-    setRefreshing(true);
-    await Promise.all([loadTenders(false), loadStats()]);
-    setRefreshing(false);
-  };
+  // Check user role
+  useEffect(() => {
+    if (!user) return;
 
+    const md = (user.publicMetadata || {}) as any;
+    const rawRole = String(md.role || "");
+    const normalized = rawRole.toLowerCase().replace(/[\s_-]/g, "");
+
+    console.log("🔍 [TendersPage] User role:", {
+      raw: rawRole,
+      normalized,
+    });
+
+    setCanCreateTender(["admin", "company", "superadmin"].includes(normalized));
+    setIsSupplier(normalized === "supplier");
+    setIsAdminOrSuperAdmin(["admin", "superadmin"].includes(normalized));
+  }, [user]);
+
+  // Load tenders on mount
   useEffect(() => {
     loadTenders();
   }, []);
@@ -189,22 +205,15 @@ function TendersPage() {
 
   // SIMPLIFY to this single useEffect:
   useEffect(() => {
-    // Set tenders directly from server response
-    setTenders(allTenders);
-
-    // Set selected tender if none is selected
-    if (selectedTender === null && allTenders.length > 0) {
-      setSelectedTender(allTenders[0]);
-    }
-
-    // Update selected tender if it's no longer in the list
-    if (
+    if (selectedTender === null && tenders.length > 0) {
+      setSelectedTender(tenders[0]);
+    } else if (
       selectedTender &&
-      !allTenders.find((t: any) => t._id === selectedTender._id)
+      !tenders.find((t: any) => t._id === selectedTender._id)
     ) {
-      setSelectedTender(allTenders[0] || null);
+      setSelectedTender(tenders[0] || null);
     }
-  }, [allTenders]);
+  }, [tenders]);
 
   const handleCloseSubmitBidForm = async () => {
     setShowSubmitBidForm(false);
@@ -221,7 +230,21 @@ function TendersPage() {
     await handleRefresh();
   };
 
-  // Bid submission form removed
+  const isOwner = Boolean(
+    selectedTender &&
+      String(selectedTender.owner || "") === String(user?.id || "")
+  );
+  const canViewPrices = Boolean(isOwner || isAdminOrSuperAdmin);
+
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      await loadTenders(false);
+      await loadStats();
+    } finally {
+      setRefreshing(false);
+    }
+  }, [loadTenders, loadStats]);
 
   return (
     <div className="p-4 sm:p-6 min-h-screen">
