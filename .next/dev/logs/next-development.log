@@ -2604,3 +2604,560 @@ Import traces:
 [01:51:21.784] Browser LOG     Current User Role: superadmin
 [01:51:21.784] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
 [01:51:25.013] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[01:51:26.802] Browser LOG     Notification result: {"data":[],"success":true}
+[01:51:26.802] Browser LOG     Unread count result: {"count":0,"success":true}
+[01:51:26.802] Browser LOG     Found 0 notifications:
+[01:51:26.802] Browser WARN    ⚠️ No notifications found for this user!
+[01:51:26.802] Browser LOG     Tender notifications: 0
+[01:51:26.802] Browser LOG     Unread count from server: 0
+[01:51:26.802] Browser LOG     Final state - Total: 0 Unread: 0
+[01:51:26.802] Browser LOG     ===================================
+[01:51:49.796] Browser LOG     Auto-refreshing notifications...
+[01:51:49.796] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[01:51:49.796] Browser LOG     Current user ID: undefined
+[01:51:49.796] Browser LOG     Current user email: undefined
+[01:51:49.796] Browser LOG     Timestamp: 2026-01-15T17:17:12.270Z
+[01:51:52.682] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[01:51:53.788] Browser LOG     Notification result: {"data":[],"success":true}
+[01:51:53.788] Browser LOG     Unread count result: {"count":0,"success":true}
+[01:51:53.788] Browser LOG     Found 0 notifications:
+[01:51:53.788] Browser WARN    ⚠️ No notifications found for this user!
+[01:51:53.788] Browser LOG     Tender notifications: 0
+[01:51:53.788] Browser LOG     Unread count from server: 0
+[01:51:53.788] Browser LOG     Final state - Total: 0 Unread: 0
+[01:51:53.788] Browser LOG     ===================================
+[01:52:22.936] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[01:52:23.799] Browser LOG     Auto-refreshing notifications...
+[01:52:23.799] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[01:52:23.799] Browser LOG     Current user ID: undefined
+[01:52:23.800] Browser LOG     Current user email: undefined
+[01:52:23.800] Browser LOG     Timestamp: 2026-01-15T17:17:42.279Z
+[01:52:23.800] Browser LOG     Notification result: {"data":[],"success":true}
+[01:52:23.800] Browser LOG     Unread count result: {"count":0,"success":true}
+[01:52:23.800] Browser LOG     Found 0 notifications:
+[01:52:23.800] Browser WARN    ⚠️ No notifications found for this user!
+[01:52:23.800] Browser LOG     Tender notifications: 0
+[01:52:23.800] Browser LOG     Unread count from server: 0
+[01:52:23.800] Browser LOG     Final state - Total: 0 Unread: 0
+[01:52:23.800] Browser LOG     ===================================
+[08:56:24.736] Browser LOG     Auto-refreshing notifications...
+[08:56:24.736] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[08:56:24.736] Browser LOG     Current user ID: undefined
+[08:56:24.736] Browser LOG     Current user email: undefined
+[08:56:24.736] Browser LOG     Timestamp: 2026-01-16T00:21:38.629Z
+[08:56:27.798] Browser LOG     Notification result: {"error":"Unauthorized","success":false}
+[08:56:27.798] Browser LOG     Unread count result: {"count":0,"error":"Unauthorized","success":false}
+[08:56:27.798] Browser ERROR   ❌ Failed to fetch notifications: Unauthorized
+[08:56:27.798] Browser LOG     Unread count set to 0
+[08:56:27.798] Browser LOG     Final state - Total: 0 Unread: 0
+[08:56:27.798] Browser LOG     ===================================
+[08:57:19.789] Browser LOG     Auto-refreshing notifications...
+[08:57:19.789] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[08:57:19.789] Browser LOG     Current user ID: undefined
+[08:57:19.789] Browser LOG     Current user email: undefined
+[08:57:19.789] Browser LOG     Timestamp: 2026-01-16T00:22:35.803Z
+[08:57:19.789] Browser LOG     Notification result: {"error":"Unauthorized","success":false}
+[08:57:19.789] Browser LOG     Unread count result: {"count":0,"error":"Unauthorized","success":false}
+[08:57:19.789] Browser ERROR   ❌ Failed to fetch notifications: Unauthorized
+[08:57:19.789] Browser LOG     Unread count set to 0
+[08:57:19.789] Browser LOG     Final state - Total: 0 Unread: 0
+[08:57:19.789] Browser LOG     ===================================
+[08:58:19.788] Browser LOG     Auto-refreshing notifications...
+[08:58:19.788] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[08:58:19.788] Browser LOG     Current user ID: undefined
+[08:58:19.788] Browser LOG     Current user email: undefined
+[08:58:19.788] Browser LOG     Timestamp: 2026-01-16T00:23:35.810Z
+[08:58:19.788] Browser LOG     Notification result: {"error":"Unauthorized","success":false}
+[08:58:19.788] Browser LOG     Unread count result: {"count":0,"error":"Unauthorized","success":false}
+[08:58:19.788] Browser ERROR   ❌ Failed to fetch notifications: Unauthorized
+[08:58:19.788] Browser LOG     Unread count set to 0
+[08:58:19.788] Browser LOG     Final state - Total: 0 Unread: 0
+[08:58:19.788] Browser LOG     ===================================
+[08:59:21.920] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[08:59:23.784] Browser LOG     Auto-refreshing notifications...
+[08:59:23.784] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[08:59:23.784] Browser LOG     Current user ID: undefined
+[08:59:23.784] Browser LOG     Current user email: undefined
+[08:59:23.784] Browser LOG     Timestamp: 2026-01-16T00:24:35.815Z
+[08:59:23.784] Browser LOG     Notification result: {"data":[],"success":true}
+[08:59:23.784] Browser LOG     Unread count result: {"count":0,"success":true}
+[08:59:23.784] Browser LOG     Found 0 notifications:
+[08:59:23.784] Browser WARN    ⚠️ No notifications found for this user!
+[08:59:23.784] Browser LOG     Tender notifications: 0
+[08:59:23.784] Browser LOG     Unread count from server: 0
+[08:59:23.784] Browser LOG     Final state - Total: 0 Unread: 0
+[08:59:23.784] Browser LOG     ===================================
+[09:00:21.045] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:00:22.790] Browser LOG     Auto-refreshing notifications...
+[09:00:22.790] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:00:22.790] Browser LOG     Current user ID: undefined
+[09:00:22.790] Browser LOG     Current user email: undefined
+[09:00:22.790] Browser LOG     Timestamp: 2026-01-16T00:25:36.926Z
+[09:00:22.790] Browser LOG     Notification result: {"data":[],"success":true}
+[09:00:22.790] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:00:22.790] Browser LOG     Found 0 notifications:
+[09:00:22.790] Browser WARN    ⚠️ No notifications found for this user!
+[09:00:22.790] Browser LOG     Tender notifications: 0
+[09:00:22.790] Browser LOG     Unread count from server: 0
+[09:00:22.790] Browser LOG     Final state - Total: 0 Unread: 0
+[09:00:22.790] Browser LOG     ===================================
+[09:01:20.714] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:01:21.839] Browser LOG     Auto-refreshing notifications...
+[09:01:21.839] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:01:21.839] Browser LOG     Current user ID: undefined
+[09:01:21.839] Browser LOG     Current user email: undefined
+[09:01:21.839] Browser LOG     Timestamp: 2026-01-16T00:26:36.922Z
+[09:01:21.839] Browser LOG     Notification result: {"data":[],"success":true}
+[09:01:21.839] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:01:21.839] Browser LOG     Found 0 notifications:
+[09:01:21.839] Browser WARN    ⚠️ No notifications found for this user!
+[09:01:21.839] Browser LOG     Tender notifications: 0
+[09:01:21.839] Browser LOG     Unread count from server: 0
+[09:01:21.839] Browser LOG     Final state - Total: 0 Unread: 0
+[09:01:21.839] Browser LOG     ===================================
+[09:02:20.810] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:02:21.792] Browser LOG     Auto-refreshing notifications...
+[09:02:21.792] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:02:21.792] Browser LOG     Current user ID: undefined
+[09:02:21.792] Browser LOG     Current user email: undefined
+[09:02:21.792] Browser LOG     Timestamp: 2026-01-16T00:27:36.917Z
+[09:02:21.792] Browser LOG     Notification result: {"data":[],"success":true}
+[09:02:21.792] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:02:21.792] Browser LOG     Found 0 notifications:
+[09:02:21.792] Browser WARN    ⚠️ No notifications found for this user!
+[09:02:21.792] Browser LOG     Tender notifications: 0
+[09:02:21.792] Browser LOG     Unread count from server: 0
+[09:02:21.792] Browser LOG     Final state - Total: 0 Unread: 0
+[09:02:21.792] Browser LOG     ===================================
+[09:03:20.809] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:03:21.792] Browser LOG     Auto-refreshing notifications...
+[09:03:21.792] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:03:21.792] Browser LOG     Current user ID: undefined
+[09:03:21.792] Browser LOG     Current user email: undefined
+[09:03:21.792] Browser LOG     Timestamp: 2026-01-16T00:28:36.928Z
+[09:03:21.792] Browser LOG     Notification result: {"data":[],"success":true}
+[09:03:21.792] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:03:21.792] Browser LOG     Found 0 notifications:
+[09:03:21.792] Browser WARN    ⚠️ No notifications found for this user!
+[09:03:21.792] Browser LOG     Tender notifications: 0
+[09:03:21.792] Browser LOG     Unread count from server: 0
+[09:03:21.792] Browser LOG     Final state - Total: 0 Unread: 0
+[09:03:21.792] Browser LOG     ===================================
+[09:04:19.953] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:04:21.784] Browser LOG     Auto-refreshing notifications...
+[09:04:21.784] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:04:21.784] Browser LOG     Current user ID: undefined
+[09:04:21.784] Browser LOG     Current user email: undefined
+[09:04:21.784] Browser LOG     Timestamp: 2026-01-16T00:29:36.925Z
+[09:04:21.784] Browser LOG     Notification result: {"data":[],"success":true}
+[09:04:21.784] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:04:21.784] Browser LOG     Found 0 notifications:
+[09:04:21.784] Browser WARN    ⚠️ No notifications found for this user!
+[09:04:21.784] Browser LOG     Tender notifications: 0
+[09:04:21.784] Browser LOG     Unread count from server: 0
+[09:04:21.784] Browser LOG     Final state - Total: 0 Unread: 0
+[09:04:21.784] Browser LOG     ===================================
+[09:05:20.758] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:05:21.795] Browser LOG     Auto-refreshing notifications...
+[09:05:21.795] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:05:21.795] Browser LOG     Current user ID: undefined
+[09:05:21.795] Browser LOG     Current user email: undefined
+[09:05:21.795] Browser LOG     Timestamp: 2026-01-16T00:30:36.933Z
+[09:05:21.795] Browser LOG     Notification result: {"data":[],"success":true}
+[09:05:21.795] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:05:21.795] Browser LOG     Found 0 notifications:
+[09:05:21.795] Browser WARN    ⚠️ No notifications found for this user!
+[09:05:21.795] Browser LOG     Tender notifications: 0
+[09:05:21.795] Browser LOG     Unread count from server: 0
+[09:05:21.795] Browser LOG     Final state - Total: 0 Unread: 0
+[09:05:21.795] Browser LOG     ===================================
+[09:08:57.614] Browser LOG     Auto-refreshing notifications...
+[09:08:57.614] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:08:57.614] Browser LOG     Current user ID: undefined
+[09:08:57.614] Browser LOG     Current user email: undefined
+[09:08:57.614] Browser LOG     Timestamp: 2026-01-16T00:34:15.677Z
+[09:08:58.785] Browser LOG     Notification result: {"error":"Unauthorized","success":false}
+[09:08:58.785] Browser LOG     Unread count result: {"count":0,"error":"Unauthorized","success":false}
+[09:08:58.785] Browser ERROR   ❌ Failed to fetch notifications: Unauthorized
+[09:08:58.785] Browser LOG     Unread count set to 0
+[09:08:58.785] Browser LOG     Final state - Total: 0 Unread: 0
+[09:08:58.785] Browser LOG     ===================================
+[09:09:21.733] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:09:23.793] Browser LOG     Auto-refreshing notifications...
+[09:09:23.793] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:09:23.793] Browser LOG     Current user ID: undefined
+[09:09:23.793] Browser LOG     Current user email: undefined
+[09:09:23.793] Browser LOG     Timestamp: 2026-01-16T00:34:36.935Z
+[09:09:23.793] Browser LOG     Notification result: {"data":[],"success":true}
+[09:09:23.793] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:09:23.793] Browser LOG     Found 0 notifications:
+[09:09:23.793] Browser WARN    ⚠️ No notifications found for this user!
+[09:09:23.793] Browser LOG     Tender notifications: 0
+[09:09:23.793] Browser LOG     Unread count from server: 0
+[09:09:23.793] Browser LOG     Final state - Total: 0 Unread: 0
+[09:09:23.793] Browser LOG     ===================================
+[09:10:20.785] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:10:21.791] Browser LOG     Auto-refreshing notifications...
+[09:10:21.791] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:10:21.791] Browser LOG     Current user ID: undefined
+[09:10:21.791] Browser LOG     Current user email: undefined
+[09:10:21.791] Browser LOG     Timestamp: 2026-01-16T00:35:36.926Z
+[09:10:21.791] Browser LOG     Notification result: {"data":[],"success":true}
+[09:10:21.791] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:10:21.791] Browser LOG     Found 0 notifications:
+[09:10:21.791] Browser WARN    ⚠️ No notifications found for this user!
+[09:10:21.791] Browser LOG     Tender notifications: 0
+[09:10:21.791] Browser LOG     Unread count from server: 0
+[09:10:21.791] Browser LOG     Final state - Total: 0 Unread: 0
+[09:10:21.791] Browser LOG     ===================================
+[09:11:20.261] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:11:21.785] Browser LOG     Auto-refreshing notifications...
+[09:11:21.785] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:11:21.785] Browser LOG     Current user ID: undefined
+[09:11:21.785] Browser LOG     Current user email: undefined
+[09:11:21.785] Browser LOG     Timestamp: 2026-01-16T00:36:36.918Z
+[09:11:21.785] Browser LOG     Notification result: {"data":[],"success":true}
+[09:11:21.785] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:11:21.785] Browser LOG     Found 0 notifications:
+[09:11:21.785] Browser WARN    ⚠️ No notifications found for this user!
+[09:11:21.785] Browser LOG     Tender notifications: 0
+[09:11:21.785] Browser LOG     Unread count from server: 0
+[09:11:21.785] Browser LOG     Final state - Total: 0 Unread: 0
+[09:11:21.785] Browser LOG     ===================================
+[09:12:20.440] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:12:21.797] Browser LOG     Auto-refreshing notifications...
+[09:12:21.797] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:12:21.797] Browser LOG     Current user ID: undefined
+[09:12:21.797] Browser LOG     Current user email: undefined
+[09:12:21.797] Browser LOG     Timestamp: 2026-01-16T00:37:36.934Z
+[09:12:21.797] Browser LOG     Notification result: {"data":[],"success":true}
+[09:12:21.797] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:12:21.797] Browser LOG     Found 0 notifications:
+[09:12:21.797] Browser WARN    ⚠️ No notifications found for this user!
+[09:12:21.797] Browser LOG     Tender notifications: 0
+[09:12:21.797] Browser LOG     Unread count from server: 0
+[09:12:21.797] Browser LOG     Final state - Total: 0 Unread: 0
+[09:12:21.797] Browser LOG     ===================================
+[09:13:20.419] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:13:21.786] Browser LOG     Auto-refreshing notifications...
+[09:13:21.786] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:13:21.786] Browser LOG     Current user ID: undefined
+[09:13:21.786] Browser LOG     Current user email: undefined
+[09:13:21.786] Browser LOG     Timestamp: 2026-01-16T00:38:36.931Z
+[09:13:21.786] Browser LOG     Notification result: {"data":[],"success":true}
+[09:13:21.786] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:13:21.786] Browser LOG     Found 0 notifications:
+[09:13:21.786] Browser WARN    ⚠️ No notifications found for this user!
+[09:13:21.786] Browser LOG     Tender notifications: 0
+[09:13:21.786] Browser LOG     Unread count from server: 0
+[09:13:21.786] Browser LOG     Final state - Total: 0 Unread: 0
+[09:13:21.786] Browser LOG     ===================================
+[09:14:20.104] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:14:20.785] Browser LOG     Auto-refreshing notifications...
+[09:14:20.785] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:14:20.785] Browser LOG     Current user ID: undefined
+[09:14:20.785] Browser LOG     Current user email: undefined
+[09:14:20.785] Browser LOG     Timestamp: 2026-01-16T00:39:36.919Z
+[09:14:20.785] Browser LOG     Notification result: {"data":[],"success":true}
+[09:14:20.785] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:14:20.785] Browser LOG     Found 0 notifications:
+[09:14:20.785] Browser WARN    ⚠️ No notifications found for this user!
+[09:14:20.785] Browser LOG     Tender notifications: 0
+[09:14:20.785] Browser LOG     Unread count from server: 0
+[09:14:20.785] Browser LOG     Final state - Total: 0 Unread: 0
+[09:14:20.785] Browser LOG     ===================================
+[09:14:48.399] Browser LOG     Auto-refreshing notifications...
+[09:14:48.399] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:14:48.399] Browser LOG     Current user ID: undefined
+[09:14:48.399] Browser LOG     Current user email: undefined
+[09:14:48.399] Browser LOG     Timestamp: 2026-01-16T00:40:06.430Z
+[09:14:49.739] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:14:50.387] Browser LOG     Notification result: {"data":[],"success":true}
+[09:14:50.387] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:14:50.387] Browser LOG     Found 0 notifications:
+[09:14:50.387] Browser WARN    ⚠️ No notifications found for this user!
+[09:14:50.387] Browser LOG     Tender notifications: 0
+[09:14:50.387] Browser LOG     Unread count from server: 0
+[09:14:50.387] Browser LOG     Final state - Total: 0 Unread: 0
+[09:14:50.387] Browser LOG     ===================================
+[09:15:11.734] Browser LOG     Current User Role: superadmin
+[09:15:11.734] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[09:15:18.400] Browser LOG     Auto-refreshing notifications...
+[09:15:18.400] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:15:18.400] Browser LOG     Current user ID: undefined
+[09:15:18.400] Browser LOG     Current user email: undefined
+[09:15:18.400] Browser LOG     Timestamp: 2026-01-16T00:40:36.420Z
+[09:15:19.346] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:15:20.129] Browser LOG     Notification result: {"data":[],"success":true}
+[09:15:20.129] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:15:20.129] Browser LOG     Found 0 notifications:
+[09:15:20.129] Browser WARN    ⚠️ No notifications found for this user!
+[09:15:20.129] Browser LOG     Tender notifications: 0
+[09:15:20.129] Browser LOG     Unread count from server: 0
+[09:15:20.129] Browser LOG     Final state - Total: 0 Unread: 0
+[09:15:20.129] Browser LOG     ===================================
+[09:15:23.104] Browser LOG     Current User Role: superadmin
+[09:15:23.104] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[09:15:49.786] Browser LOG     Auto-refreshing notifications...
+[09:15:49.786] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:15:49.786] Browser LOG     Current user ID: undefined
+[09:15:49.786] Browser LOG     Current user email: undefined
+[09:15:49.786] Browser LOG     Timestamp: 2026-01-16T00:41:06.926Z
+[09:15:50.450] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:15:51.793] Browser LOG     Notification result: {"data":[],"success":true}
+[09:15:51.793] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:15:51.793] Browser LOG     Found 0 notifications:
+[09:15:51.793] Browser WARN    ⚠️ No notifications found for this user!
+[09:15:51.793] Browser LOG     Tender notifications: 0
+[09:15:51.793] Browser LOG     Unread count from server: 0
+[09:15:51.793] Browser LOG     Final state - Total: 0 Unread: 0
+[09:15:51.793] Browser LOG     ===================================
+[09:16:19.608] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:16:19.797] Browser LOG     Auto-refreshing notifications...
+[09:16:19.797] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:16:19.797] Browser LOG     Current user ID: undefined
+[09:16:19.797] Browser LOG     Current user email: undefined
+[09:16:19.797] Browser LOG     Timestamp: 2026-01-16T00:41:36.930Z
+[09:16:20.789] Browser LOG     Notification result: {"data":[],"success":true}
+[09:16:20.789] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:16:20.789] Browser LOG     Found 0 notifications:
+[09:16:20.789] Browser WARN    ⚠️ No notifications found for this user!
+[09:16:20.789] Browser LOG     Tender notifications: 0
+[09:16:20.789] Browser LOG     Unread count from server: 0
+[09:16:20.789] Browser LOG     Final state - Total: 0 Unread: 0
+[09:16:20.789] Browser LOG     ===================================
+[09:17:20.468] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:17:21.792] Browser LOG     Auto-refreshing notifications...
+[09:17:21.792] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:17:21.792] Browser LOG     Current user ID: undefined
+[09:17:21.792] Browser LOG     Current user email: undefined
+[09:17:21.792] Browser LOG     Timestamp: 2026-01-16T00:42:36.926Z
+[09:17:21.792] Browser LOG     Notification result: {"data":[],"success":true}
+[09:17:21.792] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:17:21.792] Browser LOG     Found 0 notifications:
+[09:17:21.792] Browser WARN    ⚠️ No notifications found for this user!
+[09:17:21.792] Browser LOG     Tender notifications: 0
+[09:17:21.792] Browser LOG     Unread count from server: 0
+[09:17:21.792] Browser LOG     Final state - Total: 0 Unread: 0
+[09:17:21.792] Browser LOG     ===================================
+[09:18:20.261] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:18:21.789] Browser LOG     Auto-refreshing notifications...
+[09:18:21.789] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:18:21.789] Browser LOG     Current user ID: undefined
+[09:18:21.789] Browser LOG     Current user email: undefined
+[09:18:21.789] Browser LOG     Timestamp: 2026-01-16T00:43:36.918Z
+[09:18:21.789] Browser LOG     Notification result: {"data":[],"success":true}
+[09:18:21.789] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:18:21.789] Browser LOG     Found 0 notifications:
+[09:18:21.789] Browser WARN    ⚠️ No notifications found for this user!
+[09:18:21.789] Browser LOG     Tender notifications: 0
+[09:18:21.789] Browser LOG     Unread count from server: 0
+[09:18:21.789] Browser LOG     Final state - Total: 0 Unread: 0
+[09:18:21.789] Browser LOG     ===================================
+[09:19:20.374] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:19:21.798] Browser LOG     Auto-refreshing notifications...
+[09:19:21.798] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:19:21.798] Browser LOG     Current user ID: undefined
+[09:19:21.798] Browser LOG     Current user email: undefined
+[09:19:21.798] Browser LOG     Timestamp: 2026-01-16T00:44:36.920Z
+[09:19:21.798] Browser LOG     Notification result: {"data":[],"success":true}
+[09:19:21.798] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:19:21.798] Browser LOG     Found 0 notifications:
+[09:19:21.798] Browser WARN    ⚠️ No notifications found for this user!
+[09:19:21.798] Browser LOG     Tender notifications: 0
+[09:19:21.798] Browser LOG     Unread count from server: 0
+[09:19:21.798] Browser LOG     Final state - Total: 0 Unread: 0
+[09:19:21.798] Browser LOG     ===================================
+[09:20:20.443] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:20:21.785] Browser LOG     Auto-refreshing notifications...
+[09:20:21.785] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:20:21.785] Browser LOG     Current user ID: undefined
+[09:20:21.785] Browser LOG     Current user email: undefined
+[09:20:21.785] Browser LOG     Timestamp: 2026-01-16T00:45:36.923Z
+[09:20:21.785] Browser LOG     Notification result: {"data":[],"success":true}
+[09:20:21.785] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:20:21.785] Browser LOG     Found 0 notifications:
+[09:20:21.785] Browser WARN    ⚠️ No notifications found for this user!
+[09:20:21.785] Browser LOG     Tender notifications: 0
+[09:20:21.785] Browser LOG     Unread count from server: 0
+[09:20:21.785] Browser LOG     Final state - Total: 0 Unread: 0
+[09:20:21.785] Browser LOG     ===================================
+[09:21:20.376] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:21:21.792] Browser LOG     Auto-refreshing notifications...
+[09:21:21.792] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:21:21.792] Browser LOG     Current user ID: undefined
+[09:21:21.792] Browser LOG     Current user email: undefined
+[09:21:21.792] Browser LOG     Timestamp: 2026-01-16T00:46:36.927Z
+[09:21:21.792] Browser LOG     Notification result: {"data":[],"success":true}
+[09:21:21.792] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:21:21.792] Browser LOG     Found 0 notifications:
+[09:21:21.792] Browser WARN    ⚠️ No notifications found for this user!
+[09:21:21.792] Browser LOG     Tender notifications: 0
+[09:21:21.792] Browser LOG     Unread count from server: 0
+[09:21:21.792] Browser LOG     Final state - Total: 0 Unread: 0
+[09:21:21.792] Browser LOG     ===================================
+[09:22:20.402] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:22:21.789] Browser LOG     Auto-refreshing notifications...
+[09:22:21.789] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:22:21.789] Browser LOG     Current user ID: undefined
+[09:22:21.789] Browser LOG     Current user email: undefined
+[09:22:21.789] Browser LOG     Timestamp: 2026-01-16T00:47:36.919Z
+[09:22:21.789] Browser LOG     Notification result: {"data":[],"success":true}
+[09:22:21.789] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:22:21.789] Browser LOG     Found 0 notifications:
+[09:22:21.789] Browser WARN    ⚠️ No notifications found for this user!
+[09:22:21.789] Browser LOG     Tender notifications: 0
+[09:22:21.789] Browser LOG     Unread count from server: 0
+[09:22:21.789] Browser LOG     Final state - Total: 0 Unread: 0
+[09:22:21.789] Browser LOG     ===================================
+[09:23:20.858] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:23:21.791] Browser LOG     Auto-refreshing notifications...
+[09:23:21.791] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:23:21.791] Browser LOG     Current user ID: undefined
+[09:23:21.791] Browser LOG     Current user email: undefined
+[09:23:21.791] Browser LOG     Timestamp: 2026-01-16T00:48:36.922Z
+[09:23:21.791] Browser LOG     Notification result: {"data":[],"success":true}
+[09:23:21.791] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:23:21.791] Browser LOG     Found 0 notifications:
+[09:23:21.791] Browser WARN    ⚠️ No notifications found for this user!
+[09:23:21.791] Browser LOG     Tender notifications: 0
+[09:23:21.791] Browser LOG     Unread count from server: 0
+[09:23:21.791] Browser LOG     Final state - Total: 0 Unread: 0
+[09:23:21.791] Browser LOG     ===================================
+[09:24:19.886] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:24:21.794] Browser LOG     Auto-refreshing notifications...
+[09:24:21.794] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:24:21.794] Browser LOG     Current user ID: undefined
+[09:24:21.794] Browser LOG     Current user email: undefined
+[09:24:21.794] Browser LOG     Timestamp: 2026-01-16T00:49:36.929Z
+[09:24:21.794] Browser LOG     Notification result: {"data":[],"success":true}
+[09:24:21.794] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:24:21.794] Browser LOG     Found 0 notifications:
+[09:24:21.794] Browser WARN    ⚠️ No notifications found for this user!
+[09:24:21.794] Browser LOG     Tender notifications: 0
+[09:24:21.794] Browser LOG     Unread count from server: 0
+[09:24:21.794] Browser LOG     Final state - Total: 0 Unread: 0
+[09:24:21.794] Browser LOG     ===================================
+[09:25:21.273] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:25:22.797] Browser LOG     Auto-refreshing notifications...
+[09:25:22.797] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:25:22.797] Browser LOG     Current user ID: undefined
+[09:25:22.797] Browser LOG     Current user email: undefined
+[09:25:22.797] Browser LOG     Timestamp: 2026-01-16T00:50:36.920Z
+[09:25:22.797] Browser LOG     Notification result: {"data":[],"success":true}
+[09:25:22.797] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:25:22.797] Browser LOG     Found 0 notifications:
+[09:25:22.797] Browser WARN    ⚠️ No notifications found for this user!
+[09:25:22.797] Browser LOG     Tender notifications: 0
+[09:25:22.797] Browser LOG     Unread count from server: 0
+[09:25:22.797] Browser LOG     Final state - Total: 0 Unread: 0
+[09:25:22.798] Browser LOG     ===================================
+[09:26:20.896] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:26:21.787] Browser LOG     Auto-refreshing notifications...
+[09:26:21.787] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:26:21.787] Browser LOG     Current user ID: undefined
+[09:26:21.787] Browser LOG     Current user email: undefined
+[09:26:21.787] Browser LOG     Timestamp: 2026-01-16T00:51:36.930Z
+[09:26:21.787] Browser LOG     Notification result: {"data":[],"success":true}
+[09:26:21.787] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:26:21.787] Browser LOG     Found 0 notifications:
+[09:26:21.787] Browser WARN    ⚠️ No notifications found for this user!
+[09:26:21.787] Browser LOG     Tender notifications: 0
+[09:26:21.787] Browser LOG     Unread count from server: 0
+[09:26:21.787] Browser LOG     Final state - Total: 0 Unread: 0
+[09:26:21.787] Browser LOG     ===================================
+[09:27:20.318] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:27:21.797] Browser LOG     Auto-refreshing notifications...
+[09:27:21.797] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:27:21.797] Browser LOG     Current user ID: undefined
+[09:27:21.797] Browser LOG     Current user email: undefined
+[09:27:21.797] Browser LOG     Timestamp: 2026-01-16T00:52:36.915Z
+[09:27:21.797] Browser LOG     Notification result: {"data":[],"success":true}
+[09:27:21.797] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:27:21.797] Browser LOG     Found 0 notifications:
+[09:27:21.797] Browser WARN    ⚠️ No notifications found for this user!
+[09:27:21.797] Browser LOG     Tender notifications: 0
+[09:27:21.797] Browser LOG     Unread count from server: 0
+[09:27:21.797] Browser LOG     Final state - Total: 0 Unread: 0
+[09:27:21.797] Browser LOG     ===================================
+[09:40:13.426] Browser LOG     Auto-refreshing notifications...
+[09:40:13.427] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:40:13.427] Browser LOG     Current user ID: undefined
+[09:40:13.427] Browser LOG     Current user email: undefined
+[09:40:13.427] Browser LOG     Timestamp: 2026-01-16T01:05:31.184Z
+[09:40:15.795] Browser LOG     Notification result: {"error":"Unauthorized","success":false}
+[09:40:15.795] Browser LOG     Unread count result: {"count":0,"error":"Unauthorized","success":false}
+[09:40:15.795] Browser ERROR   ❌ Failed to fetch notifications: Unauthorized
+[09:40:15.795] Browser LOG     Unread count set to 0
+[09:40:15.795] Browser LOG     Final state - Total: 0 Unread: 0
+[09:40:15.795] Browser LOG     ===================================
+[09:40:22.041] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:40:23.797] Browser LOG     Auto-refreshing notifications...
+[09:40:23.797] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:40:23.797] Browser LOG     Current user ID: undefined
+[09:40:23.797] Browser LOG     Current user email: undefined
+[09:40:23.797] Browser LOG     Timestamp: 2026-01-16T01:05:36.931Z
+[09:40:23.797] Browser LOG     Notification result: {"data":[],"success":true}
+[09:40:23.797] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:40:23.797] Browser LOG     Found 0 notifications:
+[09:40:23.797] Browser WARN    ⚠️ No notifications found for this user!
+[09:40:23.797] Browser LOG     Tender notifications: 0
+[09:40:23.797] Browser LOG     Unread count from server: 0
+[09:40:23.797] Browser LOG     Final state - Total: 0 Unread: 0
+[09:40:23.797] Browser LOG     ===================================
+[09:41:20.746] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:41:21.795] Browser LOG     Auto-refreshing notifications...
+[09:41:21.795] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:41:21.795] Browser LOG     Current user ID: undefined
+[09:41:21.795] Browser LOG     Current user email: undefined
+[09:41:21.795] Browser LOG     Timestamp: 2026-01-16T01:06:36.919Z
+[09:41:21.795] Browser LOG     Notification result: {"data":[],"success":true}
+[09:41:21.795] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:41:21.795] Browser LOG     Found 0 notifications:
+[09:41:21.795] Browser WARN    ⚠️ No notifications found for this user!
+[09:41:21.795] Browser LOG     Tender notifications: 0
+[09:41:21.795] Browser LOG     Unread count from server: 0
+[09:41:21.795] Browser LOG     Final state - Total: 0 Unread: 0
+[09:41:21.795] Browser LOG     ===================================
+[09:42:20.512] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:42:21.791] Browser LOG     Auto-refreshing notifications...
+[09:42:21.791] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:42:21.791] Browser LOG     Current user ID: undefined
+[09:42:21.791] Browser LOG     Current user email: undefined
+[09:42:21.791] Browser LOG     Timestamp: 2026-01-16T01:07:36.919Z
+[09:42:21.791] Browser LOG     Notification result: {"data":[],"success":true}
+[09:42:21.791] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:42:21.791] Browser LOG     Found 0 notifications:
+[09:42:21.791] Browser WARN    ⚠️ No notifications found for this user!
+[09:42:21.791] Browser LOG     Tender notifications: 0
+[09:42:21.791] Browser LOG     Unread count from server: 0
+[09:42:21.791] Browser LOG     Final state - Total: 0 Unread: 0
+[09:42:21.791] Browser LOG     ===================================
+[09:43:20.421] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:43:21.785] Browser LOG     Auto-refreshing notifications...
+[09:43:21.785] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:43:21.785] Browser LOG     Current user ID: undefined
+[09:43:21.785] Browser LOG     Current user email: undefined
+[09:43:21.785] Browser LOG     Timestamp: 2026-01-16T01:08:36.914Z
+[09:43:21.785] Browser LOG     Notification result: {"data":[],"success":true}
+[09:43:21.785] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:43:21.785] Browser LOG     Found 0 notifications:
+[09:43:21.785] Browser WARN    ⚠️ No notifications found for this user!
+[09:43:21.785] Browser LOG     Tender notifications: 0
+[09:43:21.785] Browser LOG     Unread count from server: 0
+[09:43:21.785] Browser LOG     Final state - Total: 0 Unread: 0
+[09:43:21.785] Browser LOG     ===================================
+[09:44:20.567] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[09:44:21.793] Browser LOG     Auto-refreshing notifications...
+[09:44:21.793] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[09:44:21.793] Browser LOG     Current user ID: undefined
+[09:44:21.793] Browser LOG     Current user email: undefined
+[09:44:21.793] Browser LOG     Timestamp: 2026-01-16T01:09:36.920Z
+[09:44:21.793] Browser LOG     Notification result: {"data":[],"success":true}
+[09:44:21.793] Browser LOG     Unread count result: {"count":0,"success":true}
+[09:44:21.793] Browser LOG     Found 0 notifications:
+[09:44:21.793] Browser WARN    ⚠️ No notifications found for this user!
+[09:44:21.793] Browser LOG     Tender notifications: 0
+[09:44:21.793] Browser LOG     Unread count from server: 0
+[09:44:21.793] Browser LOG     Final state - Total: 0 Unread: 0
+[09:44:21.793] Browser LOG     ===================================

@@ -4,6 +4,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 import { EdgeStoreProvider } from "@/lib/edgestore";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Inno-SL Procurement",
@@ -35,7 +38,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`font-sans antialiased overflow-x-hidden`}>
+        <body
+          className={`${inter.variable} font-sans antialiased overflow-x-hidden`}
+        >
           <EdgeStoreProvider>
             <AppShell>{children}</AppShell>
           </EdgeStoreProvider>

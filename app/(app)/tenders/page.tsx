@@ -136,56 +136,75 @@ function TendersPage() {
     setIsAdminOrSuperAdmin(["admin", "superadmin"].includes(normalized));
   }, [user]);
 
-  useEffect(() => {
-    async function fetchSupplierCategories() {
-      if (!isSupplier) return;
-      try {
-        const resp = await fetch("/api/supplier/me", {
-          headers: { Accept: "application/json" },
-        });
-        if (!resp.ok) {
-          setSupplierCategories([]);
-          return;
-        }
-        const json = await resp.json();
-        const cats: string[] = Array.isArray(json?.data?.productCategories)
-          ? json.data.productCategories
-          : [];
-        const normalized = cats.map((c) =>
-          String(c || "")
-            .toLowerCase()
-            .trim()
-        );
-        setSupplierCategories(normalized);
-      } catch {
-        setSupplierCategories([]);
-      }
-    }
-    fetchSupplierCategories();
-  }, [isSupplier]);
+  // useEffect(() => {
+  //   async function fetchSupplierCategories() {
+  //     if (!isSupplier) return;
+  //     try {
+  //       const resp = await fetch("/api/supplier/me", {
+  //         headers: { Accept: "application/json" },
+  //       });
+  //       if (!resp.ok) {
+  //         setSupplierCategories([]);
+  //         return;
+  //       }
+  //       const json = await resp.json();
+  //       const cats: string[] = Array.isArray(json?.data?.productCategories)
+  //         ? json.data.productCategories
+  //         : [];
+  //       const normalized = cats.map((c) =>
+  //         String(c || "")
+  //           .toLowerCase()
+  //           .trim()
+  //       );
+  //       setSupplierCategories(normalized);
+  //     } catch {
+  //       setSupplierCategories([]);
+  //     }
+  //   }
+  //   fetchSupplierCategories();
+  // }, [isSupplier]);
 
+  // useEffect(() => {
+  //   if (!isSupplier) {
+  //     setTenders(allTenders);
+  //     if (selectedTender === null && allTenders.length > 0) {
+  //       setSelectedTender(allTenders[0]);
+  //     }
+  //     return;
+  //   }
+  //   const filtered = allTenders.filter((t: any) => {
+  //     const cat = String(t?.category || "")
+  //       .toLowerCase()
+  //       .trim();
+  //     return cat && supplierCategories.includes(cat);
+  //   });
+  //   setTenders(filtered);
+  //   if (
+  //     !selectedTender ||
+  //     !filtered.find((x: any) => x._id === selectedTender._id)
+  //   ) {
+  //     setSelectedTender(filtered[0] || null);
+  //   }
+  // }, [isSupplier, supplierCategories, allTenders]);
+
+  // SIMPLIFY to this single useEffect:
   useEffect(() => {
-    if (!isSupplier) {
-      setTenders(allTenders);
-      if (selectedTender === null && allTenders.length > 0) {
-        setSelectedTender(allTenders[0]);
-      }
-      return;
+    // Set tenders directly from server response
+    setTenders(allTenders);
+
+    // Set selected tender if none is selected
+    if (selectedTender === null && allTenders.length > 0) {
+      setSelectedTender(allTenders[0]);
     }
-    const filtered = allTenders.filter((t: any) => {
-      const cat = String(t?.category || "")
-        .toLowerCase()
-        .trim();
-      return cat && supplierCategories.includes(cat);
-    });
-    setTenders(filtered);
+
+    // Update selected tender if it's no longer in the list
     if (
-      !selectedTender ||
-      !filtered.find((x: any) => x._id === selectedTender._id)
+      selectedTender &&
+      !allTenders.find((t: any) => t._id === selectedTender._id)
     ) {
-      setSelectedTender(filtered[0] || null);
+      setSelectedTender(allTenders[0] || null);
     }
-  }, [isSupplier, supplierCategories, allTenders]);
+  }, [allTenders]);
 
   const handleCloseSubmitBidForm = async () => {
     setShowSubmitBidForm(false);
