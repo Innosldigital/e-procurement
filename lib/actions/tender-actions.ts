@@ -124,7 +124,7 @@ export async function getTenders() {
 
     // Other roles see no tenders by default
     console.warn(
-      "⚠️ [getTenders] Unknown role or insufficient permissions:",
+      "[getTenders] Unknown role or insufficient permissions:",
       role
     );
     return { success: true, data: [] };
