@@ -98,22 +98,26 @@ export default function OnboardingContent() {
       async function uploadFilesWithEdgeStore(list: FileList | null) {
         if (!list || list.length === 0) return [];
 
-        const uploads = [];
+        const uploads: Array<{ url: string; size: number; type: string; name: string }> = [];
 
         for (const file of Array.from(list)) {
-          const res = await edgestore.publicFiles.upload({
-            file,
-            onProgressChange: (progress) => {
-              console.log(`${file.name}: ${progress}%`);
-            },
-          });
-
-          uploads.push({
-            url: res.url,
-            size: file.size,
-            type: file.type,
-            name: file.name,
-          });
+          try {
+            const res = await edgestore.publicFiles.upload({
+              file,
+              onProgressChange: (progress) => {
+                console.log(`${file.name}: ${progress}%`);
+              },
+            });
+            uploads.push({
+              url: res.url,
+              size: file.size,
+              type: file.type,
+              name: file.name,
+            });
+          } catch (e: any) {
+            console.error("[Onboarding] File upload failed:", file.name, e?.message || e);
+            setError("File upload service is currently unavailable. You can continue and upload documents later.");
+          }
         }
 
         return uploads;
