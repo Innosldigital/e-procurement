@@ -22,7 +22,7 @@ export async function getTenders() {
     const rawRole = String(md.role || "");
     const role = rawRole.toLowerCase().replace(/[\s_-]/g, "");
 
-    console.log("🔍 [getTenders] User role:", { userId, role });
+    console.log("[getTenders] User role:", { userId, role });
 
     await dbConnect();
 
@@ -30,11 +30,11 @@ export async function getTenders() {
 
     // Admins and superadmins see ALL tenders
     if (["admin", "superadmin"].includes(role)) {
-      console.log("✅ [getTenders] Admin/Superadmin - fetching all tenders");
+      console.log("[getTenders] Admin/Superadmin - fetching all tenders");
 
       tenders = await Tender.find({}).sort({ createdAt: -1 }).lean();
 
-      console.log(`✅ [getTenders] Admin found ${tenders.length} tenders`);
+      console.log(`[getTenders] Admin found ${tenders.length} tenders`);
 
       return {
         success: true,
@@ -44,7 +44,7 @@ export async function getTenders() {
 
     // Suppliers only see tenders matching their categories
     if (role === "supplier") {
-      console.log("🔍 [getTenders] Supplier - filtering by categories");
+      console.log("[getTenders] Supplier - filtering by categories");
 
       // Get supplier's product categories
       const supplier = await Supplier.findOne({ ownerUserId: userId })
@@ -52,7 +52,7 @@ export async function getTenders() {
         .lean();
 
       if (!supplier) {
-        console.warn("⚠️ [getTenders] No supplier found for user:", userId);
+        console.warn("[getTenders] No supplier found for user:", userId);
         return { success: true, data: [] };
       }
 
@@ -62,7 +62,7 @@ export async function getTenders() {
         ? ((supplier as any).onboarding.productCategories as string[])
         : [];
 
-      console.log("🔍 [getTenders] Raw supplier categories:", categories);
+      console.log("[getTenders] Raw supplier categories:", categories);
 
       // Normalize categories to lowercase and trim whitespace
       const normalizedCategories = categories
@@ -74,12 +74,12 @@ export async function getTenders() {
         .filter(Boolean);
 
       console.log(
-        "🔍 [getTenders] Normalized supplier categories:",
+        "[getTenders] Normalized supplier categories:",
         normalizedCategories
       );
 
       if (normalizedCategories.length === 0) {
-        console.warn("⚠️ [getTenders] Supplier has no categories");
+        console.warn("[getTenders] Supplier has no categories");
         return { success: true, data: [] };
       }
 
@@ -95,7 +95,7 @@ export async function getTenders() {
       });
 
       console.log(
-        "🔍 [getTenders] Category queries:",
+        "[getTenders] Category queries:",
         JSON.stringify(categoryQueries, null, 2)
       );
 
@@ -107,7 +107,7 @@ export async function getTenders() {
         .lean();
 
       console.log(
-        `✅ [getTenders] Supplier found ${tenders.length} matching tenders`
+        `[getTenders] Supplier found ${tenders.length} matching tenders`
       );
 
       // Log detailed results for debugging
@@ -128,7 +128,7 @@ export async function getTenders() {
     );
     return { success: true, data: [] };
   } catch (error) {
-    console.error("❌ [getTenders] Error:", error);
+    console.error("[getTenders] Error:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Failed to fetch tenders",
@@ -150,7 +150,7 @@ export async function getTenderById(id: string) {
       data: JSON.parse(JSON.stringify(tender)),
     };
   } catch (error) {
-    console.error("[v0] Error fetching tender:", error);
+    console.error("Error fetching tender:", error);
     return { success: false, error: "Failed to fetch tender" };
   }
 }
@@ -185,7 +185,7 @@ export async function awardTender(id: string, supplierId: string) {
       data: JSON.parse(JSON.stringify(tender)),
     };
   } catch (error) {
-    console.error("[v0] Error awarding tender:", error);
+    console.error("Error awarding tender:", error);
     return { success: false, error: "Failed to award tender" };
   }
 }
@@ -213,7 +213,7 @@ export async function requestRevisedBids(id: string) {
       data: JSON.parse(JSON.stringify(tender)),
     };
   } catch (error) {
-    console.error("[v0] Error requesting revised bids:", error);
+    console.error("Error requesting revised bids:", error);
     return { success: false, error: "Failed to request revised bids" };
   }
 }
@@ -244,7 +244,7 @@ export async function createTender(data: {
       return { success: false, error: "Unauthorized" };
     }
 
-    // 🔍 ADD DIAGNOSTIC LOGGING HERE
+    // ADD DIAGNOSTIC LOGGING HERE
     console.log("=== ENVIRONMENT CHECK ===");
     console.log("RESEND_API_KEY exists:", !!process.env.RESEND_API_KEY);
     console.log("RESEND_API_KEY length:", process.env.RESEND_API_KEY?.length);
@@ -337,7 +337,7 @@ export async function createTender(data: {
 
     if (!resend) {
       console.warn(
-        "[createTender] ⚠️ RESEND_API_KEY not found - emails will not be sent"
+        "[createTender] RESEND_API_KEY not found - emails will not be sent"
       );
     }
 
