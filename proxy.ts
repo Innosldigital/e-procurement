@@ -10,8 +10,15 @@
 // ]);
 // const isApiRoute = createRouteMatcher(["/(api|trpc)(.*)"]);
 // const isAfterSignIn = createRouteMatcher(["/after-signin"]);
+// // ✨ ADD THIS - Exclude EdgeStore from middleware processing
+// const isEdgeStoreRoute = createRouteMatcher(["/api/edgestore(.*)"]);
 
 // export default clerkMiddleware(async (auth, request) => {
+//   // ✨ ADD THIS - Let EdgeStore handle its own requests
+//   if (isEdgeStoreRoute(request)) {
+//     return NextResponse.next();
+//   }
+
 //   // Allow public routes
 //   if (isPublicRoute(request)) {
 //     return NextResponse.next();
@@ -53,23 +60,8 @@
 
 //   const pathname = request.nextUrl.pathname;
 
-//   console.log("🔍 Middleware Debug:", {
-//     userId,
-//     email,
-//     rawRole,
-//     normalizedRole,
-//     isSuperAdmin,
-//     isAdmin,
-//     isSupplier,
-//     onboarded,
-//     supplierApproved,
-//     pathname,
-//   });
-
 //   // 🚀 SUPERADMIN & ADMIN — FULL ACCESS, NO ONBOARDING REQUIRED
 //   if (isSuperAdmin || isAdmin) {
-//     console.log("✅ Superadmin/Admin detected - allowing full access");
-
 //     // Block them from accessing onboarding
 //     if (isOnboardingRoute(request)) {
 //       console.log("🔄 Redirecting admin/superadmin away from onboarding to /");
@@ -161,23 +153,26 @@ import { NextResponse } from "next/server";
 import { clerkClient } from "@clerk/nextjs/server";
 
 // Route matchers
-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
+const isPublicRoute = createRouteMatcher([
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/sign-out(.*)",
+]);
 const isOnboardingRoute = createRouteMatcher([
   "/onboarding(.*)",
   "/pending-approval(.*)",
 ]);
 const isApiRoute = createRouteMatcher(["/(api|trpc)(.*)"]);
 const isAfterSignIn = createRouteMatcher(["/after-signin"]);
-// ✨ ADD THIS - Exclude EdgeStore from middleware processing
 const isEdgeStoreRoute = createRouteMatcher(["/api/edgestore(.*)"]);
 
 export default clerkMiddleware(async (auth, request) => {
-  // ✨ ADD THIS - Let EdgeStore handle its own requests
+  // Let EdgeStore handle its own requests
   if (isEdgeStoreRoute(request)) {
     return NextResponse.next();
   }
 
-  // Allow public routes
+  // Allow public routes (including sign-out)
   if (isPublicRoute(request)) {
     return NextResponse.next();
   }
