@@ -32,7 +32,7 @@ export async function getTenders() {
     if (["admin", "superadmin"].includes(role)) {
       console.log("✅ [getTenders] Admin/Superadmin - fetching all tenders");
 
-      tenders = await Tender.find({}).sort({ createdAt: -1 }).limit(50).lean();
+      tenders = await Tender.find({}).sort({ createdAt: -1 }).lean();
 
       console.log(`✅ [getTenders] Admin found ${tenders.length} tenders`);
 
@@ -104,7 +104,6 @@ export async function getTenders() {
         $or: categoryQueries,
       })
         .sort({ createdAt: -1 })
-        .limit(50)
         .lean();
 
       console.log(
