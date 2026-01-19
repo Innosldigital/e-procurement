@@ -279,6 +279,9 @@ export default clerkMiddleware(async (auth, request) => {
       if (!isAllowed) {
         return NextResponse.redirect(new URL("/pending-approval", request.url));
       }
+
+      // ✅ FIXED: Allow access to pending-approval and allowed paths
+      return NextResponse.next();
     }
 
     return NextResponse.next();
