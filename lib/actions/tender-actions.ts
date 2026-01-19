@@ -9,64 +9,6 @@ import { Supplier } from "../models/Supplier";
 import { createNotification } from "@/lib/actions/notification-actions";
 import { Resend } from "resend";
 
-// export async function getTenders() {
-//   try {
-//     const { userId } = await auth();
-//     if (!userId) {
-//       return { success: false, error: "Unauthorized" };
-//     }
-
-//     const client = await clerkClient();
-//     const user = await client.users.getUser(userId);
-//     const md = (user?.publicMetadata || {}) as any;
-//     const rawRole = String(md.role || "");
-//     const role = rawRole.toLowerCase().replace(/[\s_-]/g, "");
-
-//     await dbConnect();
-
-//     let tenders: any[] = [];
-
-//     if (["admin", "superadmin"].includes(role)) {
-//       tenders = await Tender.find({}).sort({ createdAt: -1 }).limit(50).lean();
-//     } else if (role === "supplier") {
-//       const supplier = await Supplier.findOne({ ownerUserId: userId })
-//         .select(["onboarding.productCategories"])
-//         .lean();
-//       const categories: string[] = Array.isArray(
-//         (supplier as any)?.onboarding?.productCategories
-//       )
-//         ? ((supplier as any).onboarding.productCategories as string[])
-//         : [];
-//       const normalized = categories
-//         .map((c) => String(c || "").trim())
-//         .filter(Boolean);
-
-//       if (normalized.length === 0) {
-//         tenders = [];
-//       } else {
-//         const orClauses = normalized.map((c) => {
-//           const escaped = c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-//           return { category: { $regex: new RegExp(`^${escaped}$`, "i") } };
-//         });
-//         tenders = await Tender.find({ $or: orClauses })
-//           .sort({ createdAt: -1 })
-//           .limit(50)
-//           .lean();
-//       }
-//     } else {
-//       tenders = [];
-//     }
-
-//     return {
-//       success: true,
-//       data: JSON.parse(JSON.stringify(tenders)),
-//     };
-//   } catch (error) {
-//     console.error("[v0] Error fetching tenders:", error);
-//     return { success: false, error: "Failed to fetch tenders" };
-//   }
-// }
-
 export async function getTenders() {
   try {
     const { userId } = await auth();
@@ -80,25 +22,34 @@ export async function getTenders() {
     const rawRole = String(md.role || "");
     const role = rawRole.toLowerCase().replace(/[\s_-]/g, "");
 
+    console.log("🔍 [getTenders] User role:", { userId, role });
+
     await dbConnect();
 
     let tenders: any[] = [];
 
+    // Admins and superadmins see ALL tenders
     if (["admin", "superadmin"].includes(role)) {
-      // Admins see all tenders
+      console.log("✅ [getTenders] Admin/Superadmin - fetching all tenders");
+
       tenders = await Tender.find({}).sort({ createdAt: -1 }).limit(50).lean();
-    } else if (role === "supplier") {
-      console.log("🔍 [getTenders] Filtering for supplier:", userId);
+
+      console.log(`✅ [getTenders] Admin found ${tenders.length} tenders`);
+
+      return {
+        success: true,
+        data: JSON.parse(JSON.stringify(tenders)),
+      };
+    }
+
+    // Suppliers only see tenders matching their categories
+    if (role === "supplier") {
+      console.log("🔍 [getTenders] Supplier - filtering by categories");
 
       // Get supplier's product categories
       const supplier = await Supplier.findOne({ ownerUserId: userId })
         .select(["onboarding.productCategories", "name"])
         .lean();
-
-      console.log("🔍 [getTenders] Found supplier:", {
-        name: (supplier as any)?.name,
-        categories: (supplier as any)?.onboarding?.productCategories,
-      });
 
       if (!supplier) {
         console.warn("⚠️ [getTenders] No supplier found for user:", userId);
@@ -111,10 +62,10 @@ export async function getTenders() {
         ? ((supplier as any).onboarding.productCategories as string[])
         : [];
 
-      console.log("🔍 [getTenders] Raw categories:", categories);
+      console.log("🔍 [getTenders] Raw supplier categories:", categories);
 
-      // Normalize categories - convert to lowercase and trim
-      const normalized = categories
+      // Normalize categories to lowercase and trim whitespace
+      const normalizedCategories = categories
         .map((c) =>
           String(c || "")
             .toLowerCase()
@@ -124,55 +75,65 @@ export async function getTenders() {
 
       console.log(
         "🔍 [getTenders] Normalized supplier categories:",
-        normalized
+        normalizedCategories
       );
 
-      if (normalized.length === 0) {
+      if (normalizedCategories.length === 0) {
         console.warn("⚠️ [getTenders] Supplier has no categories");
         return { success: true, data: [] };
       }
 
-      // Build case-insensitive query
-      const orClauses = normalized.map((c) => {
+      // Build case-insensitive regex query for each category
+      const categoryQueries = normalizedCategories.map((category) => {
         // Escape special regex characters
-        const escaped = c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const escapedCategory = category.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         return {
           category: {
-            $regex: new RegExp(`^${escaped}$`, "i"),
+            $regex: new RegExp(`^${escapedCategory}$`, "i"),
           },
         };
       });
 
       console.log(
-        "🔍 [getTenders] Query OR clauses:",
-        JSON.stringify(orClauses, null, 2)
+        "🔍 [getTenders] Category queries:",
+        JSON.stringify(categoryQueries, null, 2)
       );
 
-      // Find tenders matching supplier's categories
-      tenders = await Tender.find({ $or: orClauses })
+      // Find tenders matching any of the supplier's categories
+      tenders = await Tender.find({
+        $or: categoryQueries,
+      })
         .sort({ createdAt: -1 })
         .limit(50)
         .lean();
 
-      console.log("🔍 [getTenders] Found tenders:", {
-        count: tenders.length,
-        tenderIds: tenders.map((t: any) => ({
-          id: t.tenderId,
-          category: t.category,
-        })),
+      console.log(
+        `✅ [getTenders] Supplier found ${tenders.length} matching tenders`
+      );
+
+      // Log detailed results for debugging
+      tenders.forEach((t: any) => {
+        console.log(`  - Tender: ${t.tenderId} | Category: "${t.category}"`);
       });
-    } else {
-      // Other roles see no tenders by default
-      console.warn("⚠️ [getTenders] Unknown role:", role);
-      tenders = [];
+
+      return {
+        success: true,
+        data: JSON.parse(JSON.stringify(tenders)),
+      };
     }
-    return {
-      success: true,
-      data: JSON.parse(JSON.stringify(tenders)),
-    };
+
+    // Other roles see no tenders by default
+    console.warn(
+      "⚠️ [getTenders] Unknown role or insufficient permissions:",
+      role
+    );
+    return { success: true, data: [] };
   } catch (error) {
     console.error("❌ [getTenders] Error:", error);
-    return { success: false, error: "Failed to fetch tenders" };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to fetch tenders",
+    };
   }
 }
 
@@ -390,7 +351,7 @@ export async function createTender(data: {
         // Create in-app notification
         if (supplierUserId) {
           console.log(
-            `[createTender] 🔔 Creating notification for: ${supplierName} (${supplierUserId})`
+            `[createTender] Creating notification for: ${supplierName} (${supplierUserId})`
           );
 
           const notifResult = await createNotification({
@@ -415,22 +376,22 @@ export async function createTender(data: {
           // CHECK THE RESULT
           if (notifResult.success) {
             console.log(
-              `[createTender] ✅ Notification created for ${supplierName}:`,
+              `[createTender] Notification created for ${supplierName}:`,
               notifResult.data?._id
             );
           } else {
             console.error(
-              `[createTender] ❌ Notification FAILED for ${supplierName}:`,
+              `[createTender] Notification FAILED for ${supplierName}:`,
               notifResult.error
             );
           }
         } else {
-          console.warn(`[createTender] ⚠️ No userId for ${supplierName}`);
+          console.warn(`[createTender] No userId for ${supplierName}`);
         }
 
         // Send email notification
         if (supplierEmail && resend) {
-          console.log(`[createTender] 📧 Sending email to: ${supplierEmail}`);
+          console.log(`[createTender] Sending email to: ${supplierEmail}`);
 
           const emailResult = await resend.emails.send({
             from:
@@ -442,13 +403,13 @@ export async function createTender(data: {
           });
 
           console.log(
-            `[createTender] ✅ Email sent to ${supplierName}:`,
+            `[createTender] Email sent to ${supplierName}:`,
             emailResult.data?.id
           );
         }
       } catch (error) {
         console.error(
-          `[createTender] ❌ Error notifying supplier ${s.name}:`,
+          `[createTender] Error notifying supplier ${s.name}:`,
           error
         );
       }
@@ -457,7 +418,7 @@ export async function createTender(data: {
     await Promise.allSettled(notificationPromises);
 
     console.log(
-      `[createTender] ✅ Notifications sent to ${suppliers.length} suppliers`
+      `[createTender] Notifications sent to ${suppliers.length} suppliers`
     );
 
     revalidatePath("/tenders");
@@ -496,7 +457,7 @@ export async function getTenderTemplates() {
     }));
     return { success: true, data: JSON.parse(JSON.stringify(templates)) };
   } catch (error) {
-    console.error("[v0] Error fetching tender templates:", error);
+    console.error("Error fetching tender templates:", error);
     return { success: false, error: "Failed to fetch tender templates" };
   }
 }

@@ -1,11 +1,4 @@
 {
-  "/(app)/bids/page": "app/(app)/bids/page.js",
-  "/(app)/tenders/page": "app/(app)/tenders/page.js",
-  "/(auth)/after-signin/page": "app/(auth)/after-signin/page.js",
-  "/(auth)/sign-in/[[...sign-in]]/page": "app/(auth)/sign-in/[[...sign-in]]/page.js",
   "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
-  "/(onboard)/onboarding/pending-approval/page": "app/(onboard)/onboarding/pending-approval/page.js",
-  "/(onboard)/onboarding/support/page": "app/(onboard)/onboarding/support/page.js",
-  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js",
-  "/page": "app/page.js"
+  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
 }
