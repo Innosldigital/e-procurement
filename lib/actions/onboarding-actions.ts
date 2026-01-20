@@ -737,7 +737,7 @@ function renderAdminNotificationEmail(
                 </div>
 
                 <div style="text-align:center;margin:30px 0">
-                  <a href="${appUrl}/admin/users" 
+                  <a href="https://www.innoslprocurement.com/admin" 
                      style="display:inline-block;padding:14px 32px;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;box-shadow:0 1px 3px rgba(0,0,0,0.1)">
                     Review Application →
                   </a>
