@@ -1,10 +1,99 @@
-[00:00:02.108] Server  LOG      ✓ Ready in 1732ms
-[00:08:36.207] Server  LOG     ✅ Allowing access
-[00:08:39.245] Server  LOG      ○ Compiling /onboarding ...
-[00:08:43.157] Server  LOG     ✅ Allowing access
-[00:08:43.918] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:08:43.919] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:08:43.919] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:08:43.919] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:08:43.919] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1768824258868}
-[00:32:41.831] Server  LOG      ✓ Compiled in 163ms
+[00:00:04.865] Server  LOG      ✓ Ready in 4.1s
+[00:00:29.934] Server  LOG      ○ Compiling /sign-in/[[...sign-in]] ...
+[00:00:39.895] Server  WARN    Image with src "/Innosl-Procurement.webp" is using quality "85" which is not configured in images.qualities [75]. Please update your config to [75, 85].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:00:42.389] Browser WARN    Image with src "/Innosl-Procurement.webp" is using quality "85" which is not configured in images.qualities [75]. Please update your config to [75, 85].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:00:42.389] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:42.389] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:42.389] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:42.389] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/sign-in","route":"/sign-in"}
+[00:00:42.389] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/sign-in color: rgb(120, 120, 120) color: inherit {"dp":"/sign-in","o":"http://localhost:3000/sign-in","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1769121784898}
+[00:00:42.390] Browser WARN    Clerk: The prop "redirectUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:42.390] Browser WARN    Clerk: The "signInFallbackRedirectUrl" prop ("http://localhost:3000/") has priority over the legacy "afterSignInUrl" (or "redirectUrl") ("http://localhost:3000/after-signin"), which will be completely ignored in this case. "afterSignInUrl" (or "redirectUrl" prop) should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:42.390] Browser WARN    Clerk: The "signUpFallbackRedirectUrl" prop ("http://localhost:3000/") has priority over the legacy "afterSignUpUrl" (or "redirectUrl") ("http://localhost:3000/after-signin"), which will be completely ignored in this case. "afterSignUpUrl" (or "redirectUrl" prop) should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:42.390] Browser INFO    🔒 Clerk:
+The <SignIn/> component cannot render when a user is already signed in, unless the application allows multiple sessions. Since a user is signed in and this application only allows a single session, Clerk is redirecting to the `afterSignIn` URL instead.
+(This notice only appears in development)
+[00:00:43.552] Server  LOG     🔄 User not onboarded - redirecting to onboarding
+[00:00:44.065] Server  LOG     ✅ Allowing access
+[00:00:47.475] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1769121790977}
+[00:04:08.319] Browser LOG     B1 English Speaking 01 (1).pdf: 0%
+[00:04:08.319] Browser LOG     B1 English Speaking 01 (1).pdf: 0%
+[00:04:09.094] Browser LOG     B1 English Speaking 01 (1).pdf: 0%
+[00:04:10.178] Browser LOG     B1 English Speaking 01 (1).pdf: 70.91%
+[00:04:10.390] Browser LOG     B1 English Speaking 01 (1).pdf: 82.73%
+[00:04:10.608] Browser LOG     B1 English Speaking 01 (1).pdf: 100%
+[00:04:11.074] Browser LOG     Submitting onboarding data...
+[00:04:12.344] Server  LOG     ✅ Allowing access
+[00:04:12.394] Server  LOG     submitSupplierOnboarding: Starting...
+[00:04:12.424] Server  LOG     User authenticated: "user_38MkJokwFgPv9qyGNfaaB2kq0Ht"
+[00:04:14.921] Server  LOG     Database connected
+[00:04:16.846] Server  LOG     Generated supplierId: "SUP-5011"
+[00:04:16.848] Server  LOG     Creating supplier...
+[00:04:16.853] Server  LOG     Upload counts: {}
+[00:04:17.129] Server  LOG     Supplier created: {}
+[00:04:17.608] Server  LOG     ✅ Clerk user metadata updated
+[00:04:17.609] Server  LOG     📧 Sending email notifications...
+[00:04:18.489] Server  LOG     ✅ Confirmation email sent to supplier: keitamorie@gmail.com
+[00:04:18.490] Server  LOG     ✅ Supplier confirmation email sent successfully
+[00:04:19.716] Server  LOG     ✅ Admin notification sent to: cyrilhingston123@gmail.com
+[00:04:19.718] Server  LOG     ✅ Admin notifications sent to 1 admin(s)
+[00:04:19.719] Server  LOG     📧 Email Summary: Confirmation email sent to supplier, 1 admin(s) notified
+[00:04:19.722] Server  LOG     ✅ Supplier onboarding completed successfully
+[00:04:19.965] Browser LOG     Submission response: {"data":{"_id":"6972a8d0e8e08009cd7f2c8d","id":"6972a8d0e8e08009cd7f2c8d","name":"Two Brother's Enterprise Lmt","supplierId":"SUP-5011"},"emailStatus":{"adminEmailsFailed":0,"adminEmailsSent":1,"supplierEmailSent":true},"success":true}
+[00:04:19.965] Browser LOG     Success! Supplier created: {"_id":"6972a8d0e8e08009cd7f2c8d","id":"6972a8d0e8e08009cd7f2c8d","name":"Two Brother's Enterprise Lmt","supplierId":"SUP-5011"}
+[00:04:19.965] Browser LOG     Email notifications: {"adminEmailsFailed":0,"adminEmailsSent":1,"supplierEmailSent":true}
+[00:04:22.194] Server  LOG     🏭 Supplier detected
+[00:04:22.195] Server  LOG     ⏳ Supplier pending approval
+[00:04:27.712] Server  LOG     getSupplierById: {}
+[00:04:28.092] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/6972a8d0e8e08009cd7f2c8d color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/6972a8d0e8e08009cd7f2c8d","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1769122011607}
+[00:15:18.087] Server  LOG     🏭 Supplier detected
+[00:15:18.088] Server  LOG     ⏳ Supplier pending approval
+[00:15:18.455] Server  LOG     🏭 Supplier detected
+[00:15:18.456] Server  LOG     ⏳ Supplier pending approval
+[00:15:26.295] Server  LOG     🏭 Supplier detected
+[00:15:26.296] Server  LOG     ⏳ Supplier pending approval
+[00:15:26.653] Server  LOG     🏭 Supplier detected
+[00:15:26.654] Server  LOG     ⏳ Supplier pending approval
+[00:15:33.324] Browser LOG     NotificationsDropdown mounted
+[00:15:33.324] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:15:33.324] Browser LOG     Current user ID: undefined
+[00:15:33.324] Browser LOG     Current user email: undefined
+[00:15:33.324] Browser LOG     Timestamp: 2026-01-22T22:57:51.110Z
+[00:15:33.324] Browser LOG     [2;38;2;124;124;124m%s[0m NotificationsDropdown unmounted
+[00:15:33.324] Browser LOG     [2;38;2;124;124;124m%s[0m NotificationsDropdown mounted
+[00:15:33.324] Browser LOG     [2;38;2;124;124;124m%s[0m === NOTIFICATION DROPDOWN DEBUG ===
+[00:15:33.324] Browser LOG     [2;38;2;124;124;124m%s[0m Current user ID: undefined
+[00:15:33.324] Browser LOG     [2;38;2;124;124;124m%s[0m Current user email: undefined
+[00:15:33.324] Browser LOG     [2;38;2;124;124;124m%s[0m Timestamp: 2026-01-22T22:57:51.114Z
+[00:15:33.324] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:15:33.324] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:15:33.325] Browser LOG     === USER DEBUG INFO ===
+[00:15:33.325] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2026-01-17T02:25:57.730Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"anama1999june@gmail.com","id":"idn_38MkIRwUEu2ZTZhL4af1vARsgIR","linkedTo":[{"id":"idn_38MkIRx6IVHf7XneVOvOntR6oP2","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-01-22T22:57:51.716Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"anama1999june@gmail.com","firstName":"Anama","id":"eac_38MkIP4sKiiv0ZQCZqeCIoGTcTx","identificationId":"idn_38MkIRx6IVHf7XneVOvOntR6oP2","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaE9YU2xBUUpJcEZNby05dlhzdV9WSnRvR2I5RV9YbkxlZ01kYzNDTFdyNW9MSUE9czEwMDAtYyIsInMiOiIzUDlLdU5GeFJMMlo2MnIwbTRZYkxuY0NPcktHWHN6a25KK2R0bG9xZXVFIn0","label":null,"lastName":"","pathRoot":"/me/external_accounts","phoneNumber":null,"provider":"google","providerUserId":"105820739755041160276","publicMetadata":{},"username":null,"verification":{"attempts":null,"error":null,"expireAt":"2026-01-17T02:35:41.655Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Anama","fullName":"Anama","hasImage":true,"id":"user_38MkJokwFgPv9qyGNfaaB2kq0Ht","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zOE1rSm5sQmFqWlBLcGNkaGRFbUQ3cld4bDYifQ","lastName":null,"lastSignInAt":"2026-01-17T02:25:57.747Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"anama1999june@gmail.com","id":"idn_38MkIRwUEu2ZTZhL4af1vARsgIR","linkedTo":[{"id":"idn_38MkIRx6IVHf7XneVOvOntR6oP2","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-01-22T22:57:51.716Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_38MkIRwUEu2ZTZhL4af1vARsgIR","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"onboarded":true,"onboardingStatus":"pending_admin_approval","role":"supplier","supplierId":"SUP-5011"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-01-22T22:46:41.758Z","username":null,"web3Wallets":[]}
+[00:15:33.325] Browser LOG     Public metadata: {"onboarded":true,"onboardingStatus":"pending_admin_approval","role":"supplier","supplierId":"SUP-5011"}
+[00:15:33.325] Browser LOG     Unsafe metadata: {}
+[00:15:33.325] Browser LOG     Raw role: supplier
+[00:15:33.325] Browser LOG     Normalized role: supplier
+[00:15:33.325] Browser LOG     Is loaded: true
+[00:15:33.325] Browser LOG     ====================
+[00:15:33.325] Browser LOG     User changed or loaded: user_38MkJokwFgPv9qyGNfaaB2kq0Ht
+[00:15:33.325] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:15:33.325] Browser LOG     Current user ID: user_38MkJokwFgPv9qyGNfaaB2kq0Ht
+[00:15:33.325] Browser LOG     Current user email: anama1999june@gmail.com
+[00:15:33.325] Browser LOG     Timestamp: 2026-01-22T22:57:51.786Z
+[00:15:33.325] Browser LOG     User is onboarded or already on onboarding page
+[00:15:33.325] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:15:33.325] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/pending-approval","route":"/pending-approval"}
+[00:15:33.325] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/pending-approval color: rgb(120, 120, 120) color: inherit {"dp":"/pending-approval","o":"http://localhost:3000/pending-approval","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1769122671809}
+[00:16:11.857] Browser LOG     Auto-refreshing notifications...
+[00:16:11.857] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:16:11.858] Browser LOG     Current user ID: undefined
+[00:16:11.858] Browser LOG     Current user email: undefined
+[00:16:11.858] Browser LOG     Timestamp: 2026-01-22T22:58:21.122Z
+[00:16:39.572] Server  ERROR   Error: aborted
+[00:16:39.576] Server  ERROR    ⨯ "uncaughtException:" Error: aborted
+[00:16:39.578] Server  ERROR    ⨯ "uncaughtException: " Error: aborted
+[00:16:39.584] Server  ERROR   Error: aborted
+[00:16:39.587] Server  ERROR    ⨯ "uncaughtException:" Error: aborted
+[00:16:39.589] Server  ERROR    ⨯ "uncaughtException: " Error: aborted
