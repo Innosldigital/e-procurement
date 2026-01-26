@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Bell, Check, CheckCheck, Trash2, X, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useUser } from "@clerk/nextjs";
 import {
   DropdownMenu,
@@ -43,117 +42,249 @@ export function NotificationsDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [refreshEnabled, setRefreshEnabled] = useState(true);
+  const saveCache = (items: Notification[], unread: number) => {
+    try {
+      const payload = { items, unread, ts: Date.now() };
+      localStorage.setItem("notif_cache", JSON.stringify(payload));
+    } catch {}
+  };
+  const readCache = (): { items: Notification[]; unread: number } => {
+    try {
+      const raw = localStorage.getItem("notif_cache") || "";
+      if (!raw) return { items: [], unread: 0 };
+      const parsed = JSON.parse(raw);
+      const items = Array.isArray(parsed?.items) ? parsed.items : [];
+      const unread = Number(parsed?.unread || 0);
+      return { items, unread };
+    } catch {
+      return { items: [], unread: 0 };
+    }
+  };
 
+  // const loadNotifications = async () => {
+  //   setIsLoading(true);
+  //   setError(null);
+
+  //   // DEBUG LOGGING
+  //   console.log("=== NOTIFICATION DROPDOWN DEBUG ===");
+  //   console.log("Current user ID:", user?.id);
+  //   console.log("Current user email:", user?.emailAddresses?.[0]?.emailAddress);
+  //   console.log("Timestamp:", new Date().toISOString());
+
+  //   try {
+  //     const [notifResult, countResult] = await Promise.all([
+  //       getNotifications(20).catch((err) => {
+  //         console.error("getNotifications error:", err);
+  //         return { success: false, error: "Failed to fetch notifications" };
+  //       }),
+  //       getUnreadCount().catch((err) => {
+  //         console.error("getUnreadCount error:", err);
+  //         return { success: false, count: 0 };
+  //       }),
+  //     ]);
+
+  //     // DEBUG LOGGING FOR RESULTS
+  //     console.log("Notification result:", notifResult);
+  //     console.log("Unread count result:", countResult);
+
+  //     if (notifResult.success) {
+  //       const notifs = (notifResult as any).data || [];
+  //       setNotifications(notifs);
+  //       setTotalCount(notifs.length);
+
+  //       // DEBUG LOGGING FOR EACH NOTIFICATION
+  //       console.log(`Found ${notifs.length} notifications:`);
+  //       if (notifs.length === 0) {
+  //         console.warn("⚠️ No notifications found for this user!");
+  //       } else {
+  //         notifs.forEach((n: any, i: number) => {
+  //           console.log(`  ${i + 1}. Type: ${n.type}`);
+  //           console.log(`     Title: ${n.title}`);
+  //           console.log(`     For userId: ${n.userId}`);
+  //           console.log(`     Read: ${n.read}`);
+  //           console.log(`     Created: ${n.createdAt}`);
+  //         });
+  //       }
+
+  //       // Check for tender notifications specifically
+  //       const tenderNotifs = notifs.filter(
+  //         (n: any) => n.type === "tender_published"
+  //       );
+  //       console.log(`Tender notifications: ${tenderNotifs.length}`);
+  //     } else {
+  //       setNotifications([]);
+  //       setTotalCount(0);
+  //       setError((notifResult as any).error || "Failed to fetch notifications");
+  //       console.error(
+  //         "❌ Failed to fetch notifications:",
+  //         (notifResult as any).error
+  //       );
+  //     }
+
+  //     if (countResult.success) {
+  //       setUnreadCount((countResult as any).count);
+  //       console.log("Unread count from server:", (countResult as any).count);
+  //     } else if (notifResult.success) {
+  //       const unread = ((notifResult as any).data || []).filter(
+  //         (n: any) => !n.read
+  //       ).length;
+  //       setUnreadCount(unread);
+  //       console.log("Unread count calculated:", unread);
+  //     } else {
+  //       setUnreadCount(0);
+  //       console.log("Unread count set to 0");
+  //     }
+
+  //     console.log("Final state - Total:", totalCount, "Unread:", unreadCount);
+  //     console.log("===================================");
+  //   } catch (e) {
+  //     console.error("❌ Exception loading notifications:", e);
+  //     setNotifications([]);
+  //     setTotalCount(0);
+  //     setUnreadCount(0);
+  //     setError("Failed to fetch notifications");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const loadNotifications = async () => {
+    if (!refreshEnabled) return;
     setIsLoading(true);
     setError(null);
 
-    // DEBUG LOGGING
     console.log("=== NOTIFICATION DROPDOWN DEBUG ===");
     console.log("Current user ID:", user?.id);
-    console.log("Current user email:", user?.emailAddresses?.[0]?.emailAddress);
     console.log("Timestamp:", new Date().toISOString());
 
+    if (!user?.id) {
+      setNotifications([]);
+      setTotalCount(0);
+      setUnreadCount(0);
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const [notifResult, countResult] = await Promise.all([
-        getNotifications(20).catch((err) => {
-          console.error("getNotifications error:", err);
-          return { success: false, error: "Failed to fetch notifications" };
-        }),
-        getUnreadCount().catch((err) => {
-          console.error("getUnreadCount error:", err);
-          return { success: false, count: 0 };
-        }),
+      const [notifResult, countResult] = await Promise.allSettled([
+        getNotifications(20),
+        getUnreadCount(),
       ]);
 
-      // DEBUG LOGGING FOR RESULTS
       console.log("Notification result:", notifResult);
       console.log("Unread count result:", countResult);
 
-      if (notifResult.success) {
-        const notifs = (notifResult as any).data || [];
+      // Handle notifications result
+      if (notifResult.status === "fulfilled" && notifResult.value.success) {
+        const notifs = notifResult.value.data || [];
         setNotifications(notifs);
         setTotalCount(notifs.length);
+        const unreadDerived = (notifs || []).filter((n: any) => !n.read).length;
+        saveCache(notifs, unreadDerived);
 
-        // DEBUG LOGGING FOR EACH NOTIFICATION
         console.log(`Found ${notifs.length} notifications:`);
         if (notifs.length === 0) {
           console.warn("⚠️ No notifications found for this user!");
         } else {
           notifs.forEach((n: any, i: number) => {
-            console.log(`  ${i + 1}. Type: ${n.type}`);
-            console.log(`     Title: ${n.title}`);
-            console.log(`     For userId: ${n.userId}`);
-            console.log(`     Read: ${n.read}`);
-            console.log(`     Created: ${n.createdAt}`);
+            console.log(`  ${i + 1}. Type: ${n.type}, Title: ${n.title}`);
           });
         }
-
-        // Check for tender notifications specifically
-        const tenderNotifs = notifs.filter(
-          (n: any) => n.type === "tender_published"
-        );
-        console.log(`Tender notifications: ${tenderNotifs.length}`);
       } else {
         setNotifications([]);
         setTotalCount(0);
-        setError((notifResult as any).error || "Failed to fetch notifications");
-        console.error(
-          "❌ Failed to fetch notifications:",
-          (notifResult as any).error
-        );
+        const errorMsg =
+          notifResult.status === "fulfilled"
+            ? notifResult.value.error
+            : notifResult.reason?.message || "Network error";
+        const isUnauthorized =
+          typeof errorMsg === "string" &&
+          errorMsg.toLowerCase().includes("unauthorized");
+        if (isUnauthorized) {
+          setUnreadCount(0);
+          setError(null);
+        } else {
+          const msg = String(errorMsg || "").toLowerCase();
+          const isTimeout =
+            msg.includes("etimedout") ||
+            msg.includes("timeout") ||
+            msg.includes("timed out");
+          if (isTimeout) {
+            const cached = readCache();
+            if (cached.items.length > 0) {
+              setNotifications(cached.items);
+              setTotalCount(cached.items.length);
+              setUnreadCount(cached.unread);
+            } else {
+              setNotifications([]);
+              setTotalCount(0);
+              setUnreadCount(0);
+            }
+            setError("Notifications temporarily unavailable. Retrying soon.");
+            setRefreshEnabled(false);
+            setTimeout(() => setRefreshEnabled(true), 120000);
+            console.warn("Notifications fetch timed out");
+          } else {
+            setError(errorMsg);
+          }
+        }
+        console.warn("Failed to fetch notifications");
       }
 
-      if (countResult.success) {
-        setUnreadCount((countResult as any).count);
-        console.log("Unread count from server:", (countResult as any).count);
-      } else if (notifResult.success) {
-        const unread = ((notifResult as any).data || []).filter(
+      // Handle unread count result
+      if (countResult.status === "fulfilled" && countResult.value.success) {
+        setUnreadCount(countResult.value.count);
+        console.log("Unread count from server:", countResult.value.count);
+      } else if (
+        notifResult.status === "fulfilled" &&
+        notifResult.value.success
+      ) {
+        const unread = (notifResult.value.data || []).filter(
           (n: any) => !n.read
         ).length;
         setUnreadCount(unread);
         console.log("Unread count calculated:", unread);
       } else {
         setUnreadCount(0);
-        console.log("Unread count set to 0");
       }
 
-      console.log("Final state - Total:", totalCount, "Unread:", unreadCount);
       console.log("===================================");
     } catch (e) {
-      console.error("❌ Exception loading notifications:", e);
-      setNotifications([]);
-      setTotalCount(0);
-      setUnreadCount(0);
-      setError("Failed to fetch notifications");
+      const cached = readCache();
+      if (cached.items.length > 0) {
+        setNotifications(cached.items);
+        setTotalCount(cached.items.length);
+        setUnreadCount(cached.unread);
+      } else {
+        setNotifications([]);
+        setTotalCount(0);
+        setUnreadCount(0);
+      }
+      setRefreshEnabled(false);
+      setTimeout(() => setRefreshEnabled(true), 120000);
+      setError("Network error - retrying soon");
+      console.warn("Notifications load exception");
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
+    if (!user?.id) return;
+
     console.log("NotificationsDropdown mounted");
     loadNotifications();
 
-    // Auto-refresh every 30 seconds
     const interval = setInterval(() => {
       console.log("Auto-refreshing notifications...");
-      loadNotifications();
+      if (refreshEnabled) loadNotifications();
     }, 30000);
 
     return () => {
       console.log("NotificationsDropdown unmounted");
       clearInterval(interval);
     };
-  }, []);
-
-  // Log when user changes
-  useEffect(() => {
-    if (user?.id) {
-      console.log("User changed or loaded:", user.id);
-      loadNotifications();
-    }
-  }, [user?.id]);
+  }, [user?.id, refreshEnabled]);
 
   const handleMarkAsRead = async (notificationId: string) => {
     console.log("Marking as read:", notificationId);
@@ -337,7 +468,7 @@ export function NotificationsDropdown() {
                 onClick={() => handleNotificationClick(notification)}
                 className="px-3 sm:px-4 py-3 flex items-start gap-3 cursor-pointer hover:bg-accent border-b last:border-b-0"
               >
-                <div className="flex-shrink-0 mt-0.5">
+                <div className="shrink-0 mt-0.5">
                   <div
                     className={cn(
                       "w-2 h-2 rounded-full",
@@ -349,7 +480,7 @@ export function NotificationsDropdown() {
                 <div className="flex flex-col flex-1 min-w-0 gap-1">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <span className="text-sm flex-shrink-0">
+                      <span className="text-sm shrink-0">
                         {getNotificationIcon(notification.type)}
                       </span>
                       <span
@@ -366,7 +497,7 @@ export function NotificationsDropdown() {
                     <Badge
                       variant="secondary"
                       className={cn(
-                        "text-[10px] px-1.5 py-0.5 flex-shrink-0",
+                        "text-[10px] px-1.5 py-0.5 shrink-0",
                         notification.read
                           ? "bg-muted text-muted-foreground"
                           : "bg-primary/10 text-primary"
@@ -399,7 +530,7 @@ export function NotificationsDropdown() {
                     e.stopPropagation();
                     handleDelete(notification._id);
                   }}
-                  className="w-6 h-6 p-0 flex-shrink-0 hover:bg-destructive/10 hover:text-destructive"
+                  className="w-6 h-6 p-0 shrink-0 hover:bg-destructive/10 hover:text-destructive"
                 >
                   <Trash2 className="w-3 h-3" />
                 </Button>

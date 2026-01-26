@@ -32,10 +32,46 @@ export async function getSupplierById(id: string) {
     if (!supplier) {
       return { success: false, error: "Supplier not found" };
     }
-    console.log("getSupplierById:", supplier);
+    const onboarding: any = (supplier as any).onboarding || {};
+    const uploads: Array<any> = [
+      ...(onboarding.priceListUploads || []),
+      ...(onboarding.registrationCertificateUploads || []),
+      ...(onboarding.businessRegistrationCertificateUploads || []),
+      ...(onboarding.taxClearanceCertificateUploads || []),
+      ...(onboarding.gstVatRegistrationCertificateUploads || []),
+      ...(onboarding.businessLicenseUploads || []),
+      ...(onboarding.nassitCertificateUploads || []),
+      ...(onboarding.sectorSpecificCertificateUploads || []),
+      ...(onboarding.businessDurationDocuments || []),
+    ];
+    const urlByName = new Map<string, string>();
+    for (const u of uploads) {
+      const name = String(u?.name || "")
+        .toLowerCase()
+        .trim();
+      const url = String(u?.url || "").trim();
+      if (name && url) urlByName.set(name, url);
+    }
+    const normalizedDocuments = Array.isArray((supplier as any).documents)
+      ? ((supplier as any).documents || []).map((d: any) => {
+          const nameKey = String(d?.name || "")
+            .toLowerCase()
+            .trim();
+          const inferredUrl = urlByName.get(nameKey);
+          return {
+            ...d,
+            url: d?.url || inferredUrl || undefined,
+          };
+        })
+      : [];
+    const enriched = {
+      ...(supplier as any),
+      documents: normalizedDocuments,
+    };
+    console.log("getSupplierById (enriched):", enriched);
     return {
       success: true,
-      data: JSON.parse(JSON.stringify(supplier)),
+      data: JSON.parse(JSON.stringify(enriched)),
     };
   } catch (error) {
     console.error("Error fetching supplier:", error);
@@ -53,6 +89,39 @@ export async function getSupplierOnboardingByUserId(userId: string) {
 
     console.log("supplier:", supplier);
 
+    const onboarding: any = (supplier as any).onboarding || {};
+    const uploads: Array<any> = [
+      ...(onboarding.priceListUploads || []),
+      ...(onboarding.registrationCertificateUploads || []),
+      ...(onboarding.businessRegistrationCertificateUploads || []),
+      ...(onboarding.taxClearanceCertificateUploads || []),
+      ...(onboarding.gstVatRegistrationCertificateUploads || []),
+      ...(onboarding.businessLicenseUploads || []),
+      ...(onboarding.nassitCertificateUploads || []),
+      ...(onboarding.sectorSpecificCertificateUploads || []),
+      ...(onboarding.businessDurationDocuments || []),
+    ];
+    const urlByName = new Map<string, string>();
+    for (const u of uploads) {
+      const name = String(u?.name || "")
+        .toLowerCase()
+        .trim();
+      const url = String(u?.url || "").trim();
+      if (name && url) urlByName.set(name, url);
+    }
+    const normalizedDocuments = Array.isArray((supplier as any).documents)
+      ? ((supplier as any).documents || []).map((d: any) => {
+          const nameKey = String(d?.name || "")
+            .toLowerCase()
+            .trim();
+          const inferredUrl = urlByName.get(nameKey);
+          return {
+            ...d,
+            url: d?.url || inferredUrl || undefined,
+          };
+        })
+      : [];
+
     const data = {
       supplierId: (supplier as any).supplierId,
       name: (supplier as any).name,
@@ -60,13 +129,11 @@ export async function getSupplierOnboardingByUserId(userId: string) {
       category: (supplier as any).category || "",
       region: (supplier as any).region || "",
       segment: (supplier as any).segment || "",
-      onboarding: (supplier as any).onboarding || {},
+      onboarding,
       contacts: Array.isArray((supplier as any).contacts)
         ? (supplier as any).contacts
         : [],
-      documents: Array.isArray((supplier as any).documents)
-        ? (supplier as any).documents
-        : [],
+      documents: normalizedDocuments,
     };
     console.log("data:", data);
     return { success: true, data: JSON.parse(JSON.stringify(data)) };

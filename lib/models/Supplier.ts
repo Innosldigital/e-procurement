@@ -247,6 +247,7 @@ const SupplierSchema = new Schema(
         name: String,
         type: String,
         size: String,
+        url: String,
         signedDate: String,
         expiresDate: String,
         owner: String,

@@ -1,7 +1,8 @@
 {
-  "/(auth)/sign-in/[[...sign-in]]/page": "app/(auth)/sign-in/[[...sign-in]]/page.js",
-  "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
-  "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
+  "/(app)/purchase-orders/page": "app/(app)/purchase-orders/page.js",
+  "/(app)/requisitions/page": "app/(app)/requisitions/page.js",
+  "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
+  "/(app)/tenders/page": "app/(app)/tenders/page.js",
+  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js",
+  "/page": "app/page.js"
 }

@@ -189,9 +189,18 @@ export default clerkMiddleware(async (auth, request) => {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
-  // Fetch user metadata from Clerk
-  const client = await clerkClient();
-  const user = await client.users.getUser(userId);
+  // Fetch user metadata from Clerk (with safe fallback)
+  let user: any;
+  try {
+    const client = await clerkClient();
+    user = await client.users.getUser(userId);
+  } catch (e) {
+    console.warn(
+      "⚠️ Clerk API error in middleware, allowing request to proceed:",
+      e
+    );
+    return NextResponse.next();
+  }
 
   const md: any = user.publicMetadata || {};
 

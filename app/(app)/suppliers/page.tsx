@@ -297,7 +297,7 @@ export default function SuppliersPage() {
                           </span>
                         </div>
                         <span className="font-medium">
-                          Leones {supplier.fy24Spend?.toLocaleString() || "0"}
+                          Nle {supplier.fy24Spend?.toLocaleString() || "0"}
                         </span>
                       </div>
                     </button>
