@@ -1,8 +1,4 @@
 {
-  "/(app)/purchase-orders/page": "app/(app)/purchase-orders/page.js",
-  "/(app)/requisitions/page": "app/(app)/requisitions/page.js",
-  "/(app)/suppliers/page": "app/(app)/suppliers/page.js",
-  "/(app)/tenders/page": "app/(app)/tenders/page.js",
-  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js",
-  "/page": "app/page.js"
+  "/(app)/bids/page": "app/(app)/bids/page.js",
+  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
 }

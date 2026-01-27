@@ -101,19 +101,24 @@ export default function OnboardingContent() {
         const uploads = [];
 
         for (const file of Array.from(list)) {
-          const res = await edgestore.publicFiles.upload({
-            file,
-            onProgressChange: (progress) => {
-              console.log(`${file.name}: ${progress}%`);
-            },
-          });
-
-          uploads.push({
-            url: res.url,
-            size: file.size,
-            type: file.type,
-            name: file.name,
-          });
+          try {
+            const res = await edgestore.publicFiles.upload({
+              file,
+              onProgressChange: (progress) => {
+                console.log(`${file.name}: ${progress}%`);
+              },
+            });
+            uploads.push({
+              url: res.url,
+              size: file.size,
+              type: file.type,
+              name: file.name,
+            });
+          } catch (e: any) {
+            setError(
+              "File upload failed. Please check your connection and try again."
+            );
+          }
         }
 
         return uploads;

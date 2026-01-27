@@ -872,15 +872,17 @@ export default function InvoicesPage() {
                       url: string;
                     }> = [];
                     for (const file of Array.from(list)) {
-                      const res = await edgestore.publicFiles.upload({
-                        file,
-                      });
-                      uploads.push({
-                        url: res.url,
-                        size: file.size,
-                        type: file.type,
-                        name: file.name,
-                      });
+                      try {
+                        const res = await edgestore.publicFiles.upload({
+                          file,
+                        });
+                        uploads.push({
+                          url: res.url,
+                          size: file.size,
+                          type: file.type,
+                          name: file.name,
+                        });
+                      } catch (e: any) {}
                     }
                     return uploads;
                   }

@@ -19,7 +19,22 @@ const handler = createEdgeStoreNextHandler({
   router: edgeStoreRouter,
 });
 
-export { handler as GET, handler as POST };
+async function wrappedHandler(req: Request) {
+  try {
+    return await handler(req as any);
+  } catch (e: any) {
+    const msg = String(e?.message || "EdgeStore handler error");
+    return new Response(
+      JSON.stringify({ success: false, error: msg }),
+      {
+        status: 502,
+        headers: { "content-type": "application/json" },
+      }
+    );
+  }
+}
+
+export { wrappedHandler as GET, wrappedHandler as POST };
 
 /**
  * This type is used to create the type-safe client for the frontend.
