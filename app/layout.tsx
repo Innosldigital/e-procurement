@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClientClerkProvider } from "@/components/client-clerk-provider";
 import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 import { EdgeStoreProvider } from "@/lib/edgestore";
@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClientClerkProvider>
       <html lang="en">
         <body
           className={`${inter.variable} font-sans antialiased overflow-x-hidden`}
@@ -47,6 +47,6 @@ export default function RootLayout({
           <Analytics />
         </body>
       </html>
-    </ClerkProvider>
+    </ClientClerkProvider>
   );
 }

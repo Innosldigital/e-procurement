@@ -6,13 +6,14 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
+    "fix-categories": "tsx scripts/fix-facility-category.ts",
     "seed": "tsx scripts/seed.ts",
     "start": "next start",
     "test:unit": "tsx scripts/test-submit-bid-form.unit.ts",
     "test:integration": "tsx scripts/test-submit-bid-form.integration.ts"
   },
   "dependencies": {
-    "@clerk/nextjs": "latest",
+    "@clerk/nextjs": "^6.36.10",
     "@edgestore/react": "^0.5.4",
     "@edgestore/server": "^0.5.4",
     "@hookform/resolvers": "^3.10.0",
@@ -54,7 +55,7 @@
     "embla-carousel-react": "8.5.1",
     "html2canvas": "^1.4.1",
     "input-otp": "1.4.1",
-    "jspdf": "^3.0.4",
+    "jspdf": "^4.0.0",
     "lucide-react": "^0.454.0",
     "mongodb": "^6.12.0",
     "mongoose": "latest",
@@ -82,7 +83,7 @@
     "eslint": "^9.39.1",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
-    "tsx": "^4.19.0",
+    "tsx": "^4.21.0",
     "tw-animate-css": "1.3.3",
     "typescript": "^5"
   }
