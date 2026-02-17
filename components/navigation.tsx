@@ -39,6 +39,7 @@ const getNavItems = (role: string) => [
   { href: "/invoices", icon: Receipt, label: "Invoices" },
   { href: "/reports", icon: BarChart3, label: "Reports" },
   { href: "/bids", icon: Gavel, label: "Bids" },
+  { href: "/admin-upload", icon: Gavel, label: "Upload Documents" },
   { href: "/admin", icon: Settings, label: "Admin" },
 ];
 
@@ -90,6 +91,10 @@ export function Navigation({
 
     // Admin and SuperAdmin can see the Admin page
     if (n.href === "/admin") {
+      return normalizedRole === "admin" || normalizedRole === "superadmin";
+    }
+
+    if (n.href === "/admin-upload") {
       return normalizedRole === "admin" || normalizedRole === "superadmin";
     }
 

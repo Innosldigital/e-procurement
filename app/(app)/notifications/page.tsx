@@ -1,10 +1,11 @@
-import { NotificationsList } from '@/components/notifications-list'
-import { getNotifications } from '@/lib/actions/notification-actions'
+import { NotificationsList } from "@/components/notifications-list";
+import { getNotifications } from "@/lib/actions/notification-actions";
 
+export const dynamic = "force-dynamic";
 
 export default async function NotificationsPage() {
-  const result = await getNotifications(100)
-  const notifications = result.success ? result.data : []
+  const result = await getNotifications(100);
+  const notifications = result.success ? result.data : [];
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -17,5 +18,5 @@ export default async function NotificationsPage() {
 
       <NotificationsList initialNotifications={notifications} />
     </div>
-  )
+  );
 }

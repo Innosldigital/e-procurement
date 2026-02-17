@@ -672,7 +672,7 @@ export default async function DashboardPage() {
     invoicesResult.success ? invoicesResult.data : []
   ) as InvoiceSummary[];
 
-  // ✅ FIXED: Calculate pending approvals correctly
+  // Calculate pending approvals correctly
   const pendingApprovalsItems = pendingApprovalsListResult.success
     ? (pendingApprovalsListResult as any).data
     : [];
@@ -689,7 +689,7 @@ export default async function DashboardPage() {
     (r) => r.status === "Pending approval" || r.status === "In review"
   ).length;
 
-  // ✅ FIXED: Calculate open POs correctly
+  // FIXED: Calculate open POs correctly
   const openPOs = purchaseOrders.filter((po) => {
     const status = String(po.status || "").toLowerCase();
     return (
@@ -931,11 +931,11 @@ export default async function DashboardPage() {
                         <StatusBadge status={labelFromType(n.type)} />
                       </div>
 
-                      <p className="text-sm font-medium break-words">
+                      <p className="text-sm font-medium wrap-break-words">
                         {n.title}
                       </p>
 
-                      <p className="text-xs text-muted-foreground break-words">
+                      <p className="text-xs text-muted-foreground wrap-break-words">
                         {n.message}
                       </p>
                     </div>

@@ -7,10 +7,17 @@
           "async": false,
           "exportedName": "getRequisitions",
           "filename": "lib/actions/requisition-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getRequisitions",
+          "filename": "lib/actions/requisition-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/requisition-actions.ts",
       "exportedName": "getRequisitions"
@@ -22,10 +29,17 @@
           "async": false,
           "exportedName": "getPurchaseOrders",
           "filename": "lib/actions/purchase-order-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getPurchaseOrders",
+          "filename": "lib/actions/purchase-order-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/purchase-order-actions.ts",
       "exportedName": "getPurchaseOrders"
@@ -37,10 +51,17 @@
           "async": false,
           "exportedName": "getSuppliers",
           "filename": "lib/actions/supplier-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSuppliers",
+          "filename": "lib/actions/supplier-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "rsc"
       },
       "filename": "lib/actions/supplier-actions.ts",
       "exportedName": "getSuppliers"
@@ -52,10 +73,17 @@
           "async": false,
           "exportedName": "getInvoices",
           "filename": "lib/actions/invoice-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getInvoices",
+          "filename": "lib/actions/invoice-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/invoice-actions.ts",
       "exportedName": "getInvoices"
@@ -67,10 +95,17 @@
           "async": false,
           "exportedName": "getApprovals",
           "filename": "lib/actions/approval-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getApprovals",
+          "filename": "lib/actions/approval-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/approval-actions.ts",
       "exportedName": "getApprovals"
@@ -82,10 +117,17 @@
           "async": false,
           "exportedName": "getNotifications",
           "filename": "lib/actions/notification-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getNotifications",
+          "filename": "lib/actions/notification-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/notification-actions.ts",
       "exportedName": "getNotifications"
@@ -97,10 +139,17 @@
           "async": false,
           "exportedName": "getUnreadCount",
           "filename": "lib/actions/notification-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getUnreadCount",
+          "filename": "lib/actions/notification-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/notification-actions.ts",
       "exportedName": "getUnreadCount"
@@ -112,10 +161,17 @@
           "async": false,
           "exportedName": "markAsRead",
           "filename": "lib/actions/notification-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "markAsRead",
+          "filename": "lib/actions/notification-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/notification-actions.ts",
       "exportedName": "markAsRead"
@@ -127,10 +183,17 @@
           "async": false,
           "exportedName": "markAllAsRead",
           "filename": "lib/actions/notification-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "markAllAsRead",
+          "filename": "lib/actions/notification-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/notification-actions.ts",
       "exportedName": "markAllAsRead"
@@ -142,10 +205,17 @@
           "async": false,
           "exportedName": "deleteNotification",
           "filename": "lib/actions/notification-actions.ts"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteNotification",
+          "filename": "lib/actions/notification-actions.ts"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "lib/actions/notification-actions.ts",
       "exportedName": "deleteNotification"
@@ -157,10 +227,17 @@
           "async": false,
           "exportedName": "detectKeylessEnvDriftAction",
           "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "detectKeylessEnvDriftAction",
+          "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js",
       "exportedName": "detectKeylessEnvDriftAction"
@@ -172,10 +249,17 @@
           "async": false,
           "exportedName": "invalidateCacheAction",
           "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "invalidateCacheAction",
+          "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js",
       "exportedName": "invalidateCacheAction"
@@ -187,10 +271,17 @@
           "async": false,
           "exportedName": "createOrReadKeylessAction",
           "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js"
+        },
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createOrReadKeylessAction",
+          "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js"
         }
       },
       "layer": {
-        "app/(onboard)/onboarding/page": "action-browser"
+        "app/(onboard)/onboarding/page": "action-browser",
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
       },
       "filename": "node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js",
       "exportedName": "createOrReadKeylessAction"
@@ -209,6 +300,111 @@
       },
       "filename": "lib/actions/onboarding-actions.ts",
       "exportedName": "submitSupplierOnboarding"
+    },
+    "00af073292081981ddba4ae18e8ea107f05874788c": {
+      "workers": {
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getAllSupplierOnboardings",
+          "filename": "lib/actions/supplier-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(onboard)/onboarding/supplier/[id]/page": "rsc"
+      },
+      "filename": "lib/actions/supplier-actions.ts",
+      "exportedName": "getAllSupplierOnboardings"
+    },
+    "400dcacbea27f50af5ae03edb23627952b5f7d0bf2": {
+      "workers": {
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteSupplier",
+          "filename": "lib/actions/supplier-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(onboard)/onboarding/supplier/[id]/page": "rsc"
+      },
+      "filename": "lib/actions/supplier-actions.ts",
+      "exportedName": "deleteSupplier"
+    },
+    "402af388cb84d10f1ed92f8df5498511e20dfda823": {
+      "workers": {
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSupplierOnboardingByUserId",
+          "filename": "lib/actions/supplier-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(onboard)/onboarding/supplier/[id]/page": "rsc"
+      },
+      "filename": "lib/actions/supplier-actions.ts",
+      "exportedName": "getSupplierOnboardingByUserId"
+    },
+    "40a453639c045c41ffafa0826f4fa3062c5672133e": {
+      "workers": {
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createSupplier",
+          "filename": "lib/actions/supplier-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(onboard)/onboarding/supplier/[id]/page": "rsc"
+      },
+      "filename": "lib/actions/supplier-actions.ts",
+      "exportedName": "createSupplier"
+    },
+    "40e2e64147cefa69531b634fcecebd94a6053df180": {
+      "workers": {
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSupplierById",
+          "filename": "lib/actions/supplier-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(onboard)/onboarding/supplier/[id]/page": "rsc"
+      },
+      "filename": "lib/actions/supplier-actions.ts",
+      "exportedName": "getSupplierById"
+    },
+    "60a8dae92c0c198c0ad8d23f29df829d54495e6ce7": {
+      "workers": {
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updateSupplier",
+          "filename": "lib/actions/supplier-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(onboard)/onboarding/supplier/[id]/page": "rsc"
+      },
+      "filename": "lib/actions/supplier-actions.ts",
+      "exportedName": "updateSupplier"
+    },
+    "60cdd91d89d093054c9d32fcb54a0fc3c14c9f2af0": {
+      "workers": {
+        "app/(onboard)/onboarding/supplier/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(onboard)/onboarding/supplier/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/requisition-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/purchase-order-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/lib/actions/supplier-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/lib/actions/invoice-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/lib/actions/approval-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/lib/actions/notification-actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addSupplierDocuments",
+          "filename": "lib/actions/supplier-actions.ts"
+        }
+      },
+      "layer": {
+        "app/(onboard)/onboarding/supplier/[id]/page": "action-browser"
+      },
+      "filename": "lib/actions/supplier-actions.ts",
+      "exportedName": "addSupplierDocuments"
     }
   },
   "edge": {},
