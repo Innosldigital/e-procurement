@@ -1,4 +1,4 @@
 {
-  "/(app)/tenders/page": "app/(app)/tenders/page.js",
+  "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
   "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
 }

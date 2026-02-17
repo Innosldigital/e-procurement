@@ -234,3 +234,45 @@ export async function deleteSupplier(id: string) {
     return { success: false, error: "Failed to delete supplier" };
   }
 }
+
+export async function addSupplierDocuments(
+  id: string,
+  documents: Array<{ name: string; type: string; size: number | string; url: string }>
+) {
+  try {
+    await dbConnect();
+    const normalized = (documents || [])
+      .filter((d) => d && d.url)
+      .map((d) => ({
+        name: String(d.name || "Document"),
+        type: String(d.type || ""),
+        size:
+          typeof d.size === "number"
+            ? `${d.size} bytes`
+            : String(d.size || ""),
+        url: String(d.url).trim(),
+      }));
+
+    if (normalized.length === 0) {
+      return { success: false, error: "No valid documents provided" };
+    }
+
+    const result = await Supplier.updateOne(
+      { _id: id },
+      { $push: { documents: { $each: normalized } } }
+    );
+
+    if (!result || result.matchedCount === 0) {
+      return { success: false, error: "Supplier not found" };
+    }
+
+    revalidatePath("/suppliers");
+    revalidatePath(`/suppliers/${id}`);
+    revalidatePath(`/onboarding/supplier/${id}`);
+
+    return { success: true, data: normalized };
+  } catch (error) {
+    console.error("Error adding supplier documents:", error);
+    return { success: false, error: "Failed to add documents" };
+  }
+}

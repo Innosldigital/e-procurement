@@ -2,7 +2,9 @@ import { StatusBadge } from "@/components/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getSupplierById } from "@/lib/actions/supplier-actions";
-import { FileText, Download } from "lucide-react";
+import { FileText, Download, Edit } from "lucide-react";
+import { SupplierDocumentUpload } from "@/components/supplier-document-upload";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 
 export default async function SupplierDetailPage({
   params,
@@ -11,6 +13,20 @@ export default async function SupplierDetailPage({
 }) {
   const { id } = await params;
   const res = await getSupplierById(id);
+  const { userId } = await auth();
+  let isAdmin = false;
+  if (userId) {
+    try {
+      const client = await clerkClient();
+      const user = await client.users.getUser(userId);
+      const role = String((user?.publicMetadata as any)?.role || "")
+        .toLowerCase()
+        .replace(/[\s_-]/g, "");
+      isAdmin = ["admin", "superadmin", "projectlead"].includes(role);
+    } catch {
+      isAdmin = false;
+    }
+  }
 
   if (!res || !res.success) {
     return (
@@ -52,6 +68,8 @@ export default async function SupplierDetailPage({
     ...(o.sectorSpecificCertificateUploads || []),
     ...(o.businessDurationDocuments || []),
   ];
+  const docs = Array.isArray(s.documents) ? s.documents : [];
+  const allDocs = [...uploads, ...docs];
 
   return (
     <div className="mx-auto max-w-5xl p-4 sm:p-6 space-y-6">
@@ -73,7 +91,17 @@ export default async function SupplierDetailPage({
             <span>{(s.region || "").trim() || "Global"}</span>
           </div>
         </div>
-        <StatusBadge status={s.approved ? "Approved" : "Pending approval"} />
+        <div className="flex items-center gap-2">
+          <StatusBadge status={s.approved ? "Approved" : "Pending approval"} />
+          {isAdmin && s?._id && (
+            <Button variant="outline" size="sm" asChild>
+              <a href={`/suppliers/${s._id}/edit`} className="gap-2">
+                <Edit className="h-4 w-4" />
+                Edit supplier
+              </a>
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Supplier Details Card */}
@@ -110,7 +138,7 @@ export default async function SupplierDetailPage({
             o.productCategories.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
                 <span className="font-medium">Product Categories</span>
-                <div className="sm:col-span-2 text-muted-foreground break-words">
+                <div className="sm:col-span-2 text-muted-foreground wrap-break-words">
                   {o.productCategories.join(", ")}
                 </div>
               </div>
@@ -144,7 +172,7 @@ export default async function SupplierDetailPage({
             o.paymentMethods.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
                 <span className="font-medium">Payment Methods</span>
-                <div className="sm:col-span-2 text-muted-foreground break-words">
+                <div className="sm:col-span-2 text-muted-foreground wrap-break-words">
                   {o.paymentMethods.join(", ")}
                 </div>
               </div>
@@ -154,7 +182,7 @@ export default async function SupplierDetailPage({
           {o.vendorPaymentTerms && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
               <span className="font-medium">Payment Terms</span>
-              <div className="sm:col-span-2 text-muted-foreground break-words">
+              <div className="sm:col-span-2 text-muted-foreground wrap-break-words">
                 {o.vendorPaymentTerms}
               </div>
             </div>
@@ -229,22 +257,22 @@ export default async function SupplierDetailPage({
         </CardContent>
       </Card>
 
-      {/* Onboarding Documents Card */}
+      {/* Documents */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <FileText className="h-4 w-4" />
-            Onboarding Documents
+            Documents
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {uploads.length === 0 ? (
+          {allDocs.length === 0 ? (
             <div className="text-sm text-muted-foreground">
               No documents available
             </div>
           ) : (
             <div className="space-y-2">
-              {uploads.map((d: any, i: number) => (
+              {allDocs.map((d: any, i: number) => (
                 <div
                   key={i}
                   className="flex items-center justify-between p-3 rounded-lg border hover:border-primary/50 transition-colors"
@@ -255,12 +283,17 @@ export default async function SupplierDetailPage({
                     rel="noopener noreferrer"
                     className="text-sm font-medium hover:underline break-all flex-1 flex items-center gap-2"
                   >
-                    <FileText className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                    <FileText className="h-4 w-4 shrink-0 text-muted-foreground" />
                     {d.name || "Document"}
                   </a>
                   <div className="flex items-center gap-2 ml-4">
                     <div className="text-xs text-muted-foreground">
-                      {(d.type || "").split("/")[1]?.toUpperCase() || "FILE"}
+                      {(String(d.type || "").includes("/")
+                        ? (d.type || "").split("/")[1]
+                        : d.type || ""
+                      )
+                        ?.toString()
+                        .toUpperCase() || "FILE"}
                     </div>
                     <a
                       href={d.url}
@@ -273,6 +306,11 @@ export default async function SupplierDetailPage({
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+          {isAdmin && s?._id && (
+            <div className="mt-4 pt-4 border-t">
+              <SupplierDocumentUpload supplierId={String(s._id)} />
             </div>
           )}
         </CardContent>

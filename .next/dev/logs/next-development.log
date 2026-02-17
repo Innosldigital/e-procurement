@@ -1,74 +1,34 @@
-[00:00:01.373] Server  LOG     ✓ Ready in 901ms
-[00:00:01.407] Browser LOG     Auto-refreshing notifications...
-[00:00:01.407] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:00:01.407] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:01.407] Browser LOG     Timestamp: 2026-01-27T12:05:51.346Z
-[00:00:01.407] Browser LOG     Notification result: {"reason":{},"status":"rejected"}
-[00:00:01.408] Browser LOG     Unread count result: {"reason":{},"status":"rejected"}
-[00:00:01.408] Browser WARN    Failed to fetch notifications
-[00:00:01.408] Browser LOG     ===================================
-[00:00:06.020] Server  LOG     [getTenders] User role: {}
-[00:00:06.206] Browser LOG     [TendersPage] Loading tenders...
-[00:00:06.206] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:06.206] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:00:06.206] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:06.206] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/tenders","route":"/tenders"}
-[00:00:06.206] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1769515563746}
-[00:00:06.206] Browser LOG     === USER DEBUG INFO ===
-[00:00:06.206] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-01-27T12:06:03.706Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-01-26T12:08:25.143Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-01-27T12:06:03.706Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-01-26T12:08:25.205Z","username":null,"web3Wallets":[]}
-[00:00:06.206] Browser LOG     Public metadata: {"role":"super_admin"}
-[00:00:06.206] Browser LOG     Unsafe metadata: {}
-[00:00:06.206] Browser LOG     Raw role: super_admin
-[00:00:06.206] Browser LOG     Normalized role: superadmin
-[00:00:06.206] Browser LOG     Is loaded: true
-[00:00:06.206] Browser LOG     ====================
-[00:00:06.206] Browser LOG     NotificationsDropdown mounted
-[00:00:06.206] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:00:06.206] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:06.206] Browser LOG     Timestamp: 2026-01-27T12:06:03.775Z
-[00:00:06.206] Browser LOG     [TendersPage] User role: {"normalized":"superadmin","raw":"super_admin"}
-[00:00:08.012] Server  LOG     MongoDB connected successfully
-[00:00:08.012] Server  LOG     [getTenders] Admin/Superadmin - fetching all tenders
-[00:00:08.688] Server  LOG     [getTenders] Admin found 4 tenders
-[00:00:09.211] Browser LOG     [TendersPage] getTenders result: {"count":4,"success":true}
-[00:00:09.211] Browser LOG     [TendersPage] Setting tenders: 4
-[00:00:10.169] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:11.256] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:00:11.256] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:00:11.256] Browser LOG     Found 0 notifications:
-[00:00:11.256] Browser WARN    ⚠️ No notifications found for this user!
-[00:00:11.256] Browser LOG     Unread count from server: 0
-[00:00:11.256] Browser LOG     ===================================
-[00:00:37.198] Browser LOG     Auto-refreshing notifications...
-[00:00:37.198] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:00:37.198] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:37.198] Browser LOG     Timestamp: 2026-01-27T12:06:34.358Z
-[00:00:38.401] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:40.212] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:00:40.212] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:00:40.212] Browser LOG     Found 0 notifications:
-[00:00:40.212] Browser WARN    ⚠️ No notifications found for this user!
-[00:00:40.212] Browser LOG     Unread count from server: 0
-[00:00:40.212] Browser LOG     ===================================
-[00:01:07.200] Browser LOG     Auto-refreshing notifications...
-[00:01:07.200] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:01:07.200] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:07.200] Browser LOG     Timestamp: 2026-01-27T12:07:04.350Z
-[00:01:07.412] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:09.201] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:01:09.201] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:01:09.201] Browser LOG     Found 0 notifications:
-[00:01:09.201] Browser WARN    ⚠️ No notifications found for this user!
-[00:01:09.201] Browser LOG     Unread count from server: 0
-[00:01:09.201] Browser LOG     ===================================
-[00:01:37.212] Browser LOG     Auto-refreshing notifications...
-[00:01:37.212] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:01:37.212] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:37.212] Browser LOG     Timestamp: 2026-01-27T12:07:34.354Z
-[00:01:38.848] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:40.199] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:01:40.199] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:01:40.199] Browser LOG     Found 0 notifications:
-[00:01:40.199] Browser WARN    ⚠️ No notifications found for this user!
-[00:01:40.199] Browser LOG     Unread count from server: 0
-[00:01:40.199] Browser LOG     ===================================
+[00:00:02.408] Server  LOG     ✓ Ready in 1683ms
+[00:59:20.503] Server  LOG     🔄 User not onboarded - redirecting to onboarding
+[00:59:20.902] Server  LOG     ✅ Allowing access
+[00:59:23.459] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:59:23.459] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:59:23.554] Server  LOG     ✅ Allowing access
+[00:59:24.323] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:59:24.323] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[00:59:24.323] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771336701058}
+[00:59:29.551] Server  LOG     🔄 User not onboarded - redirecting to onboarding
+[00:59:29.903] Server  LOG     ✅ Allowing access
+[00:59:31.029] Server  LOG     ✅ Allowing access
+[00:59:31.497] Server  LOG     ✅ Allowing access
+[00:59:32.116] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:59:32.116] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:59:32.404] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:59:32.405] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[00:59:32.405] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771336709517}
+[00:59:32.452] Server  LOG     ✅ Allowing access
+[01:00:21.900] Server  LOG     🔄 User not onboarded - redirecting to onboarding
+[01:00:22.305] Server  LOG     ✅ Allowing access
+[01:00:22.938] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:00:22.938] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:00:23.154] Server  LOG     ✅ Allowing access
+[01:00:23.302] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:00:23.302] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[01:00:23.302] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771336760412}
+[01:02:18.858] Server  LOG     ✅ Allowing access
+[01:02:19.351] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[01:02:19.352] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[01:02:19.612] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:02:19.612] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
+[01:02:19.612] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771336876724}
+[01:02:19.699] Server  LOG     ✅ Allowing access
