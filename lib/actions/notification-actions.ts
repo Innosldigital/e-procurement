@@ -1,199 +1,3 @@
-// "use server";
-
-// import { auth } from "@clerk/nextjs/server";
-// import dbConnect from "@/lib/mongodb";
-// import { Notification } from "../models/Notification";
-// import { revalidatePath } from "next/cache";
-
-// export async function getNotifications(limit = 20) {
-//   try {
-//     const { userId } = await auth();
-
-//     // console.log("=== getNotifications SERVER ===");
-//     // console.log("Authenticated userId:", userId);
-
-//     if (!userId) {
-//       // console.error("No userId - unauthorized");
-//       throw new Error("Unauthorized");
-//     }
-
-//     await dbConnect();
-
-//     const notifications = await Notification.find({ userId })
-//       .sort({ createdAt: -1 })
-//       .limit(limit)
-//       .lean();
-
-//     console.log(
-//       `Found ${notifications.length} notifications for userId: ${userId}`
-//     );
-
-//     // Log each notification
-//     notifications.forEach((n: any, i: number) => {
-//       console.log(`  ${i + 1}. ${n.type} - ${n.title} (read: ${n.read})`);
-//     });
-
-//     // console.log("================================");
-
-//     return {
-//       success: true,
-//       data: JSON.parse(JSON.stringify(notifications)),
-//     };
-//   } catch (error: any) {
-//     // console.error("getNotifications error:", error);
-//     return {
-//       success: false,
-//       error: error.message,
-//     };
-//   }
-// }
-
-// export async function getNotificationsPublic(limit = 20) {
-//   try {
-//     await dbConnect();
-//     const notifications = await Notification.find({})
-//       .sort({ createdAt: -1 })
-//       .limit(limit)
-//       .lean();
-
-//     return {
-//       success: true,
-//       data: JSON.parse(JSON.stringify(notifications)),
-//     };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       error: "Failed to fetch notifications",
-//     };
-//   }
-// }
-
-// export async function getUnreadCount() {
-//   try {
-//     const { userId } = await auth();
-//     if (!userId) {
-//       throw new Error("Unauthorized");
-//     }
-
-//     await dbConnect();
-
-//     const count = await Notification.countDocuments({
-//       userId,
-//       read: false,
-//     });
-
-//     return {
-//       success: true,
-//       count,
-//     };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       error: error.message,
-//       count: 0,
-//     };
-//   }
-// }
-
-// export async function markAsRead(notificationId: string) {
-//   try {
-//     const { userId } = await auth();
-//     if (!userId) {
-//       throw new Error("Unauthorized");
-//     }
-
-//     await dbConnect();
-
-//     await Notification.findOneAndUpdate(
-//       { _id: notificationId, userId },
-//       { read: true }
-//     );
-
-//     revalidatePath("/", "layout");
-
-//     return { success: true };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       error: error.message,
-//     };
-//   }
-// }
-
-// export async function markAllAsRead() {
-//   try {
-//     const { userId } = await auth();
-//     if (!userId) {
-//       throw new Error("Unauthorized");
-//     }
-
-//     await dbConnect();
-
-//     await Notification.updateMany({ userId, read: false }, { read: true });
-
-//     revalidatePath("/", "layout");
-
-//     return { success: true };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       error: error.message,
-//     };
-//   }
-// }
-
-// export async function deleteNotification(notificationId: string) {
-//   try {
-//     const { userId } = await auth();
-//     if (!userId) {
-//       throw new Error("Unauthorized");
-//     }
-
-//     await dbConnect();
-
-//     await Notification.findOneAndDelete({
-//       _id: notificationId,
-//       userId,
-//     });
-
-//     revalidatePath("/", "layout");
-
-//     return { success: true };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       error: error.message,
-//     };
-//   }
-// }
-
-// export async function createNotification(data: {
-//   userId: string;
-//   type: string;
-//   title: string;
-//   message: string;
-//   actionUrl?: string;
-//   priority?: "low" | "medium" | "high" | "urgent";
-//   metadata?: any;
-//   expiresAt?: Date;
-// }) {
-//   try {
-//     await dbConnect();
-
-//     const notification = await Notification.create(data);
-
-//     return {
-//       success: true,
-//       data: JSON.parse(JSON.stringify(notification)),
-//     };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       error: error.message,
-//     };
-//   }
-// }
-
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
@@ -204,7 +8,7 @@ import { revalidatePath } from "next/cache";
 // Helper function to add timeout to database operations
 async function withTimeout<T>(
   promise: Promise<T>,
-  timeoutMs: number = 20000,
+  timeoutMs: number = 15000,
   errorMessage: string = "Operation timed out"
 ): Promise<T> {
   let timeoutHandle: NodeJS.Timeout;
@@ -226,12 +30,36 @@ async function withTimeout<T>(
   }
 }
 
+function isSoftFail(e: any): boolean {
+  const msg = String(e?.message || "").toLowerCase();
+  return (
+    msg.includes("timed out") ||
+    msg.includes("timeout") ||
+    msg.includes("fetch failed") ||
+    msg.includes("connect timeout") ||
+    msg.includes("und_err_connect_timeout")
+  );
+}
+
 export async function getNotifications(limit = 20) {
   try {
-    const { userId } = await auth();
+    let userId: string | null = null;
+    try {
+      const authRes = await auth();
+      userId = String(authRes?.userId || "") || null;
+    } catch (e: any) {
+      if (isSoftFail(e)) {
+        console.warn(
+          "getNotifications: auth soft-failed, returning empty list"
+        );
+        return { success: true, data: [] };
+      }
+      console.error("getNotifications: auth error:", e);
+      return { success: false, error: e?.message || "Unauthorized", data: [] };
+    }
 
     if (!userId) {
-      console.error("No userId - unauthorized");
+      console.warn("getNotifications: No userId - unauthorized");
       return {
         success: false,
         error: "Unauthorized",
@@ -244,13 +72,13 @@ export async function getNotifications(limit = 20) {
     const notificationsPromise = Notification.find({ userId })
       .sort({ createdAt: -1 })
       .limit(limit)
-      .maxTimeMS(15000) // Query-level timeout
+      .maxTimeMS(10000)
       .lean()
       .exec();
 
     const notifications = await withTimeout(
       notificationsPromise,
-      20000,
+      12000,
       "Notification query timed out"
     );
 
@@ -268,12 +96,17 @@ export async function getNotifications(limit = 20) {
       data: JSON.parse(JSON.stringify(notifications)),
     };
   } catch (error: any) {
-    console.error("❌ getNotifications error:", error);
-    return {
-      success: false,
-      error: error.message || "Failed to fetch notifications",
-      data: [],
-    };
+    if (isSoftFail(error)) {
+      console.warn("getNotifications soft-failed, returning empty list");
+      return { success: true, data: [] };
+    } else {
+      console.error("❌ getNotifications error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to fetch notifications",
+        data: [],
+      };
+    }
   }
 }
 
@@ -284,13 +117,13 @@ export async function getNotificationsPublic(limit = 20) {
     const notificationsPromise = Notification.find({})
       .sort({ createdAt: -1 })
       .limit(limit)
-      .maxTimeMS(15000)
+      .maxTimeMS(10000)
       .lean()
       .exec();
 
     const notifications = await withTimeout(
       notificationsPromise,
-      20000,
+      12000,
       "Notification query timed out"
     );
 
@@ -299,18 +132,34 @@ export async function getNotificationsPublic(limit = 20) {
       data: JSON.parse(JSON.stringify(notifications)),
     };
   } catch (error: any) {
-    console.error("❌ getNotificationsPublic error:", error);
-    return {
-      success: false,
-      error: error.message || "Failed to fetch notifications",
-      data: [],
-    };
+    if (isSoftFail(error)) {
+      console.warn("getNotificationsPublic soft-failed, returning empty list");
+      return { success: true, data: [] };
+    } else {
+      console.error("❌ getNotificationsPublic error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to fetch notifications",
+        data: [],
+      };
+    }
   }
 }
 
 export async function getUnreadCount() {
   try {
-    const { userId } = await auth();
+    let userId: string | null = null;
+    try {
+      const authRes = await auth();
+      userId = String(authRes?.userId || "") || null;
+    } catch (e: any) {
+      if (isSoftFail(e)) {
+        console.warn("getUnreadCount: auth soft-failed, returning 0");
+        return { success: true, count: 0 };
+      }
+      console.error("getUnreadCount: auth error:", e);
+      return { success: false, error: e?.message || "Unauthorized", count: 0 };
+    }
     if (!userId) {
       return {
         success: false,
@@ -325,12 +174,12 @@ export async function getUnreadCount() {
       userId,
       read: false,
     })
-      .maxTimeMS(10000)
+      .maxTimeMS(8000)
       .exec();
 
     const count = await withTimeout(
       countPromise,
-      15000,
+      10000,
       "Count query timed out"
     );
 
@@ -339,18 +188,34 @@ export async function getUnreadCount() {
       count,
     };
   } catch (error: any) {
-    console.error("❌ getUnreadCount error:", error);
-    return {
-      success: false,
-      error: error.message || "Failed to get unread count",
-      count: 0,
-    };
+    if (isSoftFail(error)) {
+      console.warn("getUnreadCount soft-failed, returning 0");
+      return { success: true, count: 0 };
+    } else {
+      console.error("❌ getUnreadCount error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to get unread count",
+        count: 0,
+      };
+    }
   }
 }
 
 export async function markAsRead(notificationId: string) {
   try {
-    const { userId } = await auth();
+    let userId: string | null = null;
+    try {
+      const authRes = await auth();
+      userId = String(authRes?.userId || "") || null;
+    } catch (e: any) {
+      if (isSoftFail(e)) {
+        console.warn("markAsRead: auth soft-failed, ignoring");
+        return { success: false, error: "Unauthorized" };
+      }
+      console.error("markAsRead: auth error:", e);
+      return { success: false, error: e?.message || "Unauthorized" };
+    }
     if (!userId) {
       return {
         success: false,
@@ -364,26 +229,42 @@ export async function markAsRead(notificationId: string) {
       { _id: notificationId, userId },
       { read: true }
     )
-      .maxTimeMS(10000)
+      .maxTimeMS(8000)
       .exec();
 
-    await withTimeout(updatePromise, 15000, "Mark as read timed out");
+    await withTimeout(updatePromise, 10000, "Mark as read timed out");
 
     revalidatePath("/", "layout");
 
     return { success: true };
   } catch (error: any) {
-    console.error("❌ markAsRead error:", error);
-    return {
-      success: false,
-      error: error.message || "Failed to mark as read",
-    };
+    if (isSoftFail(error)) {
+      console.warn("markAsRead soft-failed");
+      return { success: false, error: "Timed out" };
+    } else {
+      console.error("❌ markAsRead error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to mark as read",
+      };
+    }
   }
 }
 
 export async function markAllAsRead() {
   try {
-    const { userId } = await auth();
+    let userId: string | null = null;
+    try {
+      const authRes = await auth();
+      userId = String(authRes?.userId || "") || null;
+    } catch (e: any) {
+      if (isSoftFail(e)) {
+        console.warn("markAllAsRead: auth soft-failed, ignoring");
+        return { success: false, error: "Unauthorized" };
+      }
+      console.error("markAllAsRead: auth error:", e);
+      return { success: false, error: e?.message || "Unauthorized" };
+    }
     if (!userId) {
       return {
         success: false,
@@ -397,26 +278,42 @@ export async function markAllAsRead() {
       { userId, read: false },
       { read: true }
     )
-      .maxTimeMS(10000)
+      .maxTimeMS(8000)
       .exec();
 
-    await withTimeout(updatePromise, 15000, "Mark all as read timed out");
+    await withTimeout(updatePromise, 10000, "Mark all as read timed out");
 
     revalidatePath("/", "layout");
 
     return { success: true };
   } catch (error: any) {
-    console.error("❌ markAllAsRead error:", error);
-    return {
-      success: false,
-      error: error.message || "Failed to mark all as read",
-    };
+    if (isSoftFail(error)) {
+      console.warn("markAllAsRead soft-failed");
+      return { success: false, error: "Timed out" };
+    } else {
+      console.error("❌ markAllAsRead error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to mark all as read",
+      };
+    }
   }
 }
 
 export async function deleteNotification(notificationId: string) {
   try {
-    const { userId } = await auth();
+    let userId: string | null = null;
+    try {
+      const authRes = await auth();
+      userId = String(authRes?.userId || "") || null;
+    } catch (e: any) {
+      if (isSoftFail(e)) {
+        console.warn("deleteNotification: auth soft-failed, ignoring");
+        return { success: false, error: "Unauthorized" };
+      }
+      console.error("deleteNotification: auth error:", e);
+      return { success: false, error: e?.message || "Unauthorized" };
+    }
     if (!userId) {
       return {
         success: false,
@@ -430,20 +327,25 @@ export async function deleteNotification(notificationId: string) {
       _id: notificationId,
       userId,
     })
-      .maxTimeMS(10000)
+      .maxTimeMS(8000)
       .exec();
 
-    await withTimeout(deletePromise, 15000, "Delete notification timed out");
+    await withTimeout(deletePromise, 10000, "Delete notification timed out");
 
     revalidatePath("/", "layout");
 
     return { success: true };
   } catch (error: any) {
-    console.error("❌ deleteNotification error:", error);
-    return {
-      success: false,
-      error: error.message || "Failed to delete notification",
-    };
+    if (isSoftFail(error)) {
+      console.warn("deleteNotification soft-failed");
+      return { success: false, error: "Timed out" };
+    } else {
+      console.error("❌ deleteNotification error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to delete notification",
+      };
+    }
   }
 }
 
@@ -464,7 +366,7 @@ export async function createNotification(data: {
 
     const notification = await withTimeout(
       createPromise,
-      15000,
+      10000,
       "Create notification timed out"
     );
 
@@ -473,10 +375,15 @@ export async function createNotification(data: {
       data: JSON.parse(JSON.stringify(notification)),
     };
   } catch (error: any) {
-    console.error("❌ createNotification error:", error);
-    return {
-      success: false,
-      error: error.message || "Failed to create notification",
-    };
+    if (isSoftFail(error)) {
+      console.warn("createNotification soft-failed");
+      return { success: false, error: "Timed out" };
+    } else {
+      console.error("❌ createNotification error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to create notification",
+      };
+    }
   }
 }

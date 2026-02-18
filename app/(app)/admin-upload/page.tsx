@@ -18,7 +18,9 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { getSuppliers } from "@/lib/actions/supplier-actions";
+import { getRequisitions } from "@/lib/actions/requisition-actions";
 import { SupplierCategorizedUpload } from "@/components/supplier-categorized-upload";
+import { SupplierQuotationUpload } from "@/components/supplier-quotation-upload";
 import { Building2, FileUp, Shield } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -61,6 +63,9 @@ export default async function AdminUploadPage() {
 
   const res = await getSuppliers();
   const suppliers: any[] = res && res.success ? (res as any).data || [] : [];
+  const reqRes = await getRequisitions();
+  const requisitions: any[] =
+    reqRes && (reqRes as any).success ? (reqRes as any).data || [] : [];
 
   return (
     <div className="p-4 md:p-6">
@@ -142,6 +147,90 @@ export default async function AdminUploadPage() {
                                 Missing supplier identifier.
                               </div>
                             )}
+                          </DialogContent>
+                        </Dialog>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle className="text-base">
+            Supplier Quotation Documents Uploads
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Supplier ID</TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Region</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {suppliers.length === 0 ? (
+                  <TableRow>
+                    <TableCell
+                      colSpan={5}
+                      className="text-sm text-muted-foreground"
+                    >
+                      No approved suppliers found.
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  suppliers.map((s: any) => (
+                    <TableRow key={`quote-${String(s?._id || s?.supplierId)}`}>
+                      <TableCell className="font-medium">
+                        {s?.name || "-"}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground">
+                        {s?.supplierId || "-"}
+                      </TableCell>
+                      <TableCell>
+                        {s?.primaryCategory || s?.category || "-"}
+                      </TableCell>
+                      <TableCell>{s?.region || "-"}</TableCell>
+                      <TableCell className="text-right">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              className="gap-2"
+                            >
+                              <FileUp className="w-4 h-4" />
+                              Upload Quotation
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-md">
+                            <DialogHeader>
+                              <DialogTitle>
+                                Upload quotation documents for{" "}
+                                {s?.name || "Supplier"}
+                              </DialogTitle>
+                            </DialogHeader>
+                            <div className="text-xs text-muted-foreground mb-2">
+                              Select the requisition and upload PDFs/images up
+                              to 20MB per file.
+                            </div>
+                            <SupplierQuotationUpload
+                              requisitions={requisitions.map((r: any) => ({
+                                requisitionId: r.requisitionId,
+                                amount: r.amount,
+                                requester: r.requester,
+                                date: r.date,
+                              }))}
+                            />
                           </DialogContent>
                         </Dialog>
                       </TableCell>

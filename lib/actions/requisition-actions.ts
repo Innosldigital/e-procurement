@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import dbConnect from "@/lib/mongodb";
 import { Requisition } from "../models/Requisition";
-// import { uploadFileToCloudinary } from '@/lib/cloudinary'
 import { createNotification } from "@/lib/actions/notification-actions";
 
 export async function getRequisitions() {
@@ -27,6 +26,76 @@ export async function getRequisitions() {
   } catch (error) {
     console.error("[v0] Error fetching requisitions:", error);
     return { success: false, error: "Failed to fetch requisitions" };
+  }
+}
+
+export async function addRequisitionAttachments(
+  requisitionId: string,
+  documents: Array<{
+    name: string;
+    type: string;
+    size: number | string;
+    url: string;
+  }>
+) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const md = (user?.publicMetadata || {}) as any;
+    const role = String(md?.role || "")
+      .toLowerCase()
+      .replace(/[\s_-]+/g, "");
+    if (!["admin", "superadmin"].includes(role)) {
+      return { success: false, error: "Forbidden: Admins only" };
+    }
+
+    const normalized = (documents || [])
+      .filter((d) => d && d.url)
+      .map((d) => ({
+        filename: String(d.name || "Document"),
+        url: String(d.url || "").trim(),
+        uploadedAt: new Date(),
+      }));
+
+    if (normalized.length === 0) {
+      return { success: false, error: "No valid documents provided" };
+    }
+
+    await dbConnect();
+    const timelineEntry = {
+      event: "Quotation documents uploaded",
+      timestamp: new Date(),
+      actor: userId,
+      details: `${normalized.length} file(s) attached`,
+    };
+
+    const updateRes = await Requisition.updateOne(
+      { requisitionId },
+      {
+        $push: {
+          attachments: { $each: normalized },
+          timeline: timelineEntry,
+        },
+        $set: { updatedAt: new Date() },
+      },
+      { runValidators: false }
+    );
+
+    if (!updateRes || (updateRes as any).matchedCount === 0) {
+      return { success: false, error: "Requisition not found" };
+    }
+
+    revalidatePath("/requisitions");
+    revalidatePath(`/requisitions/${requisitionId}`);
+    return { success: true, data: normalized };
+  } catch (error) {
+    console.error("[addRequisitionAttachments] Error:", error);
+    return { success: false, error: "Failed to add requisition attachments" };
   }
 }
 
@@ -141,7 +210,7 @@ export async function createRequisition(formData: FormData) {
 
     // Create notification
     await createNotification({
-      userId: "admin-user-id-here", // Replace with real approver logic
+      userId: "admin-user-id-here",
       type: "requisition_submitted",
       title: "New Requisition Submitted",
       message: `${

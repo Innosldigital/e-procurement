@@ -152,29 +152,37 @@ export function SupplierCategorizedUpload({
 
   return (
     <div className="space-y-4">
-      {(Object.keys(LABELS) as UploadFieldKey[]).map((key) => (
-        <div key={key} className="space-y-2">
-          <Label htmlFor={`file-${key}`} className="text-xs">
-            <span className="inline-flex items-center gap-2">
-              <FileText className="h-3.5 w-3.5 text-muted-foreground" />
-              {LABELS[key]}
-            </span>
-          </Label>
-          <div className="flex items-center gap-3 p-3 border border-dashed rounded-md">
-            <Upload className="h-4 w-4 text-muted-foreground" />
-            <Input
-              id={`file-${key}`}
-              type="file"
-              multiple
-              accept="image/*,application/pdf"
-              onChange={(e) => setFiles(key, e.target.files)}
-              className="border-0 p-0 h-auto text-sm file:mr-4 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
-            />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {(Object.keys(LABELS) as UploadFieldKey[]).map((key) => (
+          <div key={key} className="p-3 border border-dashed rounded-md">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+              <div className="flex items-center gap-2 min-w-0">
+                <FileText className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                <Label
+                  htmlFor={`file-${key}`}
+                  className="text-xs truncate"
+                  title={LABELS[key]}
+                >
+                  {LABELS[key]}
+                </Label>
+              </div>
+              <div className="flex items-center gap-3 w-full">
+                <Upload className="h-4 w-4 text-muted-foreground shrink-0 hidden sm:block" />
+                <Input
+                  id={`file-${key}`}
+                  type="file"
+                  multiple
+                  accept="image/*,application/pdf"
+                  onChange={(e) => setFiles(key, e.target.files)}
+                  className="w-full border-0 p-0 h-auto text-sm file:mr-4 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <Button
           size="sm"
           onClick={handleUploadAll}
@@ -182,6 +190,7 @@ export function SupplierCategorizedUpload({
             uploading ||
             !Object.values(filesByKey).some((fl) => fl && fl.length > 0)
           }
+          className="w-full sm:w-auto"
         >
           {uploading ? "Uploading..." : "Upload Selected"}
         </Button>
