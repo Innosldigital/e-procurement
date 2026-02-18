@@ -1,88 +1,18 @@
-[00:00:01.947] Server  LOG     ✓ Ready in 1268ms
-[00:05:57.481] Server  LOG     🔄 User not onboarded - redirecting to onboarding
-[00:05:57.958] Server  LOG     ✅ Allowing access
-[00:06:05.274] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:06:05.274] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:06:05.803] Server  LOG     ✅ Allowing access
-[00:06:07.299] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:06:07.299] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:06:07.299] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771341151970}
-[00:07:11.422] Server  LOG     🔄 User not onboarded - redirecting to onboarding
-[00:07:11.808] Server  LOG     ✅ Allowing access
-[00:07:14.548] Server  LOG     ✅ Allowing access
-[00:07:15.457] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:07:15.457] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:07:15.457] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:07:15.457] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:07:15.458] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771341220748}
-[00:14:59.294] Server  LOG     🔄 User not onboarded - redirecting to onboarding
-[00:14:59.660] Server  LOG     ✅ Allowing access
-[00:15:03.942] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:15:03.942] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:15:04.475] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:15:04.475] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:15:04.475] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771341690505}
-[00:15:04.566] Server  LOG     ✅ Allowing access
-[00:16:47.068] Server  LOG     🔄 User not onboarded - redirecting to onboarding
-[00:16:47.498] Server  LOG     ✅ Allowing access
-[00:16:51.463] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:16:51.463] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:16:51.998] Server  LOG     ✅ Allowing access
-[00:16:52.197] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:16:52.197] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding","route":"/onboarding"}
-[00:16:52.198] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding","o":"http://localhost:3000/onboarding","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771341798241}
-[00:52:56.972] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 0%
-[00:52:56.972] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 0%
-[00:53:08.335] Server  ERROR   [EdgeStoreError] TypeError: fetch failed
-[00:53:11.567] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 0%
-[00:53:11.567] Browser LOG     Submitting onboarding data...
-[00:53:12.565] Server  LOG     ✅ Allowing access
-[00:53:12.596] Server  LOG     submitSupplierOnboarding: Starting...
-[00:53:12.627] Server  LOG     User authenticated: "user_39lU6268T1ry19oSQXFtNsLldfp"
-[00:53:59.014] Server  ERROR   MongoDB connection error: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:53:59.714] Server  ERROR   Failed to establish MongoDB connection: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:54:00.368] Server  ERROR   ❌ submitSupplierOnboarding error: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:54:00.577] Browser LOG     Submission response: {"error":"Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/","success":false}
-[00:54:00.577] Browser ERROR   Submission failed: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
-[00:54:25.620] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 0%
-[00:54:25.620] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 0%
-[00:54:29.099] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 0%
-[00:54:31.058] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 44.17%
-[00:54:31.260] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 51.53%
-[00:54:31.474] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 66.25%
-[00:54:31.807] Browser LOG     KADIA  STATEMENT OF RESULT.pdf: 100%
-[00:54:32.361] Browser LOG     Submitting onboarding data...
-[00:54:33.378] Server  LOG     ✅ Allowing access
-[00:54:33.434] Server  LOG     submitSupplierOnboarding: Starting...
-[00:54:33.439] Server  LOG     User authenticated: "user_39lU6268T1ry19oSQXFtNsLldfp"
-[00:54:37.680] Server  LOG     MongoDB connected successfully
-[00:54:37.681] Server  LOG     Database connected
-[00:54:39.013] Server  LOG     Generated supplierId: "SUP-5013"
-[00:54:39.015] Server  LOG     Creating supplier...
-[00:54:39.017] Server  LOG     Upload counts: {}
-[00:54:39.325] Server  LOG     Supplier created: {}
-[00:54:39.903] Server  LOG     ✅ Clerk user metadata updated
-[00:54:39.904] Server  LOG     📧 Sending email notifications...
-[00:54:42.160] Server  LOG     ✅ Confirmation email sent to supplier: keitamorie@gmail.com
-[00:54:42.160] Server  LOG     ✅ Supplier confirmation email sent successfully
-[00:54:44.270] Server  LOG     ✅ Admin notification sent to: cyrilhingston123@gmail.com
-[00:54:44.271] Server  LOG     ✅ Admin notifications sent to 1 admin(s)
-[00:54:44.271] Server  LOG     📧 Email Summary: Confirmation email sent to supplier, 1 admin(s) notified
-[00:54:44.273] Server  LOG     ✅ Supplier onboarding completed successfully
-[00:54:44.455] Browser LOG     Submission response: {"data":{"_id":"699490c19ccafe8da9c52868","id":"699490c19ccafe8da9c52868","name":"Embedded Computer Experts Organisation ","supplierId":"SUP-5013"},"emailStatus":{"adminEmailsFailed":0,"adminEmailsSent":1,"supplierEmailSent":true},"success":true}
-[00:54:44.455] Browser LOG     Success! Supplier created: {"_id":"699490c19ccafe8da9c52868","id":"699490c19ccafe8da9c52868","name":"Embedded Computer Experts Organisation ","supplierId":"SUP-5013"}
-[00:54:44.455] Browser LOG     Email notifications: {"adminEmailsFailed":0,"adminEmailsSent":1,"supplierEmailSent":true}
-[00:54:49.871] Server  LOG     🏭 Supplier detected
-[00:54:49.872] Server  LOG     ⏳ Supplier pending approval
-[00:54:53.956] Server  LOG     getSupplierById (enriched): {}
-[00:54:54.767] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/699490c19ccafe8da9c52868 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/699490c19ccafe8da9c52868","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771344080803}
-[00:55:11.474] Server  LOG     🏭 Supplier detected
-[00:55:11.475] Server  LOG     ⏳ Supplier pending approval
-[00:55:11.846] Server  LOG     getSupplierById (enriched): {}
-[00:55:13.080] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:55:13.080] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:55:13.440] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:55:13.440] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/onboarding/supplier/699490c19ccafe8da9c52868","route":"/onboarding/supplier/[id]"}
-[00:55:13.440] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/onboarding/supplier/699490c19ccafe8da9c52868 color: rgb(120, 120, 120) color: inherit {"dp":"/onboarding/supplier/[id]","o":"http://localhost:3000/onboarding/supplier/699490c19ccafe8da9c52868","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771344099481}
-[00:55:13.441] Server  LOG     🏭 Supplier detected
-[00:55:13.441] Server  LOG     ⏳ Supplier pending approval
+[00:00:02.880] Server  LOG     ✓ Ready in 1802ms
+[00:00:27.859] Server  WARN    Image with src "/Innosl-Procurement.webp" is using quality "85" which is not configured in images.qualities [75]. Please update your config to [75, 85].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:00:29.443] Browser WARN    Image with src "/Innosl-Procurement.webp" is using quality "85" which is not configured in images.qualities [75]. Please update your config to [75, 85].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:00:29.443] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:29.444] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:29.444] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:29.444] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/sign-in","route":"/sign-in"}
+[00:00:29.444] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/sign-in color: rgb(120, 120, 120) color: inherit {"dp":"/sign-in","o":"http://localhost:3000/sign-in","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771435561507}
+[00:00:29.444] Browser WARN    Clerk: The prop "redirectUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:29.444] Browser WARN    Clerk: The "signInFallbackRedirectUrl" prop ("http://localhost:3000/") has priority over the legacy "afterSignInUrl" (or "redirectUrl") ("http://localhost:3000/after-signin"), which will be completely ignored in this case. "afterSignInUrl" (or "redirectUrl" prop) should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:29.444] Browser WARN    Clerk: The "signUpFallbackRedirectUrl" prop ("http://localhost:3000/") has priority over the legacy "afterSignUpUrl" (or "redirectUrl") ("http://localhost:3000/after-signin"), which will be completely ignored in this case. "afterSignUpUrl" (or "redirectUrl" prop) should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:02:09.911] Server  LOG       Reload env: .env.local
+[00:02:10.249] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/sign-in color: rgb(120, 120, 120) color: inherit {"dp":"/sign-in","o":"http://localhost:3000/sign-in","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771435662722}
+[00:02:10.249] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/sign-in color: rgb(120, 120, 120) color: inherit {"dp":"/sign-in","o":"http://localhost:3000/sign-in","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771435662726}
+[00:02:10.663] Server  WARN    Image with src "/Innosl-Procurement.webp" is using quality "85" which is not configured in images.qualities [75]. Please update your config to [75, 85].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities

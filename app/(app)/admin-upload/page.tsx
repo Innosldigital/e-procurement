@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { getSuppliers } from "@/lib/actions/supplier-actions";
-import { SupplierDocumentUpload } from "@/components/supplier-document-upload";
+import { SupplierCategorizedUpload } from "@/components/supplier-categorized-upload";
 import { Building2, FileUp, Shield } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -130,10 +130,11 @@ export default async function AdminUploadPage() {
                               </DialogTitle>
                             </DialogHeader>
                             <div className="text-xs text-muted-foreground mb-2">
-                              Files are saved to the supplier’s document list.
+                              Note: Files are saved to the supplier’s document
+                              list.
                             </div>
                             {s?._id ? (
-                              <SupplierDocumentUpload
+                              <SupplierCategorizedUpload
                                 supplierId={String(s._id)}
                               />
                             ) : (

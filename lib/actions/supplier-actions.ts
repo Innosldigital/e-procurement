@@ -4,6 +4,18 @@ import { revalidatePath } from "next/cache";
 import dbConnect from "@/lib/mongodb";
 import { Supplier } from "../models/Supplier";
 
+const ALLOWED_ONBOARDING_UPLOAD_FIELDS = new Set([
+  "priceListUploads",
+  "registrationCertificateUploads",
+  "businessRegistrationCertificateUploads",
+  "taxClearanceCertificateUploads",
+  "gstVatRegistrationCertificateUploads",
+  "businessLicenseUploads",
+  "nassitCertificateUploads",
+  "sectorSpecificCertificateUploads",
+  "businessDurationDocuments",
+]);
+
 export async function getSuppliers() {
   try {
     await dbConnect();
@@ -237,10 +249,79 @@ export async function deleteSupplier(id: string) {
 
 export async function addSupplierDocuments(
   id: string,
+  documents: Array<{
+    name: string;
+    type: string;
+    size: number | string;
+    url: string;
+  }>
+) {
+  try {
+    await dbConnect();
+    const normalized = (documents || [])
+      .filter((d) => d && d.url)
+      .map((d) => ({
+        name: String(d.name || "Document"),
+        type: String(d.type || ""),
+        size:
+          typeof d.size === "number" ? `${d.size} bytes` : String(d.size || ""),
+        url: String(d.url).trim(),
+      }));
+
+    if (normalized.length === 0) {
+      return { success: false, error: "No valid documents provided" };
+    }
+
+    // Try by Mongo _id first
+    let result = await Supplier.updateOne(
+      { _id: id },
+      { $push: { documents: { $each: normalized } } }
+    );
+
+    // Fallback: try by business supplierId if _id didn't match
+    if (!result || result.matchedCount === 0) {
+      result = await Supplier.updateOne(
+        { supplierId: id },
+        { $push: { documents: { $each: normalized } } }
+      );
+    }
+
+    if (!result || result.matchedCount === 0) {
+      return { success: false, error: "Supplier not found" };
+    }
+
+    revalidatePath("/suppliers");
+    revalidatePath(`/suppliers/${id}`);
+    revalidatePath(`/onboarding/supplier/${id}`);
+
+    return { success: true, data: normalized };
+  } catch (error) {
+    console.error("Error adding supplier documents:", error);
+    return { success: false, error: "Failed to add documents" };
+  }
+}
+
+export async function addSupplierOnboardingUploads(
+  id: string,
+  field:
+    | "priceListUploads"
+    | "registrationCertificateUploads"
+    | "businessRegistrationCertificateUploads"
+    | "taxClearanceCertificateUploads"
+    | "gstVatRegistrationCertificateUploads"
+    | "businessLicenseUploads"
+    | "nassitCertificateUploads"
+    | "sectorSpecificCertificateUploads"
+    | "businessDurationDocuments",
   documents: Array<{ name: string; type: string; size: number | string; url: string }>
 ) {
   try {
     await dbConnect();
+
+    if (!ALLOWED_ONBOARDING_UPLOAD_FIELDS.has(field)) {
+      return { success: false, error: "Invalid upload category" };
+    }
+
     const normalized = (documents || [])
       .filter((d) => d && d.url)
       .map((d) => ({
@@ -257,10 +338,19 @@ export async function addSupplierDocuments(
       return { success: false, error: "No valid documents provided" };
     }
 
-    const result = await Supplier.updateOne(
+    // Try by Mongo _id first
+    let result = await Supplier.updateOne(
       { _id: id },
-      { $push: { documents: { $each: normalized } } }
+      { $push: { [`onboarding.${field}`]: { $each: normalized } } }
     );
+
+    // Fallback by supplierId (business identifier)
+    if (!result || result.matchedCount === 0) {
+      result = await Supplier.updateOne(
+        { supplierId: id },
+        { $push: { [`onboarding.${field}`]: { $each: normalized } } }
+      );
+    }
 
     if (!result || result.matchedCount === 0) {
       return { success: false, error: "Supplier not found" };
@@ -269,10 +359,9 @@ export async function addSupplierDocuments(
     revalidatePath("/suppliers");
     revalidatePath(`/suppliers/${id}`);
     revalidatePath(`/onboarding/supplier/${id}`);
-
     return { success: true, data: normalized };
   } catch (error) {
-    console.error("Error adding supplier documents:", error);
-    return { success: false, error: "Failed to add documents" };
+    console.error("Error adding onboarding uploads:", error);
+    return { success: false, error: "Failed to add onboarding uploads" };
   }
 }

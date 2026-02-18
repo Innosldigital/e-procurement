@@ -1,5 +1,4 @@
 {
-  "/(onboard)/onboarding/page": "app/(onboard)/onboarding/page.js",
-  "/(onboard)/onboarding/supplier/[id]/page": "app/(onboard)/onboarding/supplier/[id]/page.js",
+  "/(auth)/sign-in/[[...sign-in]]/page": "app/(auth)/sign-in/[[...sign-in]]/page.js",
   "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
 }
