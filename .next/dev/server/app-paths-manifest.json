@@ -1,6 +1,4 @@
 {
   "/(app)/admin-upload/page": "app/(app)/admin-upload/page.js",
-  "/(app)/requisitions/page": "app/(app)/requisitions/page.js",
-  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js",
-  "/page": "app/page.js"
+  "/api/edgestore/[...edgestore]/route": "app/api/edgestore/[...edgestore]/route.js"
 }

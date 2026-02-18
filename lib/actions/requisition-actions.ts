@@ -29,6 +29,33 @@ export async function getRequisitions() {
   }
 }
 
+export async function getRequisitionStatusCounts() {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+    await dbConnect();
+    const [pending, review, approved, rejected] = await Promise.all([
+      Requisition.countDocuments({ status: { $regex: /^pending approval$/i } }),
+      Requisition.countDocuments({ status: { $regex: /^in review$/i } }),
+      Requisition.countDocuments({ status: { $regex: /^approved$/i } }),
+      Requisition.countDocuments({ status: { $regex: /^rejected$/i } }),
+    ]);
+    return {
+      success: true,
+      data: { pending, review, approved, rejected },
+    };
+  } catch (error) {
+    console.error("[getRequisitionStatusCounts] Error:", error);
+    return {
+      success: false,
+      error: "Failed to fetch requisition counts",
+      data: { pending: 0, review: 0, approved: 0, rejected: 0 },
+    };
+  }
+}
+
 export async function addRequisitionAttachments(
   requisitionId: string,
   documents: Array<{

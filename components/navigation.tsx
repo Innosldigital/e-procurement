@@ -15,6 +15,7 @@ import {
   Settings,
   X,
   Gavel,
+  Paperclip,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
@@ -39,7 +40,7 @@ const getNavItems = (role: string) => [
   { href: "/invoices", icon: Receipt, label: "Invoices" },
   { href: "/reports", icon: BarChart3, label: "Reports" },
   { href: "/bids", icon: Gavel, label: "Bids" },
-  { href: "/admin-upload", icon: Gavel, label: "Upload Documents" },
+  { href: "/admin-upload", icon: Paperclip, label: "Upload Documents" },
   { href: "/admin", icon: Settings, label: "Admin" },
 ];
 

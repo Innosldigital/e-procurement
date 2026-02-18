@@ -5,7 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getRequisitions } from "@/lib/actions/requisition-actions";
+import {
+  getRequisitions,
+  getRequisitionStatusCounts,
+} from "@/lib/actions/requisition-actions";
 import DashboardClient from "@/components/dashboard-client";
 import RequisitionsTable from "@/components/requisitions-table";
 export const dynamic = "force-dynamic";
@@ -29,9 +32,11 @@ export default async function RequisitionsPage() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 20);
 
-  const pendingCount = requisitions.filter(
-    (r) => r.status === "Pending approval"
-  ).length;
+  const countsRes = await getRequisitionStatusCounts();
+  const pendingCount =
+    countsRes && (countsRes as any).success
+      ? (countsRes as any).data?.pending || 0
+      : requisitions.filter((r) => r.status === "Pending approval").length;
   const reviewCount = requisitions.filter(
     (r) => r.status === "In review"
   ).length;
@@ -85,7 +90,6 @@ export default async function RequisitionsPage() {
           </CardContent>
         </Card>
       </div>
-
       <RequisitionsTable items={requisitions} />
     </div>
   );

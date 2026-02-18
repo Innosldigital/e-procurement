@@ -13,13 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   X,
   Upload,
   FileText,
@@ -333,7 +326,7 @@ export function CreateRequisitionForm({
                         key={file.id}
                         className="flex items-center gap-3 p-3 border rounded-lg bg-background"
                       >
-                        <div className="flex-shrink-0">
+                        <div className="shrink-0">
                           {file.preview ? (
                             <img
                               src={file.preview}
