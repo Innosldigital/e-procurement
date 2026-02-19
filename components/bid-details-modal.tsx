@@ -565,9 +565,15 @@ export default function BidDetailsModal({
 
         {/* Footer */}
         <div className="mt-6 flex flex-col-reverse sm:flex-row sm:justify-between gap-2 border-t pt-4">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href={`/tenders/${bid?.tenderObjectId}`}>View Tender</Link>
-          </Button>
+          {bid?.tenderObjectId ? (
+            <Button asChild variant="outline" className="w-full sm:w-auto">
+              <Link href={`/tenders/${bid.tenderObjectId}`}>View Tender</Link>
+            </Button>
+          ) : (bid as any)?.requisitionId ? (
+            <Button asChild variant="outline" className="w-full sm:w-auto">
+              <Link href={`/requisitions`}>View Requisition</Link>
+            </Button>
+          ) : null}
           <Button asChild variant="outline" className="w-full sm:w-auto">
             <Link href={closeHref}>Close</Link>
           </Button>

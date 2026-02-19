@@ -229,6 +229,8 @@ export default async function AdminUploadPage() {
                               to 20MB per file.
                             </div>
                             <SupplierQuotationUpload
+                              supplierId={String(s?.supplierId || s?._id || "")}
+                              supplierName={String(s?.name || "Supplier")}
                               requisitions={requisitions.map((r: any) => ({
                                 requisitionId: r.requisitionId,
                                 amount: r.amount,

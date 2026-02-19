@@ -29,6 +29,94 @@ export async function getRequisitions() {
   }
 }
 
+// lib/actions/requisition-actions.ts
+// Add this function to handle quotation uploads with supplier info
+
+export async function addSupplierQuotation(
+  requisitionId: string,
+  supplierData: {
+    supplierId: string;
+    supplierName: string;
+    quotedAmount?: number;
+    documents: Array<{
+      name: string;
+      type: string;
+      size: number;
+      url: string;
+    }>;
+  }
+) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { success: false, error: "Unauthorized" };
+    }
+
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const md = (user?.publicMetadata || {}) as any;
+    const role = String(md?.role || "")
+      .toLowerCase()
+      .replace(/[\s_-]+/g, "");
+
+    if (!["admin", "superadmin"].includes(role)) {
+      return { success: false, error: "Forbidden: Admins only" };
+    }
+
+    await dbConnect();
+
+    // Format attachments with supplier metadata
+    const quotationAttachments = supplierData.documents.map((doc) => ({
+      filename: doc.name,
+      url: doc.url,
+      type: doc.type,
+      size: doc.size,
+      uploadedAt: new Date(),
+      // ✅ Add supplier metadata
+      supplierName: supplierData.supplierName,
+      supplierId: supplierData.supplierId,
+      quotedAmount: supplierData.quotedAmount,
+      uploadedBy: userId,
+    }));
+
+    const timelineEntry = {
+      event: "Quotation uploaded",
+      timestamp: new Date(),
+      actor: userId,
+      details: `${supplierData.supplierName} quotation uploaded (${quotationAttachments.length} file(s))`,
+    };
+
+    const updateRes = await Requisition.updateOne(
+      { requisitionId },
+      {
+        $push: {
+          attachments: { $each: quotationAttachments },
+          timeline: timelineEntry,
+        },
+        $set: { updatedAt: new Date() },
+      },
+      { runValidators: false }
+    );
+
+    if (!updateRes || (updateRes as any).matchedCount === 0) {
+      return { success: false, error: "Requisition not found" };
+    }
+
+    console.log(
+      `Added quotation from ${supplierData.supplierName} to ${requisitionId}`
+    );
+
+    revalidatePath("/requisitions");
+    revalidatePath(`/requisitions/${requisitionId}`);
+    revalidatePath("/bids");
+
+    return { success: true, data: quotationAttachments };
+  } catch (error) {
+    console.error("[addSupplierQuotation] Error:", error);
+    return { success: false, error: "Failed to add supplier quotation" };
+  }
+}
+
 export async function getRequisitionStatusCounts() {
   try {
     const { userId } = await auth();
