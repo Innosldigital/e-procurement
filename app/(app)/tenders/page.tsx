@@ -11,6 +11,7 @@ import {
   awardTender,
   requestRevisedBids,
   getTenderStats,
+  getTenderById,
 } from "@/lib/actions/tender-actions";
 import { CreateTenderForm } from "@/components/create-tender-form";
 import { EditTenderForm } from "@/components/edit-tender-form";
@@ -40,6 +41,8 @@ function TendersPage() {
     evalCount: number;
     avgBids: number;
   } | null>(null);
+  const [tenderDocs, setTenderDocs] = useState<any[]>([]);
+  const [tenderDocsLoading, setTenderDocsLoading] = useState(false);
 
   // Load tenders from server
   const loadTenders = useCallback(
@@ -151,6 +154,34 @@ function TendersPage() {
     };
     fetchOwnerNames();
   }, [selectedTender]);
+
+  // Fetch tender documents fresh from backend when selection changes
+  useEffect(() => {
+    const fetchDocs = async () => {
+      if (!selectedTender?._id) {
+        setTenderDocs([]);
+        return;
+      }
+      setTenderDocsLoading(true);
+      try {
+        const res = await getTenderById(String(selectedTender._id));
+        if (res?.success && res?.data) {
+          const docs = Array.isArray(res.data.tenderDocuments)
+            ? res.data.tenderDocuments
+            : [];
+          setTenderDocs(docs);
+        } else {
+          setTenderDocs([]);
+        }
+      } catch (e) {
+        console.error("❌ [TendersPage] Error fetching tender documents:", e);
+        setTenderDocs([]);
+      } finally {
+        setTenderDocsLoading(false);
+      }
+    };
+    fetchDocs();
+  }, [selectedTender?._id]);
 
   // Auto-select first tender when list changes
   useEffect(() => {
@@ -513,32 +544,41 @@ function TendersPage() {
                 </div>
 
                 {/* Documents */}
-                {selectedTender.tenderDocuments &&
-                  selectedTender.tenderDocuments.length > 0 && (
-                    <div>
-                      <h3 className="text-sm font-medium mb-3">
-                        Tender Documents
-                      </h3>
-                      <div className="space-y-2">
-                        {selectedTender.tenderDocuments.map(
-                          (doc: any, i: number) => (
-                            <a
-                              key={i}
-                              href={doc.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 text-xs text-primary hover:underline break-all"
-                            >
-                              <FileText className="w-4 h-4 shrink-0" />
-                              <span className="wrap-break-words">
-                                {doc.name} ({(doc.size / 1024).toFixed(1)} KB)
-                              </span>
-                            </a>
-                          )
-                        )}
-                      </div>
+                <div>
+                  <h3 className="text-sm font-medium mb-3">Tender Documents</h3>
+                  {tenderDocsLoading ? (
+                    <div className="text-xs text-muted-foreground">
+                      Loading documents...
+                    </div>
+                  ) : tenderDocs && tenderDocs.length > 0 ? (
+                    <div className="space-y-2">
+                      {tenderDocs.map((doc: any, i: number) => {
+                        const sizeNum =
+                          typeof doc.size === "number"
+                            ? doc.size
+                            : Number(doc.size || 0);
+                        return (
+                          <a
+                            key={i}
+                            href={doc.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-xs text-primary hover:underline break-all"
+                          >
+                            <FileText className="w-4 h-4 shrink-0" />
+                            <span className="wrap-break-words">
+                              {doc.name} ({(sizeNum / 1024).toFixed(1)} KB)
+                            </span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="text-xs text-muted-foreground">
+                      No documents uploaded.
                     </div>
                   )}
+                </div>
 
                 {/* Evaluation summary */}
                 {String(

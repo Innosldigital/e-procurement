@@ -123,7 +123,11 @@ export default async function AdminUploadPage() {
                       <TableCell className="text-right">
                         <Dialog>
                           <DialogTrigger asChild>
-                            <Button size="sm" className="gap-2">
+                            <Button
+                              size="sm"
+                              className="gap-2"
+                              suppressHydrationWarning
+                            >
                               <FileUp className="w-4 h-4" />
                               Upload
                             </Button>
@@ -207,6 +211,7 @@ export default async function AdminUploadPage() {
                               size="sm"
                               variant="secondary"
                               className="gap-2"
+                              suppressHydrationWarning
                             >
                               <FileUp className="w-4 h-4" />
                               Upload Quotation

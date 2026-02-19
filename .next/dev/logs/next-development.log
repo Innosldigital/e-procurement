@@ -1,566 +1,899 @@
-[00:00:02.792] Server  LOG     ✓ Ready in 2s
-[00:00:21.544] Browser LOG     Auto-refreshing notifications...
-[00:00:21.544] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:00:21.544] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:21.544] Browser LOG     Timestamp: 2026-02-18T22:45:41.255Z
-[00:00:34.987] Server  LOG     MongoDB connected successfully
-[00:00:35.681] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:40.842] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:40.842] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin-upload","route":"/admin-upload"}
-[00:00:40.842] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin-upload color: rgb(120, 120, 120) color: inherit {"dp":"/admin-upload","o":"http://localhost:3000/admin-upload","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771454764960}
-[00:00:45.151] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:00:45.151] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:00:45.152] Browser LOG     === USER DEBUG INFO ===
-[00:00:45.152] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T22:46:08.502Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T22:46:08.502Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
-[00:00:45.152] Browser LOG     Public metadata: {"role":"super_admin"}
-[00:00:45.152] Browser LOG     Unsafe metadata: {}
-[00:00:45.152] Browser LOG     Raw role: super_admin
-[00:00:45.152] Browser LOG     Normalized role: superadmin
-[00:00:45.152] Browser LOG     Is loaded: true
-[00:00:45.152] Browser LOG     ====================
-[00:00:45.152] Browser LOG     NotificationsDropdown mounted
-[00:00:45.152] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:00:45.152] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:45.152] Browser LOG     Timestamp: 2026-02-18T22:46:08.590Z
-[00:00:47.513] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:00:51.832] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:00:51.832] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:00:51.832] Browser LOG     Found 0 notifications:
-[00:00:51.832] Browser WARN    ⚠️ No notifications found for this user!
-[00:00:51.832] Browser LOG     Unread count from server: 0
-[00:00:51.832] Browser LOG     ===================================
-[00:01:14.832] Browser LOG     Auto-refreshing notifications...
-[00:01:14.832] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:01:14.832] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:14.832] Browser LOG     Timestamp: 2026-02-18T22:46:39.031Z
-[00:01:18.049] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:19.835] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:01:19.835] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:01:19.835] Browser LOG     Found 0 notifications:
-[00:01:19.835] Browser WARN    ⚠️ No notifications found for this user!
-[00:01:19.835] Browser LOG     Unread count from server: 0
-[00:01:19.835] Browser LOG     ===================================
-[00:01:44.835] Browser LOG     Auto-refreshing notifications...
-[00:01:44.835] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:01:44.835] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:44.835] Browser LOG     Timestamp: 2026-02-18T22:47:09.012Z
-[00:01:48.070] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:01:49.840] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:01:49.840] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:01:49.840] Browser LOG     Found 0 notifications:
-[00:01:49.840] Browser WARN    ⚠️ No notifications found for this user!
-[00:01:49.840] Browser LOG     Unread count from server: 0
-[00:01:49.840] Browser LOG     ===================================
-[00:02:14.839] Browser LOG     Auto-refreshing notifications...
-[00:02:14.839] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:02:14.839] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:02:14.839] Browser LOG     Timestamp: 2026-02-18T22:47:39.016Z
-[00:02:17.942] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:02:18.844] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:02:18.844] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:02:18.844] Browser LOG     Found 0 notifications:
-[00:02:18.844] Browser WARN    ⚠️ No notifications found for this user!
-[00:02:18.844] Browser LOG     Unread count from server: 0
-[00:02:18.844] Browser LOG     ===================================
-[00:02:44.832] Browser LOG     Auto-refreshing notifications...
-[00:02:44.832] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:02:44.832] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:02:44.832] Browser LOG     Timestamp: 2026-02-18T22:48:09.021Z
-[00:02:48.341] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:02:49.844] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:02:49.844] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:02:49.844] Browser LOG     Found 0 notifications:
-[00:02:49.844] Browser WARN    ⚠️ No notifications found for this user!
-[00:02:49.844] Browser LOG     Unread count from server: 0
-[00:02:49.844] Browser LOG     ===================================
-[00:03:14.833] Browser LOG     Auto-refreshing notifications...
-[00:03:14.833] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:03:14.833] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:03:14.833] Browser LOG     Timestamp: 2026-02-18T22:48:39.024Z
-[00:03:18.010] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:03:18.839] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:03:18.839] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:03:18.839] Browser LOG     Found 0 notifications:
-[00:03:18.839] Browser WARN    ⚠️ No notifications found for this user!
-[00:03:18.839] Browser LOG     Unread count from server: 0
-[00:03:18.839] Browser LOG     ===================================
-[00:03:48.489] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:03:49.837] Browser LOG     Auto-refreshing notifications...
-[00:03:49.837] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:03:49.837] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:03:49.837] Browser LOG     Timestamp: 2026-02-18T22:49:09.022Z
-[00:03:49.837] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:03:49.837] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:03:49.837] Browser LOG     Found 0 notifications:
-[00:03:49.837] Browser WARN    ⚠️ No notifications found for this user!
-[00:03:49.837] Browser LOG     Unread count from server: 0
-[00:03:49.837] Browser LOG     ===================================
-[00:04:39.035] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:04:39.837] Browser LOG     Auto-refreshing notifications...
-[00:04:39.837] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:04:39.837] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:04:39.837] Browser LOG     Timestamp: 2026-02-18T22:50:00.034Z
-[00:04:39.837] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:04:39.837] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:04:39.837] Browser LOG     Found 0 notifications:
-[00:04:39.837] Browser WARN    ⚠️ No notifications found for this user!
-[00:04:39.837] Browser LOG     Unread count from server: 0
-[00:04:39.837] Browser LOG     ===================================
-[00:05:39.350] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:05:40.835] Browser LOG     Auto-refreshing notifications...
-[00:05:40.835] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:05:40.835] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:05:40.835] Browser LOG     Timestamp: 2026-02-18T22:51:00.031Z
-[00:05:40.835] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:05:40.835] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:05:40.835] Browser LOG     Found 0 notifications:
-[00:05:40.835] Browser WARN    ⚠️ No notifications found for this user!
-[00:05:40.835] Browser LOG     Unread count from server: 0
-[00:05:40.835] Browser LOG     ===================================
-[00:06:38.906] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:06:39.832] Browser LOG     Auto-refreshing notifications...
-[00:06:39.832] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:06:39.832] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:06:39.832] Browser LOG     Timestamp: 2026-02-18T22:52:00.031Z
-[00:06:39.832] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:06:39.832] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:06:39.832] Browser LOG     Found 0 notifications:
-[00:06:39.832] Browser WARN    ⚠️ No notifications found for this user!
-[00:06:39.832] Browser LOG     Unread count from server: 0
-[00:06:39.832] Browser LOG     ===================================
-[00:07:39.260] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:07:40.835] Browser LOG     Auto-refreshing notifications...
-[00:07:40.835] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:07:40.835] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:07:40.835] Browser LOG     Timestamp: 2026-02-18T22:53:00.030Z
-[00:07:40.835] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:07:40.835] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:07:40.835] Browser LOG     Found 0 notifications:
-[00:07:40.835] Browser WARN    ⚠️ No notifications found for this user!
-[00:07:40.835] Browser LOG     Unread count from server: 0
-[00:07:40.835] Browser LOG     ===================================
-[00:08:39.471] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:08:40.841] Browser LOG     Auto-refreshing notifications...
-[00:08:40.841] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:08:40.841] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:08:40.841] Browser LOG     Timestamp: 2026-02-18T22:54:00.070Z
-[00:08:40.841] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:08:40.841] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:08:40.841] Browser LOG     Found 0 notifications:
-[00:08:40.841] Browser WARN    ⚠️ No notifications found for this user!
-[00:08:40.841] Browser LOG     Unread count from server: 0
-[00:08:40.841] Browser LOG     ===================================
-[00:09:39.198] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:09:40.847] Browser LOG     Auto-refreshing notifications...
-[00:09:40.847] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:09:40.847] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:09:40.847] Browser LOG     Timestamp: 2026-02-18T22:55:00.029Z
-[00:09:40.847] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:09:40.847] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:09:40.847] Browser LOG     Found 0 notifications:
-[00:09:40.847] Browser WARN    ⚠️ No notifications found for this user!
-[00:09:40.847] Browser LOG     Unread count from server: 0
-[00:09:40.847] Browser LOG     ===================================
-[00:10:39.482] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:10:42.849] Browser LOG     Auto-refreshing notifications...
-[00:10:42.849] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:10:42.849] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:10:42.849] Browser LOG     Timestamp: 2026-02-18T22:56:00.047Z
-[00:10:42.849] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:10:42.849] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:10:42.849] Browser LOG     Found 0 notifications:
-[00:10:42.849] Browser WARN    ⚠️ No notifications found for this user!
-[00:10:42.849] Browser LOG     Unread count from server: 0
-[00:10:42.849] Browser LOG     ===================================
-[00:11:39.286] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:11:40.838] Browser LOG     Auto-refreshing notifications...
-[00:11:40.838] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:11:40.838] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:11:40.838] Browser LOG     Timestamp: 2026-02-18T22:57:00.035Z
-[00:11:40.838] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:11:40.838] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:11:40.838] Browser LOG     Found 0 notifications:
-[00:11:40.838] Browser WARN    ⚠️ No notifications found for this user!
-[00:11:40.838] Browser LOG     Unread count from server: 0
-[00:11:40.838] Browser LOG     ===================================
-[00:12:39.722] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:12:40.829] Browser LOG     Auto-refreshing notifications...
-[00:12:40.829] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:12:40.829] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:12:40.829] Browser LOG     Timestamp: 2026-02-18T22:58:00.027Z
-[00:12:40.829] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:12:40.829] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:12:40.829] Browser LOG     Found 0 notifications:
-[00:12:40.829] Browser WARN    ⚠️ No notifications found for this user!
-[00:12:40.829] Browser LOG     Unread count from server: 0
-[00:12:40.829] Browser LOG     ===================================
-[00:13:39.341] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:13:40.837] Browser LOG     Auto-refreshing notifications...
-[00:13:40.837] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:13:40.837] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:13:40.837] Browser LOG     Timestamp: 2026-02-18T22:59:00.041Z
-[00:13:40.837] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:13:40.837] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:13:40.837] Browser LOG     Found 0 notifications:
-[00:13:40.837] Browser WARN    ⚠️ No notifications found for this user!
-[00:13:40.837] Browser LOG     Unread count from server: 0
-[00:13:40.837] Browser LOG     ===================================
-[00:14:39.156] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:14:40.830] Browser LOG     Auto-refreshing notifications...
-[00:14:40.830] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:14:40.831] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:14:40.831] Browser LOG     Timestamp: 2026-02-18T23:00:00.041Z
-[00:14:40.831] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:14:40.831] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:14:40.831] Browser LOG     Found 0 notifications:
-[00:14:40.831] Browser WARN    ⚠️ No notifications found for this user!
-[00:14:40.831] Browser LOG     Unread count from server: 0
-[00:14:40.831] Browser LOG     ===================================
-[00:15:39.168] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:15:40.844] Browser LOG     Auto-refreshing notifications...
-[00:15:40.844] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:15:40.844] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:15:40.844] Browser LOG     Timestamp: 2026-02-18T23:01:00.043Z
-[00:15:40.844] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:15:40.844] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:15:40.844] Browser LOG     Found 0 notifications:
-[00:15:40.844] Browser WARN    ⚠️ No notifications found for this user!
-[00:15:40.844] Browser LOG     Unread count from server: 0
-[00:15:40.844] Browser LOG     ===================================
-[00:16:39.621] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:16:40.835] Browser LOG     Auto-refreshing notifications...
-[00:16:40.835] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:16:40.835] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:16:40.835] Browser LOG     Timestamp: 2026-02-18T23:02:00.049Z
-[00:16:40.835] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:16:40.835] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:16:40.835] Browser LOG     Found 0 notifications:
-[00:16:40.835] Browser WARN    ⚠️ No notifications found for this user!
-[00:16:40.835] Browser LOG     Unread count from server: 0
-[00:16:40.836] Browser LOG     ===================================
-[00:17:39.053] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:17:40.842] Browser LOG     Auto-refreshing notifications...
-[00:17:40.842] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:17:40.842] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:17:40.842] Browser LOG     Timestamp: 2026-02-18T23:03:00.064Z
-[00:17:40.842] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:17:40.842] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:17:40.842] Browser LOG     Found 0 notifications:
-[00:17:40.842] Browser WARN    ⚠️ No notifications found for this user!
-[00:17:40.842] Browser LOG     Unread count from server: 0
-[00:17:40.842] Browser LOG     ===================================
-[00:18:39.536] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:18:40.844] Browser LOG     Auto-refreshing notifications...
-[00:18:40.844] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:18:40.844] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:18:40.844] Browser LOG     Timestamp: 2026-02-18T23:04:00.033Z
-[00:18:40.844] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:18:40.844] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:18:40.844] Browser LOG     Found 0 notifications:
-[00:18:40.844] Browser WARN    ⚠️ No notifications found for this user!
-[00:18:40.844] Browser LOG     Unread count from server: 0
-[00:18:40.844] Browser LOG     ===================================
-[00:19:38.760] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:19:39.836] Browser LOG     Auto-refreshing notifications...
-[00:19:39.837] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:19:39.837] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:19:39.837] Browser LOG     Timestamp: 2026-02-18T23:05:00.042Z
-[00:19:39.837] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:19:39.837] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:19:39.837] Browser LOG     Found 0 notifications:
-[00:19:39.837] Browser WARN    ⚠️ No notifications found for this user!
-[00:19:39.837] Browser LOG     Unread count from server: 0
-[00:19:39.837] Browser LOG     ===================================
-[00:20:39.134] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:20:40.843] Browser LOG     Auto-refreshing notifications...
-[00:20:40.843] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:20:40.843] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:20:40.843] Browser LOG     Timestamp: 2026-02-18T23:06:00.050Z
-[00:20:40.844] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:20:40.844] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:20:40.844] Browser LOG     Found 0 notifications:
-[00:20:40.844] Browser WARN    ⚠️ No notifications found for this user!
-[00:20:40.844] Browser LOG     Unread count from server: 0
-[00:20:40.844] Browser LOG     ===================================
-[00:21:39.193] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:21:40.857] Browser LOG     Auto-refreshing notifications...
-[00:21:40.857] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:21:40.857] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:21:40.857] Browser LOG     Timestamp: 2026-02-18T23:07:00.042Z
-[00:21:40.857] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:21:40.857] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:21:40.857] Browser LOG     Found 0 notifications:
-[00:21:40.857] Browser WARN    ⚠️ No notifications found for this user!
-[00:21:40.857] Browser LOG     Unread count from server: 0
-[00:21:40.857] Browser LOG     ===================================
-[00:22:38.889] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:22:39.842] Browser LOG     Auto-refreshing notifications...
-[00:22:39.842] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:22:39.842] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:22:39.842] Browser LOG     Timestamp: 2026-02-18T23:08:00.035Z
-[00:22:39.842] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:22:39.842] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:22:39.842] Browser LOG     Found 0 notifications:
-[00:22:39.842] Browser WARN    ⚠️ No notifications found for this user!
-[00:22:39.842] Browser LOG     Unread count from server: 0
-[00:22:39.842] Browser LOG     ===================================
-[00:23:39.637] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:23:40.834] Browser LOG     Auto-refreshing notifications...
-[00:23:40.834] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:23:40.834] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:23:40.834] Browser LOG     Timestamp: 2026-02-18T23:09:00.040Z
-[00:23:40.834] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:23:40.834] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:23:40.834] Browser LOG     Found 0 notifications:
-[00:23:40.834] Browser WARN    ⚠️ No notifications found for this user!
-[00:23:40.834] Browser LOG     Unread count from server: 0
-[00:23:40.834] Browser LOG     ===================================
-[00:24:39.584] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:24:40.853] Browser LOG     Auto-refreshing notifications...
-[00:24:40.853] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:24:40.853] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:24:40.853] Browser LOG     Timestamp: 2026-02-18T23:10:00.024Z
-[00:24:40.853] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:24:40.853] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:24:40.853] Browser LOG     Found 0 notifications:
-[00:24:40.853] Browser WARN    ⚠️ No notifications found for this user!
-[00:24:40.853] Browser LOG     Unread count from server: 0
-[00:24:40.853] Browser LOG     ===================================
-[00:25:38.837] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:25:39.833] Browser LOG     Auto-refreshing notifications...
-[00:25:39.833] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:25:39.833] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:25:39.833] Browser LOG     Timestamp: 2026-02-18T23:11:00.023Z
-[00:25:39.833] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:25:39.833] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:25:39.833] Browser LOG     Found 0 notifications:
-[00:25:39.833] Browser WARN    ⚠️ No notifications found for this user!
-[00:25:39.833] Browser LOG     Unread count from server: 0
-[00:25:39.833] Browser LOG     ===================================
-[00:26:30.153] Server  LOG     ✓ Compiled in 900ms
-[00:26:36.184] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:26:37.842] Browser LOG     Auto-refreshing notifications...
-[00:26:37.842] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:26:37.842] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:26:37.842] Browser LOG     Timestamp: 2026-02-18T23:12:00.006Z
-[00:26:37.842] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:26:37.842] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:26:37.842] Browser LOG     Found 0 notifications:
-[00:26:37.842] Browser WARN    ⚠️ No notifications found for this user!
-[00:26:37.842] Browser LOG     Unread count from server: 0
-[00:26:37.842] Browser LOG     ===================================
-[00:26:47.909] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:26:47.909] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:26:47.909] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:26:47.909] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin-upload","route":"/admin-upload"}
-[00:26:47.909] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin-upload color: rgb(120, 120, 120) color: inherit {"dp":"/admin-upload","o":"http://localhost:3000/admin-upload","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771456332517}
-[00:26:47.909] Browser LOG     === USER DEBUG INFO ===
-[00:26:47.909] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T23:12:12.589Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T23:12:12.589Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
-[00:26:47.909] Browser LOG     Public metadata: {"role":"super_admin"}
-[00:26:47.909] Browser LOG     Unsafe metadata: {}
-[00:26:47.909] Browser LOG     Raw role: super_admin
-[00:26:47.909] Browser LOG     Normalized role: superadmin
-[00:26:47.909] Browser LOG     Is loaded: true
-[00:26:47.909] Browser LOG     ====================
-[00:26:47.909] Browser LOG     NotificationsDropdown mounted
-[00:26:47.909] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:26:47.909] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:26:47.909] Browser LOG     Timestamp: 2026-02-18T23:12:12.665Z
-[00:26:48.315] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:26:49.848] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:26:49.848] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:26:49.848] Browser LOG     Found 0 notifications:
-[00:26:49.848] Browser WARN    ⚠️ No notifications found for this user!
-[00:26:49.848] Browser LOG     Unread count from server: 0
-[00:26:49.848] Browser LOG     ===================================
-[00:27:18.840] Browser LOG     Auto-refreshing notifications...
-[00:27:18.840] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:27:18.840] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:27:18.840] Browser LOG     Timestamp: 2026-02-18T23:12:43.030Z
-[00:27:21.796] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:27:22.865] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:27:22.865] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:27:22.865] Browser LOG     Found 0 notifications:
-[00:27:22.865] Browser WARN    ⚠️ No notifications found for this user!
-[00:27:22.865] Browser LOG     Unread count from server: 0
-[00:27:22.865] Browser LOG     ===================================
-[00:27:48.861] Browser LOG     Auto-refreshing notifications...
-[00:27:48.861] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:27:48.861] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:27:48.861] Browser LOG     Timestamp: 2026-02-18T23:13:13.049Z
-[00:27:52.182] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:27:52.862] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:27:52.862] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:27:52.862] Browser LOG     Found 0 notifications:
-[00:27:52.862] Browser WARN    ⚠️ No notifications found for this user!
-[00:27:52.862] Browser LOG     Unread count from server: 0
-[00:27:52.862] Browser LOG     ===================================
-[00:28:18.828] Browser LOG     Auto-refreshing notifications...
-[00:28:18.828] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:28:18.828] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:28:18.828] Browser LOG     Timestamp: 2026-02-18T23:13:43.013Z
-[00:28:21.781] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:28:22.847] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:28:22.847] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:28:22.847] Browser LOG     Found 0 notifications:
-[00:28:22.847] Browser WARN    ⚠️ No notifications found for this user!
-[00:28:22.847] Browser LOG     Unread count from server: 0
-[00:28:22.847] Browser LOG     ===================================
-[00:28:48.834] Browser LOG     Auto-refreshing notifications...
-[00:28:48.835] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:28:48.835] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:28:48.835] Browser LOG     Timestamp: 2026-02-18T23:14:13.008Z
-[00:28:51.759] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:28:52.841] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:28:52.841] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:28:52.841] Browser LOG     Found 0 notifications:
-[00:28:52.841] Browser WARN    ⚠️ No notifications found for this user!
-[00:28:52.841] Browser LOG     Unread count from server: 0
-[00:28:52.841] Browser LOG     ===================================
-[00:29:18.828] Browser LOG     Auto-refreshing notifications...
-[00:29:18.828] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:29:18.828] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:29:18.828] Browser LOG     Timestamp: 2026-02-18T23:14:43.010Z
-[00:29:21.824] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:29:22.828] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:29:22.828] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:29:22.828] Browser LOG     Found 0 notifications:
-[00:29:22.828] Browser WARN    ⚠️ No notifications found for this user!
-[00:29:22.828] Browser LOG     Unread count from server: 0
-[00:29:22.828] Browser LOG     ===================================
-[00:29:51.879] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:29:52.841] Browser LOG     Auto-refreshing notifications...
-[00:29:52.841] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:29:52.841] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:29:52.841] Browser LOG     Timestamp: 2026-02-18T23:15:13.019Z
-[00:29:52.841] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:29:52.841] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:29:52.841] Browser LOG     Found 0 notifications:
-[00:29:52.841] Browser WARN    ⚠️ No notifications found for this user!
-[00:29:52.841] Browser LOG     Unread count from server: 0
-[00:29:52.841] Browser LOG     ===================================
-[00:30:39.196] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:30:40.836] Browser LOG     Auto-refreshing notifications...
-[00:30:40.836] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:30:40.836] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:30:40.836] Browser LOG     Timestamp: 2026-02-18T23:16:00.043Z
-[00:30:40.836] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:30:40.836] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:30:40.837] Browser LOG     Found 0 notifications:
-[00:30:40.837] Browser WARN    ⚠️ No notifications found for this user!
-[00:30:40.837] Browser LOG     Unread count from server: 0
-[00:30:40.837] Browser LOG     ===================================
-[00:31:39.208] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:31:40.902] Browser LOG     Auto-refreshing notifications...
-[00:31:40.902] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:31:40.902] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:31:40.902] Browser LOG     Timestamp: 2026-02-18T23:17:00.049Z
-[00:31:40.902] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:31:40.902] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:31:40.902] Browser LOG     Found 0 notifications:
-[00:31:40.902] Browser WARN    ⚠️ No notifications found for this user!
-[00:31:40.902] Browser LOG     Unread count from server: 0
-[00:31:40.902] Browser LOG     ===================================
-[00:32:39.334] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:32:40.838] Browser LOG     Auto-refreshing notifications...
-[00:32:40.838] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:32:40.838] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:32:40.838] Browser LOG     Timestamp: 2026-02-18T23:18:00.034Z
-[00:32:40.838] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:32:40.838] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:32:40.838] Browser LOG     Found 0 notifications:
-[00:32:40.838] Browser WARN    ⚠️ No notifications found for this user!
-[00:32:40.838] Browser LOG     Unread count from server: 0
-[00:32:40.838] Browser LOG     ===================================
-[00:32:50.503] Server  LOG     ✓ Compiled in 837ms
-[00:32:57.942] Browser LOG     Auto-refreshing notifications...
-[00:32:57.942] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:32:57.942] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:32:57.942] Browser LOG     Timestamp: 2026-02-18T23:18:22.007Z
-[00:32:58.078] Server  ERROR   ⨯ Error: aborted
-[00:33:00.688] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:33:00.688] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:33:00.688] Browser LOG     === USER DEBUG INFO ===
-[00:33:00.688] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T23:18:24.871Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T23:18:24.871Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
-[00:33:00.688] Browser LOG     Public metadata: {"role":"super_admin"}
-[00:33:00.688] Browser LOG     Unsafe metadata: {}
-[00:33:00.688] Browser LOG     Raw role: super_admin
-[00:33:00.688] Browser LOG     Normalized role: superadmin
-[00:33:00.688] Browser LOG     Is loaded: true
-[00:33:00.688] Browser LOG     ====================
-[00:33:00.688] Browser LOG     NotificationsDropdown mounted
-[00:33:00.688] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:33:00.688] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:33:00.688] Browser LOG     Timestamp: 2026-02-18T23:18:25.379Z
-[00:33:00.688] Browser LOG     [2;38;2;124;124;124m%s[0m NotificationsDropdown unmounted
-[00:33:00.688] Browser LOG     [2;38;2;124;124;124m%s[0m NotificationsDropdown mounted
-[00:33:00.688] Browser LOG     [2;38;2;124;124;124m%s[0m === NOTIFICATION DROPDOWN DEBUG ===
-[00:33:00.688] Browser LOG     [2;38;2;124;124;124m%s[0m Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:33:00.688] Browser LOG     [2;38;2;124;124;124m%s[0m Timestamp: 2026-02-18T23:18:25.389Z
-[00:33:00.688] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:33:00.688] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin-upload","route":"/admin-upload"}
-[00:33:00.688] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin-upload color: rgb(120, 120, 120) color: inherit {"dp":"/admin-upload","o":"http://localhost:3000/admin-upload","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771456705443}
-[00:33:01.127] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:33:01.778] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:33:01.778] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:33:01.778] Browser LOG     Found 0 notifications:
-[00:33:01.778] Browser WARN    ⚠️ No notifications found for this user!
-[00:33:01.778] Browser LOG     Unread count from server: 0
-[00:33:01.778] Browser LOG     ===================================
-[00:33:02.171] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:33:02.901] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:33:02.901] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:33:02.901] Browser LOG     Found 0 notifications:
-[00:33:02.901] Browser WARN    ⚠️ No notifications found for this user!
-[00:33:02.901] Browser LOG     Unread count from server: 0
-[00:33:02.901] Browser LOG     ===================================
-[00:33:30.339] Browser LOG     Auto-refreshing notifications...
-[00:33:30.339] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:33:30.339] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:33:30.339] Browser LOG     Timestamp: 2026-02-18T23:18:55.407Z
-[00:33:34.405] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:33:36.113] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:33:36.113] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:33:36.113] Browser LOG     Found 0 notifications:
-[00:33:36.113] Browser WARN    ⚠️ No notifications found for this user!
-[00:33:36.113] Browser LOG     Unread count from server: 0
-[00:33:36.113] Browser LOG     ===================================
-[00:34:00.316] Browser LOG     Auto-refreshing notifications...
-[00:34:00.316] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:34:00.316] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:34:00.316] Browser LOG     Timestamp: 2026-02-18T23:19:25.393Z
-[00:34:04.829] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:34:05.667] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:34:05.667] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:34:05.667] Browser LOG     Found 0 notifications:
-[00:34:05.667] Browser WARN    ⚠️ No notifications found for this user!
-[00:34:05.667] Browser LOG     Unread count from server: 0
-[00:34:05.667] Browser LOG     ===================================
-[00:34:30.453] Browser LOG     Auto-refreshing notifications...
-[00:34:30.453] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:34:30.453] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:34:30.453] Browser LOG     Timestamp: 2026-02-18T23:19:55.394Z
-[00:34:32.858] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-[00:34:32.858] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-[00:34:33.275] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:34:33.275] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin-upload","route":"/admin-upload"}
-[00:34:33.275] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin-upload color: rgb(120, 120, 120) color: inherit {"dp":"/admin-upload","o":"http://localhost:3000/admin-upload","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771456798307}
-[00:34:33.275] Browser LOG     === USER DEBUG INFO ===
-[00:34:33.275] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T23:19:58.245Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-18T23:19:58.245Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
-[00:34:33.275] Browser LOG     Public metadata: {"role":"super_admin"}
-[00:34:33.275] Browser LOG     Unsafe metadata: {}
-[00:34:33.275] Browser LOG     Raw role: super_admin
-[00:34:33.275] Browser LOG     Normalized role: superadmin
-[00:34:33.275] Browser LOG     Is loaded: true
-[00:34:33.275] Browser LOG     ====================
-[00:34:33.275] Browser LOG     NotificationsDropdown mounted
-[00:34:33.275] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
-[00:34:33.275] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:34:33.275] Browser LOG     Timestamp: 2026-02-18T23:19:58.342Z
-[00:34:33.957] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
-[00:34:35.077] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
-[00:34:35.077] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
-[00:34:35.077] Browser LOG     Found 0 notifications:
-[00:34:35.077] Browser WARN    ⚠️ No notifications found for this user!
-[00:34:35.077] Browser LOG     Unread count from server: 0
-[00:34:35.077] Browser LOG     ===================================
+[00:00:01.964] Server  LOG     ✓ Ready in 1423ms
+[00:00:02.002] Browser LOG     Auto-refreshing notifications...
+[00:00:02.002] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:00:02.002] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:00:02.002] Browser LOG     Timestamp: 2026-02-19T00:07:00.024Z
+[00:00:02.002] Browser LOG     Notification result: {"reason":{},"status":"rejected"}
+[00:00:02.002] Browser LOG     Unread count result: {"reason":{},"status":"rejected"}
+[00:00:02.002] Browser WARN    Failed to fetch notifications
+[00:00:02.002] Browser LOG     ===================================
+[00:00:11.383] Server  LOG     ○ Compiling /admin-upload ...
+[00:00:12.010] Browser LOG     Auto-refreshing notifications...
+[00:00:12.011] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:00:12.012] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:00:12.012] Browser LOG     Timestamp: 2026-02-19T00:07:29.262Z
+[00:00:49.745] Server  LOG     MongoDB connected successfully
+[00:01:01.759] Server  WARN    getNotificationsPublic soft-failed, returning empty list
+[00:01:01.761] Server  WARN    getNotifications soft-failed, returning empty list
+[00:01:01.762] Server  WARN    getNotifications soft-failed, returning empty list
+[00:01:11.417] Server  LOG     [getPendingApprovals] Found 0 pending approvals
+[00:01:14.594] Server  LOG     Dashboard - Pending Approvals Count: 0
+[00:01:14.596] Server  LOG     Dashboard - Open POs Count: 0
+[00:01:14.597] Server  LOG     Dashboard - Total POs: 0
+[00:01:20.661] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:01:20.661] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:01:20.661] Browser LOG     === USER DEBUG INFO ===
+[00:01:20.661] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:08:37.597Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:08:37.597Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
+[00:01:20.661] Browser LOG     Public metadata: {"role":"super_admin"}
+[00:01:20.661] Browser LOG     Unsafe metadata: {}
+[00:01:20.661] Browser LOG     Raw role: super_admin
+[00:01:20.661] Browser LOG     Normalized role: superadmin
+[00:01:20.661] Browser LOG     Is loaded: true
+[00:01:20.661] Browser LOG     ====================
+[00:01:20.661] Browser LOG     NotificationsDropdown mounted
+[00:01:20.661] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:01:20.661] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:01:20.661] Browser LOG     Timestamp: 2026-02-19T00:08:37.712Z
+[00:01:20.661] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:20.661] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:01:20.661] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771459717765}
+[00:01:21.076] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:01:22.656] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:01:22.656] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:01:22.656] Browser LOG     Found 0 notifications:
+[00:01:22.656] Browser WARN    ⚠️ No notifications found for this user!
+[00:01:22.656] Browser LOG     Unread count from server: 0
+[00:01:22.656] Browser LOG     ===================================
+[00:01:50.463] Browser LOG     Auto-refreshing notifications...
+[00:01:50.463] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:01:50.463] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:01:50.463] Browser LOG     Timestamp: 2026-02-19T00:09:07.714Z
+[00:01:54.471] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:01:55.296] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:01:55.296] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:01:55.296] Browser LOG     Found 0 notifications:
+[00:01:55.296] Browser WARN    ⚠️ No notifications found for this user!
+[00:01:55.296] Browser LOG     Unread count from server: 0
+[00:01:55.296] Browser LOG     ===================================
+[00:02:00.739] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771459757977}
+[00:02:20.462] Browser LOG     Auto-refreshing notifications...
+[00:02:20.462] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:02:20.462] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:02:20.462] Browser LOG     Timestamp: 2026-02-19T00:09:37.718Z
+[00:02:24.984] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:02:25.656] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:02:25.656] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:02:25.657] Browser LOG     Found 0 notifications:
+[00:02:25.657] Browser WARN    ⚠️ No notifications found for this user!
+[00:02:25.657] Browser LOG     Unread count from server: 0
+[00:02:25.657] Browser LOG     ===================================
+[00:02:38.599] Server  LOG     ○ Compiling /admin ...
+[00:02:39.200] Browser LOG     Current User Role: superadmin
+[00:02:39.200] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:02:39.200] Browser LOG     Current User Role: superadmin
+[00:02:39.200] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:02:39.200] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771459796434}
+[00:02:45.206] Browser LOG     Current User Role: superadmin
+[00:02:45.206] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:02:46.962] Browser LOG     Current User Role: superadmin
+[00:02:46.962] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:02:50.464] Browser LOG     Auto-refreshing notifications...
+[00:02:50.464] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:02:50.464] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:02:50.464] Browser LOG     Timestamp: 2026-02-19T00:10:07.716Z
+[00:02:54.559] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:02:55.301] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:02:55.301] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:02:55.301] Browser LOG     Found 0 notifications:
+[00:02:55.301] Browser WARN    ⚠️ No notifications found for this user!
+[00:02:55.301] Browser LOG     Unread count from server: 0
+[00:02:55.301] Browser LOG     ===================================
+[00:02:57.426] Browser LOG     Current User Role: superadmin
+[00:02:57.426] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:02:57.426] Browser LOG     Current User Role: superadmin
+[00:02:57.426] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:02:57.901] Server  LOG     supplier: {}
+[00:02:57.905] Server  LOG     data: {}
+[00:02:58.161] Browser LOG     Current User Role: superadmin
+[00:02:58.161] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:03:20.471] Browser LOG     Auto-refreshing notifications...
+[00:03:20.471] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:03:20.471] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:03:20.471] Browser LOG     Timestamp: 2026-02-19T00:10:37.724Z
+[00:03:24.596] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:03:25.361] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:03:25.361] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:03:25.361] Browser LOG     Found 0 notifications:
+[00:03:25.361] Browser WARN    ⚠️ No notifications found for this user!
+[00:03:25.361] Browser LOG     Unread count from server: 0
+[00:03:25.361] Browser LOG     ===================================
+[00:03:31.307] Browser LOG     Current User Role: superadmin
+[00:03:31.307] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:03:47.314] Browser LOG     Current User Role: superadmin
+[00:03:47.314] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:03:47.314] Browser LOG     Current User Role: superadmin
+[00:03:47.314] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:03:50.468] Browser LOG     Auto-refreshing notifications...
+[00:03:50.468] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:03:50.468] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:03:50.468] Browser LOG     Timestamp: 2026-02-19T00:11:07.724Z
+[00:03:51.160] Server  LOG     supplier: {}
+[00:03:51.161] Server  LOG     data: {}
+[00:03:51.315] Browser LOG     Current User Role: superadmin
+[00:03:51.315] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:03:51.788] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:03:52.496] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:03:52.496] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:03:52.496] Browser LOG     Found 0 notifications:
+[00:03:52.496] Browser WARN    ⚠️ No notifications found for this user!
+[00:03:52.496] Browser LOG     Unread count from server: 0
+[00:03:52.496] Browser LOG     ===================================
+[00:03:59.857] Browser LOG     Current User Role: superadmin
+[00:03:59.857] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:04.409] Browser LOG     Current User Role: superadmin
+[00:04:04.409] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:04.409] Browser LOG     Current User Role: superadmin
+[00:04:04.409] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:08.139] Server  LOG     supplier: {}
+[00:04:08.140] Server  LOG     data: {}
+[00:04:08.282] Browser LOG     Current User Role: superadmin
+[00:04:08.282] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:14.143] Browser LOG     Current User Role: superadmin
+[00:04:14.143] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:17.137] Browser LOG     Current User Role: superadmin
+[00:04:17.137] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:17.137] Browser LOG     Current User Role: superadmin
+[00:04:17.137] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:20.468] Browser LOG     Auto-refreshing notifications...
+[00:04:20.468] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:04:20.468] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:04:20.468] Browser LOG     Timestamp: 2026-02-19T00:11:37.721Z
+[00:04:20.935] Server  LOG     supplier: {}
+[00:04:20.937] Server  LOG     data: {}
+[00:04:21.111] Browser LOG     Current User Role: superadmin
+[00:04:21.111] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:21.590] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:04:22.205] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:04:22.206] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:04:22.206] Browser LOG     Found 0 notifications:
+[00:04:22.206] Browser WARN    ⚠️ No notifications found for this user!
+[00:04:22.206] Browser LOG     Unread count from server: 0
+[00:04:22.206] Browser LOG     ===================================
+[00:04:31.514] Browser LOG     Current User Role: superadmin
+[00:04:31.514] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:04:50.470] Browser LOG     Auto-refreshing notifications...
+[00:04:50.470] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:04:50.470] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:04:50.470] Browser LOG     Timestamp: 2026-02-19T00:12:07.716Z
+[00:04:54.541] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:04:55.255] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:04:55.255] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:04:55.255] Browser LOG     Found 0 notifications:
+[00:04:55.255] Browser WARN    ⚠️ No notifications found for this user!
+[00:04:55.255] Browser LOG     Unread count from server: 0
+[00:04:55.255] Browser LOG     ===================================
+[00:05:20.478] Browser LOG     Auto-refreshing notifications...
+[00:05:20.478] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:05:20.478] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:05:20.478] Browser LOG     Timestamp: 2026-02-19T00:12:37.725Z
+[00:05:24.608] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:05:25.241] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:05:25.241] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:05:25.241] Browser LOG     Found 0 notifications:
+[00:05:25.241] Browser WARN    ⚠️ No notifications found for this user!
+[00:05:25.241] Browser LOG     Unread count from server: 0
+[00:05:25.241] Browser LOG     ===================================
+[00:05:50.482] Browser LOG     Auto-refreshing notifications...
+[00:05:50.482] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:05:50.482] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:05:50.482] Browser LOG     Timestamp: 2026-02-19T00:13:07.727Z
+[00:05:54.985] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:05:55.587] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:05:55.587] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:05:55.587] Browser LOG     Found 0 notifications:
+[00:05:55.587] Browser WARN    ⚠️ No notifications found for this user!
+[00:05:55.587] Browser LOG     Unread count from server: 0
+[00:05:55.587] Browser LOG     ===================================
+[00:06:20.475] Browser LOG     Auto-refreshing notifications...
+[00:06:20.475] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:06:20.475] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:06:20.475] Browser LOG     Timestamp: 2026-02-19T00:13:37.722Z
+[00:06:24.172] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:06:25.413] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:06:25.413] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:06:25.413] Browser LOG     Found 0 notifications:
+[00:06:25.413] Browser WARN    ⚠️ No notifications found for this user!
+[00:06:25.413] Browser LOG     Unread count from server: 0
+[00:06:25.413] Browser LOG     ===================================
+[00:06:46.091] Server  LOG     Current User Role: "admin"
+[00:06:46.565] Browser LOG     Current User Role: admin
+[00:06:46.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[00:06:46.565] Browser LOG     Current User Role: admin
+[00:06:46.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[00:06:46.565] Browser LOG     Current User Role: admin
+[00:06:46.565] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[00:06:46.678] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:06:46.678] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:06:47.068] Browser LOG     Current User Role: superadmin
+[00:06:47.068] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:06:47.068] Browser LOG     Current User Role: superadmin
+[00:06:47.069] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:06:47.069] Browser LOG     === USER DEBUG INFO ===
+[00:06:47.069] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:14:04.231Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:14:04.231Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
+[00:06:47.069] Browser LOG     Public metadata: {"role":"super_admin"}
+[00:06:47.069] Browser LOG     Unsafe metadata: {}
+[00:06:47.069] Browser LOG     Raw role: super_admin
+[00:06:47.069] Browser LOG     Normalized role: superadmin
+[00:06:47.069] Browser LOG     Is loaded: true
+[00:06:47.069] Browser LOG     ====================
+[00:06:47.069] Browser LOG     NotificationsDropdown mounted
+[00:06:47.069] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:06:47.069] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:06:47.069] Browser LOG     Timestamp: 2026-02-19T00:14:04.295Z
+[00:06:47.069] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:06:47.069] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:06:47.069] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771460044316}
+[00:06:51.487] Server  LOG     Current User Role: "admin"
+[00:06:52.016] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:06:52.016] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:06:52.016] Browser LOG     Current User Role: admin
+[00:06:52.016] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[00:06:52.016] Browser LOG     Current User Role: admin
+[00:06:52.016] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[00:06:52.016] Browser LOG     Current User Role: admin
+[00:06:52.016] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: admin
+[00:06:52.248] Browser LOG     Current User Role: superadmin
+[00:06:52.248] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:06:52.248] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:06:52.248] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[00:06:52.248] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771460049469}
+[00:06:52.248] Browser LOG     Current User Role: superadmin
+[00:06:52.248] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:06:52.248] Browser LOG     === USER DEBUG INFO ===
+[00:06:52.248] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:14:09.432Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:14:09.432Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
+[00:06:52.248] Browser LOG     Public metadata: {"role":"super_admin"}
+[00:06:52.248] Browser LOG     Unsafe metadata: {}
+[00:06:52.248] Browser LOG     Raw role: super_admin
+[00:06:52.248] Browser LOG     Normalized role: superadmin
+[00:06:52.248] Browser LOG     Is loaded: true
+[00:06:52.248] Browser LOG     ====================
+[00:06:52.248] Browser LOG     NotificationsDropdown mounted
+[00:06:52.248] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:06:52.248] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:06:52.248] Browser LOG     Timestamp: 2026-02-19T00:14:09.502Z
+[00:06:54.294] Browser LOG     Current User Role: superadmin
+[00:06:54.294] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:06:54.790] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:06:55.547] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:06:55.547] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:06:55.547] Browser LOG     Found 0 notifications:
+[00:06:55.547] Browser WARN    ⚠️ No notifications found for this user!
+[00:06:55.547] Browser LOG     Unread count from server: 0
+[00:06:55.547] Browser LOG     ===================================
+[00:06:58.572] Browser LOG     Current User Role: superadmin
+[00:06:58.572] Browser LOG     [2;38;2;124;124;124m%s[0m Current User Role: superadmin
+[00:07:22.247] Browser LOG     Auto-refreshing notifications...
+[00:07:22.247] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:07:22.247] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:07:22.247] Browser LOG     Timestamp: 2026-02-19T00:14:39.503Z
+[00:07:29.194] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:07:29.838] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:07:29.838] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:07:29.838] Browser LOG     Found 0 notifications:
+[00:07:29.838] Browser WARN    ⚠️ No notifications found for this user!
+[00:07:29.838] Browser LOG     Unread count from server: 0
+[00:07:29.838] Browser LOG     ===================================
+[00:07:29.838] Browser LOG     [TendersPage] User role: {"normalized":"superadmin","raw":"super_admin"}
+[00:07:29.838] Browser LOG     [TendersPage] Loading tenders...
+[00:07:29.838] Browser LOG     [2;38;2;124;124;124m%s[0m [TendersPage] User role: {"normalized":"superadmin","raw":"super_admin"}
+[00:07:29.838] Browser LOG     [2;38;2;124;124;124m%s[0m [TendersPage] Loading tenders...
+[00:07:29.838] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771460087075}
+[00:07:30.308] Server  LOG     [getTenders] User role: {}
+[00:07:30.309] Server  LOG     [getTenders] Admin/Superadmin - fetching all tenders
+[00:07:30.466] Server  LOG     [getTenders] Admin found 4 tenders
+[00:07:30.575] Browser LOG     [TendersPage] getTenders result: {"count":4,"success":true}
+[00:07:30.575] Browser LOG     [TendersPage] Setting tenders: 4
+[00:07:33.709] Server  LOG     [getTenders] User role: {}
+[00:07:33.709] Server  LOG     [getTenders] Admin/Superadmin - fetching all tenders
+[00:07:33.870] Server  LOG     [getTenders] Admin found 4 tenders
+[00:07:33.980] Browser LOG     [TendersPage] getTenders result: {"count":4,"success":true}
+[00:07:33.980] Browser LOG     [TendersPage] Setting tenders: 4
+[00:07:53.658] Browser LOG     Auto-refreshing notifications...
+[00:07:53.658] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:07:53.658] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:07:53.658] Browser LOG     Timestamp: 2026-02-19T00:15:10.018Z
+[00:07:56.531] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:07:57.655] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:07:57.655] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:07:57.655] Browser LOG     Found 0 notifications:
+[00:07:57.655] Browser WARN    ⚠️ No notifications found for this user!
+[00:07:57.655] Browser LOG     Unread count from server: 0
+[00:07:57.655] Browser LOG     ===================================
+[00:08:23.659] Browser LOG     Auto-refreshing notifications...
+[00:08:23.659] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:08:23.659] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:08:23.659] Browser LOG     Timestamp: 2026-02-19T00:15:40.016Z
+[00:08:26.840] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:08:27.651] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:08:27.651] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:08:27.651] Browser LOG     Found 0 notifications:
+[00:08:27.651] Browser WARN    ⚠️ No notifications found for this user!
+[00:08:27.651] Browser LOG     Unread count from server: 0
+[00:08:27.651] Browser LOG     ===================================
+[00:08:53.658] Browser LOG     Auto-refreshing notifications...
+[00:08:53.658] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:08:53.658] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:08:53.658] Browser LOG     Timestamp: 2026-02-19T00:16:10.010Z
+[00:08:56.719] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:08:57.649] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:08:57.650] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:08:57.650] Browser LOG     Found 0 notifications:
+[00:08:57.650] Browser WARN    ⚠️ No notifications found for this user!
+[00:08:57.650] Browser LOG     Unread count from server: 0
+[00:08:57.650] Browser LOG     ===================================
+[00:09:23.721] Browser LOG     Auto-refreshing notifications...
+[00:09:23.721] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:09:23.721] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:09:23.721] Browser LOG     Timestamp: 2026-02-19T00:16:40.013Z
+[00:09:26.530] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:09:27.665] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:09:27.665] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:09:27.665] Browser LOG     Found 0 notifications:
+[00:09:27.665] Browser WARN    ⚠️ No notifications found for this user!
+[00:09:27.665] Browser LOG     Unread count from server: 0
+[00:09:27.665] Browser LOG     ===================================
+[00:09:56.453] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:09:57.657] Browser LOG     Auto-refreshing notifications...
+[00:09:57.657] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:09:57.657] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:09:57.657] Browser LOG     Timestamp: 2026-02-19T00:17:10.018Z
+[00:09:57.657] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:09:57.657] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:09:57.657] Browser LOG     Found 0 notifications:
+[00:09:57.657] Browser WARN    ⚠️ No notifications found for this user!
+[00:09:57.657] Browser LOG     Unread count from server: 0
+[00:09:57.657] Browser LOG     ===================================
+[00:10:47.504] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:10:48.651] Browser LOG     Auto-refreshing notifications...
+[00:10:48.651] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:10:48.651] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:10:48.651] Browser LOG     Timestamp: 2026-02-19T00:18:00.020Z
+[00:10:48.651] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:10:48.651] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:10:48.651] Browser LOG     Found 0 notifications:
+[00:10:48.651] Browser WARN    ⚠️ No notifications found for this user!
+[00:10:48.651] Browser LOG     Unread count from server: 0
+[00:10:48.651] Browser LOG     ===================================
+[00:11:43.914] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:11:44.658] Browser LOG     Auto-refreshing notifications...
+[00:11:44.658] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:11:44.658] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:11:44.658] Browser LOG     Timestamp: 2026-02-19T00:19:00.009Z
+[00:11:44.658] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:11:44.658] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:11:44.658] Browser LOG     Found 0 notifications:
+[00:11:44.658] Browser WARN    ⚠️ No notifications found for this user!
+[00:11:44.658] Browser LOG     Unread count from server: 0
+[00:11:44.658] Browser LOG     ===================================
+[00:12:43.600] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:12:44.655] Browser LOG     Auto-refreshing notifications...
+[00:12:44.655] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:12:44.655] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:12:44.655] Browser LOG     Timestamp: 2026-02-19T00:20:00.017Z
+[00:12:44.655] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:12:44.655] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:12:44.655] Browser LOG     Found 0 notifications:
+[00:12:44.655] Browser WARN    ⚠️ No notifications found for this user!
+[00:12:44.655] Browser LOG     Unread count from server: 0
+[00:12:44.655] Browser LOG     ===================================
+[00:13:45.105] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:13:46.658] Browser LOG     Auto-refreshing notifications...
+[00:13:46.658] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:13:46.658] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:13:46.658] Browser LOG     Timestamp: 2026-02-19T00:21:00.011Z
+[00:13:46.658] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:13:46.658] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:13:46.658] Browser LOG     Found 0 notifications:
+[00:13:46.658] Browser WARN    ⚠️ No notifications found for this user!
+[00:13:46.658] Browser LOG     Unread count from server: 0
+[00:13:46.658] Browser LOG     ===================================
+[00:14:43.349] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:14:44.659] Browser LOG     Auto-refreshing notifications...
+[00:14:44.659] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:14:44.659] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:14:44.659] Browser LOG     Timestamp: 2026-02-19T00:22:00.015Z
+[00:14:44.659] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:14:44.659] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:14:44.659] Browser LOG     Found 0 notifications:
+[00:14:44.659] Browser WARN    ⚠️ No notifications found for this user!
+[00:14:44.659] Browser LOG     Unread count from server: 0
+[00:14:44.659] Browser LOG     ===================================
+[00:15:44.037] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:15:45.649] Browser LOG     Auto-refreshing notifications...
+[00:15:45.649] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:15:45.649] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:15:45.649] Browser LOG     Timestamp: 2026-02-19T00:23:00.011Z
+[00:15:45.649] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:15:45.649] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:15:45.649] Browser LOG     Found 0 notifications:
+[00:15:45.649] Browser WARN    ⚠️ No notifications found for this user!
+[00:15:45.649] Browser LOG     Unread count from server: 0
+[00:15:45.649] Browser LOG     ===================================
+[00:16:43.982] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:16:44.657] Browser LOG     Auto-refreshing notifications...
+[00:16:44.657] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:16:44.657] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:16:44.657] Browser LOG     Timestamp: 2026-02-19T00:24:00.015Z
+[00:16:44.657] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:16:44.657] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:16:44.657] Browser LOG     Found 0 notifications:
+[00:16:44.657] Browser WARN    ⚠️ No notifications found for this user!
+[00:16:44.657] Browser LOG     Unread count from server: 0
+[00:16:44.657] Browser LOG     ===================================
+[00:17:44.122] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:17:45.658] Browser LOG     Auto-refreshing notifications...
+[00:17:45.658] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:17:45.658] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:17:45.658] Browser LOG     Timestamp: 2026-02-19T00:25:00.014Z
+[00:17:45.658] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:17:45.658] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:17:45.658] Browser LOG     Found 0 notifications:
+[00:17:45.658] Browser WARN    ⚠️ No notifications found for this user!
+[00:17:45.658] Browser LOG     Unread count from server: 0
+[00:17:45.658] Browser LOG     ===================================
+[00:18:43.336] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:18:44.664] Browser LOG     Auto-refreshing notifications...
+[00:18:44.664] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:18:44.664] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:18:44.664] Browser LOG     Timestamp: 2026-02-19T00:26:00.019Z
+[00:18:44.664] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:18:44.664] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:18:44.664] Browser LOG     Found 0 notifications:
+[00:18:44.664] Browser WARN    ⚠️ No notifications found for this user!
+[00:18:44.664] Browser LOG     Unread count from server: 0
+[00:18:44.664] Browser LOG     ===================================
+[00:19:44.008] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:19:44.650] Browser LOG     Auto-refreshing notifications...
+[00:19:44.650] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:19:44.650] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:19:44.650] Browser LOG     Timestamp: 2026-02-19T00:27:00.009Z
+[00:19:44.650] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:19:44.650] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:19:44.650] Browser LOG     Found 0 notifications:
+[00:19:44.650] Browser WARN    ⚠️ No notifications found for this user!
+[00:19:44.650] Browser LOG     Unread count from server: 0
+[00:19:44.650] Browser LOG     ===================================
+[00:20:43.449] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:20:44.659] Browser LOG     Auto-refreshing notifications...
+[00:20:44.659] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:20:44.659] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:20:44.659] Browser LOG     Timestamp: 2026-02-19T00:28:00.020Z
+[00:20:44.659] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:20:44.659] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:20:44.659] Browser LOG     Found 0 notifications:
+[00:20:44.659] Browser WARN    ⚠️ No notifications found for this user!
+[00:20:44.659] Browser LOG     Unread count from server: 0
+[00:20:44.659] Browser LOG     ===================================
+[00:20:54.771] Browser LOG     Auto-refreshing notifications...
+[00:20:54.771] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:20:54.771] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:20:54.771] Browser LOG     Timestamp: 2026-02-19T00:28:12.013Z
+[00:20:55.902] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:20:56.558] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:20:56.558] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:20:56.558] Browser LOG     Found 0 notifications:
+[00:20:56.558] Browser WARN    ⚠️ No notifications found for this user!
+[00:20:56.558] Browser LOG     Unread count from server: 0
+[00:20:56.558] Browser LOG     ===================================
+[00:21:23.288] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:21:23.650] Browser LOG     Auto-refreshing notifications...
+[00:21:23.650] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:21:23.650] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:21:23.650] Browser LOG     Timestamp: 2026-02-19T00:28:40.007Z
+[00:21:24.663] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:21:24.663] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:21:24.663] Browser LOG     Found 0 notifications:
+[00:21:24.663] Browser WARN    ⚠️ No notifications found for this user!
+[00:21:24.663] Browser LOG     Unread count from server: 0
+[00:21:24.663] Browser LOG     ===================================
+[00:21:53.554] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:21:53.651] Browser LOG     Auto-refreshing notifications...
+[00:21:53.651] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:21:53.651] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:21:53.651] Browser LOG     Timestamp: 2026-02-19T00:29:10.018Z
+[00:21:54.657] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:21:54.657] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:21:54.657] Browser LOG     Found 0 notifications:
+[00:21:54.658] Browser WARN    ⚠️ No notifications found for this user!
+[00:21:54.658] Browser LOG     Unread count from server: 0
+[00:21:54.658] Browser LOG     ===================================
+[00:22:43.868] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:22:44.664] Browser LOG     Auto-refreshing notifications...
+[00:22:44.664] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:22:44.664] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:22:44.664] Browser LOG     Timestamp: 2026-02-19T00:30:00.022Z
+[00:22:44.664] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:22:44.664] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:22:44.664] Browser LOG     Found 0 notifications:
+[00:22:44.664] Browser WARN    ⚠️ No notifications found for this user!
+[00:22:44.664] Browser LOG     Unread count from server: 0
+[00:22:44.664] Browser LOG     ===================================
+[00:23:21.355] Server  LOG     ✓ Compiled in 504ms
+[00:23:21.716] Browser LOG     [TendersPage] User role: {"normalized":"superadmin","raw":"super_admin"}
+[00:23:21.716] Browser LOG     [TendersPage] Loading tenders...
+[00:23:22.489] Server  LOG     [getTenders] User role: {}
+[00:23:22.490] Server  LOG     [getTenders] Admin/Superadmin - fetching all tenders
+[00:23:22.685] Server  LOG     [getTenders] Admin found 4 tenders
+[00:23:23.663] Browser LOG     [TendersPage] getTenders result: {"count":4,"success":true}
+[00:23:23.663] Browser LOG     [TendersPage] Setting tenders: 4
+[00:23:25.200] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:23:25.654] Browser LOG     Auto-refreshing notifications...
+[00:23:25.654] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:23:25.654] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:23:25.654] Browser LOG     Timestamp: 2026-02-19T00:30:42.015Z
+[00:23:26.662] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:23:26.662] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:23:26.662] Browser LOG     Found 0 notifications:
+[00:23:26.662] Browser WARN    ⚠️ No notifications found for this user!
+[00:23:26.662] Browser LOG     Unread count from server: 0
+[00:23:26.662] Browser LOG     ===================================
+[00:24:43.916] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:24:44.658] Browser LOG     Auto-refreshing notifications...
+[00:24:44.658] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:24:44.658] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:24:44.658] Browser LOG     Timestamp: 2026-02-19T00:32:00.011Z
+[00:24:44.658] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:24:44.658] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:24:44.658] Browser LOG     Found 0 notifications:
+[00:24:44.658] Browser WARN    ⚠️ No notifications found for this user!
+[00:24:44.658] Browser LOG     Unread count from server: 0
+[00:24:44.658] Browser LOG     ===================================
+[00:24:59.523] Browser LOG     Auto-refreshing notifications...
+[00:24:59.523] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:24:59.523] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:24:59.523] Browser LOG     Timestamp: 2026-02-19T00:32:16.773Z
+[00:25:00.060] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:25:00.692] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:25:00.692] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:25:00.692] Browser LOG     Found 0 notifications:
+[00:25:00.692] Browser WARN    ⚠️ No notifications found for this user!
+[00:25:00.692] Browser LOG     Unread count from server: 0
+[00:25:00.692] Browser LOG     ===================================
+[00:25:07.178] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:25:07.178] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:25:07.178] Browser LOG     [TendersPage] Loading tenders...
+[00:25:07.505] Browser LOG     === USER DEBUG INFO ===
+[00:25:07.505] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:32:24.655Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:32:24.655Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
+[00:25:07.505] Browser LOG     Public metadata: {"role":"super_admin"}
+[00:25:07.505] Browser LOG     Unsafe metadata: {}
+[00:25:07.505] Browser LOG     Raw role: super_admin
+[00:25:07.505] Browser LOG     Normalized role: superadmin
+[00:25:07.505] Browser LOG     Is loaded: true
+[00:25:07.505] Browser LOG     ====================
+[00:25:07.505] Browser LOG     NotificationsDropdown mounted
+[00:25:07.505] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:25:07.505] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:25:07.505] Browser LOG     Timestamp: 2026-02-19T00:32:24.719Z
+[00:25:07.505] Browser LOG     [TendersPage] User role: {"normalized":"superadmin","raw":"super_admin"}
+[00:25:07.505] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:25:07.505] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/tenders","route":"/tenders"}
+[00:25:07.505] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461144754}
+[00:25:08.074] Server  LOG     [getTenders] User role: {}
+[00:25:08.074] Server  LOG     [getTenders] Admin/Superadmin - fetching all tenders
+[00:25:08.281] Server  LOG     [getTenders] Admin found 4 tenders
+[00:25:08.387] Browser LOG     [TendersPage] getTenders result: {"count":4,"success":true}
+[00:25:08.387] Browser LOG     [TendersPage] Setting tenders: 4
+[00:25:09.394] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:25:10.060] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:25:10.060] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:25:10.060] Browser LOG     Found 0 notifications:
+[00:25:10.060] Browser WARN    ⚠️ No notifications found for this user!
+[00:25:10.060] Browser LOG     Unread count from server: 0
+[00:25:10.060] Browser LOG     ===================================
+[00:25:38.299] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:25:38.649] Browser LOG     Auto-refreshing notifications...
+[00:25:38.649] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:25:38.649] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:25:38.649] Browser LOG     Timestamp: 2026-02-19T00:32:55.007Z
+[00:25:39.650] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:25:39.650] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:25:39.650] Browser LOG     Found 0 notifications:
+[00:25:39.650] Browser WARN    ⚠️ No notifications found for this user!
+[00:25:39.650] Browser LOG     Unread count from server: 0
+[00:25:39.650] Browser LOG     ===================================
+[00:26:07.470] Browser LOG     Auto-refreshing notifications...
+[00:26:07.470] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:26:07.470] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:26:07.470] Browser LOG     Timestamp: 2026-02-19T00:33:24.723Z
+[00:26:08.233] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:26:08.834] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:26:08.834] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:26:08.834] Browser LOG     Found 0 notifications:
+[00:26:08.834] Browser WARN    ⚠️ No notifications found for this user!
+[00:26:08.834] Browser LOG     Unread count from server: 0
+[00:26:08.834] Browser LOG     ===================================
+[00:26:37.473] Browser LOG     Auto-refreshing notifications...
+[00:26:37.473] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:26:37.473] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:26:37.473] Browser LOG     Timestamp: 2026-02-19T00:33:54.729Z
+[00:26:37.915] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:26:38.543] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:26:38.543] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:26:38.543] Browser LOG     Found 0 notifications:
+[00:26:38.543] Browser WARN    ⚠️ No notifications found for this user!
+[00:26:38.543] Browser LOG     Unread count from server: 0
+[00:26:38.543] Browser LOG     ===================================
+[00:27:07.477] Browser LOG     Auto-refreshing notifications...
+[00:27:07.477] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:27:07.477] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:27:07.477] Browser LOG     Timestamp: 2026-02-19T00:34:24.722Z
+[00:27:08.560] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:27:09.209] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:27:09.209] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:27:09.209] Browser LOG     Found 0 notifications:
+[00:27:09.209] Browser WARN    ⚠️ No notifications found for this user!
+[00:27:09.209] Browser LOG     Unread count from server: 0
+[00:27:09.209] Browser LOG     ===================================
+[00:27:37.482] Browser LOG     Auto-refreshing notifications...
+[00:27:37.482] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:27:37.482] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:27:37.482] Browser LOG     Timestamp: 2026-02-19T00:34:54.730Z
+[00:27:37.885] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:27:38.498] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:27:38.498] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:27:38.498] Browser LOG     Found 0 notifications:
+[00:27:38.498] Browser WARN    ⚠️ No notifications found for this user!
+[00:27:38.498] Browser LOG     Unread count from server: 0
+[00:27:38.498] Browser LOG     ===================================
+[00:28:07.480] Browser LOG     Auto-refreshing notifications...
+[00:28:07.480] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:28:07.480] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:28:07.480] Browser LOG     Timestamp: 2026-02-19T00:35:24.724Z
+[00:28:08.178] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:28:08.921] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:28:08.921] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:28:08.921] Browser LOG     Found 0 notifications:
+[00:28:08.921] Browser WARN    ⚠️ No notifications found for this user!
+[00:28:08.921] Browser LOG     Unread count from server: 0
+[00:28:08.921] Browser LOG     ===================================
+[00:28:37.490] Browser LOG     Auto-refreshing notifications...
+[00:28:37.490] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:28:37.490] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:28:37.490] Browser LOG     Timestamp: 2026-02-19T00:35:54.736Z
+[00:28:38.587] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:28:39.252] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:28:39.252] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:28:39.252] Browser LOG     Found 0 notifications:
+[00:28:39.252] Browser WARN    ⚠️ No notifications found for this user!
+[00:28:39.252] Browser LOG     Unread count from server: 0
+[00:28:39.252] Browser LOG     ===================================
+[00:29:07.467] Browser LOG     Auto-refreshing notifications...
+[00:29:07.467] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:29:07.467] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:29:07.467] Browser LOG     Timestamp: 2026-02-19T00:36:24.724Z
+[00:29:08.438] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:29:09.166] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:29:09.166] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:29:09.166] Browser LOG     Found 0 notifications:
+[00:29:09.166] Browser WARN    ⚠️ No notifications found for this user!
+[00:29:09.166] Browser LOG     Unread count from server: 0
+[00:29:09.166] Browser LOG     ===================================
+[00:29:38.378] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:29:38.659] Browser LOG     Auto-refreshing notifications...
+[00:29:38.659] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:29:38.659] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:29:38.659] Browser LOG     Timestamp: 2026-02-19T00:36:55.009Z
+[00:29:39.661] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:29:39.661] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:29:39.661] Browser LOG     Found 0 notifications:
+[00:29:39.661] Browser WARN    ⚠️ No notifications found for this user!
+[00:29:39.661] Browser LOG     Unread count from server: 0
+[00:29:39.661] Browser LOG     ===================================
+[00:29:52.032] Server  LOG     [getBidsWithDetails] Creating bid with key: 695d2b687a450bf17c29d2bb:Hawa Momoh Catering Services:0
+[00:29:52.245] Server  LOG     [getBidsWithDetails] Returning 1 bids
+[00:29:52.539] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/bids color: rgb(120, 120, 120) color: inherit {"dp":"/bids","o":"http://localhost:3000/bids","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461429742}
+[00:29:55.388] Server  LOG     [getBidsWithDetails] Creating bid with key: 695d2b687a450bf17c29d2bb:Hawa Momoh Catering Services:0
+[00:29:55.592] Server  LOG     [getBidsWithDetails] Returning 1 bids
+[00:29:56.357] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:29:56.357] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:29:56.714] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:29:56.714] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/bids","route":"/bids"}
+[00:29:56.714] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/bids color: rgb(120, 120, 120) color: inherit {"dp":"/bids","o":"http://localhost:3000/bids","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461433924}
+[00:29:56.714] Browser LOG     === USER DEBUG INFO ===
+[00:29:56.714] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:37:13.869Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:37:13.869Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
+[00:29:56.714] Browser LOG     Public metadata: {"role":"super_admin"}
+[00:29:56.714] Browser LOG     Unsafe metadata: {}
+[00:29:56.714] Browser LOG     Raw role: super_admin
+[00:29:56.714] Browser LOG     Normalized role: superadmin
+[00:29:56.714] Browser LOG     Is loaded: true
+[00:29:56.714] Browser LOG     ====================
+[00:29:56.714] Browser LOG     NotificationsDropdown mounted
+[00:29:56.714] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:29:56.714] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:29:56.714] Browser LOG     Timestamp: 2026-02-19T00:37:13.959Z
+[00:29:57.454] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:29:58.090] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:29:58.090] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:29:58.090] Browser LOG     Found 0 notifications:
+[00:29:58.090] Browser WARN    ⚠️ No notifications found for this user!
+[00:29:58.090] Browser LOG     Unread count from server: 0
+[00:29:58.090] Browser LOG     ===================================
+[00:30:05.349] Server  LOG     [getBidsWithDetails] Creating bid with key: 695d2b687a450bf17c29d2bb:Hawa Momoh Catering Services:0
+[00:30:05.556] Server  LOG     [getBidsWithDetails] Returning 1 bids
+[00:30:26.708] Browser LOG     Auto-refreshing notifications...
+[00:30:26.708] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:30:26.708] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:30:26.708] Browser LOG     Timestamp: 2026-02-19T00:37:43.960Z
+[00:30:27.689] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:30:28.657] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:30:28.657] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:30:28.657] Browser LOG     Found 0 notifications:
+[00:30:28.657] Browser WARN    ⚠️ No notifications found for this user!
+[00:30:28.657] Browser LOG     Unread count from server: 0
+[00:30:28.657] Browser LOG     ===================================
+[00:30:37.488] Server  LOG     [getBidsWithDetails] Creating bid with key: 695d2b687a450bf17c29d2bb:Hawa Momoh Catering Services:0
+[00:30:37.694] Server  LOG     [getBidsWithDetails] Returning 1 bids
+[00:30:56.713] Browser LOG     Auto-refreshing notifications...
+[00:30:56.713] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:30:56.713] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:30:56.713] Browser LOG     Timestamp: 2026-02-19T00:38:13.960Z
+[00:30:57.546] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:30:58.295] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:30:58.295] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:30:58.295] Browser LOG     Found 0 notifications:
+[00:30:58.295] Browser WARN    ⚠️ No notifications found for this user!
+[00:30:58.295] Browser LOG     Unread count from server: 0
+[00:30:58.295] Browser LOG     ===================================
+[00:31:13.887] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/requisitions color: rgb(120, 120, 120) color: inherit {"dp":"/requisitions","o":"http://localhost:3000/requisitions","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461511126}
+[00:31:26.705] Browser LOG     Auto-refreshing notifications...
+[00:31:26.705] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:31:26.705] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:31:26.705] Browser LOG     Timestamp: 2026-02-19T00:38:43.961Z
+[00:31:27.482] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:31:28.175] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:31:28.175] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:31:28.175] Browser LOG     Found 0 notifications:
+[00:31:28.175] Browser WARN    ⚠️ No notifications found for this user!
+[00:31:28.175] Browser LOG     Unread count from server: 0
+[00:31:28.175] Browser LOG     ===================================
+[00:31:32.500] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/bids?sort=time&order=desc&page=1 color: rgb(120, 120, 120) color: inherit {"dp":"/bids","o":"http://localhost:3000/bids?sort=time&order=desc&page=1","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461529720}
+[00:31:49.756] Browser LOG     [TendersPage] User role: {"normalized":"superadmin","raw":"super_admin"}
+[00:31:49.756] Browser LOG     [TendersPage] Loading tenders...
+[00:31:49.756] Browser LOG     [2;38;2;124;124;124m%s[0m [TendersPage] User role: {"normalized":"superadmin","raw":"super_admin"}
+[00:31:49.756] Browser LOG     [2;38;2;124;124;124m%s[0m [TendersPage] Loading tenders...
+[00:31:49.756] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/tenders color: rgb(120, 120, 120) color: inherit {"dp":"/tenders","o":"http://localhost:3000/tenders","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461546994}
+[00:31:50.264] Server  LOG     [getTenders] User role: {}
+[00:31:50.265] Server  LOG     [getTenders] Admin/Superadmin - fetching all tenders
+[00:31:50.662] Server  LOG     [getTenders] Admin found 4 tenders
+[00:31:50.773] Browser LOG     [TendersPage] getTenders result: {"count":4,"success":true}
+[00:31:50.773] Browser LOG     [TendersPage] Setting tenders: 4
+[00:31:52.063] Server  LOG     [getTenders] User role: {}
+[00:31:52.064] Server  LOG     [getTenders] Admin/Superadmin - fetching all tenders
+[00:31:52.446] Server  LOG     [getTenders] Admin found 4 tenders
+[00:31:52.561] Browser LOG     [TendersPage] getTenders result: {"count":4,"success":true}
+[00:31:52.561] Browser LOG     [TendersPage] Setting tenders: 4
+[00:31:56.706] Browser LOG     Auto-refreshing notifications...
+[00:31:56.706] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:31:56.706] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:31:56.706] Browser LOG     Timestamp: 2026-02-19T00:39:13.962Z
+[00:31:57.122] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:31:57.774] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:31:57.774] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:31:57.774] Browser LOG     Found 0 notifications:
+[00:31:57.774] Browser WARN    ⚠️ No notifications found for this user!
+[00:31:57.774] Browser LOG     Unread count from server: 0
+[00:31:57.774] Browser LOG     ===================================
+[00:32:26.716] Browser LOG     Auto-refreshing notifications...
+[00:32:26.716] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:32:26.716] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:32:26.716] Browser LOG     Timestamp: 2026-02-19T00:39:43.962Z
+[00:32:27.118] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:32:27.868] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:32:27.868] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:32:27.868] Browser LOG     Found 0 notifications:
+[00:32:27.868] Browser WARN    ⚠️ No notifications found for this user!
+[00:32:27.868] Browser LOG     Unread count from server: 0
+[00:32:27.868] Browser LOG     ===================================
+[00:32:56.721] Browser LOG     Auto-refreshing notifications...
+[00:32:56.721] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:32:56.721] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:32:56.721] Browser LOG     Timestamp: 2026-02-19T00:40:13.962Z
+[00:32:57.134] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:32:57.780] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:32:57.780] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:32:57.780] Browser LOG     Found 0 notifications:
+[00:32:57.780] Browser WARN    ⚠️ No notifications found for this user!
+[00:32:57.780] Browser LOG     Unread count from server: 0
+[00:32:57.780] Browser LOG     ===================================
+[00:33:26.732] Browser LOG     Auto-refreshing notifications...
+[00:33:26.732] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:33:26.732] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:33:26.732] Browser LOG     Timestamp: 2026-02-19T00:40:43.971Z
+[00:33:27.393] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:33:28.064] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:33:28.064] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:33:28.064] Browser LOG     Found 0 notifications:
+[00:33:28.064] Browser WARN    ⚠️ No notifications found for this user!
+[00:33:28.064] Browser LOG     Unread count from server: 0
+[00:33:28.064] Browser LOG     ===================================
+[00:33:32.062] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin-upload color: rgb(120, 120, 120) color: inherit {"dp":"/admin-upload","o":"http://localhost:3000/admin-upload","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461649306}
+[00:33:56.727] Browser LOG     Auto-refreshing notifications...
+[00:33:56.727] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:33:56.727] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:33:56.727] Browser LOG     Timestamp: 2026-02-19T00:41:13.972Z
+[00:33:58.073] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:33:58.720] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:33:58.720] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:33:58.720] Browser LOG     Found 0 notifications:
+[00:33:58.720] Browser WARN    ⚠️ No notifications found for this user!
+[00:33:58.720] Browser LOG     Unread count from server: 0
+[00:33:58.720] Browser LOG     ===================================
+[00:34:26.716] Browser LOG     Auto-refreshing notifications...
+[00:34:26.716] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:34:26.716] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:34:26.716] Browser LOG     Timestamp: 2026-02-19T00:41:43.963Z
+[00:34:27.214] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:34:27.875] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:34:27.875] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:34:27.875] Browser LOG     Found 0 notifications:
+[00:34:27.875] Browser WARN    ⚠️ No notifications found for this user!
+[00:34:27.875] Browser LOG     Unread count from server: 0
+[00:34:27.875] Browser LOG     ===================================
+[00:34:56.729] Browser LOG     Auto-refreshing notifications...
+[00:34:56.729] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:34:56.729] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:34:56.729] Browser LOG     Timestamp: 2026-02-19T00:42:13.976Z
+[00:34:57.366] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:34:57.988] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:34:57.988] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:34:57.988] Browser LOG     Found 0 notifications:
+[00:34:57.988] Browser WARN    ⚠️ No notifications found for this user!
+[00:34:57.988] Browser LOG     Unread count from server: 0
+[00:34:57.988] Browser LOG     ===================================
+[00:35:26.709] Browser LOG     Auto-refreshing notifications...
+[00:35:26.709] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:35:26.709] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:35:26.709] Browser LOG     Timestamp: 2026-02-19T00:42:43.960Z
+[00:35:27.733] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:35:28.306] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:35:28.306] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:35:28.306] Browser LOG     Found 0 notifications:
+[00:35:28.306] Browser WARN    ⚠️ No notifications found for this user!
+[00:35:28.306] Browser LOG     Unread count from server: 0
+[00:35:28.306] Browser LOG     ===================================
+[00:35:31.873] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:35:31.873] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:35:31.873] Browser LOG     === USER DEBUG INFO ===
+[00:35:31.873] Browser LOG     Full user object: {"backupCodeEnabled":false,"cachedSessionsWithActivities":null,"createOrganizationEnabled":true,"createOrganizationsLimit":null,"createdAt":"2025-12-08T00:58:16.121Z","deleteSelfEnabled":true,"emailAddresses":[{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:42:48.408Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}}],"enterpriseAccounts":[],"externalAccounts":[{"approvedScopes":"email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid profile","emailAddress":"keitamorie@gmail.com","firstName":"Morie","id":"eac_36XahiX4OJyK5bqXYi82Zu19u85","identificationId":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMaWVWM2dNQ1JVRXhGUlZUeldFNkZ2UUh3akNCMFY2T2lSdWVhaW81eElRcFJsTDFOT3lnPXMxMDAwLWMiLCJzIjoiNS94aXFYU3ArUkNKZzhLZXFWYTl0TldrRHRLVjJ5bjI4dXBtbHV1UjVEayJ9","label":null,"lastName":"Keita","pathRoot":"/me/external_accounts","phoneNumber":"","provider":"google","providerUserId":"108684199805707261062","publicMetadata":{},"username":"","verification":{"attempts":null,"error":null,"expireAt":"2025-12-08T01:08:01.532Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"oauth_google"}}],"externalId":null,"firstName":"Morie","fullName":"Morie Keita","hasImage":true,"id":"user_36XaiV2rWEPP5QOKDz3Sj09pxsE","imageUrl":"https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNlhhaVY2YlFGc256M3A4UVEzaE9zSWdVVUYifQ","lastName":"Keita","lastSignInAt":"2026-02-18T17:31:17.757Z","legalAcceptedAt":null,"organizationMemberships":[],"passkeys":[],"passwordEnabled":false,"pathRoot":"/me","phoneNumbers":[],"primaryEmailAddress":{"emailAddress":"keitamorie@gmail.com","id":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","linkedTo":[{"id":"idn_36XaheQpC5hf8eYFdLTcjNlYpIV","pathRoot":"","type":"oauth_google"}],"matchesSsoConnection":false,"pathRoot":"/me/email_addresses","verification":{"attempts":null,"error":null,"expireAt":"2026-02-19T00:42:48.408Z","externalVerificationRedirectURL":null,"message":null,"nonce":null,"pathRoot":"","status":"verified","strategy":"from_oauth_google"}},"primaryEmailAddressId":"idn_36XahhtK7WWMN8A3VKvgMPdQFbm","primaryPhoneNumber":null,"primaryPhoneNumberId":null,"primaryWeb3Wallet":null,"primaryWeb3WalletId":null,"publicMetadata":{"role":"super_admin"},"samlAccounts":[],"totpEnabled":false,"twoFactorEnabled":false,"unsafeMetadata":{},"updatedAt":"2026-02-18T17:31:17.793Z","username":null,"web3Wallets":[]}
+[00:35:31.873] Browser LOG     Public metadata: {"role":"super_admin"}
+[00:35:31.873] Browser LOG     Unsafe metadata: {}
+[00:35:31.873] Browser LOG     Raw role: super_admin
+[00:35:31.873] Browser LOG     Normalized role: superadmin
+[00:35:31.873] Browser LOG     Is loaded: true
+[00:35:31.873] Browser LOG     ====================
+[00:35:31.873] Browser LOG     NotificationsDropdown mounted
+[00:35:31.873] Browser LOG     === NOTIFICATION DROPDOWN DEBUG ===
+[00:35:31.873] Browser LOG     Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:35:31.873] Browser LOG     Timestamp: 2026-02-19T00:42:48.719Z
+[00:35:31.873] Browser LOG     [2;38;2;124;124;124m%s[0m NotificationsDropdown unmounted
+[00:35:31.873] Browser LOG     [2;38;2;124;124;124m%s[0m NotificationsDropdown mounted
+[00:35:31.873] Browser LOG     [2;38;2;124;124;124m%s[0m === NOTIFICATION DROPDOWN DEBUG ===
+[00:35:31.873] Browser LOG     [2;38;2;124;124;124m%s[0m Current user ID: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:35:31.873] Browser LOG     [2;38;2;124;124;124m%s[0m Timestamp: 2026-02-19T00:42:48.724Z
+[00:35:31.873] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:35:31.873] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin-upload","route":"/admin-upload"}
+[00:35:31.873] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin-upload color: rgb(120, 120, 120) color: inherit {"dp":"/admin-upload","o":"http://localhost:3000/admin-upload","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1771461768760}
+[00:35:32.429] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:35:33.560] Server  LOG     Found 0 notifications for userId: user_36XaiV2rWEPP5QOKDz3Sj09pxsE
+[00:35:33.656] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:35:33.656] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:35:33.656] Browser LOG     Found 0 notifications:
+[00:35:33.656] Browser WARN    ⚠️ No notifications found for this user!
+[00:35:33.656] Browser LOG     Unread count from server: 0
+[00:35:33.656] Browser LOG     ===================================
+[00:35:34.661] Browser LOG     Notification result: {"status":"fulfilled","value":{"data":[],"success":true}}
+[00:35:34.661] Browser LOG     Unread count result: {"status":"fulfilled","value":{"count":0,"success":true}}
+[00:35:34.661] Browser LOG     Found 0 notifications:
+[00:35:34.661] Browser WARN    ⚠️ No notifications found for this user!
+[00:35:34.661] Browser LOG     Unread count from server: 0
+[00:35:34.661] Browser LOG     ===================================
