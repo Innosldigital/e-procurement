@@ -566,6 +566,8 @@ import DashboardClient from "@/components/dashboard-client";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { sendEmail } from "@/lib/actions/admin-approval-actions";
 import { redirect } from "next/navigation";
+import { checkEnvironmentVariables } from "@/lib/check-env";
+import { SetupRequired } from "@/components/setup-required";
 
 type ApprovalSummary = { status: string };
 type RequisitionSummary = {
@@ -599,6 +601,13 @@ type NotificationItem = {
 };
 
 export default async function DashboardPage() {
+  // Check if environment variables are configured
+  const envStatus = checkEnvironmentVariables();
+  
+  if (!envStatus.isConfigured) {
+    return <SetupRequired envStatus={envStatus} />;
+  }
+
   const { userId, sessionClaims } = await auth();
   if (userId) {
     const roleRaw = String(

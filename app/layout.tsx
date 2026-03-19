@@ -3,14 +3,14 @@ import { Analytics } from "@vercel/analytics/next";
 import { ClientClerkProvider } from "@/components/client-clerk-provider";
 import { AppShell } from "@/components/app-shell";
 import "./globals.css";
-import { EdgeStoreProvider } from "@/lib/edgestore";
+import { ConditionalEdgeStoreProvider } from "@/components/conditional-edgestore-provider";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Inno-SL Procurement",
-  description: "Enterprise procurement management platform",
+  title: "E-Procurement System",
+  description: "Multi-tenant enterprise procurement management platform",
   icons: {
     icon: [
       {
@@ -41,9 +41,9 @@ export default function RootLayout({
         <body
           className={`${inter.variable} font-sans antialiased overflow-x-hidden`}
         >
-          <EdgeStoreProvider>
+          <ConditionalEdgeStoreProvider>
             <AppShell>{children}</AppShell>
-          </EdgeStoreProvider>
+          </ConditionalEdgeStoreProvider>
           <Analytics />
         </body>
       </html>
